@@ -75,15 +75,13 @@
 
 
     <!-- ═══════════════════════════════════════════════════════════ -->
-    <!-- SECTION 1 — HERO                                            -->
+    <!-- HERO                                                        -->
     <!-- ═══════════════════════════════════════════════════════════ -->
-    <section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden">
-        <!-- Background image with overlay -->
+    <section id="hero" class="ops-section relative h-screen flex items-center justify-center overflow-hidden" data-theme="dark">
         <div class="absolute inset-0">
             <img src="images/hero-bg.jpg" alt="" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-b from-midnight/80 via-midnight/60 to-midnight"></div>
         </div>
-        <!-- Grid overlay -->
         <div class="hero-grid absolute inset-0 opacity-[0.03]"></div>
 
         <div class="relative z-10 text-center max-w-5xl mx-auto px-6">
@@ -105,7 +103,6 @@
             </div>
         </div>
 
-        <!-- Scroll indicator -->
         <div class="absolute bottom-8 left-1/2 -translate-x-1/2 scroll-indicator opacity-0">
             <div class="w-6 h-10 rounded-full border-2 border-white/20 flex justify-center pt-2">
                 <div class="w-1 h-2 bg-white/40 rounded-full scroll-dot"></div>
@@ -115,94 +112,45 @@
 
 
     <!-- ═══════════════════════════════════════════════════════════ -->
-    <!-- SECTION 2 — SERVICES OVERVIEW                               -->
+    <!-- SERVICES                                                    -->
     <!-- ═══════════════════════════════════════════════════════════ -->
-    <section id="services" class="relative py-32 md:py-48 bg-surface text-charcoal overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-24">
-                <p class="section-tag text-olive font-display font-medium tracking-widest uppercase text-sm mb-4">Our Services</p>
-                <h2 class="section-title font-display font-bold text-4xl md:text-6xl tracking-tight">
-                    Control room excellence<br>and operational intelligence.
-                </h2>
+    <section id="services" class="ops-section" data-theme="light">
+        <div class="section-inner">
+            <div class="section-header">
+                <p class="section-tag">Our Services</p>
+                <h2 class="section-title">Control room excellence<br>and operational intelligence.</h2>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="service-card group">
-                    <div class="card-icon">
-                        <i data-lucide="monitor" class="w-8 h-8"></i>
-                    </div>
-                    <h3 class="font-display font-semibold text-2xl mb-3">Control Room Services</h3>
-                    <p class="text-charcoal/60 leading-relaxed">
-                        24/7/365 remote monitoring and operations for the energy industry.
-                        Fully redundant hardware, software, and networks with dedicated backup
-                        generator, fatigue room, and disaster recovery center.
-                    </p>
+                <div class="ops-card" data-animate="fade-up">
+                    <div class="ops-card-icon"><i data-lucide="monitor" class="w-8 h-8"></i></div>
+                    <h3 class="ops-card-title">Control Room Services</h3>
+                    <p class="ops-card-text">24/7/365 remote monitoring and operations for the energy industry. Fully redundant hardware, software, and networks with dedicated backup generator, fatigue room, and disaster recovery center.</p>
                 </div>
-
-                <!-- Card 2 -->
-                <div class="service-card group">
-                    <div class="card-icon">
-                        <i data-lucide="shield-check" class="w-8 h-8"></i>
-                    </div>
-                    <h3 class="font-display font-semibold text-2xl mb-3">CRM Compliance</h3>
-                    <p class="text-charcoal/60 leading-relaxed">
-                        PHMSA CRM compliance aligned with 49 CFR 195.446 and 192.631.
-                        We develop, implement, and maintain tailored CRM plans — and we've
-                        successfully navigated multiple regulatory audits.
-                    </p>
+                <div class="ops-card" data-animate="fade-up">
+                    <div class="ops-card-icon"><i data-lucide="shield-check" class="w-8 h-8"></i></div>
+                    <h3 class="ops-card-title">CRM Compliance</h3>
+                    <p class="ops-card-text">PHMSA CRM compliance aligned with 49 CFR 195.446 and 192.631. We develop, implement, and maintain tailored CRM plans &mdash; and we've successfully navigated multiple regulatory audits.</p>
                 </div>
-
-                <!-- Card 3 -->
-                <div class="service-card group">
-                    <div class="card-icon">
-                        <i data-lucide="cpu" class="w-8 h-8"></i>
-                    </div>
-                    <h3 class="font-display font-semibold text-2xl mb-3">Automation & SCADA</h3>
-                    <p class="text-charcoal/60 leading-relaxed">
-                        Full-range industrial automation — PLC programming, HMI development,
-                        SCADA deployment, and flow computer configuration. From greenfield builds
-                        to system modernization.
-                    </p>
+                <div class="ops-card" data-animate="fade-up">
+                    <div class="ops-card-icon"><i data-lucide="cpu" class="w-8 h-8"></i></div>
+                    <h3 class="ops-card-title">Automation & SCADA</h3>
+                    <p class="ops-card-text">Full-range industrial automation &mdash; PLC programming, HMI development, SCADA deployment, and flow computer configuration. From greenfield builds to system modernization.</p>
                 </div>
-
-                <!-- Card 4 -->
-                <div class="service-card group">
-                    <div class="card-icon">
-                        <i data-lucide="bell-ring" class="w-8 h-8"></i>
-                    </div>
-                    <h3 class="font-display font-semibold text-2xl mb-3">Alarm Management</h3>
-                    <p class="text-charcoal/60 leading-relaxed">
-                        ISA-18.2 compliant alarm rationalization, nuisance alarm identification,
-                        and operator interface optimization. We enhance situational awareness
-                        and cut through the noise.
-                    </p>
+                <div class="ops-card" data-animate="fade-up">
+                    <div class="ops-card-icon"><i data-lucide="bell-ring" class="w-8 h-8"></i></div>
+                    <h3 class="ops-card-title">Alarm Management</h3>
+                    <p class="ops-card-text">ISA-18.2 compliant alarm rationalization, nuisance alarm identification, and operator interface optimization. We enhance situational awareness and cut through the noise.</p>
                 </div>
-
-                <!-- Card 5 -->
-                <div class="service-card group">
-                    <div class="card-icon">
-                        <i data-lucide="search" class="w-8 h-8"></i>
-                    </div>
-                    <h3 class="font-display font-semibold text-2xl mb-3">Leak Detection</h3>
-                    <p class="text-charcoal/60 leading-relaxed">
-                        CPM and non-CPM leak detection monitoring integrated into your
-                        control room operations. Real-time analysis with immediate
-                        emergency response initiation.
-                    </p>
+                <div class="ops-card" data-animate="fade-up">
+                    <div class="ops-card-icon"><i data-lucide="search" class="w-8 h-8"></i></div>
+                    <h3 class="ops-card-title">Leak Detection</h3>
+                    <p class="ops-card-text">CPM and non-CPM leak detection monitoring integrated into your control room operations. Real-time analysis with immediate emergency response initiation.</p>
                 </div>
-
-                <!-- Card 6 -->
-                <div class="service-card group">
-                    <div class="card-icon">
-                        <i data-lucide="factory" class="w-8 h-8"></i>
-                    </div>
-                    <h3 class="font-display font-semibold text-2xl mb-3">Manufacturing</h3>
-                    <p class="text-charcoal/60 leading-relaxed">
-                        Automation solutions for manufacturing environments — utilities,
-                        material handling, processing, and packaging lines. Enhanced productivity
-                        through integrated data historians and real-time monitoring.
-                    </p>
+                <div class="ops-card" data-animate="fade-up">
+                    <div class="ops-card-icon"><i data-lucide="factory" class="w-8 h-8"></i></div>
+                    <h3 class="ops-card-title">Manufacturing</h3>
+                    <p class="ops-card-text">Automation solutions for manufacturing environments &mdash; utilities, material handling, processing, and packaging lines. Enhanced productivity through integrated data historians and real-time monitoring.</p>
                 </div>
             </div>
         </div>
@@ -210,27 +158,23 @@
 
 
     <!-- ═══════════════════════════════════════════════════════════ -->
-    <!-- SECTION 3 — CONTROL ROOM (Full-bleed image + pinned text)   -->
+    <!-- CONTROL ROOM                                                -->
     <!-- ═══════════════════════════════════════════════════════════ -->
-    <section id="control-room" class="relative bg-midnight overflow-hidden">
-        <!-- Background image -->
-        <div class="absolute inset-0">
-            <img src="images/control-room.jpg" alt="OPS Control Room" class="w-full h-full object-cover opacity-20">
-        </div>
-
-        <div class="relative max-w-7xl mx-auto px-6 py-32 md:py-48">
+    <section id="control-room" class="ops-section" data-theme="dark" data-bg-image="images/control-room.jpg">
+        <div class="section-bg-image"></div>
+        <div class="section-inner relative">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <div>
-                    <p class="section-tag text-olive font-display font-medium tracking-widest uppercase text-sm mb-4">The OPS Control Center</p>
-                    <h2 class="section-title font-display font-bold text-4xl md:text-5xl tracking-tight text-white mb-8">
-                        24/7/365 monitoring.<br>Zero compromise.
-                    </h2>
-                    <p class="text-white/60 text-lg leading-relaxed mb-8">
+                    <div class="section-header text-left">
+                        <p class="section-tag">The OPS Control Center</p>
+                        <h2 class="section-title">24/7/365 monitoring.<br>Zero compromise.</h2>
+                    </div>
+                    <p class="theme-text-secondary text-lg leading-relaxed mb-8" data-animate="fade-up">
                         The OPS Control Center offers round-the-clock monitoring and operations
-                        for the energy industry — providing clients with streamlined, centralized,
+                        for the energy industry &mdash; providing clients with streamlined, centralized,
                         and reliable solutions.
                     </p>
-                    <p class="text-white/50 text-base leading-relaxed">
+                    <p class="theme-text-muted text-base leading-relaxed" data-animate="fade-up">
                         Beyond pipeline infrastructure subject to federal regulations, we provide
                         remote monitoring and emergency response for produced water infrastructure,
                         processing plants, production sites, carbon capture projects, RNG infrastructure,
@@ -239,42 +183,15 @@
                 </div>
 
                 <div class="grid grid-cols-1 gap-4">
-                    <div class="feature-pill">
-                        <i data-lucide="eye" class="w-5 h-5 text-olive"></i>
-                        <span>24/7 Monitoring and Control</span>
-                    </div>
-                    <div class="feature-pill">
-                        <i data-lucide="shield" class="w-5 h-5 text-olive"></i>
-                        <span>PHMSA CRM Compliance (49 CFR 195.446 / 192.631)</span>
-                    </div>
-                    <div class="feature-pill">
-                        <i data-lucide="lock" class="w-5 h-5 text-olive"></i>
-                        <span>Cyber and Physical Security</span>
-                    </div>
-                    <div class="feature-pill">
-                        <i data-lucide="zap" class="w-5 h-5 text-olive"></i>
-                        <span>Dedicated Backup Generator</span>
-                    </div>
-                    <div class="feature-pill">
-                        <i data-lucide="bed" class="w-5 h-5 text-olive"></i>
-                        <span>Dedicated Fatigue Room</span>
-                    </div>
-                    <div class="feature-pill">
-                        <i data-lucide="server" class="w-5 h-5 text-olive"></i>
-                        <span>Fully Redundant Hardware, Software, and Networks</span>
-                    </div>
-                    <div class="feature-pill">
-                        <i data-lucide="siren" class="w-5 h-5 text-olive"></i>
-                        <span>Emergency Response</span>
-                    </div>
-                    <div class="feature-pill">
-                        <i data-lucide="droplets" class="w-5 h-5 text-olive"></i>
-                        <span>Leak Detection (CPM and non-CPM)</span>
-                    </div>
-                    <div class="feature-pill">
-                        <i data-lucide="building-2" class="w-5 h-5 text-olive"></i>
-                        <span>Disaster Recovery Control Center</span>
-                    </div>
+                    <div class="ops-pill" data-animate="slide-right"><i data-lucide="eye" class="w-5 h-5 text-olive"></i><span>24/7 Monitoring and Control</span></div>
+                    <div class="ops-pill" data-animate="slide-right"><i data-lucide="shield" class="w-5 h-5 text-olive"></i><span>PHMSA CRM Compliance (49 CFR 195.446 / 192.631)</span></div>
+                    <div class="ops-pill" data-animate="slide-right"><i data-lucide="lock" class="w-5 h-5 text-olive"></i><span>Cyber and Physical Security</span></div>
+                    <div class="ops-pill" data-animate="slide-right"><i data-lucide="zap" class="w-5 h-5 text-olive"></i><span>Dedicated Backup Generator</span></div>
+                    <div class="ops-pill" data-animate="slide-right"><i data-lucide="bed" class="w-5 h-5 text-olive"></i><span>Dedicated Fatigue Room</span></div>
+                    <div class="ops-pill" data-animate="slide-right"><i data-lucide="server" class="w-5 h-5 text-olive"></i><span>Fully Redundant Hardware, Software, and Networks</span></div>
+                    <div class="ops-pill" data-animate="slide-right"><i data-lucide="siren" class="w-5 h-5 text-olive"></i><span>Emergency Response</span></div>
+                    <div class="ops-pill" data-animate="slide-right"><i data-lucide="droplets" class="w-5 h-5 text-olive"></i><span>Leak Detection (CPM and non-CPM)</span></div>
+                    <div class="ops-pill" data-animate="slide-right"><i data-lucide="building-2" class="w-5 h-5 text-olive"></i><span>Disaster Recovery Control Center</span></div>
                 </div>
             </div>
         </div>
@@ -282,26 +199,26 @@
 
 
     <!-- ═══════════════════════════════════════════════════════════ -->
-    <!-- SECTION 4 — STATS COUNTER                                   -->
+    <!-- STATS                                                       -->
     <!-- ═══════════════════════════════════════════════════════════ -->
-    <section id="stats" class="relative py-32 md:py-48 bg-charcoal-dark overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6">
+    <section id="stats" class="ops-section" data-theme="dark">
+        <div class="section-inner">
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-12 text-center">
-                <div class="stat-block">
-                    <div class="stat-number font-display font-bold text-5xl md:text-7xl text-white" data-target="24" data-suffix="/7">0</div>
-                    <p class="text-white/50 mt-3 text-lg">Monitoring Coverage</p>
+                <div class="ops-stat" data-animate="fade-up">
+                    <div class="ops-stat-number" data-target="24" data-suffix="/7">0</div>
+                    <p class="ops-stat-label">Monitoring Coverage</p>
                 </div>
-                <div class="stat-block">
-                    <div class="stat-number font-display font-bold text-5xl md:text-7xl text-white" data-target="10" data-suffix="+">0</div>
-                    <p class="text-white/50 mt-3 text-lg">Years in Service</p>
+                <div class="ops-stat" data-animate="fade-up">
+                    <div class="ops-stat-number" data-target="10" data-suffix="+">0</div>
+                    <p class="ops-stat-label">Years in Service</p>
                 </div>
-                <div class="stat-block">
-                    <div class="stat-number font-display font-bold text-5xl md:text-7xl text-olive" data-target="100" data-suffix="%">0</div>
-                    <p class="text-white/50 mt-3 text-lg">Audit Pass Rate</p>
+                <div class="ops-stat" data-animate="fade-up">
+                    <div class="ops-stat-number text-olive" data-target="100" data-suffix="%">0</div>
+                    <p class="ops-stat-label">Audit Pass Rate</p>
                 </div>
-                <div class="stat-block">
-                    <div class="stat-number font-display font-bold text-5xl md:text-7xl text-white" data-target="0" data-suffix="" data-is-zero="true">&mdash;</div>
-                    <p class="text-white/50 mt-3 text-lg">Missed Shifts</p>
+                <div class="ops-stat" data-animate="fade-up">
+                    <div class="ops-stat-number" data-target="0" data-suffix="" data-is-zero="true">&mdash;</div>
+                    <p class="ops-stat-label">Missed Shifts</p>
                 </div>
             </div>
         </div>
@@ -309,128 +226,77 @@
 
 
     <!-- ═══════════════════════════════════════════════════════════ -->
-    <!-- SECTION 5 — AUTOMATION (Featured Projects — Apple card stack)-->
+    <!-- AUTOMATION                                                  -->
     <!-- ═══════════════════════════════════════════════════════════ -->
-    <section id="automation" class="relative bg-midnight overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 py-32 md:py-48">
-            <div class="text-center mb-8">
-                <p class="section-tag text-olive font-display font-medium tracking-widest uppercase text-sm mb-4">Automation</p>
-                <h2 class="section-title font-display font-bold text-4xl md:text-6xl tracking-tight text-white">
-                    Featured projects.
-                </h2>
+    <section id="automation" class="ops-section" data-theme="dark">
+        <div class="section-inner">
+            <div class="section-header">
+                <p class="section-tag">Automation</p>
+                <h2 class="section-title">Featured projects.</h2>
+                <p class="section-subtitle">OPS delivers reliable, scalable automation solutions built to meet the demands of complex operations &mdash; from initial PLC design to comprehensive system integration.</p>
             </div>
-            <p class="text-white/50 text-lg text-center max-w-3xl mx-auto mb-20">
-                OPS delivers reliable, scalable automation solutions built to meet the demands of complex operations
-                — from initial PLC design to comprehensive system integration.
-            </p>
 
-            <!-- Project cards — stacked reveal -->
-            <div class="tech-stack space-y-8">
-                <div class="tech-panel">
-                    <div class="tech-panel-inner">
-                        <div class="tech-panel-content">
-                            <span class="text-olive font-display font-medium text-sm tracking-widest uppercase">Terminal Automation</span>
-                            <h3 class="font-display font-bold text-2xl md:text-3xl mt-3 mb-4 text-white">
-                                Rail-to-Storage and Automated Truck Rack System
-                            </h3>
-                            <p class="text-white/60 text-base leading-relaxed max-w-xl">
-                                Managed the offloading of 80 rail cars into storage through three dedicated
-                                product meter skids. Automated multi-flowrate proving, direct integration with
-                                TMS6 for batch and transaction data, and an interface with Toptech Multiloads
-                                for fully unattended driver operations at an eight-bay truck rack.
-                            </p>
+            <div class="space-y-8">
+                <div class="ops-panel" data-animate="fade-up">
+                    <div class="ops-panel-inner">
+                        <div class="ops-panel-content">
+                            <span class="ops-panel-tag text-olive">Terminal Automation</span>
+                            <h3 class="ops-panel-title">Rail-to-Storage and Automated Truck Rack System</h3>
+                            <p class="ops-panel-text">Managed the offloading of 80 rail cars into storage through three dedicated product meter skids. Automated multi-flowrate proving, direct integration with TMS6 for batch and transaction data, and an interface with Toptech Multiloads for fully unattended driver operations at an eight-bay truck rack.</p>
                         </div>
-                        <div class="tech-panel-visual">
-                            <div class="tech-visual-placeholder">
-                                <i data-lucide="train-front" class="w-20 h-20 text-olive/30"></i>
-                            </div>
-                        </div>
+                        <div class="ops-panel-visual"><i data-lucide="train-front" class="w-20 h-20 text-olive/30"></i></div>
                     </div>
                 </div>
 
-                <div class="tech-panel">
-                    <div class="tech-panel-inner">
-                        <div class="tech-panel-content">
-                            <span class="text-blue-400 font-display font-medium text-sm tracking-widest uppercase">SCADA Modernization</span>
-                            <h3 class="font-display font-bold text-2xl md:text-3xl mt-3 mb-4 text-white">
-                                Enterprise SCADA for Manufacturing
-                            </h3>
-                            <p class="text-white/60 text-base leading-relaxed max-w-xl">
-                                Enterprise-wide SCADA system using Ignition and Kepware OPC, replacing legacy
-                                systems. Centralized historical data for materials, batching, and forecasting
-                                with custom diagnostic tools that significantly reduced equipment downtime.
-                                SQL-driven configuration backend enabled rapid operational adjustments.
-                            </p>
+                <div class="ops-panel" data-animate="fade-up">
+                    <div class="ops-panel-inner">
+                        <div class="ops-panel-content">
+                            <span class="ops-panel-tag text-blue-400">SCADA Modernization</span>
+                            <h3 class="ops-panel-title">Enterprise SCADA for Manufacturing</h3>
+                            <p class="ops-panel-text">Enterprise-wide SCADA system using Ignition and Kepware OPC, replacing legacy systems. Centralized historical data for materials, batching, and forecasting with custom diagnostic tools that significantly reduced equipment downtime. SQL-driven configuration backend enabled rapid operational adjustments.</p>
                         </div>
-                        <div class="tech-panel-visual">
-                            <div class="tech-visual-placeholder">
-                                <i data-lucide="database" class="w-20 h-20 text-blue-400/30"></i>
-                            </div>
-                        </div>
+                        <div class="ops-panel-visual"><i data-lucide="database" class="w-20 h-20 text-blue-400/30"></i></div>
                     </div>
                 </div>
 
-                <div class="tech-panel">
-                    <div class="tech-panel-inner">
-                        <div class="tech-panel-content">
-                            <span class="text-purple-400 font-display font-medium text-sm tracking-widest uppercase">Multi-Site Deployment</span>
-                            <h3 class="font-display font-bold text-2xl md:text-3xl mt-3 mb-4 text-white">
-                                Multi-Terminal Control and SCADA
-                            </h3>
-                            <p class="text-white/60 text-base leading-relaxed max-w-xl">
-                                Control systems for four terminals and a central control center using
-                                ControlLogix PLCs and Ignition SCADA on Stratus ftServers. Integrated
-                                with Omni flow computers, Raptor tank gauging, and Siemens/ABB VFDs.
-                                Standardized operational control with fault-tolerant server infrastructure.
-                            </p>
+                <div class="ops-panel" data-animate="fade-up">
+                    <div class="ops-panel-inner">
+                        <div class="ops-panel-content">
+                            <span class="ops-panel-tag text-purple-400">Multi-Site Deployment</span>
+                            <h3 class="ops-panel-title">Multi-Terminal Control and SCADA</h3>
+                            <p class="ops-panel-text">Control systems for four terminals and a central control center using ControlLogix PLCs and Ignition SCADA on Stratus ftServers. Integrated with Omni flow computers, Raptor tank gauging, and Siemens/ABB VFDs. Standardized operational control with fault-tolerant server infrastructure.</p>
                         </div>
-                        <div class="tech-panel-visual">
-                            <div class="tech-visual-placeholder">
-                                <i data-lucide="network" class="w-20 h-20 text-purple-400/30"></i>
-                            </div>
-                        </div>
+                        <div class="ops-panel-visual"><i data-lucide="network" class="w-20 h-20 text-purple-400/30"></i></div>
                     </div>
                 </div>
 
-                <div class="tech-panel">
-                    <div class="tech-panel-inner">
-                        <div class="tech-panel-content">
-                            <span class="text-amber-400 font-display font-medium text-sm tracking-widest uppercase">HMI Modernization</span>
-                            <h3 class="font-display font-bold text-2xl md:text-3xl mt-3 mb-4 text-white">
-                                High-Performance HMI Consolidation
-                            </h3>
-                            <p class="text-white/60 text-base leading-relaxed max-w-xl">
-                                Overhauled existing HMI systems using FactoryTalk View SE Network
-                                Distributed application built to high-performance standards. Consolidated
-                                three standalone HMIs into a single Stratus server utilizing virtual machines
-                                and a unified HMI platform.
-                            </p>
+                <div class="ops-panel" data-animate="fade-up">
+                    <div class="ops-panel-inner">
+                        <div class="ops-panel-content">
+                            <span class="ops-panel-tag text-amber-400">HMI Modernization</span>
+                            <h3 class="ops-panel-title">High-Performance HMI Consolidation</h3>
+                            <p class="ops-panel-text">Overhauled existing HMI systems using FactoryTalk View SE Network Distributed application built to high-performance standards. Consolidated three standalone HMIs into a single Stratus server utilizing virtual machines and a unified HMI platform.</p>
                         </div>
-                        <div class="tech-panel-visual">
-                            <div class="tech-visual-placeholder">
-                                <i data-lucide="monitor" class="w-20 h-20 text-amber-400/30"></i>
-                            </div>
-                        </div>
+                        <div class="ops-panel-visual"><i data-lucide="monitor" class="w-20 h-20 text-amber-400/30"></i></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Platform Expertise bar -->
             <div class="mt-24">
                 <h3 class="text-center font-display font-semibold text-xl text-white/40 tracking-widest uppercase mb-12">Platform Expertise</h3>
                 <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                    <div class="platform-tag">Ignition SCADA</div>
-                    <div class="platform-tag">FactoryTalk View</div>
-                    <div class="platform-tag">ControlLogix</div>
-                    <div class="platform-tag">CompactLogix</div>
-                    <div class="platform-tag">Kepware OPC-UA</div>
-                    <div class="platform-tag">MQTT</div>
-                    <div class="platform-tag">Python</div>
-                    <div class="platform-tag">T-SQL / MySQL</div>
-                    <div class="platform-tag">VMware / Hyper-V</div>
-                    <div class="platform-tag">Docker</div>
-                    <div class="platform-tag">GE Rx3i</div>
-                    <div class="platform-tag">SCADAPack</div>
+                    <div class="ops-pill-tag">Ignition SCADA</div>
+                    <div class="ops-pill-tag">FactoryTalk View</div>
+                    <div class="ops-pill-tag">ControlLogix</div>
+                    <div class="ops-pill-tag">CompactLogix</div>
+                    <div class="ops-pill-tag">Kepware OPC-UA</div>
+                    <div class="ops-pill-tag">MQTT</div>
+                    <div class="ops-pill-tag">Python</div>
+                    <div class="ops-pill-tag">T-SQL / MySQL</div>
+                    <div class="ops-pill-tag">VMware / Hyper-V</div>
+                    <div class="ops-pill-tag">Docker</div>
+                    <div class="ops-pill-tag">GE Rx3i</div>
+                    <div class="ops-pill-tag">SCADAPack</div>
                 </div>
             </div>
         </div>
@@ -438,77 +304,41 @@
 
 
     <!-- ═══════════════════════════════════════════════════════════ -->
-    <!-- SECTION 6 — COMPLIANCE (Horizontal scroll)                  -->
+    <!-- COMPLIANCE                                                  -->
     <!-- ═══════════════════════════════════════════════════════════ -->
-    <section id="compliance" class="relative py-32 md:py-48 bg-surface text-charcoal overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-8">
-                <p class="section-tag text-olive font-display font-medium tracking-widest uppercase text-sm mb-4">Compliance</p>
-                <h2 class="section-title font-display font-bold text-4xl md:text-6xl tracking-tight">
-                    Audit-ready.<br>Always.
-                </h2>
+    <section id="compliance" class="ops-section" data-theme="light">
+        <div class="section-inner">
+            <div class="section-header">
+                <p class="section-tag">Compliance</p>
+                <h2 class="section-title">Audit-ready.<br>Always.</h2>
+                <p class="section-subtitle">We are dedicated to providing superior compliance services, helping control rooms meet the standards set out by PHMSA CRM regulations defined in CFR 195.446 and 192.631. Our team has successfully navigated multiple audits from regulatory agencies including PHMSA.</p>
             </div>
-            <p class="text-charcoal/50 text-lg text-center max-w-3xl mx-auto mb-20">
-                We are dedicated to providing superior compliance services, helping control rooms
-                meet the standards set out by PHMSA CRM regulations defined in CFR 195.446 and 192.631.
-                Our team has successfully navigated multiple audits from regulatory agencies including PHMSA.
-            </p>
 
-            <div class="compliance-scroll flex gap-8 pb-8">
-                <div class="compliance-card flex-shrink-0 w-80 md:w-96">
-                    <div class="compliance-icon bg-olive/10 text-olive">
-                        <i data-lucide="file-plus" class="w-8 h-8"></i>
-                    </div>
-                    <h3 class="font-display font-semibold text-xl mb-2">CRM Plan Development</h3>
-                    <p class="text-charcoal/60 leading-relaxed">
-                        Development and implementation of tailored Control Room Management plans.
-                        We help new control rooms build their framework and established rooms
-                        strengthen theirs.
-                    </p>
+            <div class="ops-hscroll flex gap-8 pb-8">
+                <div class="ops-card ops-card--fixed" data-animate="fade-up">
+                    <div class="ops-card-icon bg-olive/10 text-olive"><i data-lucide="file-plus" class="w-8 h-8"></i></div>
+                    <h3 class="ops-card-title">CRM Plan Development</h3>
+                    <p class="ops-card-text">Development and implementation of tailored Control Room Management plans. We help new control rooms build their framework and established rooms strengthen theirs.</p>
                 </div>
-
-                <div class="compliance-card flex-shrink-0 w-80 md:w-96">
-                    <div class="compliance-icon bg-blue-500/10 text-blue-600">
-                        <i data-lucide="refresh-ccw" class="w-8 h-8"></i>
-                    </div>
-                    <h3 class="font-display font-semibold text-xl mb-2">Ongoing CRM Improvements</h3>
-                    <p class="text-charcoal/60 leading-relaxed">
-                        Continuous evaluation and improvement of existing CRM plans to stay
-                        ahead of regulatory changes and operational needs.
-                    </p>
+                <div class="ops-card ops-card--fixed" data-animate="fade-up">
+                    <div class="ops-card-icon bg-blue-500/10 text-blue-600"><i data-lucide="refresh-ccw" class="w-8 h-8"></i></div>
+                    <h3 class="ops-card-title">Ongoing CRM Improvements</h3>
+                    <p class="ops-card-text">Continuous evaluation and improvement of existing CRM plans to stay ahead of regulatory changes and operational needs.</p>
                 </div>
-
-                <div class="compliance-card flex-shrink-0 w-80 md:w-96">
-                    <div class="compliance-icon bg-purple-500/10 text-purple-600">
-                        <i data-lucide="file-text" class="w-8 h-8"></i>
-                    </div>
-                    <h3 class="font-display font-semibold text-xl mb-2">Documentation Services</h3>
-                    <p class="text-charcoal/60 leading-relaxed">
-                        Comprehensive compliance documentation — revision-controlled,
-                        audit-ready, and maintained with full lifecycle tracking.
-                    </p>
+                <div class="ops-card ops-card--fixed" data-animate="fade-up">
+                    <div class="ops-card-icon bg-purple-500/10 text-purple-600"><i data-lucide="file-text" class="w-8 h-8"></i></div>
+                    <h3 class="ops-card-title">Documentation Services</h3>
+                    <p class="ops-card-text">Comprehensive compliance documentation &mdash; revision-controlled, audit-ready, and maintained with full lifecycle tracking.</p>
                 </div>
-
-                <div class="compliance-card flex-shrink-0 w-80 md:w-96">
-                    <div class="compliance-icon bg-amber-500/10 text-amber-600">
-                        <i data-lucide="clipboard-check" class="w-8 h-8"></i>
-                    </div>
-                    <h3 class="font-display font-semibold text-xl mb-2">Mock Audits</h3>
-                    <p class="text-charcoal/60 leading-relaxed">
-                        Rigorous mock audits that identify gaps before the real inspector
-                        arrives. Know exactly where you stand and what needs attention.
-                    </p>
+                <div class="ops-card ops-card--fixed" data-animate="fade-up">
+                    <div class="ops-card-icon bg-amber-500/10 text-amber-600"><i data-lucide="clipboard-check" class="w-8 h-8"></i></div>
+                    <h3 class="ops-card-title">Mock Audits</h3>
+                    <p class="ops-card-text">Rigorous mock audits that identify gaps before the real inspector arrives. Know exactly where you stand and what needs attention.</p>
                 </div>
-
-                <div class="compliance-card flex-shrink-0 w-80 md:w-96">
-                    <div class="compliance-icon bg-emerald-500/10 text-emerald-600">
-                        <i data-lucide="scale" class="w-8 h-8"></i>
-                    </div>
-                    <h3 class="font-display font-semibold text-xl mb-2">Audit Services & Consulting</h3>
-                    <p class="text-charcoal/60 leading-relaxed">
-                        Full audit support and consulting from a team that has been through
-                        the process. We provide the framework for successful outcomes.
-                    </p>
+                <div class="ops-card ops-card--fixed" data-animate="fade-up">
+                    <div class="ops-card-icon bg-emerald-500/10 text-emerald-600"><i data-lucide="scale" class="w-8 h-8"></i></div>
+                    <h3 class="ops-card-title">Audit Services & Consulting</h3>
+                    <p class="ops-card-text">Full audit support and consulting from a team that has been through the process. We provide the framework for successful outcomes.</p>
                 </div>
             </div>
         </div>
@@ -516,45 +346,39 @@
 
 
     <!-- ═══════════════════════════════════════════════════════════ -->
-    <!-- SECTION 7 — TESTIMONIALS                                    -->
+    <!-- TESTIMONIALS                                                -->
     <!-- ═══════════════════════════════════════════════════════════ -->
-    <section id="testimonials" class="relative py-32 md:py-48 bg-midnight overflow-hidden">
-        <div class="max-w-5xl mx-auto px-6">
-            <div class="text-center mb-20">
-                <p class="section-tag text-olive font-display font-medium tracking-widest uppercase text-sm mb-4">What Our Clients Say</p>
-                <h2 class="section-title font-display font-bold text-4xl md:text-5xl tracking-tight text-white">
-                    Trusted by operators.
-                </h2>
+    <section id="testimonials" class="ops-section" data-theme="dark">
+        <div class="section-inner max-w-5xl">
+            <div class="section-header">
+                <p class="section-tag">What Our Clients Say</p>
+                <h2 class="section-title">Trusted by operators.</h2>
             </div>
 
             <div class="grid md:grid-cols-2 gap-12">
-                <div class="testimonial-card">
-                    <div class="text-olive mb-6">
-                        <i data-lucide="quote" class="w-10 h-10"></i>
-                    </div>
-                    <blockquote class="text-white/70 text-lg leading-relaxed mb-8 italic">
+                <div class="ops-quote" data-animate="fade-up">
+                    <div class="text-olive mb-6"><i data-lucide="quote" class="w-10 h-10"></i></div>
+                    <blockquote class="theme-text-secondary text-lg leading-relaxed mb-8 italic">
                         "We are very happy with our decision to switch from our previous control room provider
                         to OPS. Highly skilled in control center operations, and we know the OPS team can be
                         trusted with our assets. We are certainly satisfied with the level of service they provide."
                     </blockquote>
                     <div class="border-t border-white/10 pt-6">
                         <p class="font-display font-semibold text-white">Dave Brazeal</p>
-                        <p class="text-white/40 text-sm">VP of Operations and Construction, Taproot Energy Partners</p>
+                        <p class="theme-text-muted text-sm">VP of Operations and Construction, Taproot Energy Partners</p>
                     </div>
                 </div>
 
-                <div class="testimonial-card">
-                    <div class="text-olive mb-6">
-                        <i data-lucide="quote" class="w-10 h-10"></i>
-                    </div>
-                    <blockquote class="text-white/70 text-lg leading-relaxed mb-8 italic">
+                <div class="ops-quote" data-animate="fade-up">
+                    <div class="text-olive mb-6"><i data-lucide="quote" class="w-10 h-10"></i></div>
+                    <blockquote class="theme-text-secondary text-lg leading-relaxed mb-8 italic">
                         "I've trusted this team on automation projects well before OPS existed, and I consider
                         them a dependable resource. They've always been solid &mdash; technically strong, responsive,
                         and easy to work with."
                     </blockquote>
                     <div class="border-t border-white/10 pt-6">
                         <p class="font-display font-semibold text-white">Travis Cundiff</p>
-                        <p class="text-white/40 text-sm">VP of Operations, NGL Crude Terminals</p>
+                        <p class="theme-text-muted text-sm">VP of Operations, NGL Crude Terminals</p>
                     </div>
                 </div>
             </div>
@@ -563,28 +387,28 @@
 
 
     <!-- ═══════════════════════════════════════════════════════════ -->
-    <!-- SECTION 8 — ABOUT                                           -->
+    <!-- ABOUT                                                       -->
     <!-- ═══════════════════════════════════════════════════════════ -->
-    <section id="about" class="relative py-32 md:py-48 bg-surface text-charcoal overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6">
+    <section id="about" class="ops-section" data-theme="light">
+        <div class="section-inner">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <div>
-                    <p class="section-tag text-olive font-display font-medium tracking-widest uppercase text-sm mb-4">About Us</p>
-                    <h2 class="section-title font-display font-bold text-4xl md:text-5xl tracking-tight mb-8">
-                        Operators building<br>for operators.
-                    </h2>
-                    <p class="text-charcoal/60 text-lg leading-relaxed mb-6">
+                    <div class="section-header text-left">
+                        <p class="section-tag">About Us</p>
+                        <h2 class="section-title">Operators building<br>for operators.</h2>
+                    </div>
+                    <p class="theme-text-secondary text-lg leading-relaxed mb-6" data-animate="fade-up">
                         At Optimal Pipeline Solutions, we apply decades of specialized experience from our
                         core team to the forefront of automation, control, and compliance. We deliver robust,
                         efficient, and secure solutions tailored for the unique demands of the modern energy
                         and manufacturing sectors.
                     </p>
-                    <p class="text-charcoal/60 text-lg leading-relaxed mb-6">
+                    <p class="theme-text-secondary text-lg leading-relaxed mb-6" data-animate="fade-up">
                         We collaborate closely with highly skilled IT professionals to ensure the security
                         and integrity of the systems we develop and manage, driving higher performance,
                         reliability, and operational efficiency across every project.
                     </p>
-                    <p class="text-charcoal/60 text-lg leading-relaxed">
+                    <p class="theme-text-secondary text-lg leading-relaxed" data-animate="fade-up">
                         Our team deeply understands control room operations, PLC programming,
                         advanced data analysis, and alarm management strategies &mdash; and we bring
                         that expertise to every engagement.
@@ -592,50 +416,35 @@
                 </div>
 
                 <div class="space-y-6">
-                    <!-- Office 1 -->
-                    <div class="about-office-card">
+                    <div class="ops-card ops-card--accent" data-animate="slide-right">
                         <div class="flex items-start gap-4">
                             <div class="w-12 h-12 rounded-xl bg-olive/10 flex items-center justify-center flex-shrink-0">
                                 <i data-lucide="map-pin" class="w-6 h-6 text-olive"></i>
                             </div>
                             <div>
                                 <h4 class="font-display font-semibold text-lg">Stillwater, Oklahoma</h4>
-                                <p class="text-charcoal/50 mt-1">203 E 80th Street<br>Stillwater, OK 74074</p>
+                                <p class="theme-text-muted mt-1">203 E 80th Street<br>Stillwater, OK 74074</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Office 2 -->
-                    <div class="about-office-card">
+                    <div class="ops-card ops-card--accent" data-animate="slide-right">
                         <div class="flex items-start gap-4">
                             <div class="w-12 h-12 rounded-xl bg-olive/10 flex items-center justify-center flex-shrink-0">
                                 <i data-lucide="map-pin" class="w-6 h-6 text-olive"></i>
                             </div>
                             <div>
                                 <h4 class="font-display font-semibold text-lg">Kansas City, Missouri</h4>
-                                <p class="text-charcoal/50 mt-1">7505 NW Tiffany Springs Pkwy<br>STE 540, Kansas City, MO 64153</p>
+                                <p class="theme-text-muted mt-1">7505 NW Tiffany Springs Pkwy<br>STE 540, Kansas City, MO 64153</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Expertise areas -->
                     <div class="grid grid-cols-2 gap-4 mt-8">
-                        <div class="expertise-tag">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-olive"></i>
-                            <span>Project Management (PMP)</span>
-                        </div>
-                        <div class="expertise-tag">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-olive"></i>
-                            <span>System Integration</span>
-                        </div>
-                        <div class="expertise-tag">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-olive"></i>
-                            <span>Data Analysis</span>
-                        </div>
-                        <div class="expertise-tag">
-                            <i data-lucide="check-circle" class="w-4 h-4 text-olive"></i>
-                            <span>Cybersecurity</span>
-                        </div>
+                        <div class="ops-check"><i data-lucide="check-circle" class="w-4 h-4 text-olive"></i><span>Project Management (PMP)</span></div>
+                        <div class="ops-check"><i data-lucide="check-circle" class="w-4 h-4 text-olive"></i><span>System Integration</span></div>
+                        <div class="ops-check"><i data-lucide="check-circle" class="w-4 h-4 text-olive"></i><span>Data Analysis</span></div>
+                        <div class="ops-check"><i data-lucide="check-circle" class="w-4 h-4 text-olive"></i><span>Cybersecurity</span></div>
                     </div>
                 </div>
             </div>
@@ -644,19 +453,16 @@
 
 
     <!-- ═══════════════════════════════════════════════════════════ -->
-    <!-- SECTION 9 — CONTACT / CTA                                   -->
+    <!-- CONTACT                                                     -->
     <!-- ═══════════════════════════════════════════════════════════ -->
-    <section id="contact" class="relative py-32 md:py-48 bg-charcoal overflow-hidden">
+    <section id="contact" class="ops-section" data-theme="dark">
         <div class="contact-glow"></div>
-        <div class="relative max-w-4xl mx-auto px-6 text-center">
-            <p class="section-tag text-olive font-display font-medium tracking-widest uppercase text-sm mb-4">Get Started</p>
-            <h2 class="section-title font-display font-bold text-4xl md:text-6xl tracking-tight text-white mb-8">
-                Ready to modernize<br>your operations?
-            </h2>
-            <p class="text-white/60 text-xl leading-relaxed max-w-2xl mx-auto mb-12">
-                Whether you need full remote monitoring, compliance support,
-                automation services, or custom tooling &mdash; we'd like to hear from you.
-            </p>
+        <div class="section-inner relative max-w-4xl text-center">
+            <div class="section-header">
+                <p class="section-tag">Get Started</p>
+                <h2 class="section-title">Ready to modernize<br>your operations?</h2>
+                <p class="section-subtitle">Whether you need full remote monitoring, compliance support, automation services, or custom tooling &mdash; we'd like to hear from you.</p>
+            </div>
 
             <div class="flex flex-col sm:flex-row gap-6 justify-center mb-16">
                 <a href="mailto:info@optimalpipeline.com" class="btn-primary text-lg px-10 py-4">
