@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<!--
+═══════════════════════════════════════════════════════════════════════════════
+  Title:            OPS Website — Architecture & Operations Guide
+  Audience:         Engineering
+  Author:           Chris Babb
+  Date:             2026-05-31
+═══════════════════════════════════════════════════════════════════════════════
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OPS Website — Architecture &amp; Operations Guide</title>
+<style>
+  :root {
+    --olive: #969977;
+    --olive-light: #E9EBE1;
+    --olive-bg: #f4f5ef;
+    --charcoal: #4E4E4F;
+    --charcoal-light: #6B6B6C;
+    --logo-gray: #8C8C84;
+    --blue: #1f3864;
+    --blue-light: #e3eaf5;
+    --blue-bg: #f0f4fa;
+    --amber: #c47a00;
+    --amber-light: #fdf3e7;
+    --white: #ffffff;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-400: #9ca3af;
+    --gray-600: #4b5563;
+    --shadow: rgba(0,0,0,0.06);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--white);
+    color: var(--charcoal);
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 48px 36px 72px;
+    line-height: 1.6;
+  }
+
+  /* ── Hero ─────────────────────────────── */
+  .hero {
+    text-align: center;
+    margin-bottom: 36px;
+    padding-bottom: 18px;
+    border-bottom: 3px solid var(--olive);
+  }
+  .hero .doctype {
+    font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--olive); font-weight: 700; margin-bottom: 8px;
+  }
+  .hero h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 6px;
+  }
+  .hero .tagline {
+    font-size: 15px;
+    color: var(--gray-600);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .hero .meta {
+    font-size: 13px; color: var(--gray-600);
+  }
+
+  /* ── Section headers ──────────────────── */
+  h2 {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--blue);
+    margin: 44px 0 14px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--blue-light);
+  }
+  h2 .sec-num {
+    display: inline-block;
+    width: 26px; height: 26px;
+    line-height: 26px;
+    text-align: center;
+    border-radius: 50%;
+    background: var(--blue);
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 700;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin: 18px 0 6px;
+  }
+
+  /* ── Body text ────────────────────────── */
+  p { margin-bottom: 12px; color: #444; }
+  p.lead { font-size: 15px; }
+
+  ul, ol { margin: 6px 0 14px 24px; color: #444; }
+  li { margin-bottom: 5px; }
+
+  /* ── Workflow stages ──────────────────── */
+  .workflow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin: 20px 0;
+  }
+  .wf-stage {
+    width: 100%;
+    border: 2px solid var(--gray-200);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px var(--shadow);
+  }
+  .wf-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .wf-head .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .wf-body {
+    padding: 14px 18px 16px;
+    background: var(--white);
+    font-size: 13.5px;
+    color: #444;
+  }
+  .wf-body ul { margin: 6px 0 0 18px; }
+  .wf-body .cols { display: flex; gap: 20px; flex-wrap: wrap; }
+  .wf-body .col { flex: 1; min-width: 220px; }
+  .wf-body .col h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: 4px;
+    border-bottom: 1px solid var(--gray-200);
+    padding-bottom: 3px;
+  }
+
+  .wf-s1 .wf-head { background: var(--blue); }
+  .wf-s2 .wf-head { background: var(--charcoal); }
+  .wf-s3 .wf-head { background: var(--olive); }
+  .wf-s4 .wf-head { background: var(--charcoal-light); }
+  .wf-s5 .wf-head { background: var(--logo-gray); }
+  .wf-s6 .wf-head { background: var(--charcoal); }
+  .wf-s7 .wf-head { background: var(--blue); }
+
+  .arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3px 0;
+  }
+  .arrow .shaft { width: 3px; height: 20px; background: var(--olive); }
+  .arrow .head {
+    width: 0; height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 9px solid var(--olive);
+  }
+
+  /* ── Code blocks ──────────────────────── */
+  code {
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 13px;
+    background: var(--gray-100);
+    color: var(--charcoal);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+  pre {
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 12.5px;
+    background: #1e1e1e;
+    color: #d4d4d4;
+    padding: 14px 18px;
+    border-radius: 6px;
+    overflow-x: auto;
+    line-height: 1.55;
+    margin: 10px 0 16px;
+    border-left: 4px solid var(--blue);
+  }
+  pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+    font-size: inherit;
+  }
+
+  /* ── Callout boxes ────────────────────── */
+  .callout {
+    padding: 14px 18px; border-radius: 6px;
+    font-size: 14px; margin: 14px 0; line-height: 1.55;
+  }
+  .callout.olive { background: var(--olive-bg); border-left: 4px solid var(--olive); }
+  .callout.blue  { background: var(--blue-bg); border-left: 4px solid var(--blue); }
+  .callout.amber { background: var(--amber-light); border-left: 4px solid var(--amber); }
+  .callout .label {
+    font-size: 11px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+  .callout.olive .label { color: var(--olive); }
+  .callout.blue .label { color: var(--blue); }
+  .callout.amber .label { color: var(--amber); }
+
+  /* ── Tables ───────────────────────────── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0 18px;
+    font-size: 13.5px;
+  }
+  th {
+    background: var(--blue);
+    color: var(--white);
+    padding: 7px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  td {
+    padding: 7px 12px;
+    border-bottom: 1px solid var(--gray-200);
+    color: #444;
+  }
+  tr:nth-child(even) td { background: var(--gray-50); }
+
+  /* ── Priority matrix ──────────────────── */
+  .matrix {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0 16px;
+    font-size: 13px;
+    text-align: center;
+  }
+  .matrix th, .matrix td {
+    padding: 7px 10px;
+    border: 1px solid var(--gray-200);
+  }
+  .matrix th { font-size: 12px; }
+  .matrix .row-head {
+    background: var(--gray-100);
+    font-weight: 600;
+    text-align: left;
+    color: var(--charcoal);
+  }
+  .matrix .p-diag { background: #e8e8e8; color: #666; }
+  .matrix .p-low  { background: #d4e6f1; color: #1a5276; }
+  .matrix .p-med  { background: #fdebd0; color: #7e5109; }
+  .matrix .p-high { background: #fadbd8; color: #922b21; }
+  .matrix .p-crit { background: #e74c3c; color: #fff; font-weight: 700; }
+
+  /* ── Pill badges ──────────────────────── */
+  .pill {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 10px;
+    font-size: 11.5px;
+    font-weight: 600;
+    margin: 1px 3px 1px 0;
+  }
+  .pill.reg { background: var(--blue-light); color: var(--blue); }
+  .pill.grn { background: var(--olive-light); color: #4a6a1e; }
+
+  /* ── Standards footer ─────────────────── */
+  .standards {
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 2px solid var(--olive);
+    text-align: center;
+  }
+  .standards h3 { border: none; text-align: center; margin-bottom: 10px; font-size: 15px; }
+  .std-row { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+  .std-pill {
+    padding: 6px 16px;
+    border-radius: 20px;
+    background: var(--blue-light);
+    color: var(--blue);
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  @media print {
+    body { padding: 20px; max-width: 100%; }
+    .wf-stage { break-inside: avoid; }
+    h2 { break-inside: avoid; }
+    pre, .callout { break-inside: avoid; }
+    .letterhead { page-break-after: avoid; }
+  }
+
+  /* ── Letterhead ──────────────────────── */
+  .letterhead {
+    display: flex; align-items: center; gap: 24px;
+    padding: 20px 0 16px;
+    border-bottom: 3px solid var(--olive);
+    margin-bottom: 32px;
+  }
+  .letterhead .logo-block { flex-shrink: 0; }
+  .letterhead .logo-block img { height: 64px; }
+  .letterhead .company-info {
+    flex: 1; display: flex; flex-direction: column; gap: 2px;
+  }
+  .letterhead .company-name {
+    font-size: 22px; font-weight: 700; color: var(--charcoal);
+    letter-spacing: 0.5px;
+  }
+  .letterhead .company-tagline {
+    font-size: 12px; color: var(--olive); font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 4px;
+  }
+  .letterhead .company-website {
+    font-size: 12px; color: var(--charcoal-light);
+  }
+  .letterhead .offices {
+    display: flex; gap: 32px; flex-shrink: 0; text-align: right;
+  }
+  .letterhead .office {
+    font-size: 11px; line-height: 1.5; color: var(--charcoal-light);
+  }
+  .letterhead .office .city {
+    font-weight: 700; color: var(--charcoal);
+    font-size: 11.5px; margin-bottom: 1px;
+  }
+</style>
+</head>
+<body>
+
+<div class="letterhead">
+  <div class="logo-block">
+    <img src="data:image/jpeg;base64,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" alt="Optimal Pipeline Solutions">
+  </div>
+  <div class="company-info">
+    <div class="company-name">Optimal Pipeline Solutions</div>
+    <div class="company-tagline">Remote Monitoring &amp; Compliance Services</div>
+    <div class="company-website">www.optimalpipeline.com &nbsp;|&nbsp; 866-760-3933 &nbsp;|&nbsp; info@optimalpipeline.com</div>
+  </div>
+  <div class="offices">
+    <div class="office">
+      <div class="city">Stillwater, OK</div>
+      203 E 80th Street<br>
+      Stillwater, OK 74074
+    </div>
+    <div class="office">
+      <div class="city">Kansas City, MO</div>
+      7505 NW Tiffany Springs Pkwy<br>
+      STE 540, Kansas City, MO 64153
+    </div>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="doctype">Technical Brief</div>
+  <h1>OPS Website &mdash; Architecture &amp; Operations Guide</h1>
+  <div class="tagline">
+    Complete technical reference for the optimalpipeline.com static website:
+    how it was built, how it is hosted, how to modify it, and how to deploy changes.
+  </div>
+  <div class="meta">2026-05-31 &nbsp;&middot;&nbsp; Owner: Chris Babb</div>
+</div>
+
+<h2><span class="sec-num">1</span> What This Is</h2>
+<p>A single-page static website for Optimal Pipeline Solutions, replacing the existing Wix-hosted site at www.optimalpipeline.com. Apple-inspired design with full-page scroll sections, scroll-triggered animations, and a dark/light theme system.</p>
+
+<h2><span class="sec-num">2</span> How It Was Built</h2>
+<h3>Session 1 (2026-05-30)</h3>
+<ol>
+  <li><strong>Content scraping</strong> &mdash; Installed Playwright, wrote headless scrapers that loaded each Wix page with 8&ndash;12 second hydration wait, scrolled to trigger lazy content, then extracted all text and images via JavaScript DOM queries. Wix renders everything client-side so WebFetch and requests only get the JS shell &mdash; a headless browser is mandatory.</li>
+  <li><strong>Image download</strong> &mdash; Pulled the logo, hero background, and section images from the Wix CDN at high resolution. Saved in <code>images/</code>.</li>
+  <li><strong>Site construction</strong> &mdash; Built <code>index.html</code> + <code>css/styles.css</code> + <code>js/main.js</code> from scratch using Tailwind CSS (CDN), GSAP + ScrollTrigger (CDN), and Lucide Icons (CDN). No build step required.</li>
+  <li><strong>GitHub Pages setup</strong> &mdash; Created the <code>Optimal-Pipeline-Solutions/OPS-Website</code> repo, pushed code, enabled GitHub Pages with legacy deploy-from-branch mode on <code>main</code>.</li>
+</ol>
+<h3>Session 2 (2026-05-31)</h3>
+<ol start="5">
+  <li><strong>CNAME incident</strong> &mdash; Added a CNAME file before DNS was flipped, causing a redirect loop. Fixed by removing CNAME and clearing GitHub Pages custom domain settings.</li>
+  <li><strong>Standardization refactor</strong> &mdash; Replaced all one-off section classes with a unified component system. Zero visual change, dramatically easier to maintain.</li>
+</ol>
+
+<div class="callout olive">
+  <div class="label">CNAME Lesson</div>
+  Do NOT add the CNAME file before changing DNS. It causes the github.io URL to redirect to the domain which still points to Wix, creating a redirect loop. DNS change and CNAME addition must happen together.
+</div>
+
+<h2><span class="sec-num">3</span> File Structure</h2>
+<pre>F:\OPS Website\
++-- index.html          (the entire site - one file)
++-- css/styles.css      (all component styles, theme system)
++-- js/main.js          (GSAP animations, nav, scroll behaviors)
++-- images/
+|   +-- logo.png        (OPS logo, transparent background)
+|   +-- hero-bg.jpg     (pipeline photo for hero section)
+|   +-- control-room.jpg / automation.jpg / engineering.jpg
+|   +-- pipeline-aerial.jpg / industry-tech.jpg / engineer-overlay.png
++-- Plans/</pre>
+
+<h2><span class="sec-num">4</span> Component System</h2>
+<p>Every section follows this pattern:</p>
+<pre>&lt;section id="section-id" class="ops-section" data-theme="dark|light"&gt;
+    &lt;div class="section-inner"&gt;
+        &lt;div class="section-header"&gt;
+            &lt;p class="section-tag"&gt;Tag Text&lt;/p&gt;
+            &lt;h2 class="section-title"&gt;Heading&lt;/h2&gt;
+            &lt;p class="section-subtitle"&gt;Optional subtitle&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/section&gt;</pre>
+
+<h3>Available Components</h3>
+<table>
+  <tr><th>Component</th><th>Class</th><th>Use Case</th><th>Theme-Aware</th></tr>
+  <tr><td>Card</td><td><code>ops-card</code></td><td>Icon + title + description</td><td>Yes</td></tr>
+  <tr><td>Fixed Card</td><td><code>ops-card ops-card--fixed</code></td><td>Card in horizontal scroll</td><td>Yes</td></tr>
+  <tr><td>Accent Card</td><td><code>ops-card ops-card--accent</code></td><td>Olive-tinted card (offices)</td><td>Yes</td></tr>
+  <tr><td>Pill</td><td><code>ops-pill</code></td><td>Icon + text row</td><td>No</td></tr>
+  <tr><td>Pill Tag</td><td><code>ops-pill-tag</code></td><td>Small label tag (platforms)</td><td>No</td></tr>
+  <tr><td>Panel</td><td><code>ops-panel</code></td><td>Large two-column block (projects)</td><td>No</td></tr>
+  <tr><td>Quote</td><td><code>ops-quote</code></td><td>Testimonial card</td><td>No</td></tr>
+  <tr><td>Stat</td><td><code>ops-stat</code></td><td>Animated counter</td><td>No</td></tr>
+  <tr><td>Check</td><td><code>ops-check</code></td><td>Checkmark + text</td><td>Yes</td></tr>
+  <tr><td>H-Scroll</td><td><code>ops-hscroll</code></td><td>Horizontal scrollable container</td><td>N/A</td></tr>
+</table>
+
+<h3>Theme System</h3>
+<p><code>data-theme="dark"</code> &mdash; dark background (#111111), white text.<br>
+<code>data-theme="light"</code> &mdash; light background (#F5F5F7), dark text.</p>
+<p>Theme-aware text classes: <code>theme-text-secondary</code> (60% opacity), <code>theme-text-muted</code> (40&ndash;50% opacity).</p>
+
+<h3>Animation System</h3>
+<ul>
+  <li><code>data-animate="fade-up"</code> &mdash; fade in + slide up from below</li>
+  <li><code>data-animate="slide-right"</code> &mdash; fade in + slide from right</li>
+</ul>
+<p>One generic JS handler per type. Siblings auto-stagger. No per-section JS wiring needed.</p>
+
+<h3>Adding a New Section</h3>
+<ol>
+  <li>Copy the section skeleton above</li>
+  <li>Pick <code>data-theme="dark"</code> or <code>"light"</code></li>
+  <li>Add an <code>id</code> and update nav links in <code>&lt;nav&gt;</code> and <code>#mobile-menu</code></li>
+  <li>Drop in standard components with <code>data-animate</code> attributes</li>
+  <li>Done &mdash; no CSS or JS changes needed</li>
+</ol>
+
+<h2><span class="sec-num">5</span> CDN Dependencies</h2>
+<table>
+  <tr><th>Library</th><th>CDN URL</th><th>Purpose</th></tr>
+  <tr><td>Tailwind CSS</td><td><code>cdn.tailwindcss.com</code></td><td>Utility-first CSS framework</td></tr>
+  <tr><td>GSAP 3.12.5</td><td><code>cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js</code></td><td>Animation engine</td></tr>
+  <tr><td>ScrollTrigger</td><td>same CDN path <code>/ScrollTrigger.min.js</code></td><td>Scroll-driven animations</td></tr>
+  <tr><td>ScrollToPlugin</td><td>same CDN path <code>/ScrollToPlugin.min.js</code></td><td>Smooth scroll nav</td></tr>
+  <tr><td>Lucide Icons</td><td><code>unpkg.com/lucide@latest</code></td><td>SVG icon library</td></tr>
+</table>
+<p>All loaded from CDN &mdash; no npm install, no build step. Without internet, the page renders as raw unstyled HTML.</p>
+
+<h2><span class="sec-num">6</span> Hosting &amp; Deployment</h2>
+
+<div class="callout blue">
+  <div class="label">Current Setup</div>
+  Repo <code>Optimal-Pipeline-Solutions/OPS-Website</code> (public), branch <code>main</code>, GitHub Pages legacy deploy. Preview URL: <code>https://optimal-pipeline-solutions.github.io/OPS-Website/</code>. Production domain still on Wix.
+</div>
+
+<h3>How to Deploy Changes</h3>
+<ol>
+  <li>Edit files locally (or use the OPS Web Site Editor app)</li>
+  <li><code>git add -A &amp;&amp; git commit -m "description" &amp;&amp; git push</code></li>
+  <li>GitHub Pages rebuilds in ~30 seconds</li>
+</ol>
+
+<h3>DNS Cutover (When Ready)</h3>
+<p>Domain managed through <strong>Cloudflare</strong> (nameservers: bonnie/sonny.ns.cloudflare.com).</p>
+<table>
+  <tr><th>Record</th><th>Current (Wix)</th><th>Change To (GitHub)</th></tr>
+  <tr><td><code>www</code> CNAME</td><td><code>www132.wixdns.net</code></td><td><code>optimal-pipeline-solutions.github.io</code></td></tr>
+  <tr><td><code>@</code> A record</td><td><code>185.230.63.107</code></td><td><code>185.199.108.153</code></td></tr>
+  <tr><td><code>@</code> A record</td><td>(none)</td><td><code>185.199.109.153</code></td></tr>
+  <tr><td><code>@</code> A record</td><td>(none)</td><td><code>185.199.110.153</code></td></tr>
+  <tr><td><code>@</code> A record</td><td>(none)</td><td><code>185.199.111.153</code></td></tr>
+</table>
+<p>After DNS: create <code>CNAME</code> file in repo root containing <code>www.optimalpipeline.com</code>, commit and push. Then in GitHub Settings &gt; Pages, enter the domain and enable HTTPS.</p>
+
+<h2><span class="sec-num">7</span> Logo Visibility</h2>
+<table>
+  <tr><th>Location</th><th>Treatment</th></tr>
+  <tr><td>Navbar</td><td>White pill: <code>rgba(255,255,255,0.85)</code>, <code>border-radius: 8px</code>, <code>padding: 4px 12px</code></td></tr>
+  <tr><td>Hero</td><td>Radial gradient fade: solid white center to transparent edge. Responsive: 125px mobile / 200px desktop</td></tr>
+  <tr><td>Footer</td><td>Same white pill as navbar</td></tr>
+</table>
+
+<h2><span class="sec-num">8</span> Brand Colors (Tailwind Config)</h2>
+<table>
+  <tr><th>Token</th><th>Value</th></tr>
+  <tr><td>olive</td><td><code>#6B7B3A</code> (light: <code>#8A9B55</code>, dark: <code>#4F5C2A</code>)</td></tr>
+  <tr><td>charcoal</td><td><code>#2D2D2D</code> (light: <code>#3D3D3D</code>, dark: <code>#1A1A1A</code>)</td></tr>
+  <tr><td>logogray</td><td><code>#8C8C8C</code></td></tr>
+  <tr><td>surface</td><td><code>#F5F5F7</code></td></tr>
+  <tr><td>midnight</td><td><code>#111111</code></td></tr>
+</table>
+
+<h2><span class="sec-num">9</span> Mobile / Responsive</h2>
+<ul>
+  <li>Tailwind responsive prefixes (<code>md:</code>, <code>lg:</code>) handle all breakpoints</li>
+  <li>Mobile menu: hamburger toggles full-screen overlay with nav links</li>
+  <li><code>100vh</code> for hero &mdash; on iOS includes address bar space; switch to <code>100dvh</code> if problematic</li>
+  <li>Touch scrolling on compliance horizontal scroll works natively; drag-to-scroll is mouse-only</li>
+  <li>SF Pro Display is native on iOS/Mac, falls back to system sans-serif on Windows</li>
+</ul>
+
+<h2><span class="sec-num">10</span> Content Editing</h2>
+<p>Text content is edited via the <strong>OPS Web Site Editor</strong> app (<code>F:\OPS Web Site Editor\</code>).</p>
+<p>For structural changes (new sections, layout changes, animation types, color overhauls), edit the HTML/CSS/JS directly &mdash; those are Claude Code tasks, not editor tasks.</p>
+
+<div class="standards">
+  <h3>Technology Stack</h3>
+  <div class="std-row">
+    <span class="std-pill">Tailwind CSS</span>
+    <span class="std-pill">GSAP ScrollTrigger</span>
+    <span class="std-pill">Lucide Icons</span>
+    <span class="std-pill">GitHub Pages</span>
+    <span class="std-pill">Cloudflare DNS</span>
+  </div>
+</div>
+
+</body>
+</html>
