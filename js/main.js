@@ -32,15 +32,27 @@ document.addEventListener('DOMContentLoaded', () => {
         .fromTo('.hero-cta',   { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }, 0.5)
         .to('.scroll-indicator', { opacity: 1, duration: 1, ease: 'power2.out' }, 0.8);
 
-    // Hero parallax — subtle y drift only, no opacity fade
-    gsap.to('.hero-title', {
-        scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 0.5 },
-        y: -60
-    });
-    gsap.to('.hero-sub', {
-        scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 0.5 },
-        y: -30
-    });
+    // Hero parallax — fade out on scroll, fade back in on reverse
+    gsap.fromTo('.hero-logo',
+        { y: 0, opacity: 1 },
+        { y: -30, opacity: 0, scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 0.5 } }
+    );
+    gsap.fromTo('.hero-tag',
+        { y: 0, opacity: 1 },
+        { y: -40, opacity: 0, scrollTrigger: { trigger: '#hero', start: 'top top', end: '80% top', scrub: 0.5 } }
+    );
+    gsap.fromTo('.hero-title',
+        { y: 0, opacity: 1 },
+        { y: -80, opacity: 0, scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 0.5 } }
+    );
+    gsap.fromTo('.hero-sub',
+        { y: 0, opacity: 1 },
+        { y: -40, opacity: 0, scrollTrigger: { trigger: '#hero', start: 'top top', end: '80% top', scrub: 0.5 } }
+    );
+    gsap.fromTo('.hero-cta',
+        { y: 0, opacity: 1 },
+        { y: -20, opacity: 0, scrollTrigger: { trigger: '#hero', start: 'top top', end: '60% top', scrub: 0.5 } }
+    );
     gsap.to('.scroll-indicator', {
         scrollTrigger: { trigger: '#hero', start: '20% top', end: '40% top', scrub: true },
         opacity: 0
