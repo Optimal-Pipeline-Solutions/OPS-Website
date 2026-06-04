@@ -32,14 +32,14 @@ document.addEventListener('DOMContentLoaded', () => {
         .fromTo('.hero-cta',   { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }, 0.5)
         .to('.scroll-indicator', { opacity: 1, duration: 1, ease: 'power2.out' }, 0.8);
 
-    // Hero parallax — fades out only in the last 30% of the hero scroll
+    // Hero parallax — subtle y drift only, no opacity fade
     gsap.to('.hero-title', {
-        scrollTrigger: { trigger: '#hero', start: '70% top', end: 'bottom top', scrub: 0.5 },
-        y: -40, opacity: 0
+        scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 0.5 },
+        y: -60
     });
     gsap.to('.hero-sub', {
-        scrollTrigger: { trigger: '#hero', start: '60% top', end: '90% top', scrub: 0.5 },
-        y: -20, opacity: 0
+        scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 0.5 },
+        y: -30
     });
     gsap.to('.scroll-indicator', {
         scrollTrigger: { trigger: '#hero', start: '20% top', end: '40% top', scrub: true },
