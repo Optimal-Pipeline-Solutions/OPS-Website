@@ -92,7 +92,7 @@ html { scroll-behavior: smooth; }
     inset: 0;
     background-size: cover;
     background-position: center;
-    opacity: 0.2;
+    opacity: 0.35;
 }
 
 [data-bg-image] .section-bg-image {
