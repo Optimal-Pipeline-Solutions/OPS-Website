@@ -161,19 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // ── Navbar auto-hide ──────────────────────────────────────
-    let lastScrollY = 0;
-    const navbar = document.getElementById('navbar');
-
-    ScrollTrigger.create({
-        start: 0,
-        onUpdate: () => {
-            const y = window.scrollY;
-            if (y > 400 && y > lastScrollY) navbar.classList.add('nav-hidden');
-            else navbar.classList.remove('nav-hidden');
-            lastScrollY = y;
-        }
-    });
+    // ── Navbar always visible ─────────────────────────────────
 
 
     // ── Smooth scroll anchors ─────────────────────────────────
