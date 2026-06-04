@@ -178,8 +178,9 @@ html { scroll-behavior: smooth; }
 }
 
 .hero-logo {
-    background: radial-gradient(ellipse at center, rgba(255,255,255,0.9) 30%, rgba(255,255,255,0) 75%);
-    padding: 30px 50px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 8px;
+    padding: 20px 40px;
 }
 
 .scroll-dot { animation: scrollBounce 2s ease-in-out infinite; }
