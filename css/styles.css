@@ -179,7 +179,7 @@ html { scroll-behavior: smooth; }
     background: rgba(255, 255, 255, 0.85);
     border-radius: 8px;
     padding: clamp(10px, 2vh, 20px) clamp(20px, 3vw, 40px);
-    height: clamp(70px, 14vh, 200px);
+    height: clamp(52px, 10.4vh, 148px);
     width: auto;
     display: block;
 }
