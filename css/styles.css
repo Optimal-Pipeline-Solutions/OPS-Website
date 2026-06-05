@@ -343,7 +343,7 @@ html { scroll-behavior: smooth; }
 
 /* ── Pill Tag (.ops-pill-tag) ──────────────────────────────── */
 .ops-pill-tag {
-    padding: 0.625rem 1rem;
+    padding: 0.375rem 0.75rem;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 0.5rem;
