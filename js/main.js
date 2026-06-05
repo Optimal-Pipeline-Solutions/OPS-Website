@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
     // ── Lenis smooth scroll ────────────────────────────────────
-    const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
+    const lenis = new Lenis({ lerp: 0.12, smoothWheel: true });
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => lenis.raf(time * 1000));
     gsap.ticker.lagSmoothing(0);
@@ -205,17 +205,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // ── Vanta WAVES hero background ────────────────────────────
-    VANTA.WAVES({
-        el: '#vanta-hero',
-        THREE,
-        mouseControls: true,
-        touchControls: true,
-        gyroControls: false,
-        color: 0x0d100a,
-        shininess: 25,
-        waveHeight: 20,
-        waveSpeed: 0.55,
-        zoom: 0.88
-    });
 });
