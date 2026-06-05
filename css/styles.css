@@ -353,7 +353,6 @@ html { scroll-behavior: smooth; }
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 3rem;
     transition: all 0.3s ease;
 }
 
