@@ -57,6 +57,13 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
+    <!-- Lenis smooth scroll -->
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+    <!-- Three.js (Vanta dependency) -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.134.0/build/three.min.js"></script>
+    <!-- Vanta animated backgrounds -->
+    <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.waves.min.js"></script>
+
     <link rel="stylesheet" href="css/styles.css">
 
     <style>
@@ -216,11 +223,9 @@
     <!-- HERO                                                        -->
     <!-- ═══════════════════════════════════════════════════════════ -->
     <section id="hero" class="ops-section relative h-screen flex items-center justify-center overflow-hidden" data-theme="dark">
-        <div class="absolute inset-0">
-            <img src="images/hero-bg.jpg" alt="" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-b from-midnight/80 via-midnight/60 to-midnight"></div>
-        </div>
-        <div class="hero-grid absolute inset-0 opacity-[0.03]"></div>
+        <div id="vanta-hero" class="absolute inset-0" style="z-index:0;"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-midnight/40 via-midnight/20 to-midnight" style="z-index:1;pointer-events:none;"></div>
+        <div class="hero-grid absolute inset-0 opacity-[0.03]" style="z-index:2;"></div>
 
         <div class="relative z-10 text-center max-w-5xl mx-auto px-6">
             <img src="images/logo.png" alt="Optimal Pipeline Solutions" class="hero-logo mx-auto mb-10 opacity-0">
@@ -843,7 +848,7 @@
                 <p class="section-subtitle">We are dedicated to providing superior compliance services, helping control rooms meet the standards set out by PHMSA CRM regulations defined in CFR 195.446 and 192.631. Our team has successfully navigated multiple audits from regulatory agencies including PHMSA.</p>
             </div>
 
-            <div class="ops-hscroll flex gap-8 pb-8">
+            <div class="ops-hscroll flex gap-8 pb-8" data-lenis-prevent>
                 <div class="ops-card ops-card--fixed" data-animate="fade-up">
                     <div class="ops-card-icon bg-olive/10 text-olive"><i data-lucide="file-plus" class="w-8 h-8"></i></div>
                     <h3 class="ops-card-title">CRM Plan Development</h3>

@@ -13,6 +13,12 @@ document.addEventListener('DOMContentLoaded', () => {
     lucide.createIcons();
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
+    // ── Lenis smooth scroll ────────────────────────────────────
+    const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => lenis.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
+
     // ── Set background images from data attributes ────────────
     document.querySelectorAll('[data-bg-image]').forEach(section => {
         const img = section.querySelector('.section-bg-image');
@@ -170,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const target = document.querySelector(link.getAttribute('href'));
             if (target) {
-                gsap.to(window, { scrollTo: { y: target, offsetY: 64 }, duration: 1, ease: 'power3.inOut' });
+                lenis.scrollTo(target, { offset: -64, duration: 1.2, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
                 const mm = document.getElementById('mobile-menu');
                 if (mm && !mm.classList.contains('hidden')) {
                     mm.classList.add('hidden');
@@ -196,5 +202,20 @@ document.addEventListener('DOMContentLoaded', () => {
     gsap.to('.contact-glow', {
         scrollTrigger: { trigger: '#contact', start: 'top bottom', end: 'bottom top', scrub: 1 },
         scale: 1.5, opacity: 0.5
+    });
+
+
+    // ── Vanta WAVES hero background ────────────────────────────
+    VANTA.WAVES({
+        el: '#vanta-hero',
+        THREE,
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        color: 0x0d100a,
+        shininess: 25,
+        waveHeight: 20,
+        waveSpeed: 0.55,
+        zoom: 0.88
     });
 });
