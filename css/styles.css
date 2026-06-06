@@ -175,6 +175,11 @@ html { scroll-behavior: smooth; }
     background-size: 60px 60px;
 }
 
+.hero-word { display: inline-block; }
+
+/* Pill stagger: start hidden so JS can animate them in */
+[data-stagger-pills] .ops-pill-tag { opacity: 0; transform: translateY(18px); }
+
 .hero-logo {
     background: rgba(255, 255, 255, 0.85);
     border-radius: 8px;
