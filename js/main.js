@@ -13,17 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     lucide.createIcons();
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-    // ── Enhancement feature flags ─────────────────────────────────
-    // Set any flag to false to disable that enhancement instantly.
-    const FX = {
-        wordSplitHero:   true,  // 1. Word-by-word stagger on hero headline
-        gradientShimmer: true,  // 2. Slow shimmer on "Ensuring compliance." text
-        parallaxImages:  true,  // 3. Parallax drift on section background photos
-        pillStagger:     true,  // 4. Individual cascade on Operations Expertise pills
-        statsCountUp:    true,  // 5. CountUp on automation + case study stat numbers
-        heroGridDrift:   true,  // 6. Slow background drift on hero grid overlay
-    };
-
 
     // ── Set background images from data attributes ────────────
     document.querySelectorAll('[data-bg-image]').forEach(section => {
@@ -39,17 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
     heroTL
         .fromTo('.hero-logo',  { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }, 0)
         .fromTo('.hero-tag',   { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }, 0)
+        .fromTo('.hero-title', { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1,   ease: 'power3.out' }, 0.15)
         .fromTo('.hero-sub',   { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }, 0.35)
         .fromTo('.hero-cta',   { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }, 0.5)
         .to('.scroll-indicator', { opacity: 1, duration: 1, ease: 'power2.out' }, 0.8);
-
-    if (FX.wordSplitHero) {
-        heroTL
-            .set('.hero-title', { opacity: 1 }, 0.15)
-            .fromTo('.hero-word', { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.65, stagger: 0.07, ease: 'power3.out' }, 0.15);
-    } else {
-        heroTL.fromTo('.hero-title', { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }, 0.15);
-    }
 
     // Hero parallax — fade out on scroll, fade back in on reverse
     gsap.fromTo('.hero-logo',
@@ -218,88 +200,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // ═══════════════════════════════════════════════════════════
-    // ENHANCEMENTS — toggle via FX flags at top of file
-    // ═══════════════════════════════════════════════════════════
-
-    // FX 2 + 6: CSS-injected animations (gradient shimmer / hero grid drift)
-    if (FX.gradientShimmer || FX.heroGridDrift) {
-        const css = document.createElement('style');
-        let rules = '';
-        if (FX.gradientShimmer) rules += `
-            @keyframes gradientShimmer {
-                0%, 100% { background-position: 0% 50%; }
-                50%       { background-position: 100% 50%; }
-            }
-            .text-gradient { background-size: 200% 200%; animation: gradientShimmer 5s ease infinite; }`;
-        if (FX.heroGridDrift) rules += `
-            @keyframes gridDrift {
-                0%, 100% { background-position: 0px 0px; }
-                33%       { background-position: 8px 4px; }
-                66%       { background-position: -4px 8px; }
-            }
-            .hero-grid { animation: gridDrift 22s ease-in-out infinite; }`;
-        css.textContent = rules;
-        document.head.appendChild(css);
-    }
-
-    // FX 3: Parallax on section background photos
-    if (FX.parallaxImages) {
-        document.querySelectorAll('[data-parallax-bg]').forEach(el => {
-            gsap.fromTo(el,
-                { backgroundPositionY: '30%' },
-                { backgroundPositionY: '70%', ease: 'none',
-                  scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: 1 } }
-            );
-        });
-        gsap.utils.toArray('.section-bg-image').forEach(el => {
-            gsap.fromTo(el,
-                { backgroundPositionY: '30%' },
-                { backgroundPositionY: '70%', ease: 'none',
-                  scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: 1 } }
-            );
-        });
-    }
-
-    // FX 4: Individual pill cascade on [data-stagger-pills] containers
-    gsap.utils.toArray('[data-stagger-pills]').forEach(container => {
-        const items = container.querySelectorAll('.ops-pill-tag, .industry-tag');
-        if (FX.pillStagger && items.length) {
-            gsap.fromTo(items,
-                { opacity: 0, y: 18 },
-                { opacity: 1, y: 0, duration: 0.4, stagger: 0.04, ease: 'power2.out',
-                  scrollTrigger: { trigger: container, start: 'top 85%', toggleActions: 'play none none reverse' } }
-            );
-        } else {
-            gsap.fromTo(container,
-                { opacity: 0, y: 40 },
-                { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out',
-                  scrollTrigger: { trigger: container, start: 'top 88%', toggleActions: 'play none none reverse' } }
-            );
-        }
-    });
-
-    // FX 5: CountUp on elements with data-count-target
-    if (FX.statsCountUp) {
-        document.querySelectorAll('[data-count-target]').forEach(el => {
-            const target  = parseInt(el.dataset.countTarget);
-            const suffix  = el.dataset.countSuffix || '';
-            const isComma = el.dataset.countFormat === 'comma';
-            ScrollTrigger.create({
-                trigger: el, start: 'top 85%', once: true,
-                onEnter() {
-                    gsap.fromTo({ val: 0 }, { val: target }, {
-                        duration: 2, ease: 'power2.out',
-                        onUpdate() {
-                            const v = Math.round(this.targets()[0].val);
-                            el.textContent = (isComma ? v.toLocaleString() : v) + suffix;
-                        },
-                        onComplete() {
-                            el.textContent = (isComma ? target.toLocaleString() : target) + suffix;
-                        }
-                    });
-                }
-            });
-        });
-    }
 });
