@@ -200,7 +200,7 @@ html { scroll-behavior: smooth; }
     100% { transform: scale(1.08) translate(0%, 0%); }
 }
 .hero-drift {
-    animation: hero-drift 25s ease-in-out infinite;
+    animation: hero-drift 45s ease-in-out infinite;
     transform-origin: center center;
     will-change: transform;
 }
