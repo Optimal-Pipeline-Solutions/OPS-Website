@@ -192,12 +192,12 @@ html { scroll-behavior: smooth; }
 }
 
 @keyframes hero-drift {
-    0%   { transform: scale(1.1) translate(0%, 0%); }
-    50%  { transform: scale(1.2) translate(-8%, -5%); }
-    100% { transform: scale(1.1) translate(0%, 0%); }
+    0%   { transform: scale(1.08) translate(0%, 0%); }
+    50%  { transform: scale(1.12) translate(-1.5%, -1%); }
+    100% { transform: scale(1.08) translate(0%, 0%); }
 }
 .hero-drift {
-    animation: hero-drift 5s ease-in-out infinite;
+    animation: hero-drift 20s ease-in-out infinite;
     transform-origin: center center;
     will-change: transform;
 }
