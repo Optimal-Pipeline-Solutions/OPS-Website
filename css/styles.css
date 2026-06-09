@@ -180,10 +180,11 @@ html { scroll-behavior: smooth; }
     border-radius: 8px;
     padding: clamp(10px, 2vh, 20px) clamp(20px, 3vw, 40px);
     height: clamp(53px, 10.5vh, 150px);
-    width: auto;
-    display: block !important;
     width: fit-content !important;
+    display: flex !important;
+    align-items: center;
     margin: 0 auto !important;
+    box-sizing: border-box;
 }
 
 .scroll-dot { animation: scrollBounce 2s ease-in-out infinite; }
