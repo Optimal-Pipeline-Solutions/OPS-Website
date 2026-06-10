@@ -183,7 +183,7 @@ html { scroll-behavior: smooth; }
     width: fit-content !important;
     display: flex !important;
     align-items: center;
-    margin: 0 auto 2.5rem auto !important;
+    margin: 0 auto 1.25rem auto !important;
     box-sizing: border-box;
 }
 
