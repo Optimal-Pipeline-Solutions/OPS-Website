@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-11T19:03:30Z",
-  "row_count": 61,
+  "last_updated": "2026-06-11T19:06:11Z",
+  "row_count": 62,
   "rows": [
+    {
+      "name": "Hollie cox",
+      "company": "Ngl",
+      "number": "",
+      "shot1": "-15",
+      "shot2": "-32",
+      "shot3": "0",
+      "current_score": "-47"
+    },
     {
       "name": "Valerie",
       "company": "Premier",
