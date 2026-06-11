@@ -1369,6 +1369,14 @@
             opacity: 0;
             margin-top: 0.9rem;
         }
+        #g-beer-line {
+            font-size: clamp(0.85rem, 1.6vw, 1.05rem);
+            color: rgba(255,255,255,0.6);
+            font-style: italic;
+            letter-spacing: 0.03em;
+            opacity: 0;
+            margin-top: 0.65rem;
+        }
         #g-buttons {
             display: flex;
             gap: 1rem;
@@ -1753,6 +1761,7 @@
                 <div class="g-reveal-wrap"><span id="g-title-golf">GOLF</span></div>
                 <div class="g-reveal-wrap"><span id="g-title-challenge">CHALLENGE</span></div>
                 <div id="g-title-sub">Hole 6 Putting Contest &middot; Cushing, Oklahoma</div>
+                <div id="g-beer-line">Come have a beer on us at Hole 6!</div>
 
                 <!-- Buttons -->
                 <div id="g-buttons">
@@ -1998,8 +2007,9 @@
             tl.to('#g-title-challenge',{y: '0%', duration: 0.58, ease: 'power3.out'}, 3.78);
             tl.to(overlay, {background: 'rgba(20,35,10,0.94)', duration: 0.06, yoyo: true, repeat: 1}, 4.08);
             tl.fromTo('#g-title-sub', {opacity: 0, y: 8}, {opacity: 1, y: 0, duration: 0.5}, 4.2);
-            tl.fromTo('#g-buttons', {opacity: 0, y: 12}, {opacity: 1, y: 0, duration: 0.5, ease: 'power2.out'}, 4.6);
-            tl.add(function() { gsap.to('#g-skip', {opacity: 0, duration: 0.3}); }, 4.6);
+            tl.fromTo('#g-beer-line', {opacity: 0, y: 6}, {opacity: 1, y: 0, duration: 0.5}, 4.45);
+            tl.fromTo('#g-buttons', {opacity: 0, y: 12}, {opacity: 1, y: 0, duration: 0.5, ease: 'power2.out'}, 4.75);
+            tl.add(function() { gsap.to('#g-skip', {opacity: 0, duration: 0.3}); }, 4.75);
         }
 
         window.gSkipIntro = function() {
@@ -2008,6 +2018,7 @@
             gsap.set('#g-title-golf', {y: '0%'});
             gsap.set('#g-title-challenge', {y: '0%'});
             gsap.set('#g-title-sub', {opacity: 1, y: 0});
+            gsap.set('#g-beer-line', {opacity: 1, y: 0});
             gsap.set('#g-presents', {opacity: 1, letterSpacing: '0.35em'});
             gsap.set('#g-buttons', {opacity: 1, y: 0});
             gsap.set('#g-city-name', {opacity: 1, letterSpacing: '0.5em'});
@@ -2034,6 +2045,7 @@
             gsap.set('#g-title-golf', {y: '105%'});
             gsap.set('#g-title-challenge', {y: '105%'});
             gsap.set('#g-title-sub', {opacity: 0, y: 8});
+            gsap.set('#g-beer-line', {opacity: 0, y: 6});
             gsap.set('#g-buttons', {opacity: 0, y: 12});
             gsap.set('#g-grid', {opacity: 0});
             gsap.set('#g-accent-top, #g-accent-bottom', {opacity: 0});
