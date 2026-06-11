@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-11T15:38:54Z",
-  "row_count": 45,
+  "last_updated": "2026-06-11T15:41:22Z",
+  "row_count": 47,
   "rows": [
+    {
+      "name": "Mike gaskins",
+      "company": "Oklahoma Rubber and Gasket",
+      "number": "9182235458",
+      "shot1": "-37",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "-37"
+    },
+    {
+      "name": "Brian Fechner",
+      "company": "Fechner",
+      "number": "5804307867",
+      "shot1": "-22",
+      "shot2": "45",
+      "shot3": "41",
+      "current_score": "64"
+    },
     {
       "name": "Fabian",
       "company": "Energy Transfer",
