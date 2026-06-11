@@ -13,7 +13,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
     window.scrollTo(0, 0);
 
-    lucide.createIcons();
+    // Mobile menu toggle — registered first so a lib error can't block it
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const mobileMenu   = document.getElementById('mobile-menu');
+    if (mobileToggle && mobileMenu) {
+        mobileToggle.addEventListener('click', () => {
+            mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
+        });
+    }
+
+    try { lucide.createIcons(); } catch(e) {}
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 
@@ -189,22 +198,6 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch(err) {}
         });
     });
-
-
-    // ── Mobile menu toggle ────────────────────────────────────
-    const mobileToggle = document.getElementById('mobile-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    if (mobileToggle && mobileMenu) {
-        mobileToggle.addEventListener('click', () => {
-            const isOpen = mobileMenu.style.display === 'flex';
-            mobileMenu.style.display = isOpen ? 'none' : 'flex';
-            const icon = mobileToggle.querySelector('[data-lucide]');
-            if (icon) {
-                icon.setAttribute('data-lucide', isOpen ? 'menu' : 'x');
-                lucide.createIcons({ nodes: [mobileToggle] });
-            }
-        });
-    }
 
 
     // ── Contact glow parallax ─────────────────────────────────
