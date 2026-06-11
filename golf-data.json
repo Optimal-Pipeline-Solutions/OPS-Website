@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-11T22:08:47Z",
-  "row_count": 80,
+  "last_updated": "2026-06-11T22:11:00Z",
+  "row_count": 82,
   "rows": [
+    {
+      "name": "Blake shoemaker",
+      "company": "Plains",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
+    {
+      "name": "Grant Turner",
+      "company": "Amspec",
+      "number": "9182313751",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
     {
       "name": "Mason",
       "company": "Plains",
