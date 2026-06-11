@@ -1,7 +1,43 @@
 {
-  "last_updated": "2026-06-11T12:49:12Z",
-  "row_count": 4,
+  "last_updated": "2026-06-11T12:53:58Z",
+  "row_count": 8,
   "rows": [
+    {
+      "name": "Nick freighter",
+      "company": "Oneok",
+      "number": "9132316050",
+      "shot1": "39",
+      "shot2": "48",
+      "shot3": "0",
+      "current_score": "87"
+    },
+    {
+      "name": "Trent Carter",
+      "company": "MVPurchasing",
+      "number": "9723429707",
+      "shot1": "15",
+      "shot2": "-24",
+      "shot3": "0",
+      "current_score": "-9"
+    },
+    {
+      "name": "Danny Rodriguez",
+      "company": "P66",
+      "number": "4054768958",
+      "shot1": "0",
+      "shot2": "-47",
+      "shot3": "0",
+      "current_score": "-47"
+    },
+    {
+      "name": "Josh Steven's",
+      "company": "Elevation",
+      "number": "8655488134",
+      "shot1": "21",
+      "shot2": "-36",
+      "shot3": "0",
+      "current_score": "-15"
+    },
     {
       "name": "Todd Demuth",
       "company": "Oneok",
