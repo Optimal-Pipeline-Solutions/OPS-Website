@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-11T18:42:10Z",
-  "row_count": 57,
+  "last_updated": "2026-06-11T18:44:20Z",
+  "row_count": 59,
   "rows": [
+    {
+      "name": "Jeremy Allison",
+      "company": "Whiptail",
+      "number": "",
+      "shot1": "32",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "32"
+    },
+    {
+      "name": "Ethan George",
+      "company": "Whiptail",
+      "number": "5806771412",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "-47",
+      "current_score": "-47"
+    },
     {
       "name": "Benjamin",
       "company": "Secsi",
