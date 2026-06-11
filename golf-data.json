@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-11T14:53:26Z",
-  "row_count": 37,
+  "last_updated": "2026-06-11T14:55:54Z",
+  "row_count": 39,
   "rows": [
+    {
+      "name": "Kale knickel",
+      "company": "Energy Transfer",
+      "number": "4052080699",
+      "shot1": "0",
+      "shot2": "-25",
+      "shot3": "0",
+      "current_score": "-25"
+    },
+    {
+      "name": "Garret Cloud",
+      "company": "Energy Transfer",
+      "number": "9187069599",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
     {
       "name": "Tony Alford",
       "company": "Energy Transfer",
