@@ -2219,12 +2219,13 @@
 
             var results = {}, done = 0;
 
+            function finish() { if (++done === pages.length) render(pages, results); }
+
             pages.forEach(function(p) {
                 fetch('https://optimalpipeline.goatcounter.com/counter/' + p.path + '.json')
                     .then(function(r) { return r.json(); })
-                    .then(function(d) { results[p.label] = d.count || '0'; })
-                    .catch(function() { results[p.label] = '—'; })
-                    .finally(function() { if (++done === pages.length) render(pages, results); });
+                    .then(function(d) { results[p.label] = d.count || '0'; finish(); })
+                    .catch(function() { results[p.label] = '—'; finish(); });
             });
         }
 
