@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-11T13:12:55Z",
-  "row_count": 14,
+  "last_updated": "2026-06-11T13:17:40Z",
+  "row_count": 15,
   "rows": [
+    {
+      "name": "Josh Harris",
+      "company": "Bigstar",
+      "number": "4055388007",
+      "shot1": "12",
+      "shot2": "-36",
+      "shot3": "-37",
+      "current_score": "-61"
+    },
     {
       "name": "Jaden Hughes",
       "company": "Oneok",
