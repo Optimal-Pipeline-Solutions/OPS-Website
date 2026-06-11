@@ -1442,10 +1442,6 @@
             background: rgba(6,10,14,0.97);
             display: none;
             flex-direction: column;
-            flex: 1;
-            min-height: 0;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
         }
         #g-scada-panel {
             width: 100%;
@@ -1455,7 +1451,7 @@
             display: flex;
             flex-direction: column;
             position: relative;
-            overflow: visible;
+            overflow: hidden;
         }
         #g-scada-panel::before, #g-scada-panel::after {
             content: '';
@@ -2092,6 +2088,10 @@
             var caret = document.getElementById('g-rules-caret');
             var open = grid.classList.toggle('g-rules-open');
             caret.textContent = open ? '▲ HIDE' : '▼ SHOW';
+            // On mobile, shrink the table area to make room for the rules
+            if (window.innerWidth <= 640) {
+                document.getElementById('g-table-area').style.maxHeight = open ? '22vh' : '44vh';
+            }
         };
 
         // Auto-refresh every 5 minutes
