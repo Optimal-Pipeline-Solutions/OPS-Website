@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-11T13:41:41Z",
-  "row_count": 23,
+  "last_updated": "2026-06-11T13:46:31Z",
+  "row_count": 25,
   "rows": [
+    {
+      "name": "Richard Hield",
+      "company": "Tallgrass",
+      "number": "9134999029",
+      "shot1": "-27",
+      "shot2": "-18",
+      "shot3": "-6",
+      "current_score": "-51"
+    },
+    {
+      "name": "Bryon Smith",
+      "company": "CHS",
+      "number": "3168331498",
+      "shot1": "32",
+      "shot2": "-42",
+      "shot3": "-47",
+      "current_score": "-57"
+    },
     {
       "name": "Matt Hester",
       "company": "Tallgrass",
