@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-11T15:41:22Z",
-  "row_count": 47,
+  "last_updated": "2026-06-11T15:43:37Z",
+  "row_count": 49,
   "rows": [
+    {
+      "name": "Joe smith",
+      "company": "Gasket",
+      "number": "9183995098",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
+    {
+      "name": "Charles Carroll",
+      "company": "Gasket",
+      "number": "9182303300",
+      "shot1": "32",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "32"
+    },
     {
       "name": "Mike gaskins",
       "company": "Oklahoma Rubber and Gasket",
