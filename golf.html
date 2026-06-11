@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cushing Classic | OPS Golf Tournament</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    midnight: '#121212',
+                    charcoal: '#2D2D2D',
+                    olive: '#6B7B3A',
+                    'olive-light': '#8A9B55',
+                },
+                fontFamily: {
+                    display: ['"SF Pro Display"', '-apple-system', 'sans-serif'],
+                    mono: ['"SF Mono"', '"Courier New"', 'monospace'],
+                }
+            }
+        }
+    }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #0a0c0e;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        /* ── Hero background (same drift as main site) ── */
+        #page-hero {
+            position: fixed;
+            inset: -5%;
+            background: url('images/hero-bg.jpg') center/cover no-repeat;
+            z-index: 0;
+            animation: hero-drift 45s ease-in-out infinite;
+        }
+        @keyframes hero-drift {
+            0%   { transform: scale(1.08) translate(0%,0%); }
+            20%  { transform: scale(1.11) translate(-1.2%,0.8%); }
+            40%  { transform: scale(1.13) translate(1%,-1.5%); }
+            60%  { transform: scale(1.10) translate(-0.5%,1.2%); }
+            80%  { transform: scale(1.12) translate(1.5%,0.5%); }
+            100% { transform: scale(1.08) translate(0%,0%); }
+        }
+
+        /* ── Intro overlay ── */
+        #golf-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 10;
+            background: rgba(8,12,16,0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #pipeline-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(107,123,58,0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(107,123,58,0.06) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0;
+        }
+        #accent-top, #accent-bottom {
+            position: absolute;
+            left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(107,123,58,0.35), transparent);
+            opacity: 0;
+        }
+        #accent-top { top: 0; }
+        #accent-bottom { bottom: 0; }
+
+        /* ── Intro content ── */
+        #intro-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 860px;
+            width: 100%;
+            padding: 1.5rem;
+        }
+
+        #city-name {
+            font-weight: 300;
+            letter-spacing: 0.5em;
+            font-size: clamp(0.6rem, 1.2vw, 0.85rem);
+            color: rgba(255,255,255,0.45);
+            text-transform: uppercase;
+            opacity: 0;
+        }
+        #location-divider {
+            height: 1px;
+            width: 0;
+            background: linear-gradient(to right, transparent, #6B7B3A, transparent);
+            margin: 0.65rem auto;
+        }
+        #tagline {
+            font-weight: 400;
+            letter-spacing: 0.25em;
+            font-size: clamp(0.5rem, 0.9vw, 0.7rem);
+            color: #6B7B3A;
+            text-transform: uppercase;
+            opacity: 0;
+        }
+
+        /* Skyline */
+        #skyline-container { opacity: 0; margin: 1rem auto 0.5rem; }
+
+        /* Swing area */
+        #swing-container { opacity: 0; height: 90px; position: relative; }
+
+        /* Title */
+        #title-presents {
+            font-weight: 300;
+            letter-spacing: 0.4em;
+            font-size: clamp(0.55rem, 0.9vw, 0.7rem);
+            color: rgba(255,255,255,0.25);
+            text-transform: uppercase;
+            opacity: 0;
+            margin-bottom: 0.4rem;
+        }
+        #title-main {
+            font-weight: 800;
+            font-size: clamp(3.5rem, 10vw, 8rem);
+            line-height: 0.87;
+            letter-spacing: -0.02em;
+            color: #fff;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(-60px);
+            text-shadow: 0 0 80px rgba(107,123,58,0.35);
+        }
+        #title-main .olive { color: #6B7B3A; }
+        #title-sub {
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            font-size: clamp(0.5rem, 0.9vw, 0.7rem);
+            color: rgba(255,255,255,0.3);
+            text-transform: uppercase;
+            opacity: 0;
+            margin-top: 0.85rem;
+        }
+
+        /* Buttons */
+        #intro-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            opacity: 0;
+        }
+        .btn-primary {
+            background: #6B7B3A;
+            color: #fff;
+            border: none;
+            padding: 0.8rem 2.25rem;
+            font-weight: 600;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-primary:hover { background: #8A9B55; }
+        .btn-ghost {
+            background: transparent;
+            color: rgba(255,255,255,0.4);
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 0.8rem 2.25rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-ghost:hover { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.7); }
+
+        /* Skip */
+        #skip-hint {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 15;
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            color: rgba(255,255,255,0.18);
+            text-transform: uppercase;
+            cursor: pointer;
+            opacity: 0;
+            transition: color 0.2s;
+        }
+        #skip-hint:hover { color: rgba(255,255,255,0.4); }
+
+        /* ── LEADERBOARD OVERLAY ── */
+        #leaderboard-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 20;
+            background: rgba(6,10,14,0.97);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+        #scada-panel {
+            width: 100%;
+            max-width: 980px;
+            max-height: 88vh;
+            background: #080c10;
+            border: 1px solid rgba(107,123,58,0.35);
+            border-radius: 3px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        /* Corner brackets */
+        #scada-panel::before, #scada-panel::after {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border-color: #6B7B3A;
+            border-style: solid;
+            z-index: 1;
+        }
+        #scada-panel::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+        #scada-panel::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+        #scada-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.8rem 1.4rem;
+            border-bottom: 1px solid rgba(107,123,58,0.18);
+            background: rgba(107,123,58,0.04);
+            flex-shrink: 0;
+        }
+        #scada-title {
+            font-family: 'Courier New', monospace;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            color: #6B7B3A;
+            text-transform: uppercase;
+        }
+        #scada-meta { display: flex; align-items: center; gap: 1.5rem; }
+        #live-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            color: #6B7B3A;
+        }
+        #live-dot {
+            width: 6px; height: 6px;
+            background: #6B7B3A;
+            border-radius: 50%;
+            animation: live-pulse 1.5s ease-in-out infinite;
+        }
+        @keyframes live-pulse {
+            0%,100% { opacity: 1; box-shadow: 0 0 5px #6B7B3A; }
+            50%      { opacity: 0.25; box-shadow: none; }
+        }
+        #sync-time {
+            font-family: 'Courier New', monospace;
+            font-size: 0.6rem;
+            color: rgba(255,255,255,0.2);
+            letter-spacing: 0.08em;
+        }
+
+        /* Table */
+        #table-area { flex: 1; overflow-y: auto; position: relative; }
+        #leaderboard-table { width: 100%; border-collapse: collapse; }
+        #leaderboard-table thead th {
+            padding: 0.55rem 1rem;
+            text-align: left;
+            font-family: 'Courier New', monospace;
+            font-size: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            color: rgba(107,123,58,0.6);
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(107,123,58,0.12);
+            background: rgba(0,0,0,0.25);
+            position: sticky;
+            top: 0;
+        }
+        #leaderboard-table tbody tr {
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            opacity: 0;
+            transition: background 0.15s;
+        }
+        #leaderboard-table tbody tr:hover { background: rgba(107,123,58,0.04); }
+        #leaderboard-table tbody td {
+            padding: 0.85rem 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.65);
+        }
+        .td-rank { font-size: 1rem !important; font-weight: 700 !important; color: #6B7B3A !important; width: 55px; }
+        .td-name { font-family: -apple-system, sans-serif !important; font-size: 0.9rem !important; font-weight: 600 !important; color: #fff !important; }
+        .td-company { font-family: -apple-system, sans-serif !important; font-size: 0.72rem !important; color: rgba(255,255,255,0.35) !important; }
+        .td-score { font-size: 1rem !important; font-weight: 700 !important; color: #8A9B55 !important; text-align: right; }
+
+        /* Scan line */
+        #scan-line {
+            position: absolute;
+            left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, rgba(107,123,58,0.7), transparent);
+            pointer-events: none;
+            top: 44px;
+            z-index: 5;
+        }
+
+        /* Pending */
+        #pending-state {
+            padding: 4rem 2rem;
+            text-align: center;
+            display: none;
+        }
+        .pending-label {
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            color: rgba(107,123,58,0.45);
+            text-transform: uppercase;
+        }
+        .pending-sub {
+            font-family: 'Courier New', monospace;
+            font-size: 0.58rem;
+            letter-spacing: 0.18em;
+            color: rgba(255,255,255,0.12);
+            margin-top: 0.6rem;
+        }
+        .blink { animation: blink 1s step-end infinite; }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+        /* Footer */
+        #scada-footer {
+            padding: 0.85rem 1.4rem;
+            border-top: 1px solid rgba(107,123,58,0.12);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        #scada-brand {
+            font-family: 'Courier New', monospace;
+            font-size: 0.58rem;
+            letter-spacing: 0.12em;
+            color: rgba(255,255,255,0.12);
+        }
+        #close-leaderboard {
+            background: transparent;
+            color: rgba(255,255,255,0.25);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 0.45rem 1.25rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.62rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        #close-leaderboard:hover { color: rgba(255,255,255,0.55); border-color: rgba(255,255,255,0.22); }
+
+        /* Panel boot flicker */
+        @keyframes panel-boot {
+            0%{opacity:0} 15%{opacity:0.5} 25%{opacity:0.1}
+            40%{opacity:0.8} 55%{opacity:0.3} 75%{opacity:0.95} 100%{opacity:1}
+        }
+        .panel-flicker { animation: panel-boot 0.55s ease-in-out forwards; }
+
+        /* ── Residual pill ── */
+        #golf-pill {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 30;
+            background: rgba(8,12,16,0.82);
+            border: 1px solid rgba(107,123,58,0.4);
+            border-radius: 100px;
+            padding: 0.55rem 1.1rem;
+            font-size: 0.68rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.55);
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            display: none;
+            align-items: center;
+            gap: 0.45rem;
+            transition: all 0.2s;
+            user-select: none;
+        }
+        #golf-pill:hover { border-color: rgba(107,123,58,0.65); color: rgba(255,255,255,0.85); }
+        #pill-dot {
+            width: 5px; height: 5px;
+            background: #6B7B3A;
+            border-radius: 50%;
+            animation: live-pulse 2s ease-in-out infinite;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 640px) {
+            .hide-mobile { display: none !important; }
+            #intro-buttons { flex-direction: column; align-items: center; }
+            #title-main { font-size: clamp(3rem, 18vw, 5rem); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero background -->
+    <div id="page-hero"></div>
+
+    <!-- Skip hint -->
+    <div id="skip-hint" onclick="skipIntro()">Skip ›</div>
+
+    <!-- ════════════════════════════════════════
+         INTRO OVERLAY
+    ════════════════════════════════════════ -->
+    <div id="golf-overlay">
+        <div id="pipeline-grid"></div>
+        <div id="accent-top"></div>
+        <div id="accent-bottom"></div>
+
+        <div id="intro-content">
+
+            <!-- Location -->
+            <div style="margin-bottom:1rem;">
+                <div id="city-name">Cushing, Oklahoma</div>
+                <div id="location-divider"></div>
+                <div id="tagline">Pipeline Crossroads of the World</div>
+            </div>
+
+            <!-- Cushing skyline SVG -->
+            <div id="skyline-container">
+                <svg viewBox="0 0 720 75" xmlns="http://www.w3.org/2000/svg"
+                     style="width:100%;max-width:720px;height:75px;">
+
+                    <!-- Ground -->
+                    <rect x="0" y="65" width="720" height="10" fill="#111a11"/>
+
+                    <!-- Storage Tank 1 -->
+                    <rect x="20" y="32" width="60" height="33" fill="#162016" stroke="rgba(107,123,58,0.22)" stroke-width="0.5"/>
+                    <ellipse cx="50" cy="32" rx="30" ry="5.5" fill="#1d2d1d" stroke="rgba(107,123,58,0.18)" stroke-width="0.5"/>
+                    <ellipse cx="50" cy="29" rx="22" ry="3.5" fill="#223022"/>
+
+                    <!-- Storage Tank 2 (taller) -->
+                    <rect x="96" y="22" width="72" height="43" fill="#142014" stroke="rgba(107,123,58,0.2)" stroke-width="0.5"/>
+                    <ellipse cx="132" cy="22" rx="36" ry="6" fill="#1c2c1a" stroke="rgba(107,123,58,0.18)" stroke-width="0.5"/>
+                    <ellipse cx="132" cy="19" rx="26" ry="4" fill="#223022"/>
+
+                    <!-- Storage Tank 3 -->
+                    <rect x="182" y="38" width="48" height="27" fill="#162016" stroke="rgba(107,123,58,0.18)" stroke-width="0.5"/>
+                    <ellipse cx="206" cy="38" rx="24" ry="4.5" fill="#1d2d1d" stroke="rgba(107,123,58,0.15)" stroke-width="0.5"/>
+
+                    <!-- Pipeline -->
+                    <line x1="0" y1="59" x2="720" y2="59" stroke="rgba(107,123,58,0.28)" stroke-width="3.5"/>
+                    <!-- Valve markers -->
+                    <rect x="248" y="56.5" width="9" height="5" rx="1" fill="rgba(107,123,58,0.45)"/>
+                    <rect x="430" y="56.5" width="9" height="5" rx="1" fill="rgba(107,123,58,0.35)"/>
+                    <rect x="590" y="56.5" width="9" height="5" rx="1" fill="rgba(107,123,58,0.3)"/>
+
+                    <!-- Distant stacks / refinery -->
+                    <rect x="310" y="40" width="5" height="25" fill="rgba(107,123,58,0.14)"/>
+                    <rect x="323" y="35" width="4.5" height="30" fill="rgba(107,123,58,0.12)"/>
+                    <rect x="335" y="43" width="6" height="22" fill="rgba(107,123,58,0.1)"/>
+                    <!-- Flare glow -->
+                    <path d="M323,35 Q321,27 323,22 Q325,27 323,35" fill="rgba(255,140,40,0.18)"/>
+
+                    <!-- Pump jack -->
+                    <g transform="translate(570, 65)">
+                        <rect x="-18" y="-7" width="36" height="7" fill="#162016"/>
+                        <polygon points="0,-52 -5.5,-7 5.5,-7" fill="#162016" stroke="rgba(107,123,58,0.18)" stroke-width="0.5"/>
+                        <line x1="-3.5" y1="-18" x2="3.5" y2="-18" stroke="rgba(107,123,58,0.18)" stroke-width="0.5"/>
+                        <line x1="-2.5" y1="-33" x2="2.5" y2="-33" stroke="rgba(107,123,58,0.15)" stroke-width="0.5"/>
+                        <!-- Walking beam group — pivot at tower top (0,-52) -->
+                        <g id="walking-beam">
+                            <line x1="-24" y1="-52" x2="17" y2="-52" stroke="#1d2d1d" stroke-width="3" stroke-linecap="round"/>
+                            <!-- Horse head -->
+                            <path d="M-24,-52 Q-33,-58 -29,-52 Q-33,-46 -24,-52" fill="#223022"/>
+                            <!-- Polished rod -->
+                            <line x1="-27" y1="-52" x2="-27" y2="-33" stroke="rgba(150,153,119,0.35)" stroke-width="1.5"/>
+                            <!-- Counterweight -->
+                            <ellipse cx="17" cy="-49" rx="7" ry="4.5" fill="#162016" stroke="rgba(107,123,58,0.18)" stroke-width="0.5"/>
+                        </g>
+                    </g>
+
+                    <!-- Power line towers (far right) -->
+                    <line x1="650" y1="12" x2="650" y2="65" stroke="rgba(107,123,58,0.12)" stroke-width="1"/>
+                    <line x1="678" y1="18" x2="678" y2="65" stroke="rgba(107,123,58,0.1)" stroke-width="1"/>
+                    <line x1="642" y1="20" x2="686" y2="24" stroke="rgba(107,123,58,0.08)" stroke-width="0.5"/>
+                </svg>
+            </div>
+
+            <!-- Golf swing SVG -->
+            <div id="swing-container">
+                <svg id="swing-svg" viewBox="0 0 800 90"
+                     xmlns="http://www.w3.org/2000/svg"
+                     style="width:100%;height:90px;overflow:visible;">
+
+                    <!-- Ball trajectory (hidden initially via dashoffset) -->
+                    <path id="ball-arc"
+                        d="M 215 72 Q 415 12 635 68"
+                        fill="none"
+                        stroke="rgba(107,123,58,0.5)"
+                        stroke-width="1.5"
+                        stroke-dasharray="5 4"
+                        stroke-dashoffset="600"
+                        pathLength="600"/>
+
+                    <!-- Golfer -->
+                    <g id="golfer-fig" transform="translate(185,73)">
+                        <!-- Ground shadow -->
+                        <ellipse cx="0" cy="3" rx="16" ry="3.5" fill="rgba(0,0,0,0.25)"/>
+                        <!-- Legs -->
+                        <line id="leg-r" x1="5" y1="-8" x2="9" y2="3" stroke="#6B7B3A" stroke-width="5" stroke-linecap="round"/>
+                        <line id="leg-l" x1="-3" y1="-8" x2="-8" y2="3" stroke="#6B7B3A" stroke-width="5" stroke-linecap="round"/>
+                        <!-- Body -->
+                        <ellipse cx="0" cy="-19" rx="9" ry="13" fill="#6B7B3A"/>
+                        <!-- Head -->
+                        <circle cx="1" cy="-36" r="9" fill="#6B7B3A"/>
+                        <!-- Club arm (starts at backswing -110°) -->
+                        <g id="club-arm" style="transform-origin:0px -20px;transform:rotate(-110deg);">
+                            <line x1="0" y1="-20" x2="-7" y2="-52" stroke="#6B7B3A" stroke-width="4.5" stroke-linecap="round"/>
+                            <line x1="-7" y1="-52" x2="-10" y2="-80" stroke="#969977" stroke-width="2.5" stroke-linecap="round"/>
+                            <rect x="-16" y="-86" width="13" height="7" rx="1.5" fill="#969977" transform="rotate(8,-9,-83)"/>
+                        </g>
+                    </g>
+
+                    <!-- Golf ball -->
+                    <circle id="golf-ball" cx="215" cy="72" r="5"
+                        fill="white" opacity="0"
+                        style="filter:drop-shadow(0 0 5px rgba(255,255,255,0.9))"/>
+
+                    <!-- Impact burst -->
+                    <circle id="impact-burst" cx="215" cy="72" r="0"
+                        fill="none" stroke="rgba(255,255,255,0)" stroke-width="2"/>
+
+                </svg>
+            </div>
+
+            <!-- Title block -->
+            <div id="title-presents">Optimal Pipeline Solutions · Presents</div>
+            <div id="title-main">CUSHING<br><span class="olive">CLASSIC</span></div>
+            <div id="title-sub">Invitational Golf Tournament · Cushing, Oklahoma</div>
+
+            <!-- Buttons -->
+            <div id="intro-buttons">
+                <button class="btn-primary" onclick="showLeaderboard()">⛳ &nbsp;View Standings</button>
+                <button class="btn-ghost" onclick="dismissIntro()">Return to Site</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ════════════════════════════════════════
+         LEADERBOARD OVERLAY
+    ════════════════════════════════════════ -->
+    <div id="leaderboard-overlay">
+        <div id="scada-panel">
+            <div id="scan-line"></div>
+
+            <div id="scada-header">
+                <span id="scada-title">⛳ &nbsp;Cushing Classic · Live Standings</span>
+                <div id="scada-meta">
+                    <div id="live-badge"><div id="live-dot"></div><span>Live</span></div>
+                    <div id="sync-time">SYNCED: --:--:-- UTC</div>
+                </div>
+            </div>
+
+            <div id="table-area">
+                <table id="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th style="width:55px;">RNK</th>
+                            <th>Competitor</th>
+                            <th class="hide-mobile">Organization</th>
+                            <th class="hide-mobile" style="width:75px;">Shot 1</th>
+                            <th class="hide-mobile" style="width:75px;">Shot 2</th>
+                            <th class="hide-mobile" style="width:75px;">Shot 3</th>
+                            <th style="width:85px;text-align:right;">Score</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboard-body"></tbody>
+                </table>
+                <div id="pending-state">
+                    <div style="font-size:2.5rem;margin-bottom:1rem;opacity:0.25;">⛳</div>
+                    <div class="pending-label">Round 1 · Standings Pending<span class="blink">_</span></div>
+                    <div class="pending-sub">AWAITING COMPETITOR DATA · AUTO-REFRESH ACTIVE</div>
+                </div>
+            </div>
+
+            <div id="scada-footer">
+                <div id="scada-brand">OPS · CUSHING CLASSIC LIVE FEED · AUTO-REFRESH 5 MIN</div>
+                <button id="close-leaderboard" onclick="closeLeaderboard()">[ DISMISS ]</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ════════════════════════════════════════
+         RESIDUAL PILL
+    ════════════════════════════════════════ -->
+    <div id="golf-pill" onclick="replayIntro()">
+        <div id="pill-dot"></div>
+        <span>⛳ &nbsp;Cushing Classic</span>
+    </div>
+
+    <script>
+    const STORAGE_KEY = 'cushing_classic_seen_v1';
+    let mainTL = null;
+
+    // ── Boot ────────────────────────────────────────────────
+    window.addEventListener('load', () => {
+        loadData();
+        if (!localStorage.getItem(STORAGE_KEY)) {
+            setTimeout(playIntro, 500);
+        } else {
+            showPill();
+        }
+    });
+
+    // ── Data ────────────────────────────────────────────────
+    async function loadData() {
+        try {
+            const r = await fetch('./golf-data.json?v=' + Date.now());
+            const d = await r.json();
+            renderTable(d);
+        } catch(e) {}
+    }
+
+    function renderTable(data) {
+        const tbody = document.getElementById('leaderboard-body');
+        const pending = document.getElementById('pending-state');
+        const table = document.getElementById('leaderboard-table');
+
+        if (data.last_updated) {
+            const t = new Date(data.last_updated);
+            const hms = t.toUTCString().slice(17, 25);
+            document.getElementById('sync-time').textContent = 'SYNCED: ' + hms + ' UTC';
+        }
+
+        if (!data.rows || data.rows.length === 0) {
+            pending.style.display = 'block';
+            table.style.display = 'none';
+            return;
+        }
+
+        pending.style.display = 'none';
+        table.style.display = 'table';
+
+        const sorted = [...data.rows].sort((a, b) => {
+            return (parseFloat(a.current_score) || 999) - (parseFloat(b.current_score) || 999);
+        });
+
+        tbody.innerHTML = '';
+        sorted.forEach((row, i) => {
+            const tr = document.createElement('tr');
+            tr.style.opacity = '0';
+            tr.innerHTML =
+                '<td class="td-rank">' + (i + 1) + '</td>' +
+                '<td class="td-name">' + (row.name || '—') + '</td>' +
+                '<td class="td-company hide-mobile">' + (row.company || '—') + '</td>' +
+                '<td class="hide-mobile">' + (row.shot1 || '—') + '</td>' +
+                '<td class="hide-mobile">' + (row.shot2 || '—') + '</td>' +
+                '<td class="hide-mobile">' + (row.shot3 || '—') + '</td>' +
+                '<td class="td-score">' + (row.current_score || '—') + '</td>';
+            tbody.appendChild(tr);
+        });
+    }
+
+    // ── Leaderboard ─────────────────────────────────────────
+    function showLeaderboard() {
+        const overlay = document.getElementById('leaderboard-overlay');
+        const panel = document.getElementById('scada-panel');
+        overlay.style.display = 'flex';
+        gsap.fromTo(overlay, {opacity: 0}, {opacity: 1, duration: 0.35});
+
+        panel.classList.add('panel-flicker');
+        setTimeout(() => panel.classList.remove('panel-flicker'), 600);
+
+        // Scan line sweep
+        const sl = document.getElementById('scan-line');
+        gsap.fromTo(sl,
+            {top: '44px', opacity: 0.9},
+            {top: '100%', opacity: 0, duration: 1.4, delay: 0.55, ease: 'none'});
+
+        // Rows stream in
+        const rows = document.querySelectorAll('#leaderboard-body tr');
+        if (rows.length) {
+            gsap.to(rows, {opacity: 1, duration: 0.25, stagger: 0.07, delay: 0.65, ease: 'power2.out'});
+        }
+    }
+
+    function closeLeaderboard() {
+        const overlay = document.getElementById('leaderboard-overlay');
+        gsap.to(overlay, {opacity: 0, duration: 0.3, onComplete: () => {
+            overlay.style.display = 'none';
+            overlay.style.opacity = '';
+        }});
+        showPill();
+    }
+
+    // ── Intro ───────────────────────────────────────────────
+    function playIntro() {
+        localStorage.setItem(STORAGE_KEY, '1');
+        const overlay = document.getElementById('golf-overlay');
+        overlay.style.display = 'flex';
+
+        const tl = gsap.timeline();
+        mainTL = tl;
+
+        // Show skip after 1.5s
+        tl.add(() => gsap.to('#skip-hint', {opacity: 1, duration: 0.4, delay: 1.0}), 0);
+
+        // 1. Overlay darkens
+        tl.to(overlay, {background: 'rgba(8,12,16,0.93)', duration: 0.7, ease: 'power2.inOut'}, 0);
+
+        // 2. Accent lines
+        tl.to('#accent-top, #accent-bottom', {opacity: 1, duration: 0.5}, 0.4);
+
+        // 3. Grid
+        tl.to('#pipeline-grid', {opacity: 1, duration: 1.0}, 0.6);
+
+        // 4. Skyline
+        tl.fromTo('#skyline-container',
+            {opacity: 0, y: 18},
+            {opacity: 1, y: 0, duration: 0.9, ease: 'power2.out'}, 0.9);
+
+        // 5. Pump jack oscillation (continuous)
+        tl.add(() => {
+            gsap.to('#walking-beam', {
+                rotation: 7,
+                duration: 1.6,
+                ease: 'sine.inOut',
+                yoyo: true,
+                repeat: -1,
+                transformOrigin: '27px 13px'
+            });
+        }, 1.1);
+
+        // 6. City name
+        tl.fromTo('#city-name',
+            {opacity: 0, letterSpacing: '0.9em'},
+            {opacity: 1, letterSpacing: '0.5em', duration: 0.9, ease: 'power2.out'}, 1.5);
+
+        // 7. Divider
+        tl.fromTo('#location-divider',
+            {width: '0px'},
+            {width: '180px', duration: 0.6, ease: 'power2.inOut'}, 2.2);
+
+        // 8. Tagline
+        tl.fromTo('#tagline',
+            {opacity: 0, y: 6},
+            {opacity: 1, y: 0, duration: 0.5}, 2.6);
+
+        // 9. Golfer appears
+        tl.fromTo('#swing-container',
+            {opacity: 0},
+            {opacity: 1, duration: 0.3}, 3.2);
+
+        // 10. Swing! club whips from backswing (-110) through impact to follow-through (+95)
+        tl.to('#club-arm', {rotation: 95, duration: 0.48, ease: 'power4.in',
+            transformOrigin: '0px -20px'}, 3.55);
+
+        // 11. Impact burst
+        tl.fromTo('#impact-burst',
+            {attr: {r: 0}, stroke: 'rgba(255,255,255,0.9)'},
+            {attr: {r: 28}, stroke: 'rgba(255,255,255,0)', duration: 0.28, ease: 'power2.out'}, 3.85);
+
+        // 12. Ball launches — split horizontal / vertical for natural arc
+        tl.set('#golf-ball', {opacity: 1, attr: {cx: 215, cy: 72}}, 3.86);
+        tl.to('#golf-ball', {attr: {cx: 635}, duration: 1.05, ease: 'power1.inOut'}, 3.86);
+        tl.to('#golf-ball', {attr: {cy: 18}, duration: 0.52, ease: 'power2.out'}, 3.86);
+        tl.to('#golf-ball', {attr: {cy: 68}, duration: 0.53, ease: 'power2.in'}, 4.38);
+
+        // 13. Arc path draws
+        tl.fromTo('#ball-arc',
+            {'stroke-dashoffset': 600},
+            {'stroke-dashoffset': 0, duration: 1.05, ease: 'power1.inOut'}, 3.86);
+
+        // 14. Ball fades at landing + impact flash
+        tl.to('#golf-ball', {opacity: 0, duration: 0.18}, 4.88);
+        tl.to(overlay, {
+            background: 'rgba(30,45,20,0.93)',
+            duration: 0.08, yoyo: true, repeat: 1
+        }, 4.85);
+
+        // 15. "Presents"
+        tl.fromTo('#title-presents',
+            {opacity: 0, y: -8},
+            {opacity: 1, y: 0, duration: 0.4}, 5.35);
+
+        // 16. CUSHING CLASSIC slams in
+        tl.fromTo('#title-main',
+            {y: -75, opacity: 0},
+            {y: 0, opacity: 1, duration: 0.5, ease: 'back.out(1.3)'}, 5.65);
+
+        // 17. Subtitle
+        tl.fromTo('#title-sub',
+            {opacity: 0, y: 8},
+            {opacity: 1, y: 0, duration: 0.5}, 6.05);
+
+        // 18. Buttons
+        tl.fromTo('#intro-buttons',
+            {opacity: 0, y: 12},
+            {opacity: 1, y: 0, duration: 0.5, ease: 'power2.out'}, 6.5);
+
+        // 19. Hide skip hint
+        tl.add(() => gsap.to('#skip-hint', {opacity: 0, duration: 0.3}), 6.5);
+    }
+
+    function skipIntro() {
+        if (mainTL) { mainTL.kill(); mainTL = null; }
+        const overlay = document.getElementById('golf-overlay');
+        gsap.set('#title-main', {y: 0, opacity: 1});
+        gsap.set('#title-sub', {opacity: 1, y: 0});
+        gsap.set('#title-presents', {opacity: 1, y: 0});
+        gsap.set('#intro-buttons', {opacity: 1, y: 0});
+        gsap.set('#city-name', {opacity: 1, letterSpacing: '0.5em'});
+        gsap.set('#tagline', {opacity: 1});
+        gsap.set('#location-divider', {width: '180px'});
+        gsap.set('#skyline-container', {opacity: 1, y: 0});
+        gsap.set('#pipeline-grid', {opacity: 1});
+        gsap.set('#accent-top, #accent-bottom', {opacity: 1});
+        gsap.to(overlay, {background: 'rgba(8,12,16,0.93)', duration: 0.2});
+        gsap.to('#skip-hint', {opacity: 0, duration: 0.2});
+        localStorage.setItem(STORAGE_KEY, '1');
+    }
+
+    function dismissIntro() {
+        gsap.to('#golf-overlay', {opacity: 0, duration: 0.5, onComplete: () => {
+            window.location.href = 'index.html';
+        }});
+    }
+
+    function replayIntro() {
+        hidePill();
+        // Reset
+        gsap.set('#golf-overlay', {opacity: '', background: 'rgba(8,12,16,0)'});
+        gsap.set('#city-name', {opacity: 0, letterSpacing: '0.9em'});
+        gsap.set('#location-divider', {width: '0px'});
+        gsap.set('#tagline', {opacity: 0, y: 6});
+        gsap.set('#skyline-container', {opacity: 0, y: 18});
+        gsap.set('#swing-container', {opacity: 0});
+        gsap.set('#club-arm', {rotation: -110, transformOrigin: '0px -20px'});
+        gsap.set('#golf-ball', {opacity: 0, attr: {cx: 215, cy: 72}});
+        gsap.set('#ball-arc', {'stroke-dashoffset': 600});
+        gsap.set('#impact-burst', {attr: {r: 0}, stroke: 'rgba(255,255,255,0)'});
+        gsap.set('#title-presents', {opacity: 0, y: -8});
+        gsap.set('#title-main', {y: -75, opacity: 0});
+        gsap.set('#title-sub', {opacity: 0, y: 8});
+        gsap.set('#intro-buttons', {opacity: 0, y: 12});
+        gsap.set('#pipeline-grid', {opacity: 0});
+        gsap.set('#accent-top, #accent-bottom', {opacity: 0});
+
+        document.getElementById('golf-overlay').style.display = 'flex';
+        setTimeout(playIntro, 120);
+    }
+
+    function showPill() {
+        const p = document.getElementById('golf-pill');
+        p.style.display = 'flex';
+        gsap.fromTo(p, {opacity: 0, y: 8}, {opacity: 1, y: 0, duration: 0.5, delay: 0.4});
+    }
+    function hidePill() {
+        document.getElementById('golf-pill').style.display = 'none';
+    }
+
+    // Auto-refresh data every 5 minutes
+    setInterval(loadData, 5 * 60 * 1000);
+    </script>
+
+</body>
+</html>
