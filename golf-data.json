@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-11T19:01:14Z",
-  "row_count": 59,
+  "last_updated": "2026-06-11T19:03:30Z",
+  "row_count": 61,
   "rows": [
+    {
+      "name": "Valerie",
+      "company": "Premier",
+      "number": "6135316",
+      "shot1": "11",
+      "shot2": "-24",
+      "shot3": "0",
+      "current_score": "-13"
+    },
+    {
+      "name": "Jonathan o toole",
+      "company": "MVP",
+      "number": "",
+      "shot1": "0",
+      "shot2": "-25",
+      "shot3": "-24",
+      "current_score": "-49"
+    },
     {
       "name": "Jeremy Allison",
       "company": "Whiptail",
