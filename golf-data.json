@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-11T14:29:37Z",
-  "row_count": 32,
+  "last_updated": "2026-06-11T14:32:06Z",
+  "row_count": 33,
   "rows": [
+    {
+      "name": "Kent Israel",
+      "company": "P66",
+      "number": "405 312 0474",
+      "shot1": "-24",
+      "shot2": "0",
+      "shot3": "-2",
+      "current_score": "-26"
+    },
     {
       "name": "Thomas Davidson",
       "company": "Ngl",
