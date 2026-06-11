@@ -1254,11 +1254,18 @@
             display: flex;
             flex-direction: column;
         }
+        #g-golf-bg {
+            position: absolute;
+            inset: -5%;
+            background: url('images/golf-bg.jpg') center/cover no-repeat;
+            animation: hero-drift 45s ease-in-out infinite;
+            z-index: 0;
+        }
         #g-overlay {
             position: relative;
             width: 100%;
             min-height: 410px;
-            background: rgba(8,12,16,0.93);
+            background: rgba(8,12,16,0);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1723,6 +1730,9 @@
 
         <div id="g-popup-card">
 
+        <!-- Golf course background (add images/golf-bg.jpg to enable) -->
+        <div id="g-golf-bg"></div>
+
         <!-- Close button -->
         <button id="g-close-x" onclick="gCloseModal()" aria-label="Close">&times;</button>
 
@@ -2021,11 +2031,11 @@
             localStorage.setItem(GOLF_KEY, '1');
             var overlay = document.getElementById('g-overlay');
             overlay.style.display = 'flex';
-            gsap.set(overlay, {background: 'rgba(8,12,16,0.93)'});
             var tl = gsap.timeline();
             gTL = tl;
 
             tl.add(function() { gsap.to('#g-skip', {opacity: 1, duration: 0.3, delay: 0.5}); }, 0);
+            tl.to(overlay, {background: 'rgba(8,12,16,0.82)', duration: 0.65, ease: 'power2.inOut'}, 0);
             tl.to('#g-accent-top, #g-accent-bottom', {opacity: 1, duration: 0.28}, 0);
             tl.to('#g-grid', {opacity: 1, duration: 0.45}, 0.05);
             tl.fromTo('#g-logo-wrap', {opacity: 0, y: 5}, {opacity: 1, y: 0, duration: 0.38, ease: 'power2.out'}, 0.1);
@@ -2061,7 +2071,7 @@
             gsap.set('#g-skyline', {opacity: 1, y: 0});
             gsap.set('#g-grid', {opacity: 1});
             gsap.set('#g-accent-top, #g-accent-bottom', {opacity: 1});
-            gsap.to('#g-overlay', {background: 'rgba(8,12,16,0.93)', duration: 0.2});
+            gsap.to('#g-overlay', {background: 'rgba(8,12,16,0.82)', duration: 0.2});
             gsap.to('#g-skip', {opacity: 0, duration: 0.2});
             localStorage.setItem(GOLF_KEY, '1');
         };
@@ -2069,6 +2079,7 @@
         window.gReplayIntro = function() {
             gHidePill();
             document.getElementById('g-leaderboard-wrap').style.display = 'none';
+            gsap.set('#g-overlay', {background: 'rgba(8,12,16,0)'});
             gsap.set('#g-city-name', {opacity: 0, letterSpacing: '0.9em'});
             gsap.set('#g-divider', {width: '0px'});
             gsap.set('#g-tagline', {opacity: 0, y: 6});
