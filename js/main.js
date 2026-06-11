@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     lucide.createIcons();
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-    ScrollTrigger.normalizeScroll(true);
 
 
     // ── Set background images from data attributes ────────────
