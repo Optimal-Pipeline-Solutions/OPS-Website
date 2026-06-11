@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-11T20:43:12Z",
-  "row_count": 69,
+  "last_updated": "2026-06-11T20:45:45Z",
+  "row_count": 70,
   "rows": [
+    {
+      "name": "Josh flOyd",
+      "company": "Energy Transfer",
+      "number": "9182856095",
+      "shot1": "0",
+      "shot2": "-47",
+      "shot3": "48",
+      "current_score": "1"
+    },
     {
       "name": "Robert Anderson",
       "company": "NGL",
