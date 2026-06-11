@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-11T14:55:54Z",
-  "row_count": 39,
+  "last_updated": "2026-06-11T14:58:10Z",
+  "row_count": 41,
   "rows": [
+    {
+      "name": "Michael hysaw",
+      "company": "Energy Transfer",
+      "number": "9183994023",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
+    {
+      "name": "Randy luellen",
+      "company": "eT",
+      "number": "9183191365",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "38",
+      "current_score": "38"
+    },
     {
       "name": "Kale knickel",
       "company": "Energy Transfer",
