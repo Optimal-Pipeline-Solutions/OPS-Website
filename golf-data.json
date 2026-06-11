@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-11T12:53:58Z",
-  "row_count": 8,
+  "last_updated": "2026-06-11T12:58:42Z",
+  "row_count": 9,
   "rows": [
+    {
+      "name": "Barbara Schwartz",
+      "company": "Equinor",
+      "number": "7132020454",
+      "shot1": "11",
+      "shot2": "-22",
+      "shot3": "0",
+      "current_score": "-11"
+    },
     {
       "name": "Nick freighter",
       "company": "Oneok",
