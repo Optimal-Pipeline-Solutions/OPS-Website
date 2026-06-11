@@ -1480,7 +1480,7 @@
         #g-sync-time {
             font-family: 'Courier New', monospace;
             font-size: 0.6rem;
-            color: rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.45);
             letter-spacing: 0.08em;
         }
         #g-table-area { flex: 1; overflow-y: auto; position: relative; }
@@ -1536,14 +1536,14 @@
             font-family: 'Courier New', monospace;
             font-size: 0.75rem;
             letter-spacing: 0.3em;
-            color: rgba(107,123,58,0.45);
+            color: rgba(107,123,58,0.85);
             text-transform: uppercase;
         }
         .g-pending-sub {
             font-family: 'Courier New', monospace;
             font-size: 0.58rem;
             letter-spacing: 0.18em;
-            color: rgba(255,255,255,0.12);
+            color: rgba(255,255,255,0.45);
             margin-top: 0.6rem;
         }
         .g-blink { animation: g-blink 1s step-end infinite; }
@@ -1560,9 +1560,9 @@
             font-size: 0.55rem;
             font-weight: 700;
             letter-spacing: 0.25em;
-            color: rgba(107,123,58,0.4);
+            color: rgba(107,123,58,0.85);
             text-transform: uppercase;
-            border-bottom: 1px solid rgba(107,123,58,0.07);
+            border-bottom: 1px solid rgba(107,123,58,0.12);
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -1570,7 +1570,7 @@
             user-select: none;
             transition: color 0.2s;
         }
-        #g-rules-heading:hover { color: rgba(107,123,58,0.65); }
+        #g-rules-heading:hover { color: #8A9B55; }
         #g-rules-grid {
             display: none;
             grid-template-columns: 1fr 1fr;
@@ -1584,17 +1584,17 @@
             font-size: 0.52rem;
             font-weight: 700;
             letter-spacing: 0.22em;
-            color: rgba(107,123,58,0.55);
+            color: #6B7B3A;
             text-transform: uppercase;
         }
         .g-rule-text {
             font-family: 'Courier New', monospace;
-            font-size: 0.63rem;
-            color: rgba(255,255,255,0.28);
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.72);
             letter-spacing: 0.03em;
-            line-height: 1.5;
+            line-height: 1.6;
         }
-        .g-rule-text em { font-style: normal; color: rgba(107,123,58,0.65); }
+        .g-rule-text em { font-style: normal; color: #8A9B55; }
         @media (max-width: 640px) {
             #g-rules-grid { grid-template-columns: 1fr; }
         }
@@ -1611,12 +1611,12 @@
             font-family: 'Courier New', monospace;
             font-size: 0.58rem;
             letter-spacing: 0.12em;
-            color: rgba(255,255,255,0.12);
+            color: rgba(255,255,255,0.35);
         }
         #g-close-lb {
             background: transparent;
-            color: rgba(255,255,255,0.25);
-            border: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+            border: 1px solid rgba(255,255,255,0.25);
             padding: 0.45rem 1.25rem;
             font-family: 'Courier New', monospace;
             font-size: 0.62rem;
@@ -1626,7 +1626,7 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-        #g-close-lb:hover { color: rgba(255,255,255,0.55); border-color: rgba(255,255,255,0.22); }
+        #g-close-lb:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
         @keyframes g-panel-boot {
             0%{opacity:0} 15%{opacity:0.5} 25%{opacity:0.1}
             40%{opacity:0.8} 55%{opacity:0.3} 75%{opacity:0.95} 100%{opacity:1}
