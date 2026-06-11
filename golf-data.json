@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-11T18:22:54Z",
-  "row_count": 56,
+  "last_updated": "2026-06-11T18:25:05Z",
+  "row_count": 57,
   "rows": [
+    {
+      "name": "Benjamin",
+      "company": "Secsi",
+      "number": "4054362262",
+      "shot1": "0",
+      "shot2": "-36",
+      "shot3": "-47",
+      "current_score": "-83"
+    },
     {
       "name": "Shawn stimson",
       "company": "Shcieder environmental",
