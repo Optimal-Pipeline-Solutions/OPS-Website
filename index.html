@@ -1465,32 +1465,31 @@
         #g-scada-panel::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
         #g-scada-panel::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
         #g-scada-header {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            padding: 0.8rem 1.4rem;
+            position: relative;
+            padding: 0.9rem 1.4rem 0.75rem;
             border-bottom: 1px solid rgba(107,123,58,0.18);
             background: rgba(107,123,58,0.04);
             flex-shrink: 0;
+            text-align: center;
         }
         #g-scada-title {
             font-family: 'Courier New', monospace;
-            font-size: 0.92rem;
+            font-size: 1.05rem;
             font-weight: 700;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.07em;
             color: #6B7B3A;
             text-transform: uppercase;
             white-space: nowrap;
         }
         #g-scada-subtitle {
             font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 0.72rem;
-            color: rgba(107,123,58,0.65);
+            font-size: 0.9rem;
+            color: rgba(107,123,58,0.8);
             letter-spacing: 0.04em;
-            margin-top: 0.2rem;
+            margin-top: 0.3rem;
             font-style: italic;
         }
-        #g-scada-meta { display: flex; align-items: center; gap: 1.5rem; }
+        #g-scada-meta { position: absolute; top: 0.9rem; right: 1.4rem; display: flex; align-items: center; gap: 1.5rem; }
         #g-live-badge {
             display: flex;
             align-items: center;
@@ -1668,34 +1667,6 @@
         .g-panel-flicker { animation: g-panel-boot 0.55s ease-in-out forwards; }
 
         /* Pill */
-        #g-pill {
-            position: absolute;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 30;
-            background: rgba(8,12,16,0.82);
-            border: 1px solid rgba(107,123,58,0.4);
-            border-radius: 100px;
-            padding: 0.55rem 1.1rem;
-            font-size: 0.68rem;
-            font-weight: 500;
-            letter-spacing: 0.1em;
-            color: rgba(255,255,255,0.55);
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-            display: none;
-            align-items: center;
-            gap: 0.45rem;
-            transition: all 0.2s;
-            user-select: none;
-        }
-        #g-pill:hover { border-color: rgba(107,123,58,0.65); color: rgba(255,255,255,0.85); }
-        #g-pill-dot {
-            width: 5px; height: 5px;
-            background: #6B7B3A;
-            border-radius: 50%;
-            animation: live-pulse 2s ease-in-out infinite;
-        }
         @media (max-width: 640px) {
             .g-hide-mobile { display: none !important; }
             #g-buttons { flex-direction: column; align-items: center; }
@@ -1820,10 +1791,8 @@
                 <div id="g-scan-line"></div>
 
                 <div id="g-scada-header">
-                    <div>
-                        <div id="g-scada-title">&#9971;&nbsp; Pipeline Crossroads Festival Golf Challenge &middot; Live Standings</div>
-                        <div id="g-scada-subtitle">Come have a beer on us at Hole 6!</div>
-                    </div>
+                    <div id="g-scada-title">&#9971;&nbsp; Pipeline Crossroads Festival Golf Challenge &middot; Live Standings</div>
+                    <div id="g-scada-subtitle">Come have a beer on us at Hole 6!</div>
                     <div id="g-scada-meta">
                         <div id="g-live-badge"><div id="g-live-dot"></div><span>Live</span></div>
                         <div id="g-sync-time">SYNCED: --:--:-- UTC</div>
@@ -1899,12 +1868,6 @@
                     <button id="g-close-lb" onclick="gCloseLeaderboard()">[ DISMISS ]</button>
                 </div>
             </div>
-        </div>
-
-        <!-- ── RESIDUAL PILL ── -->
-        <div id="g-pill" onclick="gReplayIntro()">
-            <div id="g-pill-dot"></div>
-            <span>&#9971;&nbsp; Golf Challenge</span>
         </div>
 
         </div><!-- /g-popup-card -->
@@ -2026,7 +1989,6 @@
                 gsap.set(lbWrap, {opacity: 1});
                 document.getElementById('g-overlay').style.display = 'flex';
             }});
-            gShowPill();
         };
 
         // ── Intro ────────────────────────────────────────────────
@@ -2080,7 +2042,6 @@
         };
 
         window.gReplayIntro = function() {
-            gHidePill();
             document.getElementById('g-leaderboard-wrap').style.display = 'none';
             gsap.set('#g-overlay', {background: 'rgba(8,12,16,0)'});
             gsap.set('#g-city-name', {opacity: 0, letterSpacing: '0.9em'});
@@ -2100,14 +2061,8 @@
             setTimeout(gPlayIntro, 120);
         };
 
-        function gShowPill() {
-            var p = document.getElementById('g-pill');
-            p.style.display = 'flex';
-            gsap.fromTo(p, {opacity: 0, y: 8}, {opacity: 1, y: 0, duration: 0.5, delay: 0.4});
-        }
-        function gHidePill() {
-            document.getElementById('g-pill').style.display = 'none';
-        }
+        function gShowPill() {}
+        function gHidePill() {}
 
         window.gToggleRules = function(header) {
             var grid = document.getElementById('g-rules-grid');
