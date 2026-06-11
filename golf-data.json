@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-11T21:10:20Z",
-  "row_count": 76,
+  "last_updated": "2026-06-11T21:11:47Z",
+  "row_count": 78,
   "rows": [
+    {
+      "name": "Savannah",
+      "company": "Basin",
+      "number": "",
+      "shot1": "0",
+      "shot2": "-9",
+      "shot3": "-24",
+      "current_score": "-33"
+    },
+    {
+      "name": "Amanda mizell",
+      "company": "Basin",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
     {
       "name": "Kale owen",
       "company": "Energy Transfer",
