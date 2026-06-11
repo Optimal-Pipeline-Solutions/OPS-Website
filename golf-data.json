@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-11T19:10:57Z",
-  "row_count": 62,
+  "last_updated": "2026-06-11T19:13:00Z",
+  "row_count": 64,
   "rows": [
+    {
+      "name": "Karl Gillian",
+      "company": "Aexco",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "-42",
+      "current_score": "-42"
+    },
+    {
+      "name": "Brett burger",
+      "company": "Rockbridge",
+      "number": "405 808 7847",
+      "shot1": "-24",
+      "shot2": "-47",
+      "shot3": "0",
+      "current_score": "-71"
+    },
     {
       "name": "Hollie cox",
       "company": "Ngl",
