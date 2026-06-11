@@ -1927,9 +1927,14 @@
 
             if (data.last_updated) {
                 var t = new Date(data.last_updated);
-                var cst = new Date(t.getTime() - 6 * 60 * 60 * 1000);
-                var hms = cst.toUTCString().slice(17, 25);
-                document.getElementById('g-sync-time').textContent = 'SYNCED: ' + hms + ' CST';
+                var hms = t.toLocaleTimeString('en-US', {
+                    timeZone: 'America/Chicago',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: false
+                });
+                document.getElementById('g-sync-time').textContent = 'SYNCED: ' + hms + ' CT';
             }
 
             if (!data.rows || data.rows.length === 0) {
