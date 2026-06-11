@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-11T19:58:27Z",
-  "row_count": 67,
+  "last_updated": "2026-06-11T20:00:37Z",
+  "row_count": 69,
   "rows": [
+    {
+      "name": "Robert Anderson",
+      "company": "NGL",
+      "number": "9186306474",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
+    {
+      "name": "Stacy worthy",
+      "company": "Ngl",
+      "number": "9183999389",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "39",
+      "current_score": "39"
+    },
     {
       "name": "Roger worthy",
       "company": "NGL",
