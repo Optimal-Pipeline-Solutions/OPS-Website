@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-11T20:45:45Z",
-  "row_count": 70,
+  "last_updated": "2026-06-11T20:46:21Z",
+  "row_count": 71,
   "rows": [
+    {
+      "name": "Kevin eberhart",
+      "company": "Energy Transfer",
+      "number": "4057470112",
+      "shot1": "0",
+      "shot2": "28",
+      "shot3": "0",
+      "current_score": "28"
+    },
     {
       "name": "Josh flOyd",
       "company": "Energy Transfer",
