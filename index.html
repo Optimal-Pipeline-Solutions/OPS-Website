@@ -2201,6 +2201,12 @@
             if (e.target === overlay) opsStatsClose();
         });
 
+        // Also open via ?stats in the URL (bookmarkable on mobile)
+        if (new URLSearchParams(window.location.search).has('stats')) {
+            overlay.classList.add('open');
+            loadStats();
+        }
+
         function loadStats() {
             var body = document.getElementById('ops-stats-body');
             body.innerHTML = '<div style="font-size:0.7rem;opacity:0.4;letter-spacing:0.1em;">LOADING...</div>';
