@@ -1,7 +1,34 @@
 {
-  "last_updated": "2026-06-11T16:29:37Z",
-  "row_count": 49,
+  "last_updated": "2026-06-11T16:32:13Z",
+  "row_count": 52,
   "rows": [
+    {
+      "name": "Bryce mills",
+      "company": "Construction and welding",
+      "number": "9182856430",
+      "shot1": "11",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "11"
+    },
+    {
+      "name": "Kaleb flora",
+      "company": "Mills construction",
+      "number": "9182900622",
+      "shot1": "39",
+      "shot2": "23",
+      "shot3": "0",
+      "current_score": "62"
+    },
+    {
+      "name": "Derrrick Gofourth",
+      "company": "Mills",
+      "number": "9183067432",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
     {
       "name": "Joe smith",
       "company": "Gasket",
