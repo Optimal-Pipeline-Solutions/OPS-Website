@@ -1466,7 +1466,7 @@
         #g-scada-panel::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
         #g-scada-header {
             position: relative;
-            padding: 0.9rem 1.4rem 0.75rem;
+            padding: 1.2rem 1.4rem 0.85rem;
             border-bottom: 1px solid rgba(107,123,58,0.18);
             background: rgba(107,123,58,0.04);
             flex-shrink: 0;
@@ -1479,7 +1479,6 @@
             letter-spacing: 0.07em;
             color: #6B7B3A;
             text-transform: uppercase;
-            white-space: nowrap;
         }
         #g-scada-subtitle {
             font-family: -apple-system, BlinkMacSystemFont, sans-serif;
@@ -1489,7 +1488,13 @@
             margin-top: 0.3rem;
             font-style: italic;
         }
-        #g-scada-meta { position: absolute; top: 0.9rem; right: 1.4rem; display: flex; align-items: center; gap: 1.5rem; }
+        #g-scada-meta { position: absolute; top: 1.2rem; right: 1.4rem; display: flex; align-items: center; gap: 1.5rem; }
+        @media (max-width: 640px) {
+            #g-scada-header { padding: 0.85rem 1rem 0.7rem; }
+            #g-scada-title { font-size: 0.7rem; letter-spacing: 0.05em; }
+            #g-scada-subtitle { font-size: 0.78rem; }
+            #g-scada-meta { position: static; justify-content: center; margin-top: 0.4rem; }
+        }
         #g-live-badge {
             display: flex;
             align-items: center;
@@ -1922,8 +1927,9 @@
 
             if (data.last_updated) {
                 var t = new Date(data.last_updated);
-                var hms = t.toUTCString().slice(17, 25);
-                document.getElementById('g-sync-time').textContent = 'SYNCED: ' + hms + ' UTC';
+                var cst = new Date(t.getTime() - 6 * 60 * 60 * 1000);
+                var hms = cst.toUTCString().slice(17, 25);
+                document.getElementById('g-sync-time').textContent = 'SYNCED: ' + hms + ' CST';
             }
 
             if (!data.rows || data.rows.length === 0) {

@@ -10,8 +10,12 @@
    ═══════════════════════════════════════════════════════════════ */
 
 document.addEventListener('DOMContentLoaded', () => {
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+
     lucide.createIcons();
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+    ScrollTrigger.normalizeScroll(true);
 
 
     // ── Set background images from data attributes ────────────
@@ -168,16 +172,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // ── Smooth scroll anchors ─────────────────────────────────
     document.querySelectorAll('a[href^="#"]').forEach(link => {
         link.addEventListener('click', e => {
+            const href = link.getAttribute('href');
+            if (href === '#') return;
             e.preventDefault();
-            const target = document.querySelector(link.getAttribute('href'));
-            if (target) {
-                gsap.to(window, { scrollTo: { y: target, offsetY: 64 }, duration: 1, ease: 'power3.inOut' });
-                const mm = document.getElementById('mobile-menu');
-                if (mm && !mm.classList.contains('hidden')) {
-                    mm.classList.add('hidden');
-                    mm.classList.remove('flex');
+            try {
+                const target = document.querySelector(href);
+                if (target) {
+                    gsap.to(window, { scrollTo: { y: target, offsetY: 64 }, duration: 1, ease: 'power3.inOut' });
+                    const mm = document.getElementById('mobile-menu');
+                    if (mm && mm.style.display === 'flex') {
+                        mm.style.display = 'none';
+                        const tog = document.getElementById('mobile-toggle');
+                        const icon = tog ? tog.querySelector('[data-lucide]') : null;
+                        if (icon) { icon.setAttribute('data-lucide', 'menu'); lucide.createIcons({ nodes: [tog] }); }
+                    }
                 }
-            }
+            } catch(err) {}
         });
     });
 
@@ -187,8 +197,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileMenu = document.getElementById('mobile-menu');
     if (mobileToggle && mobileMenu) {
         mobileToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            mobileMenu.classList.toggle('flex');
+            const isOpen = mobileMenu.style.display === 'flex';
+            mobileMenu.style.display = isOpen ? 'none' : 'flex';
+            const icon = mobileToggle.querySelector('[data-lucide]');
+            if (icon) {
+                icon.setAttribute('data-lucide', isOpen ? 'menu' : 'x');
+                lucide.createIcons({ nodes: [mobileToggle] });
+            }
         });
     }
 
