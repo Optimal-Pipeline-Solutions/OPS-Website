@@ -1304,25 +1304,49 @@
         }
         #g-skyline { opacity: 0; margin: 1rem auto 0.5rem; }
         #g-swing { opacity: 0; height: 90px; position: relative; }
+        #g-logo-wrap {
+            margin-bottom: 1.2rem;
+            opacity: 0;
+        }
+        #g-logo-inner {
+            display: inline-block;
+            background: rgba(255,255,255,0.92);
+            border-radius: 6px;
+            padding: 7px 20px;
+        }
         #g-presents {
-            font-weight: 300;
-            letter-spacing: 0.4em;
-            font-size: clamp(0.55rem, 0.9vw, 0.7rem);
-            color: rgba(255,255,255,0.25);
+            font-weight: 400;
+            letter-spacing: 0.35em;
+            font-size: clamp(0.6rem, 1.1vw, 0.85rem);
+            color: rgba(255,255,255,0.35);
             text-transform: uppercase;
             opacity: 0;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.3rem;
         }
-        #g-title-main {
-            font-weight: 800;
-            font-size: clamp(2.2rem, 7vw, 5.5rem);
-            line-height: 0.9;
-            letter-spacing: -0.02em;
+        .g-reveal-wrap {
+            overflow: hidden;
+            display: block;
+            line-height: 0.88;
+        }
+        #g-title-golf {
+            font-weight: 900;
+            font-size: clamp(4.5rem, 13vw, 9.5rem);
+            letter-spacing: -0.03em;
             color: #fff;
             text-transform: uppercase;
-            opacity: 0;
-            transform: translateY(-60px);
-            text-shadow: 0 0 80px rgba(107,123,58,0.35);
+            text-shadow: 0 0 100px rgba(107,123,58,0.4);
+            transform: translateY(105%);
+            display: block;
+        }
+        #g-title-challenge {
+            font-weight: 900;
+            font-size: clamp(4.5rem, 13vw, 9.5rem);
+            letter-spacing: -0.03em;
+            color: #6B7B3A;
+            text-transform: uppercase;
+            text-shadow: 0 0 120px rgba(107,123,58,0.65);
+            transform: translateY(105%);
+            display: block;
         }
         #g-title-sub {
             font-weight: 300;
@@ -1331,7 +1355,7 @@
             color: rgba(255,255,255,0.3);
             text-transform: uppercase;
             opacity: 0;
-            margin-top: 0.85rem;
+            margin-top: 0.9rem;
         }
         #g-buttons {
             display: flex;
@@ -1622,6 +1646,13 @@
             <div id="g-accent-bottom"></div>
 
             <div id="g-intro-content">
+                <!-- OPS Logo -->
+                <div id="g-logo-wrap">
+                    <div id="g-logo-inner">
+                        <img src="images/logo.png" alt="Optimal Pipeline Solutions" style="height:32px;width:auto;display:block;">
+                    </div>
+                </div>
+
                 <!-- Location -->
                 <div style="margin-bottom:1rem;">
                     <div id="g-city-name">Cushing, Oklahoma</div>
@@ -1687,8 +1718,9 @@
                 </div>
 
                 <!-- Title -->
-                <div id="g-presents">Optimal Pipeline Solutions &middot; Presents</div>
-                <div id="g-title-main">PIPELINE CROSSROADS<br><span style="color:#6B7B3A;">GOLF CHALLENGE</span></div>
+                <div id="g-presents">Pipeline Crossroads Festival</div>
+                <div class="g-reveal-wrap"><span id="g-title-golf">GOLF</span></div>
+                <div class="g-reveal-wrap"><span id="g-title-challenge">CHALLENGE</span></div>
                 <div id="g-title-sub">Hole 6 Putting Contest &middot; Cushing, Oklahoma</div>
 
                 <!-- Buttons -->
@@ -1884,6 +1916,7 @@
             tl.to(overlay, {background: 'rgba(8,12,16,0.93)', duration: 0.7, ease: 'power2.inOut'}, 0);
             tl.to('#g-accent-top, #g-accent-bottom', {opacity: 1, duration: 0.5}, 0.4);
             tl.to('#g-grid', {opacity: 1, duration: 1.0}, 0.6);
+            tl.fromTo('#g-logo-wrap', {opacity: 0, y: 6}, {opacity: 1, y: 0, duration: 0.8, ease: 'power2.out'}, 0.7);
             tl.fromTo('#g-skyline', {opacity: 0, y: 18}, {opacity: 1, y: 0, duration: 0.9, ease: 'power2.out'}, 0.9);
             tl.add(function() {
                 gsap.to('#g-walking-beam', {rotation: 7, duration: 1.6, ease: 'sine.inOut', yoyo: true, repeat: -1, transformOrigin: '27px 13px'});
@@ -1901,18 +1934,21 @@
             tl.fromTo('#g-ball-arc', {'stroke-dashoffset': 600}, {'stroke-dashoffset': 0, duration: 1.05, ease: 'power1.inOut'}, 3.86);
             tl.to('#g-ball', {opacity: 0, duration: 0.18}, 4.88);
             tl.to(overlay, {background: 'rgba(30,45,20,0.93)', duration: 0.08, yoyo: true, repeat: 1}, 4.85);
-            tl.fromTo('#g-presents', {opacity: 0, y: -8}, {opacity: 1, y: 0, duration: 0.4}, 5.35);
-            tl.fromTo('#g-title-main', {y: -75, opacity: 0}, {y: 0, opacity: 1, duration: 0.5, ease: 'back.out(1.3)'}, 5.65);
-            tl.fromTo('#g-title-sub', {opacity: 0, y: 8}, {opacity: 1, y: 0, duration: 0.5}, 6.05);
-            tl.fromTo('#g-buttons', {opacity: 0, y: 12}, {opacity: 1, y: 0, duration: 0.5, ease: 'power2.out'}, 6.5);
-            tl.add(function() { gsap.to('#g-skip', {opacity: 0, duration: 0.3}); }, 6.5);
+            tl.fromTo('#g-presents', {opacity: 0, letterSpacing: '0.5em'}, {opacity: 1, letterSpacing: '0.35em', duration: 0.55, ease: 'power2.out'}, 5.1);
+            tl.to('#g-title-golf',     {y: '0%', duration: 0.58, ease: 'power3.out'}, 5.4);
+            tl.to('#g-title-challenge',{y: '0%', duration: 0.58, ease: 'power3.out'}, 5.65);
+            tl.fromTo('#g-title-sub', {opacity: 0, y: 8}, {opacity: 1, y: 0, duration: 0.5}, 6.1);
+            tl.fromTo('#g-buttons', {opacity: 0, y: 12}, {opacity: 1, y: 0, duration: 0.5, ease: 'power2.out'}, 6.55);
+            tl.add(function() { gsap.to('#g-skip', {opacity: 0, duration: 0.3}); }, 6.55);
         }
 
         window.gSkipIntro = function() {
             if (gTL) { gTL.kill(); gTL = null; }
-            gsap.set('#g-title-main', {y: 0, opacity: 1});
+            gsap.set('#g-logo-wrap', {opacity: 1, y: 0});
+            gsap.set('#g-title-golf', {y: '0%'});
+            gsap.set('#g-title-challenge', {y: '0%'});
             gsap.set('#g-title-sub', {opacity: 1, y: 0});
-            gsap.set('#g-presents', {opacity: 1, y: 0});
+            gsap.set('#g-presents', {opacity: 1, letterSpacing: '0.35em'});
             gsap.set('#g-buttons', {opacity: 1, y: 0});
             gsap.set('#g-city-name', {opacity: 1, letterSpacing: '0.5em'});
             gsap.set('#g-tagline', {opacity: 1});
@@ -1938,8 +1974,10 @@
             gsap.set('#g-ball', {opacity: 0, attr: {cx: 215, cy: 72}});
             gsap.set('#g-ball-arc', {'stroke-dashoffset': 600});
             gsap.set('#g-impact', {attr: {r: 0}, stroke: 'rgba(255,255,255,0)'});
-            gsap.set('#g-presents', {opacity: 0, y: -8});
-            gsap.set('#g-title-main', {y: -75, opacity: 0});
+            gsap.set('#g-logo-wrap', {opacity: 0, y: 6});
+            gsap.set('#g-presents', {opacity: 0, letterSpacing: '0.5em'});
+            gsap.set('#g-title-golf', {y: '105%'});
+            gsap.set('#g-title-challenge', {y: '105%'});
             gsap.set('#g-title-sub', {opacity: 0, y: 8});
             gsap.set('#g-buttons', {opacity: 0, y: 12});
             gsap.set('#g-grid', {opacity: 0});
