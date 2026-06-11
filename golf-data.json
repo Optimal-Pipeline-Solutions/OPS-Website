@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-11T15:00:41Z",
-  "row_count": 41,
+  "last_updated": "2026-06-11T15:02:53Z",
+  "row_count": 42,
   "rows": [
+    {
+      "name": "Leigh Ann brown",
+      "company": "ET",
+      "number": "9183996367",
+      "shot1": "0",
+      "shot2": "14",
+      "shot3": "23",
+      "current_score": "37"
+    },
     {
       "name": "Michael hysaw",
       "company": "Energy Transfer",
