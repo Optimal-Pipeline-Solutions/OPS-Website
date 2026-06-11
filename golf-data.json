@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-11T13:36:55Z",
-  "row_count": 22,
+  "last_updated": "2026-06-11T13:41:41Z",
+  "row_count": 23,
   "rows": [
+    {
+      "name": "Matt Hester",
+      "company": "Tallgrass",
+      "number": "17135162507",
+      "shot1": "-17",
+      "shot2": "-24",
+      "shot3": "0",
+      "current_score": "-41"
+    },
     {
       "name": "Brad Collum",
       "company": "Deeprock",
