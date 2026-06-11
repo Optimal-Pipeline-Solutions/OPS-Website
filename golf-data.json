@@ -1,7 +1,34 @@
 {
-  "last_updated": "2026-06-11T13:08:09Z",
-  "row_count": 11,
+  "last_updated": "2026-06-11T13:12:55Z",
+  "row_count": 14,
   "rows": [
+    {
+      "name": "Jaden Hughes",
+      "company": "Oneok",
+      "number": "918 710 1491",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
+    {
+      "name": "Matthew tibbits",
+      "company": "Bigstar",
+      "number": "4055342083",
+      "shot1": "0",
+      "shot2": "21",
+      "shot3": "-47",
+      "current_score": "-26"
+    },
+    {
+      "name": "Shelby Lyle",
+      "company": "Oneok",
+      "number": "9402314616",
+      "shot1": "0",
+      "shot2": "100",
+      "shot3": "21",
+      "current_score": "121"
+    },
     {
       "name": "Michael Reeder",
       "company": "Tucker Construction",
