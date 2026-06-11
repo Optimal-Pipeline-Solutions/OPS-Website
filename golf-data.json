@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-11T15:15:02Z",
-  "row_count": 43,
+  "last_updated": "2026-06-11T15:17:18Z",
+  "row_count": 45,
   "rows": [
+    {
+      "name": "Fabian",
+      "company": "Energy Transfer",
+      "number": "4054761998",
+      "shot1": "0",
+      "shot2": "35",
+      "shot3": "21",
+      "current_score": "56"
+    },
+    {
+      "name": "Kip",
+      "company": "ET",
+      "number": "5805542451",
+      "shot1": "0",
+      "shot2": "-7",
+      "shot3": "-23",
+      "current_score": "-30"
+    },
     {
       "name": "Brandon Tr\u00f6gdon",
       "company": "ET",
