@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-11T12:58:42Z",
-  "row_count": 9,
+  "last_updated": "2026-06-11T13:03:23Z",
+  "row_count": 11,
   "rows": [
+    {
+      "name": "Michael Reeder",
+      "company": "Tucker Construction",
+      "number": "3049162338",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "41",
+      "current_score": "41"
+    },
+    {
+      "name": "Scott Martin",
+      "company": "Oneok",
+      "number": "918 605 9570",
+      "shot1": "0",
+      "shot2": "41",
+      "shot3": "0",
+      "current_score": "41"
+    },
     {
       "name": "Barbara Schwartz",
       "company": "Equinor",
