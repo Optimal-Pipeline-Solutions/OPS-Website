@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-11T19:55:52Z",
-  "row_count": 66,
+  "last_updated": "2026-06-11T19:58:27Z",
+  "row_count": 67,
   "rows": [
+    {
+      "name": "Roger worthy",
+      "company": "NGL",
+      "number": "9182851183",
+      "shot1": "0",
+      "shot2": "-16",
+      "shot3": "11",
+      "current_score": "-5"
+    },
     {
       "name": "Kevin Bailey",
       "company": "N/a",
