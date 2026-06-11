@@ -1550,18 +1550,55 @@
         .g-blink { animation: g-blink 1s step-end infinite; }
         @keyframes g-blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
-        /* Rules strip in leaderboard */
-        #g-rules-strip {
-            padding: 0.6rem 1.4rem;
-            border-bottom: 1px solid rgba(107,123,58,0.1);
-            background: rgba(107,123,58,0.03);
-            font-family: 'Courier New', monospace;
-            font-size: 0.6rem;
-            color: rgba(255,255,255,0.22);
-            letter-spacing: 0.08em;
-            line-height: 1.6;
+        /* Rules block in leaderboard */
+        #g-rules-block {
+            border-bottom: 1px solid rgba(107,123,58,0.12);
+            background: rgba(107,123,58,0.025);
         }
-        #g-rules-strip span { color: rgba(107,123,58,0.6); }
+        #g-rules-heading {
+            padding: 0.45rem 1.4rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.55rem;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            color: rgba(107,123,58,0.4);
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(107,123,58,0.07);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            user-select: none;
+            transition: color 0.2s;
+        }
+        #g-rules-heading:hover { color: rgba(107,123,58,0.65); }
+        #g-rules-grid {
+            display: none;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem 2.5rem;
+            padding: 0.85rem 1.4rem 0.9rem;
+        }
+        #g-rules-grid.g-rules-open { display: grid; }
+        .g-rule-item { display: flex; flex-direction: column; gap: 0.18rem; }
+        .g-rule-label {
+            font-family: 'Courier New', monospace;
+            font-size: 0.52rem;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            color: rgba(107,123,58,0.55);
+            text-transform: uppercase;
+        }
+        .g-rule-text {
+            font-family: 'Courier New', monospace;
+            font-size: 0.63rem;
+            color: rgba(255,255,255,0.28);
+            letter-spacing: 0.03em;
+            line-height: 1.5;
+        }
+        .g-rule-text em { font-style: normal; color: rgba(107,123,58,0.65); }
+        @media (max-width: 640px) {
+            #g-rules-grid { grid-template-columns: 1fr; }
+        }
 
         #g-scada-footer {
             padding: 0.85rem 1.4rem;
@@ -1744,9 +1781,46 @@
                     </div>
                 </div>
 
-                <div id="g-rules-strip">
-                    <span>SCORING:</span> Star = 100 pts &nbsp;|&nbsp; Blue circle inside bust = 172 pts &nbsp;|&nbsp; Land on BUST = forfeit entry &nbsp;|&nbsp;
-                    <span>PRIZES:</span> 1st Place &amp; DL (Dead Last) &nbsp;|&nbsp; <span>3 putts</span> for highest combined score &nbsp;&bull;&nbsp; Can replay throughout the day
+                <div id="g-rules-block">
+                    <div id="g-rules-heading" onclick="gToggleRules(this)">
+                        <span>&#9632;&nbsp; Contest Rules</span>
+                        <span id="g-rules-caret">&#9660; SHOW</span>
+                    </div>
+                    <div id="g-rules-grid">
+                        <div class="g-rule-item">
+                            <span class="g-rule-label">Scoring</span>
+                            <span class="g-rule-text">
+                                <em>&#9733; Star (end of green)</em> = 100 pts<br>
+                                <em>&#11044; Blue circle inside bust</em> = 172 pts<br>
+                                Land on BUST = forfeit entry<br>
+                                &gt;50% of ball must be within circle to score
+                            </span>
+                        </div>
+                        <div class="g-rule-item">
+                            <span class="g-rule-label">Attempts</span>
+                            <span class="g-rule-text">
+                                3 putts &middot; highest combined score wins<br>
+                                Putt from any starting star<br>
+                                Replay anytime throughout the day for a better score<br>
+                                Winners announced at end of each day
+                            </span>
+                        </div>
+                        <div class="g-rule-item">
+                            <span class="g-rule-label">Prizes</span>
+                            <span class="g-rule-text">
+                                <em>1st Place</em> &mdash; highest combined score<br>
+                                <em>DL (Dead Last)</em> &mdash; lowest combined score<br>
+                                Must provide name, number &amp; company to enter
+                            </span>
+                        </div>
+                        <div class="g-rule-item">
+                            <span class="g-rule-label">Tiebreaker</span>
+                            <span class="g-rule-text">
+                                Shot 3 breaks ties (highest for 1st, lowest for DL)<br>
+                                If still tied &rarr; Shot 2, then Shot 1
+                            </span>
+                        </div>
+                    </div>
                 </div>
 
                 <div id="g-table-area">
@@ -1994,6 +2068,13 @@
         function gHidePill() {
             document.getElementById('g-pill').style.display = 'none';
         }
+
+        window.gToggleRules = function(header) {
+            var grid = document.getElementById('g-rules-grid');
+            var caret = document.getElementById('g-rules-caret');
+            var open = grid.classList.toggle('g-rules-open');
+            caret.textContent = open ? '▲ HIDE' : '▼ SHOW';
+        };
 
         // Auto-refresh every 5 minutes
         setInterval(gLoadData, 5 * 60 * 1000);
