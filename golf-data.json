@@ -1,7 +1,43 @@
 {
-  "last_updated": "2026-06-11T13:55:58Z",
-  "row_count": 25,
+  "last_updated": "2026-06-11T14:00:52Z",
+  "row_count": 29,
   "rows": [
+    {
+      "name": "Jessica Hultink",
+      "company": "Glencore",
+      "number": "",
+      "shot1": "35",
+      "shot2": "0",
+      "shot3": "-9",
+      "current_score": "26"
+    },
+    {
+      "name": "Doug Klepper",
+      "company": "Deep Rock",
+      "number": "4059232230",
+      "shot1": "21",
+      "shot2": "0",
+      "shot3": "-24",
+      "current_score": "-3"
+    },
+    {
+      "name": "Brandt",
+      "company": "Tallgrass",
+      "number": "3076201573",
+      "shot1": "0",
+      "shot2": "-39",
+      "shot3": "0",
+      "current_score": "-39"
+    },
+    {
+      "name": "Ryan Harris",
+      "company": "CHS",
+      "number": "6207556276",
+      "shot1": "3",
+      "shot2": "0",
+      "shot3": "48",
+      "current_score": "51"
+    },
     {
       "name": "Richard Hield",
       "company": "Tallgrass",
