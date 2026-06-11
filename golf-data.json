@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-11T17:39:40Z",
-  "row_count": 53,
+  "last_updated": "2026-06-11T17:41:47Z",
+  "row_count": 54,
   "rows": [
+    {
+      "name": "Rj shultz",
+      "company": "Mid america pipeline",
+      "number": "9185918988",
+      "shot1": "-45",
+      "shot2": "-42",
+      "shot3": "0",
+      "current_score": "-87"
+    },
     {
       "name": "Thailer weir",
       "company": "Construction and welding",
