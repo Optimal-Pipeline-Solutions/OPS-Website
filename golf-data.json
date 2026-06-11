@@ -1,5 +1,42 @@
 {
-  "last_updated": "2026-06-11T10:47:58Z",
-  "row_count": 0,
-  "rows": []
+  "last_updated": "2026-06-11T12:40:24Z",
+  "row_count": 4,
+  "rows": [
+    {
+      "name": "Todd Demuth",
+      "company": "Oneok",
+      "number": "9187403749",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "22",
+      "current_score": "22"
+    },
+    {
+      "name": "Spencer Sloane",
+      "company": "Vital",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "-23",
+      "current_score": "-23"
+    },
+    {
+      "name": "Jake Peters",
+      "company": "Oneok",
+      "number": "9188297642",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "45",
+      "current_score": "45"
+    },
+    {
+      "name": "Test",
+      "company": "Test",
+      "number": "0",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    }
+  ]
 }
