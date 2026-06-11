@@ -1242,7 +1242,7 @@
             position: relative;
             width: 100%;
             max-width: 880px;
-            height: 580px;
+            height: auto;
             max-height: 82vh;
             border-radius: 14px;
             overflow: hidden;
@@ -1251,10 +1251,13 @@
             background: #0a0d0a;
             flex-shrink: 0;
             pointer-events: auto;
+            display: flex;
+            flex-direction: column;
         }
         #g-overlay {
-            position: absolute;
-            inset: 0;
+            position: relative;
+            width: 100%;
+            min-height: 460px;
             background: rgba(8,12,16,0.93);
             display: flex;
             align-items: center;
@@ -1423,19 +1426,15 @@
 
         /* ── LEADERBOARD PANEL ── */
         #g-leaderboard-wrap {
-            position: absolute;
-            inset: 0;
+            position: relative;
+            width: 100%;
             z-index: 20;
             background: rgba(6,10,14,0.97);
             display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 1.5rem;
+            flex-direction: column;
         }
         #g-scada-panel {
             width: 100%;
-            max-width: 980px;
-            max-height: 90vh;
             background: #111d14;
             border: 1px solid rgba(107,123,58,0.35);
             border-radius: 3px;
@@ -1457,7 +1456,7 @@
         #g-scada-panel::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
         #g-scada-header {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: space-between;
             padding: 0.8rem 1.4rem;
             border-bottom: 1px solid rgba(107,123,58,0.18);
@@ -1466,11 +1465,19 @@
         }
         #g-scada-title {
             font-family: 'Courier New', monospace;
-            font-size: 0.7rem;
+            font-size: 0.82rem;
             font-weight: 700;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.18em;
             color: #6B7B3A;
             text-transform: uppercase;
+        }
+        #g-scada-subtitle {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 0.72rem;
+            color: rgba(107,123,58,0.65);
+            letter-spacing: 0.04em;
+            margin-top: 0.2rem;
+            font-style: italic;
         }
         #g-scada-meta { display: flex; align-items: center; gap: 1.5rem; }
         #g-live-badge {
@@ -1498,7 +1505,7 @@
             color: rgba(255,255,255,0.45);
             letter-spacing: 0.08em;
         }
-        #g-table-area { flex: 1; overflow-y: auto; position: relative; }
+        #g-table-area { overflow-y: auto; max-height: 44vh; position: relative; }
         #g-lb-table { width: 100%; border-collapse: collapse; }
         #g-lb-table thead th {
             padding: 0.55rem 1rem;
@@ -1799,7 +1806,10 @@
                 <div id="g-scan-line"></div>
 
                 <div id="g-scada-header">
-                    <span id="g-scada-title">&#9971;&nbsp; Pipeline Crossroads Festival Golf Challenge &middot; Live Standings</span>
+                    <div>
+                        <div id="g-scada-title">&#9971;&nbsp; Pipeline Crossroads Festival Golf Challenge &middot; Live Standings</div>
+                        <div id="g-scada-subtitle">Come have a beer on us at Hole 6!</div>
+                    </div>
                     <div id="g-scada-meta">
                         <div id="g-live-badge"><div id="g-live-dot"></div><span>Live</span></div>
                         <div id="g-sync-time">SYNCED: --:--:-- UTC</div>
@@ -1871,10 +1881,7 @@
                 </div>
 
                 <div id="g-scada-footer">
-                    <div>
-                        <div id="g-scada-brand">OPS &middot; PCF GOLF CHALLENGE &middot; LIVE FEED &middot; AUTO-REFRESH 5 MIN</div>
-                        <div id="g-lb-beer">Come have a beer on us at Hole 6!</div>
-                    </div>
+                    <div id="g-scada-brand">OPS &middot; PCF GOLF CHALLENGE &middot; LIVE FEED &middot; AUTO-REFRESH 5 MIN</div>
                     <button id="g-close-lb" onclick="gCloseLeaderboard()">[ DISMISS ]</button>
                 </div>
             </div>
@@ -1903,6 +1910,7 @@
             if (!localStorage.getItem(GOLF_KEY)) {
                 setTimeout(gPlayIntro, 500);
             } else {
+                gSkipIntro();
                 gShowPill();
                 gShowLeaderboard();
             }
@@ -1981,6 +1989,7 @@
 
         // ── Leaderboard show/hide ─────────────────────────────────
         window.gShowLeaderboard = function() {
+            document.getElementById('g-overlay').style.display = 'none';
             var overlay = document.getElementById('g-leaderboard-wrap');
             overlay.style.display = 'flex';
             gsap.fromTo(overlay, {opacity: 0}, {opacity: 1, duration: 0.35});
@@ -1999,10 +2008,11 @@
         };
 
         window.gCloseLeaderboard = function() {
-            var overlay = document.getElementById('g-leaderboard-wrap');
-            gsap.to(overlay, {opacity: 0, duration: 0.3, onComplete: function() {
-                overlay.style.display = 'none';
-                gsap.set(overlay, {opacity: 1});
+            var lbWrap = document.getElementById('g-leaderboard-wrap');
+            gsap.to(lbWrap, {opacity: 0, duration: 0.3, onComplete: function() {
+                lbWrap.style.display = 'none';
+                gsap.set(lbWrap, {opacity: 1});
+                document.getElementById('g-overlay').style.display = 'flex';
             }});
             gShowPill();
         };
