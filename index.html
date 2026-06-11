@@ -1421,7 +1421,7 @@
             width: 100%;
             max-width: 980px;
             max-height: 90vh;
-            background: #080c10;
+            background: #111d14;
             border: 1px solid rgba(107,123,58,0.35);
             border-radius: 3px;
             display: flex;
@@ -1492,24 +1492,24 @@
             font-size: 0.6rem;
             font-weight: 600;
             letter-spacing: 0.2em;
-            color: rgba(107,123,58,0.6);
+            color: rgba(255,255,255,0.55);
             text-transform: uppercase;
-            border-bottom: 1px solid rgba(107,123,58,0.12);
-            background: rgba(0,0,0,0.25);
+            border-bottom: 1px solid rgba(107,123,58,0.2);
+            background: rgba(0,0,0,0.3);
             position: sticky;
             top: 0;
         }
         #g-lb-table tbody tr {
-            border-bottom: 1px solid rgba(255,255,255,0.04);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
             opacity: 0;
             transition: background 0.15s;
         }
-        #g-lb-table tbody tr:hover { background: rgba(107,123,58,0.04); }
+        #g-lb-table tbody tr:hover { background: rgba(107,123,58,0.08); }
         #g-lb-table tbody td {
             padding: 0.85rem 1rem;
             font-family: 'Courier New', monospace;
             font-size: 0.78rem;
-            color: rgba(255,255,255,0.65);
+            color: rgba(255,255,255,0.88);
         }
         .g-td-rank { font-size: 0.95rem !important; font-weight: 700 !important; color: #6B7B3A !important; width: 60px; }
         .g-td-rank.g-rank-first { color: #f0c040 !important; font-size: 1rem !important; }
@@ -1581,20 +1581,21 @@
         .g-rule-item { display: flex; flex-direction: column; gap: 0.18rem; }
         .g-rule-label {
             font-family: 'Courier New', monospace;
-            font-size: 0.52rem;
+            font-size: 0.6rem;
             font-weight: 700;
-            letter-spacing: 0.22em;
-            color: #6B7B3A;
+            letter-spacing: 0.2em;
+            color: #8A9B55;
             text-transform: uppercase;
+            margin-bottom: 0.25rem;
         }
         .g-rule-text {
             font-family: 'Courier New', monospace;
-            font-size: 0.65rem;
-            color: rgba(255,255,255,0.72);
-            letter-spacing: 0.03em;
-            line-height: 1.6;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.92);
+            letter-spacing: 0.02em;
+            line-height: 1.65;
         }
-        .g-rule-text em { font-style: normal; color: #8A9B55; }
+        .g-rule-text em { font-style: normal; color: #aac06a; }
         @media (max-width: 640px) {
             #g-rules-grid { grid-template-columns: 1fr; }
         }
