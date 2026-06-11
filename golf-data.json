@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-11T22:06:56Z",
-  "row_count": 79,
+  "last_updated": "2026-06-11T22:08:47Z",
+  "row_count": 80,
   "rows": [
+    {
+      "name": "Mason",
+      "company": "Plains",
+      "number": "",
+      "shot1": "0",
+      "shot2": "-47",
+      "shot3": "-42",
+      "current_score": "-89"
+    },
     {
       "name": "TC fielding",
       "company": "Plains",
