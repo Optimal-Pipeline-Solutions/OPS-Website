@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-11T14:51:08Z",
-  "row_count": 36,
+  "last_updated": "2026-06-11T14:53:26Z",
+  "row_count": 37,
   "rows": [
+    {
+      "name": "Tony Alford",
+      "company": "Energy Transfer",
+      "number": "9183997065",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "172",
+      "current_score": "172"
+    },
     {
       "name": "Randy Carter",
       "company": "Horizon",
