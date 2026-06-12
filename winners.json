@@ -1,8 +1,8 @@
 {
   "thursday": {
-    "active": false,
-    "first": { "name": "", "company": "", "score": "" },
-    "dl":    { "name": "", "company": "", "score": "" }
+    "active": true,
+    "first": { "name": "Tony Alford", "company": "Energy Transfer", "score": "172" },
+    "dl":    { "name": "Mason",       "company": "Plains",          "score": "-89" }
   },
   "friday": {
     "active": false,
