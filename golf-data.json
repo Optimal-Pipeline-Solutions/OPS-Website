@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-12T13:27:46Z",
-  "row_count": 20,
+  "last_updated": "2026-06-12T13:29:39Z",
+  "row_count": 22,
   "rows": [
+    {
+      "name": "Jerrod powers",
+      "company": "Stantec",
+      "number": "4055894573",
+      "shot1": "-24",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "-24"
+    },
+    {
+      "name": "Jase Collin",
+      "company": "Deep rock",
+      "number": "405-880-5683",
+      "shot1": "100",
+      "shot2": "-22",
+      "shot3": "0",
+      "current_score": "78"
+    },
     {
       "name": "Tim Muzny",
       "company": "Deeprock",
