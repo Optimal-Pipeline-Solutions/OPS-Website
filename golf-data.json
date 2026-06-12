@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-06-12T19:04:40Z",
-  "row_count": 80,
+  "last_updated": "2026-06-12T19:07:03Z",
+  "row_count": 79,
   "rows": [
     {
       "name": "Doug Fulkerson",
@@ -19,15 +19,6 @@
       "shot2": "-24",
       "shot3": "-47",
       "current_score": "-96"
-    },
-    {
-      "name": "Doug Fullerton",
-      "company": "Plains",
-      "number": "918-285-1527",
-      "shot1": "-25",
-      "shot2": "-23",
-      "shot3": "-47",
-      "current_score": "-95"
     },
     {
       "name": "Scott hollabaugh",
