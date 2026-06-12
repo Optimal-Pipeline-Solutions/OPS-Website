@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-12T19:23:32Z",
-  "row_count": 80,
+  "last_updated": "2026-06-12T19:26:00Z",
+  "row_count": 82,
   "rows": [
+    {
+      "name": "Preston bartley",
+      "company": "Krb septic",
+      "number": "9189143574",
+      "shot1": "-37",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "-37"
+    },
+    {
+      "name": "David McBride",
+      "company": "Mint turbines",
+      "number": "9186972681",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "172",
+      "current_score": "172"
+    },
     {
       "name": "JR Rodriguez",
       "company": "Mit turbines",
