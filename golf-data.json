@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-12T12:58:17Z",
-  "row_count": 10,
+  "last_updated": "2026-06-12T12:59:23Z",
+  "row_count": 11,
   "rows": [
+    {
+      "name": "Dow Jones",
+      "company": "ET",
+      "number": "4056375546",
+      "shot1": "-24",
+      "shot2": "28",
+      "shot3": "0",
+      "current_score": "4"
+    },
     {
       "name": "Ben Lindsly",
       "company": "ET",
