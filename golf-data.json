@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-12T13:35:58Z",
-  "row_count": 23,
+  "last_updated": "2026-06-12T13:37:16Z",
+  "row_count": 24,
   "rows": [
+    {
+      "name": "Rickashae gilley",
+      "company": "Deeprock",
+      "number": "9187290200",
+      "shot1": "-39",
+      "shot2": "0",
+      "shot3": "-47",
+      "current_score": "-86"
+    },
     {
       "name": "Mike Klepper",
       "company": "Deep rock",
