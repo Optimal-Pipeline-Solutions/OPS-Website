@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-12T12:44:06Z",
-  "row_count": 4,
+  "last_updated": "2026-06-12T12:45:17Z",
+  "row_count": 6,
   "rows": [
+    {
+      "name": "Zach Gray",
+      "company": "OPS",
+      "number": "",
+      "shot1": "21",
+      "shot2": "13",
+      "shot3": "0",
+      "current_score": "34"
+    },
+    {
+      "name": "Brendan",
+      "company": "NGL",
+      "number": "",
+      "shot1": "0",
+      "shot2": "-25",
+      "shot3": "0",
+      "current_score": "-25"
+    },
     {
       "name": "Ruben Bursiaga",
       "company": "NGL",
