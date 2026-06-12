@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-12T21:22:27Z",
-  "row_count": 99,
+  "last_updated": "2026-06-12T21:24:32Z",
+  "row_count": 101,
   "rows": [
+    {
+      "name": "Miles chaney",
+      "company": "Plains",
+      "number": "8326280815",
+      "shot1": "100",
+      "shot2": "0",
+      "shot3": "-22",
+      "current_score": "78"
+    },
+    {
+      "name": "Dakota Simpson",
+      "company": "Plains",
+      "number": "",
+      "shot1": "48",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "48"
+    },
     {
       "name": "Organ lessened",
       "company": "?",
