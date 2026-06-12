@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-12T21:15:52Z",
-  "row_count": 98,
+  "last_updated": "2026-06-12T21:17:40Z",
+  "row_count": 99,
   "rows": [
+    {
+      "name": "Organ lessened",
+      "company": "?",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
     {
       "name": "Tony Sadler",
       "company": "Petra",
