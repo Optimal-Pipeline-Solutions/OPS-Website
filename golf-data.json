@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-12T12:54:40Z",
-  "row_count": 7,
+  "last_updated": "2026-06-12T12:56:32Z",
+  "row_count": 8,
   "rows": [
+    {
+      "name": "Jeremy pilcher",
+      "company": "Moore pipeline",
+      "number": "9183617768",
+      "shot1": "38",
+      "shot2": "0",
+      "shot3": "45",
+      "current_score": "83"
+    },
     {
       "name": "Corley Zimmerman",
       "company": "Moore Pipeline",
