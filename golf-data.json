@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-12T15:54:40Z",
-  "row_count": 51,
+  "last_updated": "2026-06-12T15:56:05Z",
+  "row_count": 53,
   "rows": [
+    {
+      "name": "John Murphin",
+      "company": "Mint turbines",
+      "number": "",
+      "shot1": "-45",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "-45"
+    },
+    {
+      "name": "Jr rodriquiez",
+      "company": "Mint turbines",
+      "number": "9032717178",
+      "shot1": "45",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "45"
+    },
     {
       "name": "Brian hauk",
       "company": "Alpha 1",
@@ -9,7 +27,7 @@
       "shot1": "0",
       "shot2": "41",
       "shot3": "41",
-      "current_score": ""
+      "current_score": "82"
     },
     {
       "name": "Jett cooper",
