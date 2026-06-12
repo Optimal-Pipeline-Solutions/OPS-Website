@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-12T13:46:44Z",
-  "row_count": 28,
+  "last_updated": "2026-06-12T13:48:34Z",
+  "row_count": 29,
   "rows": [
+    {
+      "name": "Jessica sand",
+      "company": "Deeprock",
+      "number": "9183995060",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "17",
+      "current_score": "17"
+    },
     {
       "name": "Jaci sample",
       "company": "Deeprock",
