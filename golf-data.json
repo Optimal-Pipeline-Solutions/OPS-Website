@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-12T13:39:05Z",
-  "row_count": 26,
+  "last_updated": "2026-06-12T13:40:49Z",
+  "row_count": 27,
   "rows": [
+    {
+      "name": "Trevor jones",
+      "company": "Deep rock",
+      "number": "918-807-2078",
+      "shot1": "19",
+      "shot2": "22",
+      "shot3": "0",
+      "current_score": "41"
+    },
     {
       "name": "Tyler Rodebush",
       "company": "Deeprock",
