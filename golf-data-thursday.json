@@ -1,0 +1,753 @@
+{
+  "last_updated": "2026-06-12T12:01:36Z",
+  "row_count": 83,
+  "rows": [
+    {
+      "name": "Kevin mutha fuckin willing",
+      "company": "Plains",
+      "number": "",
+      "shot1": "41",
+      "shot2": "41",
+      "shot3": "0",
+      "current_score": "82"
+    },
+    {
+      "name": "Blake shoemaker",
+      "company": "Plains",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
+    {
+      "name": "Grant Turner",
+      "company": "Amspec",
+      "number": "9182313751",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
+    {
+      "name": "Mason",
+      "company": "Plains",
+      "number": "",
+      "shot1": "0",
+      "shot2": "-47",
+      "shot3": "-42",
+      "current_score": "-89"
+    },
+    {
+      "name": "TC fielding",
+      "company": "Plains",
+      "number": "",
+      "shot1": "0",
+      "shot2": "-24",
+      "shot3": "0",
+      "current_score": "-24"
+    },
+    {
+      "name": "Savannah",
+      "company": "Basin",
+      "number": "",
+      "shot1": "0",
+      "shot2": "-9",
+      "shot3": "-24",
+      "current_score": "-33"
+    },
+    {
+      "name": "Amanda mizell",
+      "company": "Basin",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
+    {
+      "name": "Kale owen",
+      "company": "Energy Transfer",
+      "number": "4058082936",
+      "shot1": "0",
+      "shot2": "-24",
+      "shot3": "0",
+      "current_score": "-24"
+    },
+    {
+      "name": "Jack Thompson",
+      "company": "ET",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "100",
+      "current_score": "100"
+    },
+    {
+      "name": "Jared ferroli",
+      "company": "Energy Transfer",
+      "number": "4058507091",
+      "shot1": "-47",
+      "shot2": "100",
+      "shot3": "28",
+      "current_score": "81"
+    },
+    {
+      "name": "Collin ford",
+      "company": "ET",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
+    {
+      "name": "James Percell",
+      "company": "Energy Transfer",
+      "number": "9187293015",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "-45",
+      "current_score": "-45"
+    },
+    {
+      "name": "Kevin eberhart",
+      "company": "Energy Transfer",
+      "number": "4057470112",
+      "shot1": "0",
+      "shot2": "28",
+      "shot3": "0",
+      "current_score": "28"
+    },
+    {
+      "name": "Josh flOyd",
+      "company": "Energy Transfer",
+      "number": "9182856095",
+      "shot1": "0",
+      "shot2": "-47",
+      "shot3": "48",
+      "current_score": "1"
+    },
+    {
+      "name": "Robert Anderson",
+      "company": "NGL",
+      "number": "9186306474",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
+    {
+      "name": "Stacy worthy",
+      "company": "Ngl",
+      "number": "9183999389",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "39",
+      "current_score": "39"
+    },
+    {
+      "name": "Roger worthy",
+      "company": "NGL",
+      "number": "9182851183",
+      "shot1": "0",
+      "shot2": "-16",
+      "shot3": "11",
+      "current_score": "-5"
+    },
+    {
+      "name": "Kevin Bailey",
+      "company": "N/a",
+      "number": "",
+      "shot1": "-42",
+      "shot2": "0",
+      "shot3": "-22",
+      "current_score": "-64"
+    },
+    {
+      "name": "George strecker",
+      "company": "MV",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "48",
+      "current_score": "48"
+    },
+    {
+      "name": "Karl Gillian",
+      "company": "Aexco",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "-42",
+      "current_score": "-42"
+    },
+    {
+      "name": "Brett burger",
+      "company": "Rockbridge",
+      "number": "405 808 7847",
+      "shot1": "-24",
+      "shot2": "-47",
+      "shot3": "0",
+      "current_score": "-71"
+    },
+    {
+      "name": "Hollie cox",
+      "company": "Ngl",
+      "number": "",
+      "shot1": "-15",
+      "shot2": "-32",
+      "shot3": "0",
+      "current_score": "-47"
+    },
+    {
+      "name": "Valerie",
+      "company": "Premier",
+      "number": "6135316",
+      "shot1": "11",
+      "shot2": "-24",
+      "shot3": "0",
+      "current_score": "-13"
+    },
+    {
+      "name": "Jonathan o toole",
+      "company": "MVP",
+      "number": "",
+      "shot1": "0",
+      "shot2": "-25",
+      "shot3": "-24",
+      "current_score": "-49"
+    },
+    {
+      "name": "Jeremy Allison",
+      "company": "Whiptail",
+      "number": "",
+      "shot1": "32",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "32"
+    },
+    {
+      "name": "Ethan George",
+      "company": "Whiptail",
+      "number": "5806771412",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "-47",
+      "current_score": "-47"
+    },
+    {
+      "name": "Benjamin",
+      "company": "Secsi",
+      "number": "4054362262",
+      "shot1": "0",
+      "shot2": "-36",
+      "shot3": "-47",
+      "current_score": "-83"
+    },
+    {
+      "name": "Shawn stimson",
+      "company": "Shcieder environmental",
+      "number": "4056428563",
+      "shot1": "-45",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "-45"
+    },
+    {
+      "name": "Chris",
+      "company": "Midwest pipeline",
+      "number": "9187045677",
+      "shot1": "21",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "21"
+    },
+    {
+      "name": "Rj shultz",
+      "company": "Mid america pipeline",
+      "number": "9185918988",
+      "shot1": "-45",
+      "shot2": "-42",
+      "shot3": "0",
+      "current_score": "-87"
+    },
+    {
+      "name": "Thailer weir",
+      "company": "Construction and welding",
+      "number": "9182377510",
+      "shot1": "32",
+      "shot2": "38",
+      "shot3": "-18",
+      "current_score": "52"
+    },
+    {
+      "name": "Bryce mills",
+      "company": "Construction and welding",
+      "number": "9182856430",
+      "shot1": "11",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "11"
+    },
+    {
+      "name": "Kaleb flora",
+      "company": "Mills construction",
+      "number": "9182900622",
+      "shot1": "39",
+      "shot2": "23",
+      "shot3": "0",
+      "current_score": "62"
+    },
+    {
+      "name": "Derrrick Gofourth",
+      "company": "Mills",
+      "number": "9183067432",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
+    {
+      "name": "Joe smith",
+      "company": "Gasket",
+      "number": "9183995098",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
+    {
+      "name": "Charles Carroll",
+      "company": "Gasket",
+      "number": "9182303300",
+      "shot1": "32",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "32"
+    },
+    {
+      "name": "Mike gaskins",
+      "company": "Oklahoma Rubber and Gasket",
+      "number": "9182235458",
+      "shot1": "-37",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "-37"
+    },
+    {
+      "name": "Brian Fechner",
+      "company": "Fechner",
+      "number": "5804307867",
+      "shot1": "-22",
+      "shot2": "45",
+      "shot3": "41",
+      "current_score": "64"
+    },
+    {
+      "name": "Fabian",
+      "company": "Energy Transfer",
+      "number": "4054761998",
+      "shot1": "0",
+      "shot2": "35",
+      "shot3": "21",
+      "current_score": "56"
+    },
+    {
+      "name": "Kip",
+      "company": "ET",
+      "number": "5805542451",
+      "shot1": "0",
+      "shot2": "-7",
+      "shot3": "-23",
+      "current_score": "-30"
+    },
+    {
+      "name": "Brandon Tr\u00f6gdon",
+      "company": "ET",
+      "number": "4055903947",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "45",
+      "current_score": "45"
+    },
+    {
+      "name": "Leigh Ann brown",
+      "company": "ET",
+      "number": "9183996367",
+      "shot1": "0",
+      "shot2": "14",
+      "shot3": "23",
+      "current_score": "37"
+    },
+    {
+      "name": "Michael hysaw",
+      "company": "Energy Transfer",
+      "number": "9183994023",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
+    {
+      "name": "Randy luellen",
+      "company": "eT",
+      "number": "9183191365",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "38",
+      "current_score": "38"
+    },
+    {
+      "name": "Kale knickel",
+      "company": "Energy Transfer",
+      "number": "4052080699",
+      "shot1": "0",
+      "shot2": "-25",
+      "shot3": "0",
+      "current_score": "-25"
+    },
+    {
+      "name": "Garret Cloud",
+      "company": "Energy Transfer",
+      "number": "9187069599",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
+    {
+      "name": "Tony Alford",
+      "company": "Energy Transfer",
+      "number": "9183997065",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "172",
+      "current_score": "172"
+    },
+    {
+      "name": "Randy Carter",
+      "company": "Horizon",
+      "number": "9186405435",
+      "shot1": "15",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "15"
+    },
+    {
+      "name": "Jeremy",
+      "company": "Horizon valve",
+      "number": "9187409369",
+      "shot1": "15",
+      "shot2": "-24",
+      "shot3": "0",
+      "current_score": "-9"
+    },
+    {
+      "name": "Brandon",
+      "company": "Horizon valve services",
+      "number": "9186303320",
+      "shot1": "-13",
+      "shot2": "35",
+      "shot3": "-45",
+      "current_score": "-23"
+    },
+    {
+      "name": "Kent Israel",
+      "company": "P66",
+      "number": "405 312 0474",
+      "shot1": "-24",
+      "shot2": "0",
+      "shot3": "-2",
+      "current_score": "-26"
+    },
+    {
+      "name": "Thomas Davidson",
+      "company": "Ngl",
+      "number": "",
+      "shot1": "0",
+      "shot2": "-23",
+      "shot3": "0",
+      "current_score": "-23"
+    },
+    {
+      "name": "Ruben Bursiaga",
+      "company": "Nglep",
+      "number": "",
+      "shot1": "15",
+      "shot2": "0",
+      "shot3": "22",
+      "current_score": "37"
+    },
+    {
+      "name": "Amy",
+      "company": "UET",
+      "number": "3039291152",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "-18",
+      "current_score": "-18"
+    },
+    {
+      "name": "Jessica Hultink",
+      "company": "Glencore",
+      "number": "",
+      "shot1": "35",
+      "shot2": "0",
+      "shot3": "-9",
+      "current_score": "26"
+    },
+    {
+      "name": "Doug Klepper",
+      "company": "Deep Rock",
+      "number": "4059232230",
+      "shot1": "21",
+      "shot2": "0",
+      "shot3": "-24",
+      "current_score": "-3"
+    },
+    {
+      "name": "Brandt",
+      "company": "Tallgrass",
+      "number": "3076201573",
+      "shot1": "0",
+      "shot2": "-39",
+      "shot3": "0",
+      "current_score": "-39"
+    },
+    {
+      "name": "Ryan Harris",
+      "company": "CHS",
+      "number": "6207556276",
+      "shot1": "3",
+      "shot2": "0",
+      "shot3": "48",
+      "current_score": "51"
+    },
+    {
+      "name": "Richard Hield",
+      "company": "Tallgrass",
+      "number": "9134999029",
+      "shot1": "-27",
+      "shot2": "-18",
+      "shot3": "-6",
+      "current_score": "-51"
+    },
+    {
+      "name": "Bryon Smith",
+      "company": "CHS",
+      "number": "3168331498",
+      "shot1": "32",
+      "shot2": "-42",
+      "shot3": "-47",
+      "current_score": "-57"
+    },
+    {
+      "name": "Matt Hester",
+      "company": "Tallgrass",
+      "number": "17135162507",
+      "shot1": "-17",
+      "shot2": "-24",
+      "shot3": "0",
+      "current_score": "-41"
+    },
+    {
+      "name": "Brad Collum",
+      "company": "Deeprock",
+      "number": "",
+      "shot1": "-22",
+      "shot2": "-23",
+      "shot3": "0",
+      "current_score": "-45"
+    },
+    {
+      "name": "Matt Gooding",
+      "company": "Tallgrass",
+      "number": "9186883732",
+      "shot1": "39",
+      "shot2": "-25",
+      "shot3": "-42",
+      "current_score": "-28"
+    },
+    {
+      "name": "Austin",
+      "company": "Cool kids",
+      "number": "9185097767",
+      "shot1": "-7",
+      "shot2": "-23",
+      "shot3": "0",
+      "current_score": "-30"
+    },
+    {
+      "name": "Justin Jackson",
+      "company": "Oneok",
+      "number": "9183139025",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "45",
+      "current_score": "45"
+    },
+    {
+      "name": "Brinley Brown",
+      "company": "One Oak",
+      "number": "9186942088",
+      "shot1": "-15",
+      "shot2": "0",
+      "shot3": "45",
+      "current_score": "30"
+    },
+    {
+      "name": "Barret",
+      "company": "Oneok",
+      "number": "9189604219",
+      "shot1": "-17",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "-17"
+    },
+    {
+      "name": "Harrison cook",
+      "company": "Equinox",
+      "number": "6198695927",
+      "shot1": "0",
+      "shot2": "35",
+      "shot3": "35",
+      "current_score": "70"
+    },
+    {
+      "name": "Josh Harris",
+      "company": "Bigstar",
+      "number": "4055388007",
+      "shot1": "12",
+      "shot2": "-36",
+      "shot3": "-37",
+      "current_score": "-61"
+    },
+    {
+      "name": "Jaden Hughes",
+      "company": "Oneok",
+      "number": "918 710 1491",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
+    {
+      "name": "Matthew tibbits",
+      "company": "Bigstar",
+      "number": "4055342083",
+      "shot1": "0",
+      "shot2": "21",
+      "shot3": "-47",
+      "current_score": "-26"
+    },
+    {
+      "name": "Shelby Lyle",
+      "company": "Oneok",
+      "number": "9402314616",
+      "shot1": "0",
+      "shot2": "100",
+      "shot3": "21",
+      "current_score": "121"
+    },
+    {
+      "name": "Michael Reeder",
+      "company": "Tucker Construction",
+      "number": "3049162338",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "41",
+      "current_score": "41"
+    },
+    {
+      "name": "Scott Martin",
+      "company": "Oneok",
+      "number": "918 605 9570",
+      "shot1": "0",
+      "shot2": "41",
+      "shot3": "0",
+      "current_score": "41"
+    },
+    {
+      "name": "Barbara Schwartz",
+      "company": "Equinor",
+      "number": "7132020454",
+      "shot1": "11",
+      "shot2": "-22",
+      "shot3": "0",
+      "current_score": "-11"
+    },
+    {
+      "name": "Nick freighter",
+      "company": "Oneok",
+      "number": "9132316050",
+      "shot1": "39",
+      "shot2": "48",
+      "shot3": "0",
+      "current_score": "87"
+    },
+    {
+      "name": "Trent Carter",
+      "company": "MVPurchasing",
+      "number": "9723429707",
+      "shot1": "15",
+      "shot2": "-24",
+      "shot3": "0",
+      "current_score": "-9"
+    },
+    {
+      "name": "Danny Rodriguez",
+      "company": "P66",
+      "number": "4054768958",
+      "shot1": "0",
+      "shot2": "-47",
+      "shot3": "0",
+      "current_score": "-47"
+    },
+    {
+      "name": "Josh Steven's",
+      "company": "Elevation",
+      "number": "8655488134",
+      "shot1": "21",
+      "shot2": "-36",
+      "shot3": "0",
+      "current_score": "-15"
+    },
+    {
+      "name": "Todd Demuth",
+      "company": "Oneok",
+      "number": "9187403749",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "22",
+      "current_score": "22"
+    },
+    {
+      "name": "Spencer Sloane",
+      "company": "Vital",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "-23",
+      "current_score": "-23"
+    },
+    {
+      "name": "Jake Peters",
+      "company": "Oneok",
+      "number": "9188297642",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "45",
+      "current_score": "45"
+    },
+    {
+      "name": "Test",
+      "company": "Test",
+      "number": "0",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    }
+  ]
+}
