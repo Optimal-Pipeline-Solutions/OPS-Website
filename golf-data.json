@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-12T13:45:32Z",
-  "row_count": 27,
+  "last_updated": "2026-06-12T13:46:44Z",
+  "row_count": 28,
   "rows": [
+    {
+      "name": "Jaci sample",
+      "company": "Deeprock",
+      "number": "9183067563",
+      "shot1": "-25",
+      "shot2": "0",
+      "shot3": "28",
+      "current_score": "3"
+    },
     {
       "name": "Trevor jones",
       "company": "Deep rock",
