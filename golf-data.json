@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-12T15:46:55Z",
-  "row_count": 47,
+  "last_updated": "2026-06-12T15:48:33Z",
+  "row_count": 49,
   "rows": [
+    {
+      "name": "Chay",
+      "company": "Navigator",
+      "number": "",
+      "shot1": "0",
+      "shot2": "100",
+      "shot3": "-42",
+      "current_score": "58"
+    },
+    {
+      "name": "Scott Beasley",
+      "company": "Inserve",
+      "number": "918-986-4108",
+      "shot1": "-42",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "-42"
+    },
     {
       "name": "Vidal Rosa",
       "company": "Navigator",
