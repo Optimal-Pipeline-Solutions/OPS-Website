@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-12T19:03:58Z",
-  "row_count": 79,
+  "last_updated": "2026-06-12T19:04:40Z",
+  "row_count": 80,
   "rows": [
+    {
+      "name": "Doug Fulkerson",
+      "company": "Plains",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "45",
+      "current_score": "45"
+    },
     {
       "name": "Jeff Cooper",
       "company": "Plains",
