@@ -1713,7 +1713,6 @@
             display: flex; flex-direction: column; align-items: center;
         }
         .g-winner-card.g-card-1st { border-color: rgba(212,175,55,0.65); background: rgba(212,175,55,0.06); }
-        .g-winner-card.g-card-2nd { border-color: rgba(192,192,192,0.42); background: rgba(192,192,192,0.04); }
         .g-winner-trophy { font-size: 2.2rem; margin-bottom: 0.5rem; line-height: 1; }
         .g-winner-label {
             font-family: 'Courier New', monospace; font-size: 0.62rem;
@@ -1985,13 +1984,6 @@
                         <div class="g-winner-score" id="g-w1-score">&mdash;</div>
                         <div class="g-winner-score-label">points</div>
                     </div>
-                    <div class="g-winner-card g-card-2nd" id="g-card-2nd" style="display:none;">
-                        <div class="g-winner-trophy">&#129352;</div>
-                        <div class="g-winner-label">2nd Place</div>
-                        <div class="g-winner-name" id="g-w2-name">&mdash;</div>
-                        <div class="g-winner-score" id="g-w2-score">&mdash;</div>
-                        <div class="g-winner-score-label">points</div>
-                    </div>
                     <div class="g-winner-card" id="g-card-dl" style="display:none;">
                         <div class="g-winner-trophy">&#129348;</div>
                         <div class="g-winner-label">Dead Last &mdash; DL</div>
@@ -2055,9 +2047,8 @@
                     return (parseFloat(b.current_score) || 0) - (parseFloat(a.current_score) || 0);
                 });
 
-                var first  = sorted[0];
-                var second = sorted.length >= 3 ? sorted[1] : null;
-                var last   = sorted.length >= 2 ? sorted[sorted.length - 1] : null;
+                var first = sorted[0];
+                var last  = sorted.length >= 2 ? sorted[sorted.length - 1] : null;
 
                 function fmtWinner(row) {
                     var n = row.name || '—';
@@ -2067,15 +2058,6 @@
 
                 document.getElementById('g-w1-name').textContent  = fmtWinner(first);
                 document.getElementById('g-w1-score').textContent = first.current_score || '—';
-
-                var card2 = document.getElementById('g-card-2nd');
-                if (second) {
-                    document.getElementById('g-w2-name').textContent  = fmtWinner(second);
-                    document.getElementById('g-w2-score').textContent = second.current_score || '—';
-                    card2.style.display = 'flex';
-                } else {
-                    card2.style.display = 'none';
-                }
 
                 var cardDL = document.getElementById('g-card-dl');
                 if (last) {
