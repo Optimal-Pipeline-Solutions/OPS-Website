@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-12T16:05:45Z",
-  "row_count": 57,
+  "last_updated": "2026-06-12T16:07:26Z",
+  "row_count": 58,
   "rows": [
+    {
+      "name": "Alan Boyle",
+      "company": "Enbridge",
+      "number": "",
+      "shot1": "0",
+      "shot2": "-24",
+      "shot3": "0",
+      "current_score": "-24"
+    },
     {
       "name": "Brad",
       "company": "Environmental works",
