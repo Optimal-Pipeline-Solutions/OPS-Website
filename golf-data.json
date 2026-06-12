@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-12T16:18:23Z",
-  "row_count": 62,
+  "last_updated": "2026-06-12T16:19:44Z",
+  "row_count": 64,
   "rows": [
+    {
+      "name": "Jerett",
+      "company": "Na",
+      "number": "",
+      "shot1": "-18",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "-18"
+    },
+    {
+      "name": "Mack Payne",
+      "company": "Broken arrow",
+      "number": "405-614-9055",
+      "shot1": "-47",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "-47"
+    },
     {
       "name": "Jason ward",
       "company": "Award",
