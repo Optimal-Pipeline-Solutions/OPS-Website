@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-12T13:17:08Z",
-  "row_count": 18,
+  "last_updated": "2026-06-12T13:18:12Z",
+  "row_count": 20,
   "rows": [
+    {
+      "name": "Tim Muzny",
+      "company": "Deeprock",
+      "number": "9183997859",
+      "shot1": "0",
+      "shot2": "23",
+      "shot3": "-42",
+      "current_score": "-19"
+    },
+    {
+      "name": "Brett Beasley",
+      "company": "Deep rock",
+      "number": "405-684-8288",
+      "shot1": "38",
+      "shot2": "-25",
+      "shot3": "45",
+      "current_score": "58"
+    },
     {
       "name": "Justin prine",
       "company": "Deeprock",
