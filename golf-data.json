@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-12T16:43:22Z",
-  "row_count": 73,
+  "last_updated": "2026-06-12T16:45:18Z",
+  "row_count": 75,
   "rows": [
+    {
+      "name": "Blake alley",
+      "company": "Plains",
+      "number": "9402179334",
+      "shot1": "13",
+      "shot2": "42",
+      "shot3": "-24",
+      "current_score": "31"
+    },
+    {
+      "name": "Austin watts",
+      "company": "Plains pipeline",
+      "number": "940-636-0640",
+      "shot1": "0",
+      "shot2": "-47",
+      "shot3": "-23",
+      "current_score": "-70"
+    },
     {
       "name": "Sloan Adam's",
       "company": "Plains",
