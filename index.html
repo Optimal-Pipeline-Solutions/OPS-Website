@@ -2048,7 +2048,7 @@
         var gTL = null;
 
         // ── Open / Close ─────────────────────────────────────────
-        var gWinnersData = null;
+        window.gWinnersData = null;
 
         window.openGolfModal = function() {
             var w = document.getElementById('golf-modal-wrapper');
@@ -2059,7 +2059,7 @@
                 .then(function(r) { return r.json(); })
                 .catch(function() { return {}; })
                 .then(function(winners) {
-                    gWinnersData = winners;
+                    window.gWinnersData = winners;
                     // Show Thursday Winners button if Thursday results are set
                     if (winners && winners.thursday && winners.thursday.active) {
                         document.getElementById('g-btn-winners').style.display = '';
@@ -2080,7 +2080,7 @@
             gSkipIntro();
         };
 
-        function gShowWinners(winners) {
+        window.gShowWinners = function(winners) {
             document.getElementById('g-overlay').style.display = 'none';
             document.getElementById('g-leaderboard-wrap').style.display = 'none';
 
