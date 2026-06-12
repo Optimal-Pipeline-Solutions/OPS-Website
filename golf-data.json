@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-12T19:00:00Z",
-  "row_count": 76,
+  "last_updated": "2026-06-12T19:02:23Z",
+  "row_count": 78,
   "rows": [
+    {
+      "name": "Doug Fullerton",
+      "company": "Plains",
+      "number": "918-285-1527",
+      "shot1": "-25",
+      "shot2": "-23",
+      "shot3": "-47",
+      "current_score": "-95"
+    },
+    {
+      "name": "Scott hollabaugh",
+      "company": "Plains",
+      "number": "",
+      "shot1": "-47",
+      "shot2": "-25",
+      "shot3": "45",
+      "current_score": "-27"
+    },
     {
       "name": "Jerry Mackey",
       "company": "Plains",
