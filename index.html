@@ -1725,10 +1725,6 @@
             font-size: 1.1rem; font-weight: 700; color: #e8f0c0;
             margin-bottom: 0.2rem; line-height: 1.2;
         }
-        .g-winner-org {
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 0.78rem; color: rgba(220,240,160,0.55); margin-bottom: 0.85rem;
-        }
         .g-winner-score {
             font-family: 'Courier New', monospace; font-size: 2rem;
             font-weight: 700; color: #c8dc88; line-height: 1;
@@ -1986,7 +1982,6 @@
                         <div class="g-winner-trophy">&#127942;</div>
                         <div class="g-winner-label">1st Place</div>
                         <div class="g-winner-name" id="g-w1-name">&mdash;</div>
-                        <div class="g-winner-org" id="g-w1-org">&mdash;</div>
                         <div class="g-winner-score" id="g-w1-score">&mdash;</div>
                         <div class="g-winner-score-label">points</div>
                     </div>
@@ -1994,7 +1989,6 @@
                         <div class="g-winner-trophy">&#129352;</div>
                         <div class="g-winner-label">2nd Place</div>
                         <div class="g-winner-name" id="g-w2-name">&mdash;</div>
-                        <div class="g-winner-org" id="g-w2-org">&mdash;</div>
                         <div class="g-winner-score" id="g-w2-score">&mdash;</div>
                         <div class="g-winner-score-label">points</div>
                     </div>
@@ -2002,7 +1996,6 @@
                         <div class="g-winner-trophy">&#129348;</div>
                         <div class="g-winner-label">Dead Last &mdash; DL</div>
                         <div class="g-winner-name" id="g-wdl-name">&mdash;</div>
-                        <div class="g-winner-org" id="g-wdl-org">&mdash;</div>
                         <div class="g-winner-score" id="g-wdl-score">&mdash;</div>
                         <div class="g-winner-score-label">points</div>
                     </div>
@@ -2066,14 +2059,18 @@
                 var second = sorted.length >= 3 ? sorted[1] : null;
                 var last   = sorted.length >= 2 ? sorted[sorted.length - 1] : null;
 
-                document.getElementById('g-w1-name').textContent  = first.name    || '—';
-                document.getElementById('g-w1-org').textContent   = first.company || '—';
+                function fmtWinner(row) {
+                    var n = row.name || '—';
+                    if (row.company) n += ' — ' + row.company;
+                    return n;
+                }
+
+                document.getElementById('g-w1-name').textContent  = fmtWinner(first);
                 document.getElementById('g-w1-score').textContent = first.current_score || '—';
 
                 var card2 = document.getElementById('g-card-2nd');
                 if (second) {
-                    document.getElementById('g-w2-name').textContent  = second.name    || '—';
-                    document.getElementById('g-w2-org').textContent   = second.company || '—';
+                    document.getElementById('g-w2-name').textContent  = fmtWinner(second);
                     document.getElementById('g-w2-score').textContent = second.current_score || '—';
                     card2.style.display = 'flex';
                 } else {
@@ -2082,8 +2079,7 @@
 
                 var cardDL = document.getElementById('g-card-dl');
                 if (last) {
-                    document.getElementById('g-wdl-name').textContent  = last.name    || '—';
-                    document.getElementById('g-wdl-org').textContent   = last.company || '—';
+                    document.getElementById('g-wdl-name').textContent  = fmtWinner(last);
                     document.getElementById('g-wdl-score').textContent = last.current_score || '—';
                     cardDL.style.display = 'flex';
                 } else {
