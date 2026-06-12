@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-12T13:48:34Z",
-  "row_count": 29,
+  "last_updated": "2026-06-12T13:50:16Z",
+  "row_count": 30,
   "rows": [
+    {
+      "name": "Cpurtney ward",
+      "company": "Deep rock",
+      "number": "918-509-7029",
+      "shot1": "0",
+      "shot2": "8",
+      "shot3": "8",
+      "current_score": "16"
+    },
     {
       "name": "Jessica sand",
       "company": "Deeprock",
