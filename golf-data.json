@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-12T16:33:55Z",
-  "row_count": 68,
+  "last_updated": "2026-06-12T16:35:49Z",
+  "row_count": 70,
   "rows": [
+    {
+      "name": "Shane smith",
+      "company": "One oak",
+      "number": "405-338-5657",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
+    {
+      "name": "Aaron ghaemi",
+      "company": "Oneok",
+      "number": "4056128792",
+      "shot1": "41",
+      "shot2": "23",
+      "shot3": "38",
+      "current_score": "102"
+    },
     {
       "name": "Sean Jensen",
       "company": "United",
