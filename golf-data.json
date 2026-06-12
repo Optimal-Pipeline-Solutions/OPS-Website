@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-12T16:07:26Z",
-  "row_count": 58,
+  "last_updated": "2026-06-12T16:08:53Z",
+  "row_count": 60,
   "rows": [
+    {
+      "name": "Riley",
+      "company": "Enbridge",
+      "number": "",
+      "shot1": "-5",
+      "shot2": "19",
+      "shot3": "0",
+      "current_score": "14"
+    },
+    {
+      "name": "Donnie kanehl",
+      "company": "Embridge.",
+      "number": "405-612-2543",
+      "shot1": "42",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "42"
+    },
     {
       "name": "Alan Boyle",
       "company": "Enbridge",
