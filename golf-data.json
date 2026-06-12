@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-12T21:03:24Z",
-  "row_count": 92,
+  "last_updated": "2026-06-12T21:05:37Z",
+  "row_count": 94,
   "rows": [
+    {
+      "name": "Jared escott",
+      "company": "Plains",
+      "number": "9182235924",
+      "shot1": "-18",
+      "shot2": "0",
+      "shot3": "-23",
+      "current_score": "-41"
+    },
+    {
+      "name": "Brian Harmon",
+      "company": "Plains",
+      "number": "918-976-6987",
+      "shot1": "0",
+      "shot2": "-23",
+      "shot3": "0",
+      "current_score": "-23"
+    },
     {
       "name": "Brad reinecke",
       "company": "Plains",
