@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-12T16:02:43Z",
-  "row_count": 56,
+  "last_updated": "2026-06-12T16:04:09Z",
+  "row_count": 57,
   "rows": [
+    {
+      "name": "Brad",
+      "company": "Environmental works",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "17",
+      "current_score": "17"
+    },
     {
       "name": "Alan ewing",
       "company": "Environmental works",
