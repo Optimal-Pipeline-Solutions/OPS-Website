@@ -1734,6 +1734,13 @@
             color: rgba(200,220,136,0.4); letter-spacing: 0.1em;
             text-transform: uppercase; margin-top: 0.2rem;
         }
+        .g-day-section { padding: 0.5rem 0 0; }
+        .g-day-label {
+            font-family: 'Courier New', monospace; font-size: 0.68rem;
+            letter-spacing: 0.14em; color: rgba(200,220,136,0.5);
+            text-transform: uppercase; padding: 0.6rem 1.4rem 0.1rem;
+        }
+        #g-day-divider { height: 1px; background: rgba(107,123,58,0.18); margin: 0.5rem 1.4rem; }
         #g-winners-footer {
             padding: 0.85rem 1.4rem; border-top: 1px solid rgba(107,123,58,0.12);
             display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;
@@ -1973,23 +1980,50 @@
 
                 <div id="g-winners-header">
                     <div id="g-winners-title">&#9971;&nbsp; Pipeline Crossroads Festival Golf Challenge</div>
-                    <div id="g-winners-subtitle">Contest Closed &mdash; Congratulations to Our Winners!</div>
+                    <div id="g-winners-subtitle">Congratulations to Our Winners!</div>
                 </div>
 
-                <div class="g-winner-cards">
-                    <div class="g-winner-card g-card-1st" id="g-card-1st">
-                        <div class="g-winner-trophy">&#127942;</div>
-                        <div class="g-winner-label">1st Place</div>
-                        <div class="g-winner-name" id="g-w1-name">&mdash;</div>
-                        <div class="g-winner-score" id="g-w1-score">&mdash;</div>
-                        <div class="g-winner-score-label">points</div>
+                <!-- Thursday results -->
+                <div class="g-day-section" id="g-day-thu" style="display:none;">
+                    <div class="g-day-label">&#9632;&nbsp; Thursday</div>
+                    <div class="g-winner-cards">
+                        <div class="g-winner-card g-card-1st">
+                            <div class="g-winner-trophy">&#127942;</div>
+                            <div class="g-winner-label">1st Place</div>
+                            <div class="g-winner-name" id="g-thu-w1-name">&mdash;</div>
+                            <div class="g-winner-score" id="g-thu-w1-score">&mdash;</div>
+                            <div class="g-winner-score-label">points</div>
+                        </div>
+                        <div class="g-winner-card">
+                            <div class="g-winner-trophy">&#129348;</div>
+                            <div class="g-winner-label">Dead Last &mdash; DL</div>
+                            <div class="g-winner-name" id="g-thu-dl-name">&mdash;</div>
+                            <div class="g-winner-score" id="g-thu-dl-score">&mdash;</div>
+                            <div class="g-winner-score-label">points</div>
+                        </div>
                     </div>
-                    <div class="g-winner-card" id="g-card-dl" style="display:none;">
-                        <div class="g-winner-trophy">&#129348;</div>
-                        <div class="g-winner-label">Dead Last &mdash; DL</div>
-                        <div class="g-winner-name" id="g-wdl-name">&mdash;</div>
-                        <div class="g-winner-score" id="g-wdl-score">&mdash;</div>
-                        <div class="g-winner-score-label">points</div>
+                </div>
+
+                <div id="g-day-divider" style="display:none;"></div>
+
+                <!-- Friday results -->
+                <div class="g-day-section" id="g-day-fri" style="display:none;">
+                    <div class="g-day-label">&#9632;&nbsp; Friday</div>
+                    <div class="g-winner-cards">
+                        <div class="g-winner-card g-card-1st">
+                            <div class="g-winner-trophy">&#127942;</div>
+                            <div class="g-winner-label">1st Place</div>
+                            <div class="g-winner-name" id="g-fri-w1-name">&mdash;</div>
+                            <div class="g-winner-score" id="g-fri-w1-score">&mdash;</div>
+                            <div class="g-winner-score-label">points</div>
+                        </div>
+                        <div class="g-winner-card">
+                            <div class="g-winner-trophy">&#129348;</div>
+                            <div class="g-winner-label">Dead Last &mdash; DL</div>
+                            <div class="g-winner-name" id="g-fri-dl-name">&mdash;</div>
+                            <div class="g-winner-score" id="g-fri-dl-score">&mdash;</div>
+                            <div class="g-winner-score-label">points</div>
+                        </div>
                     </div>
                 </div>
 
@@ -2017,17 +2051,14 @@
 
             fetch('./winners.json?v=' + Date.now())
                 .then(function(r) { return r.json(); })
-                .catch(function() { return {contest_over: false}; })
+                .catch(function() { return {}; })
                 .then(function(winners) {
-                    if (winners && winners.contest_over) {
-                        // Contest is over — hide intro immediately, show winners
+                    var thuDone = winners && winners.thursday && winners.thursday.active;
+                    var friDone = winners && winners.friday  && winners.friday.active;
+                    if (thuDone || friDone) {
                         document.getElementById('g-overlay').style.display = 'none';
-                        fetch('./golf-data.json?v=' + Date.now())
-                            .then(function(r) { return r.json(); })
-                            .then(function(data) { gShowWinners(data); })
-                            .catch(function() { gShowWinners(null); });
+                        gShowWinners(winners);
                     } else {
-                        // Normal flow — leaderboard
                         gLoadData();
                         if (!localStorage.getItem(GOLF_KEY)) {
                             setTimeout(gPlayIntro, 500);
@@ -2038,35 +2069,27 @@
                 });
         };
 
-        function gShowWinners(data) {
+        function gShowWinners(winners) {
             document.getElementById('g-overlay').style.display = 'none';
             document.getElementById('g-leaderboard-wrap').style.display = 'none';
 
-            if (data && data.rows && data.rows.length > 0) {
-                var sorted = data.rows.slice().sort(function(a, b) {
-                    return (parseFloat(b.current_score) || 0) - (parseFloat(a.current_score) || 0);
-                });
+            function fmt(name, company) {
+                return (name || '—') + (company ? ' — ' + company : '');
+            }
+            function fillDay(day, w1n, w1s, dln, dls, secId) {
+                if (!day || !day.active) return;
+                document.getElementById(w1n).textContent = fmt(day.first.name, day.first.company);
+                document.getElementById(w1s).textContent = day.first.score || '—';
+                document.getElementById(dln).textContent = fmt(day.dl.name,    day.dl.company);
+                document.getElementById(dls).textContent = day.dl.score    || '—';
+                document.getElementById(secId).style.display = 'block';
+            }
 
-                var first = sorted[0];
-                var last  = sorted.length >= 2 ? sorted[sorted.length - 1] : null;
+            fillDay(winners.thursday, 'g-thu-w1-name', 'g-thu-w1-score', 'g-thu-dl-name', 'g-thu-dl-score', 'g-day-thu');
+            fillDay(winners.friday,   'g-fri-w1-name', 'g-fri-w1-score', 'g-fri-dl-name', 'g-fri-dl-score', 'g-day-fri');
 
-                function fmtWinner(row) {
-                    var n = row.name || '—';
-                    if (row.company) n += ' — ' + row.company;
-                    return n;
-                }
-
-                document.getElementById('g-w1-name').textContent  = fmtWinner(first);
-                document.getElementById('g-w1-score').textContent = first.current_score || '—';
-
-                var cardDL = document.getElementById('g-card-dl');
-                if (last) {
-                    document.getElementById('g-wdl-name').textContent  = fmtWinner(last);
-                    document.getElementById('g-wdl-score').textContent = last.current_score || '—';
-                    cardDL.style.display = 'flex';
-                } else {
-                    cardDL.style.display = 'none';
-                }
+            if (winners.thursday && winners.thursday.active && winners.friday && winners.friday.active) {
+                document.getElementById('g-day-divider').style.display = 'block';
             }
 
             var wrap = document.getElementById('g-winners-wrap');
