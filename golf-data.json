@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-12T19:02:23Z",
-  "row_count": 78,
+  "last_updated": "2026-06-12T19:03:44Z",
+  "row_count": 79,
   "rows": [
+    {
+      "name": "Jeff Cooper",
+      "company": "Plains",
+      "number": "918-285-1154",
+      "shot1": "-25",
+      "shot2": "-24",
+      "shot3": "-47",
+      "current_score": "-96"
+    },
     {
       "name": "Doug Fullerton",
       "company": "Plains",
