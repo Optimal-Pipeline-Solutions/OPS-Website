@@ -1882,7 +1882,7 @@
                 <!-- Buttons -->
                 <div id="g-buttons">
                     <button class="g-btn-primary" onclick="gShowLeaderboard()">&#9971;&nbsp; View Standings</button>
-                    <button id="g-btn-winners" class="g-btn-ghost" onclick="gShowWinners(gWinnersData)" style="display:none;">&#127942;&nbsp; Thursday Winners</button>
+                    <button id="g-btn-winners" class="g-btn-ghost" onclick="gOpenWinners()" style="display:none;">&#127942;&nbsp; View All Winners</button>
                     <button class="g-btn-ghost" onclick="gCloseModal()">Return to Site</button>
                 </div>
             </div>
@@ -2078,6 +2078,16 @@
             document.getElementById('g-winners-wrap').style.display = 'none';
             document.getElementById('g-overlay').style.display = 'flex';
             gSkipIntro();
+        };
+
+        window.gOpenWinners = function() {
+            fetch('./winners.json?v=' + Date.now())
+                .then(function(r) { return r.json(); })
+                .catch(function() { return window.gWinnersData || {}; })
+                .then(function(winners) {
+                    window.gWinnersData = winners;
+                    gShowWinners(winners);
+                });
         };
 
         window.gShowWinners = function(winners) {
