@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-12T15:53:19Z",
-  "row_count": 49,
+  "last_updated": "2026-06-12T15:54:40Z",
+  "row_count": 51,
   "rows": [
+    {
+      "name": "Brian hauk",
+      "company": "Alpha 1",
+      "number": "404-229-3991",
+      "shot1": "0",
+      "shot2": "41",
+      "shot3": "41",
+      "current_score": ""
+    },
+    {
+      "name": "Jett cooper",
+      "company": "Na",
+      "number": "9182901006",
+      "shot1": "-47",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "-47"
+    },
     {
       "name": "Chay",
       "company": "Navigator",
