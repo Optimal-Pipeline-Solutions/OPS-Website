@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-12T16:24:26Z",
-  "row_count": 66,
+  "last_updated": "2026-06-12T16:26:25Z",
+  "row_count": 68,
   "rows": [
+    {
+      "name": "Sean Jensen",
+      "company": "United",
+      "number": "",
+      "shot1": "35",
+      "shot2": "-24",
+      "shot3": "0",
+      "current_score": "11"
+    },
+    {
+      "name": "Preston Jensen",
+      "company": "United",
+      "number": "918-399-0320",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
     {
       "name": "Ronnie Vance",
       "company": "United",
