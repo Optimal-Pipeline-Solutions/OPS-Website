@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-12T14:59:25Z",
-  "row_count": 37,
+  "last_updated": "2026-06-12T15:01:14Z",
+  "row_count": 39,
   "rows": [
+    {
+      "name": "William Palmer",
+      "company": "Navigator",
+      "number": "918-813-7712",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
+    {
+      "name": "Seth brown",
+      "company": "Navigator",
+      "number": "5803277851",
+      "shot1": "-24",
+      "shot2": "0",
+      "shot3": "48",
+      "current_score": "24"
+    },
     {
       "name": "Armando covarrubias",
       "company": "Phillips 66",
