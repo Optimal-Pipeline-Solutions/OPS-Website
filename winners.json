@@ -5,8 +5,8 @@
     "dl":    { "name": "Mason",       "company": "Plains",          "score": "-89" }
   },
   "friday": {
-    "active": false,
-    "first": { "name": "", "company": "", "score": "" },
-    "dl":    { "name": "", "company": "", "score": "" }
+    "active": true,
+    "first": { "name": "JR Rodriguez", "company": "Mit Turbines", "score": "272" },
+    "dl":    { "name": "Jeff Cooper",  "company": "Plains",       "score": "-96" }
   }
 }
