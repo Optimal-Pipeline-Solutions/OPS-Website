@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-12T15:45:12Z",
-  "row_count": 46,
+  "last_updated": "2026-06-12T15:46:55Z",
+  "row_count": 47,
   "rows": [
+    {
+      "name": "Vidal Rosa",
+      "company": "Navigator",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
     {
       "name": "Jay",
       "company": "Oneok",
