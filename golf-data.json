@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-12T21:12:52Z",
-  "row_count": 96,
+  "last_updated": "2026-06-12T21:15:02Z",
+  "row_count": 98,
   "rows": [
+    {
+      "name": "Tony Sadler",
+      "company": "Petra",
+      "number": "405-742-2954",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "-42",
+      "current_score": "-42"
+    },
+    {
+      "name": "Kevin peoples",
+      "company": "KLX",
+      "number": "5807954188",
+      "shot1": "32",
+      "shot2": "100",
+      "shot3": "-25",
+      "current_score": "107"
+    },
     {
       "name": "John lankford",
       "company": "Buffalo",
