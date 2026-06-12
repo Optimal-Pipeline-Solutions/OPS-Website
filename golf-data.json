@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-12T14:52:47Z",
-  "row_count": 36,
+  "last_updated": "2026-06-12T14:54:39Z",
+  "row_count": 37,
   "rows": [
+    {
+      "name": "Armando covarrubias",
+      "company": "Phillips 66",
+      "number": "918-213-9176",
+      "shot1": "0",
+      "shot2": "45",
+      "shot3": "-22",
+      "current_score": "23"
+    },
     {
       "name": "Jeremy gebhard",
       "company": "Epumps",
