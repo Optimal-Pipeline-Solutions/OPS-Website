@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-12T21:05:37Z",
-  "row_count": 94,
+  "last_updated": "2026-06-12T21:06:19Z",
+  "row_count": 95,
   "rows": [
+    {
+      "name": "Brad Wilson",
+      "company": "Plains",
+      "number": "405-885-2422",
+      "shot1": "0",
+      "shot2": "-24",
+      "shot3": "48",
+      "current_score": "24"
+    },
     {
       "name": "Jared escott",
       "company": "Plains",
