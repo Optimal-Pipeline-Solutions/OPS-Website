@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-12T13:29:39Z",
-  "row_count": 22,
+  "last_updated": "2026-06-12T13:31:17Z",
+  "row_count": 23,
   "rows": [
+    {
+      "name": "Mike Klepper",
+      "company": "Deep rock",
+      "number": "918-399-5006",
+      "shot1": "0",
+      "shot2": "-45",
+      "shot3": "0",
+      "current_score": "-45"
+    },
     {
       "name": "Jerrod powers",
       "company": "Stantec",
