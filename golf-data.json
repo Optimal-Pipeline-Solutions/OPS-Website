@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-12T16:37:13Z",
-  "row_count": 71,
+  "last_updated": "2026-06-12T16:38:40Z",
+  "row_count": 72,
   "rows": [
+    {
+      "name": "Blake Wilson",
+      "company": "Amspec",
+      "number": "405-696-3622",
+      "shot1": "-24",
+      "shot2": "22",
+      "shot3": "0",
+      "current_score": "-2"
+    },
     {
       "name": "Nate leka",
       "company": "Tfs",
