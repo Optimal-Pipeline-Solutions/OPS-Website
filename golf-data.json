@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-12T19:22:38Z",
-  "row_count": 79,
+  "last_updated": "2026-06-12T19:23:32Z",
+  "row_count": 80,
   "rows": [
+    {
+      "name": "JR Rodriguez",
+      "company": "Mit turbines",
+      "number": "9032717178",
+      "shot1": "172",
+      "shot2": "100",
+      "shot3": "0",
+      "current_score": "272"
+    },
     {
       "name": "Doug Fulkerson",
       "company": "Plains",
