@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-12T16:23:07Z",
-  "row_count": 65,
+  "last_updated": "2026-06-12T16:24:26Z",
+  "row_count": 66,
   "rows": [
+    {
+      "name": "Ronnie Vance",
+      "company": "United",
+      "number": "",
+      "shot1": "0",
+      "shot2": "-25",
+      "shot3": "172",
+      "current_score": "147"
+    },
     {
       "name": "Darrel Bickel",
       "company": "Broken arrow",
