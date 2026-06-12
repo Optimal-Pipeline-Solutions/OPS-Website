@@ -1745,14 +1745,14 @@
             padding: 0.85rem 1.4rem; border-top: 1px solid rgba(107,123,58,0.12);
             display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;
         }
-        #g-close-winners {
+        .g-close-winners {
             background: transparent; color: rgba(255,255,255,0.9);
             border: 1px solid rgba(255,255,255,0.45); padding: 0.45rem 1.25rem;
             font-family: 'Courier New', monospace; font-size: 0.62rem;
             letter-spacing: 0.18em; text-transform: uppercase;
             border-radius: 2px; cursor: pointer; transition: all 0.2s;
         }
-        #g-close-winners:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
+        .g-close-winners:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
         @media (max-width: 640px) {
             #g-winners-header { padding: 0.85rem 1rem 0.7rem; }
             #g-winners-title { font-size: 0.7rem; letter-spacing: 0.05em; }
@@ -1882,6 +1882,7 @@
                 <!-- Buttons -->
                 <div id="g-buttons">
                     <button class="g-btn-primary" onclick="gShowLeaderboard()">&#9971;&nbsp; View Standings</button>
+                    <button id="g-btn-winners" class="g-btn-ghost" onclick="gShowWinners(gWinnersData)" style="display:none;">&#127942;&nbsp; Thursday Winners</button>
                     <button class="g-btn-ghost" onclick="gCloseModal()">Return to Site</button>
                 </div>
             </div>
@@ -2029,7 +2030,10 @@
 
                 <div id="g-winners-footer">
                     <div id="g-scada-brand">OPS &middot; PCF GOLF CHALLENGE &middot; CONTEST CLOSED</div>
-                    <button id="g-close-winners" onclick="gCloseModal()">[ DISMISS ]</button>
+                    <div style="display:flex;gap:0.5rem;">
+                        <button id="g-back-winners" class="g-close-winners" onclick="gBackToIntro()">[ &larr; BACK ]</button>
+                        <button id="g-close-winners" class="g-close-winners" onclick="gCloseModal()">[ DISMISS ]</button>
+                    </div>
                 </div>
 
             </div>
@@ -2044,6 +2048,8 @@
         var gTL = null;
 
         // ── Open / Close ─────────────────────────────────────────
+        var gWinnersData = null;
+
         window.openGolfModal = function() {
             var w = document.getElementById('golf-modal-wrapper');
             w.style.display = 'flex';
@@ -2053,20 +2059,25 @@
                 .then(function(r) { return r.json(); })
                 .catch(function() { return {}; })
                 .then(function(winners) {
-                    var thuDone = winners && winners.thursday && winners.thursday.active;
-                    var friDone = winners && winners.friday  && winners.friday.active;
-                    if (thuDone || friDone) {
-                        document.getElementById('g-overlay').style.display = 'none';
-                        gShowWinners(winners);
+                    gWinnersData = winners;
+                    // Show Thursday Winners button if Thursday results are set
+                    if (winners && winners.thursday && winners.thursday.active) {
+                        document.getElementById('g-btn-winners').style.display = '';
+                    }
+                    // Always show intro first — leaderboard and winners accessible via buttons
+                    gLoadData();
+                    if (!localStorage.getItem(GOLF_KEY)) {
+                        setTimeout(gPlayIntro, 500);
                     } else {
-                        gLoadData();
-                        if (!localStorage.getItem(GOLF_KEY)) {
-                            setTimeout(gPlayIntro, 500);
-                        } else {
-                            gSkipIntro();
-                        }
+                        gSkipIntro();
                     }
                 });
+        };
+
+        window.gBackToIntro = function() {
+            document.getElementById('g-winners-wrap').style.display = 'none';
+            document.getElementById('g-overlay').style.display = 'flex';
+            gSkipIntro();
         };
 
         function gShowWinners(winners) {
