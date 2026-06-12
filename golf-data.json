@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-12T15:35:39Z",
-  "row_count": 43,
+  "last_updated": "2026-06-12T15:37:25Z",
+  "row_count": 44,
   "rows": [
+    {
+      "name": "Ryan jaques",
+      "company": "Metercheck",
+      "number": "4056420070",
+      "shot1": "32",
+      "shot2": "28",
+      "shot3": "0",
+      "current_score": "60"
+    },
     {
       "name": "Rusty Watkins",
       "company": "Universal",
