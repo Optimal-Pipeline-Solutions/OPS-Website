@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-12T13:06:04Z",
-  "row_count": 14,
+  "last_updated": "2026-06-12T13:07:43Z",
+  "row_count": 16,
   "rows": [
+    {
+      "name": "Rick Hightower",
+      "company": "Energy transfer",
+      "number": "",
+      "shot1": "0",
+      "shot2": "-47",
+      "shot3": "0",
+      "current_score": "-47"
+    },
+    {
+      "name": "John coon",
+      "company": "ET",
+      "number": "4052408423",
+      "shot1": "-24",
+      "shot2": "0",
+      "shot3": "100",
+      "current_score": "76"
+    },
     {
       "name": "Justin dire",
       "company": "Et",
