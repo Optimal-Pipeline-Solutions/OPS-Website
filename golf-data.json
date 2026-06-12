@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-12T15:21:22Z",
-  "row_count": 41,
+  "last_updated": "2026-06-12T15:23:09Z",
+  "row_count": 43,
   "rows": [
+    {
+      "name": "Rusty Watkins",
+      "company": "Universal",
+      "number": "4057149375",
+      "shot1": "-47",
+      "shot2": "45",
+      "shot3": "100",
+      "current_score": "98"
+    },
+    {
+      "name": "Jake ebert",
+      "company": "Universal",
+      "number": "4057801460",
+      "shot1": "-24",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "-24"
+    },
     {
       "name": "Andrew Maloney",
       "company": "Universal",
