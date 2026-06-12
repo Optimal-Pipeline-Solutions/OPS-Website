@@ -1,7 +1,43 @@
 {
-  "last_updated": "2026-06-12T19:51:45Z",
-  "row_count": 86,
+  "last_updated": "2026-06-12T19:54:29Z",
+  "row_count": 90,
   "rows": [
+    {
+      "name": "Alex hamilton",
+      "company": "Tallgrass",
+      "number": "9182909992",
+      "shot1": "0",
+      "shot2": "48",
+      "shot3": "0",
+      "current_score": "48"
+    },
+    {
+      "name": "Mike diver",
+      "company": "Tallgrass",
+      "number": "918-306-2429",
+      "shot1": "22",
+      "shot2": "0",
+      "shot3": "-36",
+      "current_score": "-14"
+    },
+    {
+      "name": "Collin finch",
+      "company": "Tallgrass",
+      "number": "7347789406",
+      "shot1": "0",
+      "shot2": "-25",
+      "shot3": "48",
+      "current_score": "23"
+    },
+    {
+      "name": "Adin diver",
+      "company": "Tallgrass",
+      "number": "",
+      "shot1": "-25",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "-25"
+    },
     {
       "name": "Shawn beard",
       "company": "Plains",
