@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-12T13:04:04Z",
-  "row_count": 12,
+  "last_updated": "2026-06-12T13:06:04Z",
+  "row_count": 14,
   "rows": [
+    {
+      "name": "Justin dire",
+      "company": "Et",
+      "number": "4052208620",
+      "shot1": "0",
+      "shot2": "14",
+      "shot3": "0",
+      "current_score": "14"
+    },
+    {
+      "name": "Heath Tucker",
+      "company": "ET",
+      "number": "4052206470",
+      "shot1": "0",
+      "shot2": "-42",
+      "shot3": "-23",
+      "current_score": "-65"
+    },
     {
       "name": "Roy colley",
       "company": "ET",
