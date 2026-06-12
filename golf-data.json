@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-12T21:30:03Z",
-  "row_count": 103,
+  "last_updated": "2026-06-12T21:32:00Z",
+  "row_count": 105,
   "rows": [
+    {
+      "name": "Joe smith",
+      "company": "Oklahoma cement",
+      "number": "9183995098",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
+    {
+      "name": "Brent bog",
+      "company": "Decent pump",
+      "number": "580-337-7975",
+      "shot1": "-24",
+      "shot2": "35",
+      "shot3": "48",
+      "current_score": "59"
+    },
     {
       "name": "Bryan flyod",
       "company": "Payne county",
