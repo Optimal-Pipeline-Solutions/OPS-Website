@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-06-12T13:51:26Z",
-  "row_count": 31,
+  "last_updated": "2026-06-12T13:53:18Z",
+  "row_count": 32,
   "rows": [
+    {
+      "name": "Courtney ward",
+      "company": "Deep rock",
+      "number": "",
+      "shot1": "19",
+      "shot2": "35",
+      "shot3": "0",
+      "current_score": "54"
+    },
     {
       "name": "Lori Johnson",
       "company": "Deeprock",
