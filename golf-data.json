@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-06-12T13:15:29Z",
-  "row_count": 16,
+  "last_updated": "2026-06-12T13:17:08Z",
+  "row_count": 18,
   "rows": [
+    {
+      "name": "Justin prine",
+      "company": "Deeprock",
+      "number": "4054466242",
+      "shot1": "38",
+      "shot2": "0",
+      "shot3": "19",
+      "current_score": "57"
+    },
+    {
+      "name": "Brian Beasley",
+      "company": "Derp rock",
+      "number": "405-595-1408",
+      "shot1": "-23",
+      "shot2": "-42",
+      "shot3": "-22",
+      "current_score": "-87"
+    },
     {
       "name": "Rick Hightower",
       "company": "Energy transfer",
