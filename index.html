@@ -1245,7 +1245,9 @@
             height: auto;
             max-height: 82vh;
             border-radius: 14px;
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
             border: 1px solid rgba(107,123,58,0.45);
             box-shadow: 0 40px 100px rgba(0,0,0,0.85), 0 0 0 1px rgba(107,123,58,0.1);
             background: #0a0d0a;
@@ -1677,8 +1679,6 @@
             position: relative; width: 100%; z-index: 20;
             background: rgba(6,10,14,0.97);
             display: none; flex-direction: column;
-            max-height: 80vh;
-            overflow-y: auto; -webkit-overflow-scrolling: touch;
         }
         #g-winners-panel {
             width: 100%; background: #0a0f0b;
@@ -1883,8 +1883,7 @@
 
                 <!-- Buttons -->
                 <div id="g-buttons">
-                    <button class="g-btn-primary" onclick="gShowLeaderboard()">&#9971;&nbsp; View Standings</button>
-                    <button id="g-btn-winners" class="g-btn-ghost" onclick="gOpenWinners()" style="display:none;">&#127942;&nbsp; View All Winners</button>
+                    <button id="g-btn-winners" class="g-btn-primary" onclick="gOpenWinners()" style="display:none;">&#127942;&nbsp; View All Winners</button>
                     <button class="g-btn-ghost" onclick="gCloseModal()">Return to Site</button>
                 </div>
             </div>
