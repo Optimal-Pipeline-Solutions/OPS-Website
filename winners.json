@@ -6,7 +6,7 @@
   },
   "friday": {
     "active": true,
-    "first": { "name": "JR Rodriguez", "company": "Mit Turbines", "score": "272" },
+    "first": { "name": "JR Rodriguez", "company": "Mint Turbines", "score": "272" },
     "dl":    { "name": "Jeff Cooper",  "company": "Plains",       "score": "-96" }
   }
 }
