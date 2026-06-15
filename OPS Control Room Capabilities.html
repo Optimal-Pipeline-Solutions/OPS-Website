@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<!--
+═══════════════════════════════════════════════════════════════════════════════
+  Title:            OPS Control Room Capabilities
+  Audience:         Clients and prospective clients — control room and compliance focus
+  Author:           Chris Babb
+  Date:             2026-06-15
+═══════════════════════════════════════════════════════════════════════════════
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OPS Control Room Capabilities</title>
+<style>
+  :root {
+    --olive: #969977; --olive-light: #E9EBE1; --olive-bg: #f4f5ef;
+    --charcoal: #4E4E4F; --charcoal-light: #6B6B6C; --logo-gray: #8C8C84;
+    --blue: #1f3864; --blue-light: #e3eaf5; --blue-bg: #f0f4fa;
+    --amber: #c47a00; --amber-light: #fdf3e7;
+    --white: #ffffff; --gray-50: #f9fafb; --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb; --gray-400: #9ca3af; --gray-600: #4b5563;
+    --shadow: rgba(0,0,0,0.06);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--white); color: var(--charcoal); max-width: 960px; margin: 0 auto; padding: 48px 36px 72px; line-height: 1.6; }
+  .letterhead { display: flex; align-items: center; gap: 24px; padding: 20px 0 16px; border-bottom: 3px solid var(--olive); margin-bottom: 32px; }
+  .letterhead .logo-block { flex-shrink: 0; }
+  .letterhead .logo-block img { height: 64px; }
+  .letterhead .company-info { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+  .letterhead .company-name { font-size: 22px; font-weight: 700; color: var(--charcoal); letter-spacing: 0.5px; }
+  .letterhead .company-tagline { font-size: 12px; color: var(--olive); font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 4px; }
+  .letterhead .company-website { font-size: 12px; color: var(--charcoal-light); }
+  .letterhead .offices { display: flex; gap: 32px; flex-shrink: 0; text-align: right; }
+  .letterhead .office { font-size: 11px; line-height: 1.5; color: var(--charcoal-light); }
+  .letterhead .office .city { font-weight: 700; color: var(--charcoal); font-size: 11.5px; margin-bottom: 1px; }
+  .hero { text-align: center; margin-bottom: 36px; padding-bottom: 18px; border-bottom: 3px solid var(--olive); }
+  .hero .doctype { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--olive); font-weight: 700; margin-bottom: 8px; }
+  .hero h1 { font-size: 26px; font-weight: 700; color: var(--charcoal); margin-bottom: 6px; }
+  .hero .meta { font-size: 13px; color: var(--gray-600); }
+  h2 { font-size: 19px; font-weight: 700; color: var(--blue); margin: 38px 0 12px; padding-bottom: 6px; border-bottom: 2px solid var(--blue-light); }
+  h2 .sec-num { display: inline-block; width: 26px; height: 26px; line-height: 26px; text-align: center; border-radius: 50%; background: var(--blue); color: var(--white); font-size: 13px; font-weight: 700; margin-right: 8px; vertical-align: middle; }
+  h3 { font-size: 15px; font-weight: 600; color: var(--charcoal); margin: 18px 0 6px; }
+  p { margin-bottom: 12px; color: #444; }
+  ul, ol { margin: 6px 0 14px 24px; color: #444; }
+  li { margin-bottom: 5px; }
+  strong { color: var(--charcoal); }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 18px; font-size: 13.5px; }
+  th { background: var(--blue); color: var(--white); padding: 8px 12px; text-align: left; font-weight: 600; font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.4px; }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--gray-200); color: #444; }
+  tr:nth-child(even) td { background: var(--gray-50); }
+  .callout { padding: 14px 18px; border-radius: 6px; font-size: 14px; margin: 14px 0; line-height: 1.55; }
+  .callout.olive { background: var(--olive-bg); border-left: 4px solid var(--olive); }
+  .callout.blue { background: var(--blue-bg); border-left: 4px solid var(--blue); }
+  .callout.amber { background: var(--amber-light); border-left: 4px solid var(--amber); }
+  .callout .label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+  .callout.olive .label { color: var(--olive); }
+  .callout.blue .label { color: var(--blue); }
+  .callout.amber .label { color: var(--amber); }
+  .standards { margin-top: 48px; padding-top: 20px; border-top: 2px solid var(--olive); text-align: center; }
+  .standards h3 { border: none; text-align: center; margin-bottom: 10px; font-size: 15px; }
+  .std-row { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+  .std-pill { padding: 6px 16px; border-radius: 20px; background: var(--blue-light); color: var(--blue); font-size: 13px; font-weight: 600; }
+  @media print { body { padding: 20px; max-width: 100%; } h2 { break-inside: avoid; } .letterhead { page-break-after: avoid; } }
+</style>
+</head>
+<body>
+
+<div class="letterhead">
+  <div class="logo-block"><img src="data:image/jpeg;base64,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" alt="Optimal Pipeline Solutions"></div>
+  <div class="company-info">
+    <div class="company-name">Optimal Pipeline Solutions</div>
+    <div class="company-tagline">Remote Monitoring &amp; Compliance Services</div>
+    <div class="company-website">www.optimalpipeline.com &nbsp;|&nbsp; 866-760-3933 &nbsp;|&nbsp; info@optimalpipeline.com</div>
+  </div>
+  <div class="offices">
+    <div class="office"><div class="city">Stillwater, OK</div>203 E 80th Street<br>Stillwater, OK 74074</div>
+    <div class="office"><div class="city">Kansas City, MO</div>7505 NW Tiffany Springs Pkwy<br>STE 540, Kansas City, MO 64153</div>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="doctype">Service Overview</div>
+  <h1>Control Room Operations &amp; Compliance</h1>
+  <div class="meta">Control room operations and compliance services for midstream pipelines</div>
+</div>
+
+<h2><span class="sec-num">1</span> Who Operates Your Pipeline</h2>
+
+<p>Optimal Pipeline Solutions is a third-party pipeline control room operations company. Our controllers are experienced, full-time pipeline professionals — not dispatchers, not remote monitors. They are qualified pipeline controllers who have held Alarm Management Plan ownership, Lead Controller responsibilities, and PHMSA compliance obligations at real pipeline operations, including NGL Energy Partners, Enbridge Energy, and BP Pipelines.</p>
+
+<p>When you engage OPS for control room services, your pipeline is monitored and controlled by people who have sat in the same chair your previous operators sat in — and who understand what that obligation means. That experience extends directly into the compliance programs we run on your behalf.</p>
+
+<h2><span class="sec-num">2</span> Control Room Operations</h2>
+
+<p>Our control room is staffed around the clock with qualified pipeline controllers covering crude oil, natural gas, propane, and produced water systems. We operate with the same infrastructure redundancy requirements we would hold ourselves to as a regulated operator.</p>
+
+<table>
+  <tr><th>Capability</th><th>Coverage</th></tr>
+  <tr><td>Third-party pipeline monitoring and control — crude oil, natural gas, propane, produced water</td><td>Full service</td></tr>
+  <tr><td>Alarm Management Plan ownership and lead controller capability</td><td>Yes</td></tr>
+  <tr><td>Emergency response along pipeline corridors</td><td>Yes</td></tr>
+  <tr><td>Leak detection — CPM and non-CPM</td><td>Yes</td></tr>
+  <tr><td>Disaster recovery control center capability</td><td>Yes</td></tr>
+  <tr><td>Redundant power, hardware, software, and network infrastructure</td><td>Fully redundant</td></tr>
+  <tr><td>Pipeline field operations staff — hot work, pigging, tie-ins, tank operations</td><td>Certified</td></tr>
+</table>
+
+<div class="callout olive">
+  <div class="label">An Integrated Operation</div>
+  The team that monitors your pipeline is the same team that handles SCADA modifications, alarm rationalization, and compliance documentation. When your system changes — a new site online, a process modification, a new regulatory requirement — the Management of Change process moves at the pace of a single integrated team. No contractor coordination, no scheduling delays, no handoff gaps.
+</div>
+
+<h2><span class="sec-num">3</span> PHMSA Compliance &amp; CRM Programs</h2>
+
+<p>Our compliance practice is led by a former pipeline Control Room Manager with 15-plus years of operational experience. The CRM programs we write and maintain are grounded in having lived inside the obligation — as the person legally responsible for the pipeline, not as a consultant preparing someone else for it. We have sat across from PHMSA inspectors as the company representative. We know exactly what they look for and how to be ready for it.</p>
+
+<table>
+  <tr><th>Capability</th><th>Coverage</th></tr>
+  <tr><td>49 CFR 192.631 — Natural gas CRM</td><td>Subject matter expert</td></tr>
+  <tr><td>49 CFR 195.446 — Hazardous liquids CRM</td><td>Subject matter expert</td></tr>
+  <tr><td>CRM Plan authoring, maintenance, and annual review</td><td>Full program</td></tr>
+  <tr><td>Regulatory audit representation — PHMSA, state, internal</td><td>Primary liaison</td></tr>
+  <tr><td>ISA-18.2 alarm rationalization — monthly reviews, annual assessments, KPIs</td><td>Full program</td></tr>
+  <tr><td>Management of Change (MOC) program design, documentation, and execution</td><td>Full program — in-house</td></tr>
+  <tr><td>Controller training and qualification program administration</td><td>Yes</td></tr>
+  <tr><td>Fatigue mitigation program design and enforcement</td><td>Yes</td></tr>
+  <tr><td>Emergency response program development</td><td>Yes</td></tr>
+  <tr><td>Document control — regulatory records, procedures, compliance deliverables</td><td>Yes</td></tr>
+</table>
+
+<h2><span class="sec-num">4</span> Purpose-Built Compliance Platform</h2>
+
+<p>OPS operates its own proprietary compliance and alarm management platform built specifically around the regulatory obligations a pipeline control room carries. This is not a commercial off-the-shelf product adapted for pipeline use. It was built from the inside out, by people who knew exactly what compliance documentation, alarm tracking, and audit-readiness requirements actually look like.</p>
+
+<div class="callout blue">
+  <div class="label">What the OPS Platform Delivers</div>
+  Monthly alarm reviews, annual assessments, ISA-18.2 KPI tracking, point-to-point verification records, and revision-controlled compliance documentation are generated, tracked, and stored automatically. When a PHMSA inspector requests a document, it is retrieved in seconds — not assembled from folders and email threads. This level of compliance infrastructure does not exist at most third-party control rooms.
+</div>
+
+<h2><span class="sec-num">5</span> Control Room Capability At a Glance</h2>
+
+<table>
+  <tr><th>Domain</th><th>Coverage</th></tr>
+  <tr><td>Third-party pipeline control room operations</td><td>Primary service — experienced controller staff</td></tr>
+  <tr><td>PHMSA CRM compliance (49 CFR 192.631 &amp; 195.446)</td><td>Deep — primary SME, audit representation</td></tr>
+  <tr><td>ISA-18.2 alarm rationalization</td><td>Full program ownership</td></tr>
+  <tr><td>Management of Change (MOC) — in-house execution</td><td>No contractor coordination required</td></tr>
+  <tr><td>Pipeline field maintenance — hot work, pigging, tank operations</td><td>Certified staff</td></tr>
+  <tr><td>Purpose-built compliance and operations software platform</td><td>Proprietary — in production use</td></tr>
+</table>
+
+<div class="standards">
+  <h3>Regulatory Standards Expertise</h3>
+  <div class="std-row">
+    <div class="std-pill">49 CFR 192.631</div>
+    <div class="std-pill">49 CFR 195.446</div>
+    <div class="std-pill">ISA-18.2</div>
+    <div class="std-pill">API RP 1167</div>
+  </div>
+</div>
+
+</body>
+</html>
