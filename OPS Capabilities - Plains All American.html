@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<!--
+═══════════════════════════════════════════════════════════════════════════════
+  Title:            OPS Capabilities — Prepared for Plains All American
+  Audience:         Plains All American (target account) — tailored capability brief
+  Author:           Chris Babb
+  Date:             2026-06-16
+  Note:             Account-specific version. Field/measurement positioning,
+                    mapped to Plains' known AVEVA OASyS / PI environment.
+                    Internal research source: reference_plains_tech_stack memory.
+═══════════════════════════════════════════════════════════════════════════════
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OPS Capabilities — Prepared for Plains All American</title>
+<style>
+  :root {
+    --olive: #969977; --olive-light: #E9EBE1; --olive-bg: #f4f5ef;
+    --charcoal: #4E4E4F; --charcoal-light: #6B6B6C; --logo-gray: #8C8C84;
+    --blue: #1f3864; --blue-light: #e3eaf5; --blue-bg: #f0f4fa;
+    --amber: #c47a00; --amber-light: #fdf3e7;
+    --white: #ffffff; --gray-50: #f9fafb; --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb; --gray-400: #9ca3af; --gray-600: #4b5563;
+    --shadow: rgba(0,0,0,0.06);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--white); color: var(--charcoal); max-width: 960px; margin: 0 auto; padding: 44px 36px 56px; line-height: 1.55; }
+  .letterhead { display: flex; align-items: center; gap: 24px; padding: 18px 0 14px; border-bottom: 3px solid var(--olive); margin-bottom: 22px; }
+  .letterhead .logo-block { flex-shrink: 0; }
+  .letterhead .logo-block img { height: 60px; }
+  .letterhead .company-info { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+  .letterhead .company-name { font-size: 22px; font-weight: 700; color: var(--charcoal); letter-spacing: 0.5px; }
+  .letterhead .company-tagline { font-size: 12px; color: var(--olive); font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 4px; }
+  .letterhead .company-website { font-size: 12px; color: var(--charcoal-light); }
+  .letterhead .offices { display: flex; gap: 32px; flex-shrink: 0; text-align: right; }
+  .letterhead .office { font-size: 11px; line-height: 1.5; color: var(--charcoal-light); }
+  .letterhead .office .city { font-weight: 700; color: var(--charcoal); font-size: 11.5px; margin-bottom: 1px; }
+  .hero { text-align: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 3px solid var(--olive); }
+  .hero .doctype { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--olive); font-weight: 700; margin-bottom: 8px; }
+  .hero h1 { font-size: 24px; font-weight: 700; color: var(--charcoal); margin-bottom: 6px; }
+  .hero .prepared { display: inline-block; margin-top: 4px; padding: 4px 14px; border-radius: 20px; background: var(--blue); color: var(--white); font-size: 12px; font-weight: 600; letter-spacing: 0.5px; }
+  h2 { font-size: 17px; font-weight: 700; color: var(--blue); margin: 24px 0 10px; padding-bottom: 6px; border-bottom: 2px solid var(--blue-light); }
+  h2 .sec-num { display: inline-block; width: 24px; height: 24px; line-height: 24px; text-align: center; border-radius: 50%; background: var(--blue); color: var(--white); font-size: 12px; font-weight: 700; margin-right: 8px; vertical-align: middle; }
+  p { margin-bottom: 10px; color: #444; font-size: 14px; }
+  strong { color: var(--charcoal); }
+  .lead { font-size: 14.5px; }
+  table { width: 100%; border-collapse: collapse; margin: 8px 0 14px; font-size: 13px; }
+  th { background: var(--blue); color: var(--white); padding: 8px 12px; text-align: left; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.4px; }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--gray-200); color: #444; vertical-align: top; }
+  td.env { font-weight: 600; color: var(--charcoal); width: 38%; }
+  tr:nth-child(even) td { background: var(--gray-50); }
+  .svc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px 28px; margin: 10px 0 4px; }
+  .svc-item { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; color: #333; padding: 4px 0; }
+  .svc-item .tick { flex-shrink: 0; width: 16px; height: 16px; margin-top: 2px; border-radius: 4px; background: var(--olive); position: relative; }
+  .svc-item .tick::after { content: ""; position: absolute; left: 5px; top: 2px; width: 4px; height: 8px; border: solid var(--white); border-width: 0 2px 2px 0; transform: rotate(45deg); }
+  .callout { padding: 13px 18px; border-radius: 6px; font-size: 13.5px; margin: 14px 0; line-height: 1.55; }
+  .callout.olive { background: var(--olive-bg); border-left: 4px solid var(--olive); }
+  .callout.blue { background: var(--blue-bg); border-left: 4px solid var(--blue); }
+  .callout .label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+  .callout.olive .label { color: var(--olive); }
+  .callout.blue .label { color: var(--blue); }
+  .proj { border-left: 4px solid var(--olive); background: var(--olive-bg); border-radius: 0 6px 6px 0; padding: 10px 16px; margin: 9px 0; }
+  .proj .pscope { font-size: 11.5px; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: var(--olive); margin-bottom: 4px; }
+  .proj .pbody { font-size: 13.5px; color: #444; }
+  .standards { margin-top: 28px; padding-top: 18px; border-top: 2px solid var(--olive); text-align: center; }
+  .standards h3 { border: none; text-align: center; margin-bottom: 10px; font-size: 14px; color: var(--charcoal); }
+  .std-row { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+  .std-pill { padding: 6px 15px; border-radius: 20px; background: var(--blue-light); color: var(--blue); font-size: 12.5px; font-weight: 600; }
+  @media print { body { padding: 18px; max-width: 100%; } h2 { break-inside: avoid; } .letterhead { page-break-after: avoid; } .proj, table, .callout { break-inside: avoid; } }
+</style>
+</head>
+<body>
+
+<div class="letterhead">
+  <div class="logo-block"><img src="data:image/jpeg;base64,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" alt="Optimal Pipeline Solutions"></div>
+  <div class="company-info">
+    <div class="company-name">Optimal Pipeline Solutions</div>
+    <div class="company-tagline">Automation &middot; Remote Monitoring &middot; Compliance</div>
+    <div class="company-website">www.optimalpipeline.com &nbsp;|&nbsp; 866-760-3933 &nbsp;|&nbsp; info@optimalpipeline.com</div>
+  </div>
+  <div class="offices">
+    <div class="office"><div class="city">Stillwater, OK</div>203 E 80th Street<br>Stillwater, OK 74074</div>
+    <div class="office"><div class="city">Kansas City, MO</div>7505 NW Tiffany Springs Pkwy<br>STE 540, Kansas City, MO 64153</div>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="doctype">Capabilities Brief</div>
+  <h1>Field Automation, Measurement &amp; Compliance Support</h1>
+  <div class="prepared">Prepared for Plains All American</div>
+</div>
+
+<h2><span class="sec-num">1</span> We Know Your Environment</h2>
+<p class="lead">Plains moves crude oil and NGL across roughly 18,000 miles of active pipeline, monitored and controlled from your enterprise SCADA and historian environment. Optimal Pipeline Solutions is built by people who have operated, automated, and audited exactly this kind of system. We do not compete with your host SCADA &mdash; <strong>we deliver the field automation, custody measurement, and compliance support that report up into it</strong>, with the documentation and discipline a regulated operator requires.</p>
+
+<div class="callout blue">
+  <div class="label">Where We Fit</div>
+  Your control room runs on enterprise pipeline SCADA, with a historian layer for operational data and computational leak detection for line integrity. Our work lives at the <strong>field and station layer</strong> &mdash; the pump-station PLCs, custody metering, LACT units, and tank-farm controls that generate the data your operators and analysts depend on. Clean field automation and trustworthy measurement make everything upstream of the controller better.
+</div>
+
+<h2><span class="sec-num">2</span> Services</h2>
+<div class="svc-grid">
+  <div class="svc-item"><span class="tick"></span><span>PLC Programming &amp; Station Controls</span></div>
+  <div class="svc-item"><span class="tick"></span><span>PLC / Control Panel Design</span></div>
+  <div class="svc-item"><span class="tick"></span><span>HMI Application Development (ISA-101)</span></div>
+  <div class="svc-item"><span class="tick"></span><span>Flow Computer Configuration &amp; Proving</span></div>
+  <div class="svc-item"><span class="tick"></span><span>Commissioning &amp; Startup</span></div>
+  <div class="svc-item"><span class="tick"></span><span>Control System Documentation &amp; As-Builts</span></div>
+  <div class="svc-item"><span class="tick"></span><span>Control Room Management &amp; Compliance Support</span></div>
+  <div class="svc-item"><span class="tick"></span><span>Troubleshooting &amp; Ongoing Support</span></div>
+</div>
+
+<h2><span class="sec-num">3</span> Mapped to Your Operation</h2>
+<table>
+  <tr><th>Your Environment</th><th>How OPS Supports It</th></tr>
+  <tr>
+    <td class="env">Enterprise SCADA &amp; historian (control room)</td>
+    <td>We engineer field automation and measurement to integrate cleanly into your existing host SCADA and data historian &mdash; complementing your platform, never replacing it.</td>
+  </tr>
+  <tr>
+    <td class="env">Omni flow computers &amp; custody measurement</td>
+    <td>Configuration, meter proving, and commissioning of custody metering; measurement data integrity from the skid to the historian.</td>
+  </tr>
+  <tr>
+    <td class="env">LACT units, Coriolis &amp; Krohne meters, densitometers</td>
+    <td>Measurement system design, calibration support, and automation logic for accurate, auditable custody transfer.</td>
+  </tr>
+  <tr>
+    <td class="env">Pump stations &amp; terminal controls (Allen-Bradley)</td>
+    <td>ControlLogix / CompactLogix programming, panel design and fabrication, VFD &amp; MCC integration, field startup and commissioning.</td>
+  </tr>
+  <tr>
+    <td class="env">Tank farms &amp; storage</td>
+    <td>Tank gauging integration, automated startup / shutdown sequencing, and overfill-protection logic.</td>
+  </tr>
+  <tr>
+    <td class="env">Control room &amp; leak detection</td>
+    <td>ISA-101 high-performance HMI, alarm management and rationalization, and control room management support aligned to API RP 1165 / 1168 and 49 CFR 195.446.</td>
+  </tr>
+</table>
+
+<h2><span class="sec-num">4</span> Representative Midstream Work</h2>
+
+<div class="proj">
+  <div class="pscope">Mainline Pump &amp; Metering Tie-In &mdash; Permian Crude</div>
+  <div class="pbody">New mainline pumps and metering integrated into an existing crude tank farm. PLC and Omni flow computer panel design, fabrication, programming, and field startup &mdash; while keeping the existing facility in service through the tie-ins.</div>
+</div>
+
+<div class="proj">
+  <div class="pscope">Metering &amp; Booster Station Standardization</div>
+  <div class="pbody">Six metering facilities and three booster stations brought onto a common control standard &mdash; ControlLogix programming, standardized operator interfaces to VFDs, MCCs, and Omni flow computers, with panel checkout and field commissioning across every site.</div>
+</div>
+
+<div class="proj">
+  <div class="pscope">Multi-Terminal SCADA &amp; Control Center</div>
+  <div class="pbody">Four storage terminals and a central control center delivered together &mdash; ControlLogix with SCADA on fault-tolerant servers, interfaced to Omni flow computers, tank gauging, and drives, with offsite DR and dual operator consoles.</div>
+</div>
+
+<div class="proj">
+  <div class="pscope">New Pipeline Section &amp; Shipper Tie-In</div>
+  <div class="pbody">Design, development, and commissioning of a new pipeline section connecting an existing tank farm to a new shipper connection, with reusable HMI and PLC standards established to streamline follow-on work.</div>
+</div>
+
+<div class="callout olive">
+  <div class="label">Why It Matters for a Regulated Operator</div>
+  Every engagement closes with a complete handoff &mdash; as-built drawings, tag lists, and operator documentation current on the day your team takes the controls. Sequences of operation are written before commissioning; systems are tested before the crew is on site. For a PHMSA-regulated operator, that documentation discipline is not a nicety &mdash; it is what stands up in an audit.
+</div>
+
+<div class="standards">
+  <h3>Standards Applied</h3>
+  <div class="std-row">
+    <div class="std-pill">ISA-101 HMI</div>
+    <div class="std-pill">API RP 1167</div>
+    <div class="std-pill">API RP 1165</div>
+    <div class="std-pill">49 CFR 195.446</div>
+  </div>
+</div>
+
+</body>
+</html>
