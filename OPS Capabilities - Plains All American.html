@@ -70,14 +70,16 @@
   .std-pill { padding: 6px 15px; border-radius: 20px; background: var(--blue-light); color: var(--blue); font-size: 12.5px; font-weight: 600; }
   @media print {
     @page { size: letter; margin: 0.5in; }
-    body { padding: 0; max-width: 100%; }
-    .letterhead { gap: 16px; page-break-after: avoid; }
-    .letterhead .logo-block img { height: 50px; }
-    .letterhead .company-info { min-width: 0; }
-    .letterhead .company-name { white-space: nowrap; font-size: 19px; }
-    .letterhead .offices { gap: 16px; }
-    .letterhead .office { font-size: 9.5px; }
-    .letterhead .office .city { font-size: 10px; }
+    html { width: 100%; }
+    body { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; }
+    .letterhead { gap: 14px; page-break-after: avoid; }
+    .letterhead .logo-block img { height: 46px; }
+    .letterhead .company-info { min-width: 0; flex: 1 1 auto; }
+    .letterhead .company-name { white-space: nowrap; font-size: 18px; }
+    .letterhead .company-website { font-size: 10.5px; }
+    .letterhead .offices { gap: 14px; flex-shrink: 1; }
+    .letterhead .office { font-size: 9px; }
+    .letterhead .office .city { font-size: 9.5px; }
     h2 { break-inside: avoid; }
     .proj, table, .callout { break-inside: avoid; }
   }
