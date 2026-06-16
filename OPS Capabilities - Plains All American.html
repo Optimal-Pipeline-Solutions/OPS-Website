@@ -68,7 +68,19 @@
   .standards h3 { border: none; text-align: center; margin-bottom: 10px; font-size: 14px; color: var(--charcoal); }
   .std-row { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
   .std-pill { padding: 6px 15px; border-radius: 20px; background: var(--blue-light); color: var(--blue); font-size: 12.5px; font-weight: 600; }
-  @media print { body { padding: 18px; max-width: 100%; } h2 { break-inside: avoid; } .letterhead { page-break-after: avoid; } .proj, table, .callout { break-inside: avoid; } }
+  @media print {
+    @page { size: letter; margin: 0.5in; }
+    body { padding: 0; max-width: 100%; }
+    .letterhead { gap: 16px; page-break-after: avoid; }
+    .letterhead .logo-block img { height: 50px; }
+    .letterhead .company-info { min-width: 0; }
+    .letterhead .company-name { white-space: nowrap; font-size: 19px; }
+    .letterhead .offices { gap: 16px; }
+    .letterhead .office { font-size: 9.5px; }
+    .letterhead .office .city { font-size: 10px; }
+    h2 { break-inside: avoid; }
+    .proj, table, .callout { break-inside: avoid; }
+  }
 </style>
 </head>
 <body>
