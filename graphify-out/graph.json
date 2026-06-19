@@ -56,40 +56,40 @@
       "file_type": "code",
       "source_file": "F:\\OPS Website\\js\\main.js",
       "source_location": "L1",
-      "id": "main",
-      "community": 6
+      "community": 7,
+      "id": "main"
     },
     {
       "label": "sync_golf.py",
       "file_type": "code",
       "source_file": "F:\\OPS Website\\scripts\\sync_golf.py",
       "source_location": "L1",
-      "id": "sync_golf",
-      "community": 5
+      "community": 5,
+      "id": "sync_golf"
     },
     {
       "label": "fetch_sheet()",
       "file_type": "code",
       "source_file": "F:\\OPS Website\\scripts\\sync_golf.py",
       "source_location": "L11",
-      "id": "sync_golf_fetch_sheet",
-      "community": 5
+      "community": 5,
+      "id": "sync_golf_fetch_sheet"
     },
     {
       "label": "parse_rows()",
       "file_type": "code",
       "source_file": "F:\\OPS Website\\scripts\\sync_golf.py",
       "source_location": "L19",
-      "id": "sync_golf_parse_rows",
-      "community": 5
+      "community": 5,
+      "id": "sync_golf_parse_rows"
     },
     {
       "label": "main()",
       "file_type": "code",
       "source_file": "F:\\OPS Website\\scripts\\sync_golf.py",
       "source_location": "L40",
-      "id": "sync_golf_main",
-      "community": 5
+      "community": 5,
+      "id": "sync_golf_main"
     },
     {
       "label": "OPS Website Overview",
@@ -100,8 +100,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "readme_ops_website",
-      "community": 2
+      "community": 3,
+      "id": "readme_ops_website"
     },
     {
       "label": "Tech Stack (Tailwind/GSAP/Lucide/GitHub Pages)",
@@ -112,8 +112,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "readme_tech_stack",
-      "community": 2
+      "community": 3,
+      "id": "readme_tech_stack"
     },
     {
       "label": "Page Sections Layout",
@@ -124,8 +124,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "readme_page_sections",
-      "community": 0
+      "community": 1,
+      "id": "readme_page_sections"
     },
     {
       "label": "CSS Component Classes",
@@ -136,8 +136,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "readme_component_classes",
-      "community": 2
+      "community": 3,
+      "id": "readme_component_classes"
     },
     {
       "label": "DNS / Hosting Configuration",
@@ -148,8 +148,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "readme_dns_hosting",
-      "community": 2
+      "community": 3,
+      "id": "readme_dns_hosting"
     },
     {
       "label": "OPS Web Site Editor (PyQt6 companion app)",
@@ -160,8 +160,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "readme_web_editor",
-      "community": 2
+      "community": 3,
+      "id": "readme_web_editor"
     },
     {
       "label": "Robots / Sitemap (www.optimalpipeline.com)",
@@ -172,8 +172,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "robots_sitemap",
-      "community": 2
+      "community": 3,
+      "id": "robots_sitemap"
     },
     {
       "label": "Hero Section (Driving efficiency, Ensuring compliance)",
@@ -184,8 +184,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "index_hero",
-      "community": 0
+      "community": 1,
+      "id": "index_hero"
     },
     {
       "label": "About OPS Section (24/7 control room, SCADA, CRM)",
@@ -196,8 +196,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "index_about",
-      "community": 1
+      "community": 0,
+      "id": "index_about"
     },
     {
       "label": "Services Section (6 Capability Blocks)",
@@ -208,8 +208,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "index_services",
-      "community": 0
+      "community": 1,
+      "id": "index_services"
     },
     {
       "label": "Capability: 24/7 Monitoring and Callout",
@@ -220,8 +220,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "index_monitoring",
-      "community": 0
+      "community": 2,
+      "id": "index_monitoring"
     },
     {
       "label": "Capability: Control Room Operations",
@@ -232,8 +232,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "index_control_room_ops",
-      "community": 0
+      "community": 1,
+      "id": "index_control_room_ops"
     },
     {
       "label": "Capability: CRM Compliance Management (PHMSA, ISA-18.2)",
@@ -244,8 +244,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "index_crm_compliance",
-      "community": 3
+      "community": 2,
+      "id": "index_crm_compliance"
     },
     {
       "label": "Capability: Compliance Consulting (mock audits, PHMSA)",
@@ -256,8 +256,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "index_compliance_consulting",
-      "community": 0
+      "community": 1,
+      "id": "index_compliance_consulting"
     },
     {
       "label": "Capability: SCADA and Automation Engineering",
@@ -268,8 +268,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "index_scada_engineering",
-      "community": 4
+      "community": 4,
+      "id": "index_scada_engineering"
     },
     {
       "label": "Capability: Purpose-Built Compliance and Operations Software",
@@ -280,8 +280,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "index_software",
-      "community": 0
+      "community": 1,
+      "id": "index_software"
     },
     {
       "label": "Control Room Section (OPS Control Center 24/7/365)",
@@ -292,8 +292,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "index_control_room_section",
-      "community": 3
+      "community": 2,
+      "id": "index_control_room_section"
     },
     {
       "label": "Operations Expertise Tags (16 competency tags)",
@@ -304,8 +304,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "index_ops_expertise",
-      "community": 3
+      "community": 2,
+      "id": "index_ops_expertise"
     },
     {
       "label": "Automation Engineering Section (40yr SCADA, 150+ projects)",
@@ -316,8 +316,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "index_automation_section",
-      "community": 4
+      "community": 4,
+      "id": "index_automation_section"
     },
     {
       "label": "Platform Expertise (Ignition, ControlLogix, Omni, MQTT)",
@@ -328,8 +328,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "index_platform_expertise",
-      "community": 4
+      "community": 4,
+      "id": "index_platform_expertise"
     },
     {
       "label": "Engineering Section (4 Automation Capability Cards)",
@@ -340,8 +340,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "index_engineering_section",
-      "community": 1
+      "community": 0,
+      "id": "index_engineering_section"
     },
     {
       "label": "Automation Projects Section (5 Featured Panels)",
@@ -352,8 +352,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "index_automation_projects",
-      "community": 1
+      "community": 0,
+      "id": "index_automation_projects"
     },
     {
       "label": "Compliance Services Section (horizontal scroll)",
@@ -364,8 +364,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "index_compliance_section",
-      "community": 1
+      "community": 2,
+      "id": "index_compliance_section"
     },
     {
       "label": "Case Study Section (Midstream Operator Metrics)",
@@ -376,8 +376,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "index_case_study",
-      "community": 1
+      "community": 0,
+      "id": "index_case_study"
     },
     {
       "label": "Testimonials Section (2 client quotes)",
@@ -388,8 +388,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "index_testimonials",
-      "community": 1
+      "community": 0,
+      "id": "index_testimonials"
     },
     {
       "label": "How We Work Section (6 value proposition cards)",
@@ -400,8 +400,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "index_how_we_work",
-      "community": 1
+      "community": 0,
+      "id": "index_how_we_work"
     },
     {
       "label": "Contact Section (email, phone CTA)",
@@ -412,8 +412,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "index_contact",
-      "community": 0
+      "community": 1,
+      "id": "index_contact"
     },
     {
       "label": "Navigation Bar (fixed, mobile toggle, Golf link)",
@@ -424,8 +424,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "index_nav",
-      "community": 1
+      "community": 0,
+      "id": "index_nav"
     },
     {
       "label": "Golf Page (Cushing Classic OPS Golf Tournament)",
@@ -436,8 +436,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "golf_page",
-      "community": 1
+      "community": 0,
+      "id": "golf_page"
     },
     {
       "label": "Alarm Rationalization One-Pager (Marketing Sheet)",
@@ -448,8 +448,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "alarm_onepager",
-      "community": 3
+      "community": 2,
+      "id": "alarm_onepager"
     },
     {
       "label": "OPS Automation Engineering Capabilities Doc",
@@ -460,8 +460,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "automation_caps_doc",
-      "community": 4
+      "community": 4,
+      "id": "automation_caps_doc"
     },
     {
       "label": "OPS Control Room Capabilities Doc",
@@ -472,8 +472,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "control_room_caps_doc",
-      "community": 3
+      "community": 2,
+      "id": "control_room_caps_doc"
     },
     {
       "label": "OPS Automation Services Overview Doc",
@@ -484,8 +484,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "automation_services_doc",
-      "community": 4
+      "community": 4,
+      "id": "automation_services_doc"
     },
     {
       "label": "OPS Capabilities for Plains All American Doc",
@@ -496,8 +496,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "plains_caps_doc",
-      "community": 0
+      "community": 1,
+      "id": "plains_caps_doc"
     },
     {
       "label": "OPS Control Room Services Overview Doc",
@@ -508,8 +508,44 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "control_room_services_doc",
-      "community": 3
+      "community": 2,
+      "id": "control_room_services_doc"
+    },
+    {
+      "label": "OPS Website Architecture and Operations Guide",
+      "file_type": "document",
+      "source_file": "Plans/Website_Architecture.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "Chris Babb",
+      "contributor": null,
+      "id": "website_arch_plan",
+      "community": 6
+    },
+    {
+      "label": "Static Site on GitHub Pages Architecture Decision",
+      "file_type": "document",
+      "source_file": "Plans/Website_Architecture.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "website_arch_static_github_pages",
+      "community": 6
+    },
+    {
+      "label": "Apple-Style Design with GSAP Animations",
+      "file_type": "document",
+      "source_file": "Plans/Website_Architecture.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "website_arch_apple_design",
+      "community": 6
     }
   ],
   "links": [
@@ -521,9 +557,9 @@
       "weight": 1.0,
       "_src": "sync_golf",
       "_tgt": "sync_golf_fetch_sheet",
+      "confidence_score": 1.0,
       "source": "sync_golf",
-      "target": "sync_golf_fetch_sheet",
-      "confidence_score": 1.0
+      "target": "sync_golf_fetch_sheet"
     },
     {
       "relation": "contains",
@@ -533,9 +569,9 @@
       "weight": 1.0,
       "_src": "sync_golf",
       "_tgt": "sync_golf_parse_rows",
+      "confidence_score": 1.0,
       "source": "sync_golf",
-      "target": "sync_golf_parse_rows",
-      "confidence_score": 1.0
+      "target": "sync_golf_parse_rows"
     },
     {
       "relation": "contains",
@@ -545,9 +581,9 @@
       "weight": 1.0,
       "_src": "sync_golf",
       "_tgt": "sync_golf_main",
+      "confidence_score": 1.0,
       "source": "sync_golf",
-      "target": "sync_golf_main",
-      "confidence_score": 1.0
+      "target": "sync_golf_main"
     },
     {
       "relation": "calls",
@@ -557,9 +593,9 @@
       "weight": 1.0,
       "_src": "sync_golf_main",
       "_tgt": "sync_golf_fetch_sheet",
+      "confidence_score": 1.0,
       "source": "sync_golf_fetch_sheet",
-      "target": "sync_golf_main",
-      "confidence_score": 1.0
+      "target": "sync_golf_main"
     },
     {
       "relation": "calls",
@@ -569,9 +605,9 @@
       "weight": 1.0,
       "_src": "sync_golf_main",
       "_tgt": "sync_golf_parse_rows",
+      "confidence_score": 1.0,
       "source": "sync_golf_parse_rows",
-      "target": "sync_golf_main",
-      "confidence_score": 1.0
+      "target": "sync_golf_main"
     },
     {
       "relation": "references",
@@ -1100,6 +1136,30 @@
       "_tgt": "index_nav",
       "source": "index_nav",
       "target": "golf_page"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Plans/Website_Architecture.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "website_arch_plan",
+      "_tgt": "website_arch_static_github_pages",
+      "source": "website_arch_plan",
+      "target": "website_arch_static_github_pages"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Plans/Website_Architecture.html",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "website_arch_plan",
+      "_tgt": "website_arch_apple_design",
+      "source": "website_arch_plan",
+      "target": "website_arch_apple_design"
     }
   ],
   "hyperedges": [
