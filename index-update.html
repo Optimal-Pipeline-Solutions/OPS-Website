@@ -1,0 +1,1538 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimal Pipeline Solutions | Automation, Remote Monitoring, CRM Compliance</title>
+    <meta name="description" content="Optimal Pipeline Solutions delivers custom tailored automation and control room monitoring services for energy infrastructure worldwide.">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Optimal Pipeline Solutions | Automation, Remote Monitoring, CRM Compliance">
+    <meta property="og:description" content="Custom tailored automation and control room monitoring services for energy infrastructure worldwide.">
+    <meta property="og:image" content="images/hero-bg.jpg">
+    <link rel="preload" as="image" href="images/hero-bg.jpg">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        olive:     { DEFAULT: '#6B7B3A', light: '#8A9B55', dark: '#4F5C2A' },
+                        charcoal:  { DEFAULT: '#2D2D2D', light: '#3D3D3D', dark: '#1A1A1A' },
+                        logogray:  '#8C8C8C',
+                        surface:   '#F5F5F7',
+                        midnight:  '#111111',
+                    },
+                    fontFamily: {
+                        display: ['"SF Pro Display"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+                        body:    ['"SF Pro Text"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        /* â”€â”€ Semantic accent palette â”€â”€ */
+        .text-steel  { color: #4A7FA5; }
+        .text-copper { color: #C4633A; }
+        .bg-steel-10  { background: rgba(74,127,165,0.10); }
+        .bg-copper-10 { background: rgba(196,99,58,0.10); }
+        .bg-steel-hover:hover  { border-color: rgba(74,127,165,0.3) !important; }
+        .bg-copper-hover:hover { border-color: rgba(196,99,58,0.3) !important; }
+
+        /* â”€â”€ original inline styles (unchanged sections) â”€â”€ */
+        .industry-tag { display:inline-block; padding:0.375rem 0.875rem; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:0.5rem; color:rgba(255,255,255,0.5); font-size:0.8rem; transition:all 0.3s ease; }
+        .industry-tag:hover { background:rgba(107,123,58,0.1); border-color:rgba(107,123,58,0.3); color:rgba(255,255,255,0.8); }
+        .capability-block { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:1.25rem; padding:2.5rem; transition:all 0.3s ease; }
+        .capability-block:hover { background:rgba(255,255,255,0.05); border-color:rgba(107,123,58,0.2); }
+        [data-theme="light"] .capability-block { background:#ffffff; border:1px solid rgba(0,0,0,0.08); }
+        [data-theme="light"] .capability-block:hover { background:#ffffff; box-shadow:0 20px 60px rgba(0,0,0,0.08); border-color:rgba(107,123,58,0.3); }
+        [data-theme="light"] .capability-block h3 { color:#2D2D2D; }
+        [data-theme="light"] .capability-block p { color:rgba(45,45,45,0.6); }
+        .value-block { padding:2rem; border-radius:1rem; transition:all 0.3s ease; }
+        [data-theme="light"] .value-block { background:#ffffff; border:1px solid rgba(0,0,0,0.06); }
+        [data-theme="light"] .value-block:hover { box-shadow:0 20px 60px rgba(0,0,0,0.08); border-color:rgba(107,123,58,0.2); }
+        .cs-capability-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; }
+        .cs-capability { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:1rem; padding:1.75rem; transition:all 0.3s ease; }
+        .cs-capability:hover { background:rgba(255,255,255,0.05); border-color:rgba(107,123,58,0.2); }
+
+        /* â”€â”€ UPGRADE 1: Magazine Spread (Services) â”€â”€ */
+        .mag-row { display:grid; grid-template-columns:1fr 1fr; min-height:22vh; border-top:1px solid rgba(45,45,45,0.08); overflow:hidden; }
+        @media(max-width:768px){ .mag-row{ grid-template-columns:1fr; min-height:auto; } }
+        .mag-row.reversed { direction:rtl; }
+        .mag-row.reversed > * { direction:ltr; }
+        .mag-visual { position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; background:#111; min-height:17vh; opacity:0; }
+        .mag-visual.light-bg { background:#e8ebe0; }
+        .mag-visual.olive-bg { background:#3a4520; }
+        .mag-big-label { font-family:'SF Pro Display',-apple-system,sans-serif; font-weight:800; line-height:0.9; letter-spacing:-0.05em; user-select:none; position:relative; z-index:2; text-align:center; padding:1.7rem; }
+        .mag-big-label.on-dark  { color:rgba(255,255,255,0.08); }
+        .mag-big-label.on-light { color:rgba(107,123,58,0.18); }
+        .mag-big-label.on-olive { color:rgba(184,201,122,0.2); }
+        .mag-big-label .accent-word { display:block; font-size:clamp(2.8rem,6.75vw,6.2rem); color:rgba(255,255,255,0.18); -webkit-text-stroke:2.5px rgba(255,255,255,0.75); }
+        .mag-big-label.on-dark .accent-word { color:rgba(255,255,255,0.18); -webkit-text-stroke:2.5px rgba(255,255,255,0.75); }
+        .mag-big-label.on-olive .accent-word { color:rgba(0,0,0,0.12); -webkit-text-stroke:2px rgba(0,0,0,0.5); }
+        .mag-big-sub { font-family:'SF Mono',Menlo,monospace; font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; display:block; margin-top:1rem; }
+        .on-dark  .mag-big-sub { color:rgba(138,155,85,0.5); }
+        .on-light .mag-big-sub { color:rgba(107,123,58,0.5); }
+        .on-olive .mag-big-sub { color:rgba(184,201,122,0.45); }
+        .mag-photo { position:absolute; inset:0; background-size:cover; background-position:center; opacity:0.70; }
+        .mag-content { background:#F5F5F7; display:flex; flex-direction:column; justify-content:center; padding:1.5rem 2.25rem; position:relative; opacity:0; }
+        .mag-content.dark-content { background:#111; color:#fff; }
+        .service-num { font-family:'SF Mono',Menlo,monospace; font-size:0.62rem; color:rgba(107,123,58,0.5); letter-spacing:0.18em; text-transform:uppercase; margin-bottom:0.75rem; display:flex; align-items:center; gap:0.75rem; }
+        .service-num::before { content:''; width:28px; height:1px; background:rgba(107,123,58,0.4); }
+        .dark-content .service-num { color:rgba(138,155,85,0.45); }
+        .dark-content .service-num::before { background:rgba(138,155,85,0.3); }
+        .service-title { font-family:'SF Pro Display',-apple-system,sans-serif; font-size:clamp(1.1rem,1.6vw,1.5rem); font-weight:700; letter-spacing:-0.025em; line-height:1.15; color:#2D2D2D; margin-bottom:0.75rem; }
+        .dark-content .service-title { color:#fff; }
+        .service-body { font-size:0.82rem; line-height:1.7; color:rgba(45,45,45,0.6); margin-bottom:0.75rem; max-width:440px; }
+        .dark-content .service-body { color:rgba(255,255,255,0.5); }
+        .service-points { list-style:none; display:flex; flex-direction:column; gap:0.4rem; margin-bottom:0.75rem; }
+        .service-points li { display:flex; align-items:flex-start; gap:0.75rem; font-size:0.85rem; color:rgba(45,45,45,0.7); }
+        .dark-content .service-points li { color:rgba(255,255,255,0.6); }
+        .service-points li::before { content:''; width:16px; height:16px; flex-shrink:0; background:rgba(107,123,58,0.12); border:1px solid rgba(107,123,58,0.35); border-radius:50%; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.5 8.5L6.5 11.5L12.5 5' stroke='%236B7B3A' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-size:contain; margin-top:1px; }
+        .service-link { display:inline-flex; align-items:center; gap:0.5rem; font-family:'SF Mono',Menlo,monospace; font-size:0.65rem; color:#6B7B3A; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; border-bottom:1px solid rgba(107,123,58,0.3); padding-bottom:0.2rem; transition:all 0.25s ease; }
+        .service-link:hover { color:#2D2D2D; border-color:#2D2D2D; }
+        .dark-content .service-link { color:#8A9B55; }
+        .dark-content .service-link:hover { color:#fff; border-color:rgba(255,255,255,0.4); }
+
+        /* â”€â”€ UPGRADE 2: Compliance Checklist â”€â”€ */
+        .comp-header { max-width:72rem; margin:0 auto; padding:0 3rem 5rem; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:end; }
+        @media(max-width:768px){ .comp-header{ grid-template-columns:1fr; } }
+        .comp-title { font-family:'SF Pro Display',-apple-system,sans-serif; font-size:clamp(2.5rem,4vw,4rem); font-weight:700; letter-spacing:-0.03em; line-height:1.05; color:#2D2D2D; }
+        .comp-sub { font-size:0.95rem; color:rgba(45,45,45,0.55); line-height:1.8; }
+        .comp-cred { margin-top:2rem; padding:1.25rem 1.5rem; background:rgba(107,123,58,0.06); border:1px solid rgba(107,123,58,0.2); border-radius:10px; font-size:0.82rem; color:rgba(45,45,45,0.6); line-height:1.7; }
+        .comp-cred strong { color:#2D2D2D; font-weight:600; }
+        .checklist-wrap { max-width:72rem; margin:0 auto; padding:0 3rem; display:grid; grid-template-columns:200px 1fr; gap:0 4rem; }
+        @media(max-width:768px){ .checklist-wrap{ grid-template-columns:1fr; } }
+        .progress-track { position:relative; display:flex; flex-direction:column; align-items:center; padding-top:0.5rem; }
+        .progress-line { width:2px; background:rgba(45,45,45,0.08); position:absolute; top:0; bottom:0; left:50%; transform:translateX(-50%); }
+        .progress-fill { width:2px; background:linear-gradient(to bottom,#6B7B3A,#8A9B55); position:absolute; top:0; height:0%; left:50%; transform:translateX(-50%); }
+        .reg-label { position:sticky; top:8rem; font-family:'SF Mono',Menlo,monospace; font-size:0.6rem; color:rgba(45,45,45,0.3); letter-spacing:0.12em; text-transform:uppercase; text-align:center; padding:0 1rem; z-index:5; }
+        .reg-label .reg-ref { display:block; font-size:0.7rem; color:#6B7B3A; font-weight:600; margin-bottom:0.3rem; }
+        .checklist { display:flex; flex-direction:column; }
+        .check-item { display:grid; grid-template-columns:48px 1fr; gap:0 1.5rem; padding:2rem 0; border-bottom:1px solid rgba(45,45,45,0.07); align-items:start; opacity:0; }
+        .check-item:last-child { border-bottom:none; }
+        .check-circle { width:36px; height:36px; border-radius:50%; border:2px solid rgba(107,123,58,0.25); background:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:0.15rem; transition:border-color 0.4s ease,background 0.4s ease; }
+        .check-circle.checked { border-color:#6B7B3A; background:rgba(107,123,58,0.08); }
+        .check-circle svg { width:16px; height:16px; stroke:#6B7B3A; stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round; fill:none; opacity:0; transform:scale(0.5); }
+        .check-circle.checked svg { opacity:1; transform:scale(1); }
+        .check-cfr { font-family:'SF Mono',Menlo,monospace; font-size:0.58rem; color:rgba(107,123,58,0.6); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.4rem; }
+        .check-title { font-family:'SF Pro Display',-apple-system,sans-serif; font-size:1.05rem; font-weight:600; color:#2D2D2D; margin-bottom:0.5rem; line-height:1.25; }
+        .check-desc { font-size:0.85rem; color:rgba(45,45,45,0.55); line-height:1.7; }
+        .check-ops { margin-top:0.75rem; font-size:0.78rem; color:#6B7B3A; display:flex; align-items:center; gap:0.5rem; opacity:0; transform:translateX(-8px); }
+        .check-ops::before { content:'OPS'; font-family:'SF Mono',Menlo,monospace; font-size:0.55rem; letter-spacing:0.12em; padding:0.15rem 0.4rem; background:rgba(107,123,58,0.1); border:1px solid rgba(107,123,58,0.25); border-radius:3px; color:#6B7B3A; }
+        .comp-closing { background:#2D2D2D; padding:6rem 3rem; text-align:center; margin-top:4rem; }
+        .comp-closing-tag { font-family:'SF Mono',Menlo,monospace; font-size:0.65rem; color:rgba(138,155,85,0.6); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:1.5rem; display:block; }
+        .comp-closing-statement { font-family:'SF Pro Display',-apple-system,sans-serif; font-size:clamp(1.8rem,3.5vw,3rem); font-weight:700; letter-spacing:-0.025em; line-height:1.15; color:#fff; max-width:640px; margin:0 auto 1.5rem; }
+        .comp-closing-statement em { font-style:normal; background:linear-gradient(135deg,#6B7B3A,#8A9B55,#B8C97A); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+        .comp-closing-sub { font-size:0.95rem; color:rgba(255,255,255,0.4); max-width:480px; margin:0 auto 3rem; line-height:1.75; }
+        .comp-closing-cta { display:inline-flex; align-items:center; padding:0.875rem 2.25rem; background:#6B7B3A; color:#fff; border-radius:9999px; font-size:0.9rem; font-weight:500; text-decoration:none; transition:all 0.3s ease; }
+        .comp-closing-cta:hover { background:#8A9B55; transform:translateY(-1px); }
+
+        /* â”€â”€ UPGRADE 3: Kinetic Stats (Case Study) â”€â”€ */
+        .case-title { font-family:'SF Pro Display',-apple-system,sans-serif; font-size:clamp(1.8rem,3vw,2.8rem); font-weight:700; letter-spacing:-0.02em; text-align:center; color:#fff; max-width:700px; margin:0 auto 1.25rem; line-height:1.15; }
+        .case-sub-text { text-align:center; color:rgba(255,255,255,0.45); font-size:1rem; max-width:560px; margin:0 auto; line-height:1.75; }
+        .stats-grid { display:grid; grid-template-columns:repeat(5,1fr); border-top:1px solid rgba(107,123,58,0.15); }
+        @media(max-width:900px){ .stats-grid{ grid-template-columns:repeat(2,1fr); } .stat-block:last-child{ grid-column:1/-1; } }
+        .stat-block { padding:2rem 2rem 1.25rem; border-right:1px solid rgba(107,123,58,0.12); text-align:center; position:relative; overflow:hidden; }
+        .stat-block:last-child { border-right:none; }
+        .stat-num { font-family:'SF Pro Display',-apple-system,sans-serif; font-size:clamp(3.5rem,5vw,6rem); font-weight:700; letter-spacing:-0.04em; line-height:1; color:#fff; display:block; margin-bottom:0.5rem; }
+        .stat-num.accent { color:#8A9B55; }
+        .stat-suffix { font-size:0.5em; color:#6B7B3A; vertical-align:super; margin-left:0.1em; font-weight:400; }
+        .stat-label { font-family:'SF Mono',Menlo,monospace; font-size:0.62rem; color:rgba(255,255,255,0.35); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.75rem; }
+        .stat-divider { width:24px; height:1px; background:rgba(107,123,58,0.4); margin:0.75rem auto; }
+        .stat-desc { font-size:0.75rem; color:rgba(255,255,255,0.3); line-height:1.6; max-width:160px; margin:0 auto; }
+        .stat-block::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 100%,rgba(107,123,58,0.08) 0%,transparent 70%); opacity:0; transition:opacity 0.4s ease; }
+        .stat-block:hover::before { opacity:1; }
+        .stat-block:hover .stat-num { color:#B8C97A; transition:color 0.3s ease; }
+        .stat-block:hover .stat-num.accent { color:#B8C97A; }
+        .cs-narrative { max-width:800px; margin:0 auto; padding:2rem 2rem 4rem; border-top:1px solid rgba(107,123,58,0.12); position:relative; z-index:2; }
+        .cs-narrative p { font-size:1.1rem; color:rgba(255,255,255,0.5); line-height:1.85; margin-bottom:1.5rem; }
+        .cs-narrative p strong { color:rgba(255,255,255,0.85); font-weight:500; }
+        .cs-narrative-cta { display:inline-flex; align-items:center; gap:0.5rem; margin-top:1rem; padding:0.875rem 2rem; background:rgba(107,123,58,0.12); border:1px solid rgba(107,123,58,0.3); color:#8A9B55; border-radius:9999px; font-size:0.85rem; font-weight:500; text-decoration:none; transition:all 0.3s ease; }
+        .cs-narrative-cta:hover { background:#6B7B3A; color:#fff; border-color:#6B7B3A; }
+
+        /* â”€â”€ Hero ember trail canvas â”€â”€ */
+        #ops-particle-canvas { position:absolute; inset:0; width:100%; height:100%; z-index:3; pointer-events:none; }
+
+        /* â”€â”€ Control Room SCADA overlay â”€â”€ */
+        .cr-scada-layer { position:fixed; top:0; left:0; width:100%; height:100%; z-index:2; pointer-events:none; overflow:hidden; opacity:0; visibility:hidden; }
+        .cr-scada-layer svg { width:100%; height:100%; }
+        /* pipe lines */
+        .cr-pipe { stroke:rgba(212,135,10,0.48); stroke-width:4; fill:none; stroke-linecap:round; }
+        .cr-pipe-branch { stroke:rgba(212,135,10,0.32); stroke-width:2.5; fill:none; stroke-linecap:round; }
+        /* instrument circles */
+        .cr-inst { stroke:rgba(212,135,10,0.60); stroke-width:1.5; fill:rgba(212,135,10,0.10); }
+        .cr-inst-t { fill:rgba(240,168,48,0.9); font-family:'SF Mono',Menlo,monospace; font-size:9px; font-weight:700; }
+        .cr-inst-n { fill:rgba(212,135,10,0.7); font-family:'SF Mono',Menlo,monospace; font-size:7.5px; }
+        /* pump circles */
+        .cr-pump { stroke:rgba(240,168,48,0.70); stroke-width:2; fill:rgba(212,135,10,0.15); }
+        .cr-pump-lbl { fill:rgba(240,168,48,0.95); font-family:'SF Mono',Menlo,monospace; font-size:9.5px; font-weight:700; }
+        /* valve */
+        .cr-valve { stroke:rgba(240,168,48,0.72); stroke-width:1.5; fill:rgba(10,14,26,0.8); }
+        .cr-vcross { stroke:rgba(240,168,48,0.72); stroke-width:1.5; }
+        /* data readout boxes */
+        .cr-box { stroke:rgba(212,135,10,0.55); stroke-width:1; fill:rgba(8,12,20,0.85); }
+        .cr-box-tag { fill:rgba(212,135,10,0.65); font-family:'SF Mono',Menlo,monospace; font-size:7.5px; letter-spacing:0.06em; }
+        .cr-box-val { fill:rgba(240,168,48,0.95); font-family:'SF Mono',Menlo,monospace; font-size:11px; font-weight:700; }
+        .cr-box-unit { fill:rgba(212,135,10,0.55); font-family:'SF Mono',Menlo,monospace; font-size:7.5px; }
+        /* LACT dashboard */
+        .cr-lact-box { stroke:rgba(212,135,10,0.35); stroke-width:1; fill:rgba(8,12,20,0.55); }
+        .cr-lact-hdr { fill:rgba(240,168,48,0.7); font-family:'SF Mono',Menlo,monospace; font-size:9px; font-weight:700; letter-spacing:0.08em; }
+        .cr-lact-row { fill:rgba(212,135,10,0.5); font-family:'SF Mono',Menlo,monospace; font-size:7.5px; }
+        .cr-lact-val { fill:rgba(240,168,48,0.9); font-family:'SF Mono',Menlo,monospace; font-size:7.5px; font-weight:600; }
+        /* run labels */
+        .cr-run-lbl { fill:rgba(240,168,48,0.45); font-family:'SF Mono',Menlo,monospace; font-size:10px; font-weight:700; letter-spacing:0.12em; }
+        /* flow arrows */
+        .cr-arrow { fill:rgba(212,135,10,0.35); }
+        /* tank */
+        .cr-tank { stroke:rgba(212,135,10,0.4); stroke-width:1.5; fill:rgba(212,135,10,0.06); }
+        .cr-tank-lbl { fill:rgba(212,135,10,0.6); font-family:'SF Mono',Menlo,monospace; font-size:7.5px; }
+        .cr-tank-val { fill:rgba(240,168,48,0.85); font-family:'SF Mono',Menlo,monospace; font-size:10px; font-weight:700; }
+        /* status dot */
+        .cr-ok { fill:#2aaa6a; }
+        .cr-ok-ring { stroke:#2aaa6a; stroke-width:1; fill:none; opacity:0.4; }
+
+        /* â”€â”€ Concept badge â”€â”€ */
+        .concept-badge { position:fixed; top:4.5rem; left:1rem; background:rgba(107,123,58,0.9); color:#fff; font-size:0.6rem; font-family:'SF Mono',Menlo,monospace; letter-spacing:0.12em; text-transform:uppercase; padding:0.35rem 0.7rem; border-radius:4px; z-index:200; box-shadow:0 2px 12px rgba(0,0,0,0.3); }
+    </style>
+</head>
+<body class="bg-midnight text-white font-body antialiased overflow-x-hidden">
+
+<div class="concept-badge">Concept Preview â€” 3 Upgraded Sections</div>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<!-- NAVIGATION                                                  -->
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+    <div class="nav-blur"></div>
+    <div class="relative max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="#hero" class="nav-logo flex items-center gap-3">
+            <img src="images/logo.png" alt="Optimal Pipeline Solutions" class="h-10 w-auto">
+        </a>
+        <div class="hidden md:flex items-center gap-8">
+            <a href="#about-ops" class="nav-link">About</a>
+            <a href="#services" class="nav-link">Services</a>
+            <a href="#control-room" class="nav-link">Control Room</a>
+            <a href="#engineering" class="nav-link">Automation</a>
+            <a href="#automation" class="nav-link">Projects</a>
+            <a href="#compliance" class="nav-link">Compliance</a>
+            <a href="#case-study" class="nav-link">Case Study</a>
+            <a href="#contact" class="nav-cta">Contact Us</a>
+        </div>
+        <button id="mobile-toggle" class="md:hidden text-white p-2 -mr-2 touch-manipulation" style="min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;" onclick="var m=document.getElementById('mobile-menu');m.style.display=m.style.display==='flex'?'none':'flex';">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+    </div>
+</nav>
+
+<div id="mobile-menu" class="fixed inset-0 z-40 bg-midnight/95 backdrop-blur-xl flex-col items-center justify-center gap-8" style="display:none;">
+    <a href="#about-ops" class="mobile-link">About</a>
+    <a href="#services" class="mobile-link">Services</a>
+    <a href="#control-room" class="mobile-link">Control Room</a>
+    <a href="#engineering" class="mobile-link">Automation</a>
+    <a href="#automation" class="mobile-link">Projects</a>
+    <a href="#compliance" class="mobile-link">Compliance</a>
+    <a href="#case-study" class="mobile-link">Case Study</a>
+    <a href="#contact" class="mobile-link">Contact Us</a>
+</div>
+
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<!-- HERO                                                        -->
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section id="hero" class="ops-section relative h-screen flex items-center justify-center overflow-hidden" data-theme="dark">
+    <div class="absolute inset-0" style="overflow:hidden;">
+        <div class="hero-drift" style="position:absolute;inset:-5%;background:url('images/hero-bg.jpg') center/cover no-repeat;"></div>
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-b from-midnight/80 via-midnight/60 to-midnight"></div>
+    <div class="hero-grid absolute inset-0 opacity-[0.03]"></div>
+
+    <!-- Gold particle flow field (from ops-live.html) -->
+    <canvas id="ops-particle-canvas"></canvas>
+    <div class="relative z-10 text-center max-w-5xl mx-auto px-6">
+        <div style="display:flex;justify-content:center;margin-bottom:1.25rem;">
+            <div class="hero-logo opacity-0">
+                <img src="images/logo.png" alt="Optimal Pipeline Solutions" style="height:100%;width:auto;display:block;">
+            </div>
+        </div>
+        <p class="hero-tag text-olive-light font-display font-medium tracking-widest uppercase text-sm mb-6 opacity-0">Automation | Remote Monitoring | Compliance</p>
+        <h1 class="hero-title font-display font-bold text-5xl md:text-7xl lg:text-8xl tracking-tight leading-[0.95] mb-8 opacity-0">
+            Driving efficiency.<br>
+            <span class="text-gradient">Ensuring compliance.</span>
+        </h1>
+        <p class="hero-sub text-xl md:text-2xl text-white/60 font-light max-w-3xl mx-auto mb-12 opacity-0">
+            We apply decades of specialized experience to the forefront of automation, control, and compliance for the modern energy and manufacturing sectors.
+        </p>
+        <div class="hero-cta flex flex-col sm:flex-row gap-4 justify-center opacity-0">
+            <a href="#services" class="btn-primary">Explore Our Services</a>
+            <a href="#contact" class="btn-secondary">Get in Touch</a>
+        </div>
+    </div>
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 scroll-indicator opacity-0">
+        <div class="w-6 h-10 rounded-full border-2 border-white/20 flex justify-center pt-2">
+            <div class="w-1 h-2 bg-white/40 rounded-full scroll-dot"></div>
+        </div>
+    </div>
+
+</section>
+
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<!-- ABOUT                                                       -->
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section id="about-ops" class="ops-section" data-theme="dark" style="position:relative;">
+    <div style="position:absolute;inset:0;background:url('images/engineering.jpg') center/cover no-repeat;background-attachment:fixed;opacity:0.35;"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(17,17,17,0.2) 0%,rgba(17,17,17,0.85) 100%);"></div>
+    <div style="position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:flex-end;overflow:hidden;pointer-events:none;z-index:2;padding-top:2rem;padding-right:2rem;">
+        <span style="font-family:'SF Pro Display',-apple-system,sans-serif;font-weight:700;font-size:clamp(6rem,16vw,18rem);color:rgba(255,255,255,0.07);letter-spacing:-0.04em;white-space:nowrap;user-select:none;line-height:1;">About</span>
+    </div>
+    <div class="section-inner" style="position:relative;padding-top:12rem;">
+
+        <!-- Section tag + opening premise -->
+        <p class="section-tag" style="margin-bottom:1.5rem;">About Optimal Pipeline Solutions</p>
+        <p class="theme-text-secondary" style="font-size:1rem;max-width:38rem;line-height:1.75;margin-bottom:3.5rem;">Optimal Pipeline Solutions was founded on a premise that the industry hasn't answered well: control room operations, automation engineering, and regulatory compliance are one continuous responsibility &mdash; not three separate vendor contracts.</p>
+
+        <!-- Pull quote -->
+        <div style="border-left:3px solid rgba(212,135,10,0.7);padding:1.25rem 0 1.25rem 2rem;margin-bottom:4rem;max-width:56rem;">
+            <p style="font-family:'SF Pro Display',-apple-system,sans-serif;font-size:clamp(1.4rem,2.8vw,2.1rem);font-weight:600;color:rgba(255,255,255,0.92);line-height:1.35;letter-spacing:-0.01em;">A control room operations team with careers built running pipeline systems, backed by four decades of SCADA and controls experience across every major platform and PLC family in active midstream service.</p>
+        </div>
+
+        <!-- Two-column credential split -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,0.07);">
+
+            <!-- Left: Operations & Compliance -->
+            <div>
+                <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;">
+                    <div style="width:28px;height:2px;background:rgba(107,123,58,0.8);"></div>
+                    <span style="font-family:'SF Mono',Menlo,monospace;font-size:0.65rem;color:#6B7B3A;letter-spacing:0.2em;text-transform:uppercase;">Operations &amp; Compliance</span>
+                </div>
+                <p style="font-size:0.95rem;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:1.5rem;">Careers as pipeline controllers, control room managers, and compliance officers on crude oil, natural gas, and produced water systems &mdash; with direct ownership of CRM programs, alarm management, MOC administration, controller qualification and training, and first-hand defense during PHMSA regulatory inspections.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
+                    <span style="font-family:'SF Mono',Menlo,monospace;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.3rem 0.7rem;border:1px solid rgba(107,123,58,0.35);color:rgba(107,123,58,0.9);border-radius:3px;">49 CFR 192.631</span>
+                    <span style="font-family:'SF Mono',Menlo,monospace;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.3rem 0.7rem;border:1px solid rgba(107,123,58,0.35);color:rgba(107,123,58,0.9);border-radius:3px;">49 CFR 195.446</span>
+                    <span style="font-family:'SF Mono',Menlo,monospace;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.3rem 0.7rem;border:1px solid rgba(107,123,58,0.35);color:rgba(107,123,58,0.9);border-radius:3px;">ISA-18.2</span>
+                    <span style="font-family:'SF Mono',Menlo,monospace;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.3rem 0.7rem;border:1px solid rgba(107,123,58,0.35);color:rgba(107,123,58,0.9);border-radius:3px;">PHMSA Audit Defense</span>
+                    <span style="font-family:'SF Mono',Menlo,monospace;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.3rem 0.7rem;border:1px solid rgba(107,123,58,0.35);color:rgba(107,123,58,0.9);border-radius:3px;">API RP 1168</span>
+                    <span style="font-family:'SF Mono',Menlo,monospace;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.3rem 0.7rem;border:1px solid rgba(107,123,58,0.35);color:rgba(107,123,58,0.9);border-radius:3px;">MOC Administration</span>
+                    <span style="font-family:'SF Mono',Menlo,monospace;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.3rem 0.7rem;border:1px solid rgba(107,123,58,0.35);color:rgba(107,123,58,0.9);border-radius:3px;">Fatigue Mitigation</span>
+                </div>
+            </div>
+
+            <!-- Right: Automation Engineering -->
+            <div>
+                <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;">
+                    <div style="width:28px;height:2px;background:rgba(212,135,10,0.8);"></div>
+                    <span style="font-family:'SF Mono',Menlo,monospace;font-size:0.65rem;color:rgba(212,135,10,0.8);letter-spacing:0.2em;text-transform:uppercase;">Automation Engineering</span>
+                </div>
+                <p style="font-size:0.95rem;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:1.5rem;">Decades of SCADA and control systems design across pump stations, storage terminals, gathering systems, custody transfer, and command centers &mdash; PMP-certified project management, field commissioning, and hands-on experience across every major SCADA platform and PLC family in active midstream service.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
+                    <span style="font-family:'SF Mono',Menlo,monospace;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.3rem 0.7rem;border:1px solid rgba(212,135,10,0.3);color:rgba(212,135,10,0.8);border-radius:3px;">SCADA Design</span>
+                    <span style="font-family:'SF Mono',Menlo,monospace;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.3rem 0.7rem;border:1px solid rgba(212,135,10,0.3);color:rgba(212,135,10,0.8);border-radius:3px;">PLC Programming</span>
+                    <span style="font-family:'SF Mono',Menlo,monospace;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.3rem 0.7rem;border:1px solid rgba(212,135,10,0.3);color:rgba(212,135,10,0.8);border-radius:3px;">Terminal Automation</span>
+                    <span style="font-family:'SF Mono',Menlo,monospace;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.3rem 0.7rem;border:1px solid rgba(212,135,10,0.3);color:rgba(212,135,10,0.8);border-radius:3px;">Custody Transfer</span>
+                    <span style="font-family:'SF Mono',Menlo,monospace;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.3rem 0.7rem;border:1px solid rgba(212,135,10,0.3);color:rgba(212,135,10,0.8);border-radius:3px;">PMP Certified</span>
+                    <span style="font-family:'SF Mono',Menlo,monospace;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.3rem 0.7rem;border:1px solid rgba(212,135,10,0.3);color:rgba(212,135,10,0.8);border-radius:3px;">Field Commissioning</span>
+                    <span style="font-family:'SF Mono',Menlo,monospace;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.3rem 0.7rem;border:1px solid rgba(212,135,10,0.3);color:rgba(212,135,10,0.8);border-radius:3px;">OPC-UA / MQTT</span>
+                    <span style="font-family:'SF Mono',Menlo,monospace;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.3rem 0.7rem;border:1px solid rgba(212,135,10,0.3);color:rgba(212,135,10,0.8);border-radius:3px;">Flow Computers</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Platform closer -->
+        <div style="max-width:56rem;">
+            <p style="font-size:0.95rem;color:rgba(255,255,255,0.5);line-height:1.85;margin-bottom:1rem;">The compliance and operations platform OPS runs was built from scratch by our own engineers, purpose-built for pipeline CRM under 49 CFR &mdash; alarm rationalization, performance reporting, HOS-compliant controller scheduling, point-to-point verification, and document control maintained continuously, not on a deadline. When an inspector arrives, the documentation is already done.</p>
+            <p style="font-size:1.05rem;color:rgba(255,255,255,0.82);line-height:1.75;font-weight:500;">That is the difference between a monitoring vendor and a team accountable for the full scope.</p>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<!-- SERVICES â€” UPGRADED: MAGAZINE SPREAD                        -->
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section id="services" class="ops-section" data-theme="light" style="position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:flex-end;overflow:hidden;pointer-events:none;z-index:2;padding-top:2rem;padding-right:2rem;">
+        <span style="font-family:'SF Pro Display',-apple-system,sans-serif;font-weight:700;font-size:clamp(4.8rem,12.8vw,14.4rem);color:rgba(45,45,45,0.07);letter-spacing:-0.04em;white-space:nowrap;user-select:none;line-height:1;">Services</span>
+    </div>
+    <div class="section-inner" style="position:relative;padding-bottom:0;">
+        <div class="section-header">
+            <p class="section-tag">Our Capabilities</p>
+            <h2 class="section-title">What we deliver.</h2>
+            <p class="section-subtitle">Pipeline operations demand more than isolated services&mdash;they require a partner who can monitor systems around the clock, respond instantly, stay ahead of compliance, and engineer the infrastructure that connects it all.</p>
+        </div>
+    </div>
+
+    <!-- Row 1: 24/7 Monitoring -->
+    <div class="mag-row" id="mag-row-0">
+        <div class="mag-visual" style="background:#0d0d0d;">
+            <div class="mag-photo" style="background-image:url('images/control-room.jpg');opacity:0.70;"></div>
+            <div class="mag-big-label on-dark">
+                <span class="accent-word">24/7</span>
+                <span class="mag-big-sub">Always on watch</span>
+            </div>
+        </div>
+        <div class="mag-content">
+            <div class="service-num">01 of 06</div>
+            <h3 class="service-title">24/7 Monitoring<br>&amp; Callout</h3>
+            <p class="service-body">Our controllers provide continuous, around-the-clock monitoring of pipeline, gathering, and terminal operations â€” 24 hours a day, 365 days a year, with no gaps in coverage.</p>
+            <ul class="service-points">
+                <li>Continuous supervision of all critical assets</li>
+                <li>Immediate alarm response and field callout</li>
+                <li>Scalable from single facilities to multi-asset systems</li>
+                <li>Remote control or monitoring-only configurations</li>
+            </ul>
+            <a href="#contact" class="service-link">Talk to us â†’</a>
+        </div>
+    </div>
+
+    <!-- Row 2: Control Room Ops (reversed) -->
+    <div class="mag-row reversed" id="mag-row-1">
+        <div class="mag-visual light-bg">
+            <div class="mag-big-label on-light">
+                <span class="accent-word" style="font-size:clamp(3.5rem,9vw,8.5rem);">Control<br>Room</span>
+                <span class="mag-big-sub">API RP 1168 qualified</span>
+            </div>
+        </div>
+        <div class="mag-content" style="background:#fff;border-left:1px solid rgba(45,45,45,0.07);">
+            <div class="service-num">02 of 06</div>
+            <h3 class="service-title">Control Room<br>Operations</h3>
+            <p class="service-body">Professional oversight backed by real-world pipeline experience â€” pipeline control, field operations, military service, and law enforcement. Disciplined, methodical, ready for abnormal conditions.</p>
+            <ul class="service-points">
+                <li>API RP 1168 qualified controllers</li>
+                <li>Deep understanding of operational impact, not just alarms</li>
+                <li>Consistent execution in routine and emergency conditions</li>
+                <li>Fatigue management protocols on every shift</li>
+            </ul>
+            <a href="#contact" class="service-link">Talk to us â†’</a>
+        </div>
+    </div>
+
+    <!-- Row 3: CRM Compliance -->
+    <div class="mag-row" id="mag-row-2">
+        <div class="mag-visual olive-bg">
+            <div class="mag-big-label on-olive">
+                <span class="accent-word" style="font-size:clamp(3rem,8vw,8rem);">CRM<br>195.446</span>
+                <span class="mag-big-sub">Managed since the rule was written</span>
+            </div>
+        </div>
+        <div class="mag-content dark-content">
+            <div class="service-num">03 of 06</div>
+            <h3 class="service-title">CRM Compliance<br>Management</h3>
+            <p class="service-body">The full PHMSA compliance stack â€” ISA-18.2 alarm rationalization, monthly alarm performance reviews, annual alarm reviews, safety-related alarm reviews, controller fatigue management, point-to-point verification, and revision-controlled document management.</p>
+            <ul class="service-points">
+                <li>ISA-18.2 alarm rationalization and annual review</li>
+                <li>Monthly and annual alarm performance reporting</li>
+                <li>Controller fatigue management and documentation</li>
+                <li>Purpose-built tooling generates every deliverable automatically</li>
+            </ul>
+            <a href="#contact" class="service-link">Talk to us â†’</a>
+        </div>
+    </div>
+
+    <!-- Row 4: Compliance Consulting (reversed) -->
+    <div class="mag-row reversed" id="mag-row-3">
+        <div class="mag-visual" style="background:#1a1a1a;">
+            <div class="mag-photo" style="background-image:url('images/engineering.jpg');opacity:0.68;"></div>
+            <div class="mag-big-label on-dark">
+                <span class="accent-word" style="font-size:clamp(3.5rem,10vw,9rem);">Audit<br>Ready</span>
+                <span class="mag-big-sub">PHMSA experience</span>
+            </div>
+        </div>
+        <div class="mag-content" style="background:#F5F5F7;">
+            <div class="service-num">04 of 06</div>
+            <h3 class="service-title">Compliance<br>Consulting</h3>
+            <p class="service-body">Third-party compliance consulting for operators who need expertise without a long-term contract. Our team has navigated control room audits from PHMSA â€” we know exactly what they look for and how to be ready for it.</p>
+            <ul class="service-points">
+                <li>CRM plan development and independent review</li>
+                <li>Mock audits that surface gaps before the real inspector</li>
+                <li>Direct audit representation when it matters most</li>
+                <li>Gap analysis and documentation assessment</li>
+            </ul>
+            <a href="#contact" class="service-link">Talk to us â†’</a>
+        </div>
+    </div>
+
+    <!-- Row 5: SCADA & Automation -->
+    <div class="mag-row" id="mag-row-4">
+        <div class="mag-visual" style="background:#0a0c08;">
+            <div class="mag-photo" style="background-image:url('images/automation.jpg');opacity:0.72;"></div>
+            <div class="mag-big-label on-dark">
+                <span class="accent-word" style="font-size:clamp(3rem,9vw,8.5rem);">SCADA<br>+PLC</span>
+                <span class="mag-big-sub">Field to control room</span>
+            </div>
+        </div>
+        <div class="mag-content dark-content">
+            <div class="service-num">05 of 06</div>
+            <h3 class="service-title">SCADA &amp; Automation<br>Engineering</h3>
+            <p class="service-body">From greenfield projects to system upgrades, we design, integrate, and commission solutions tailored to each operation. Our expertise spans SCADA, PLCs, control panels, communications, field commissioning, and system integration.</p>
+            <ul class="service-points">
+                <li>SCADA design, integration, and commissioning</li>
+                <li>PLC and control panel engineering</li>
+                <li>Communications and RTU infrastructure</li>
+                <li>Custody transfer and LACT system expertise</li>
+            </ul>
+            <a href="#contact" class="service-link">Talk to us â†’</a>
+        </div>
+    </div>
+
+    <!-- Row 6: Purpose-Built Software (reversed) -->
+    <div class="mag-row reversed" id="mag-row-5">
+        <div class="mag-visual light-bg" style="background:#e8f0de;">
+            <div class="mag-big-label on-light">
+                <span class="accent-word" style="font-size:clamp(3rem,9vw,8.5rem);">Built<br>by us.</span>
+                <span class="mag-big-sub">Because the tools didn't exist</span>
+            </div>
+        </div>
+        <div class="mag-content" style="background:#fff;border-left:1px solid rgba(45,45,45,0.07);">
+            <div class="service-num">06 of 06</div>
+            <h3 class="service-title">Purpose-Built<br>Operations Software</h3>
+            <p class="service-body">When the off-the-shelf tools failed to fit our needs, we built our own. Developed in-house to solve real-world pipeline compliance challenges, our proprietary platform is available to operators who want the same capability.</p>
+            <ul class="service-points">
+                <li>Alarm rationalization and automated ISA-18.2 reporting</li>
+                <li>Monthly and annual compliance report generation</li>
+                <li>Controller scheduling and HOS compliance tracking</li>
+                <li>Audit-ready document registry and version control</li>
+            </ul>
+            <a href="#contact" class="service-link">Schedule a demo â†’</a>
+        </div>
+    </div>
+</section>
+
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<!-- CONTROL ROOM                                                -->
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section id="control-room" class="ops-section" data-theme="dark" style="background:#050810; position:relative;">
+    <div style="position:absolute;inset:0;background:url('scada-bg.svg') center/cover no-repeat;background-attachment:fixed;opacity:0.35;"></div>
+    <div class="cr-scada-layer" id="cr-scada" style="display:none;">
+      <svg viewBox="0 0 1440 520" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+
+        <!-- â”€â”€ LACT Dashboard boxes â”€â”€ -->
+        <rect x="480" y="18" width="185" height="64" rx="3" class="cr-lact-box"/>
+        <text x="573" y="34" text-anchor="middle" class="cr-lact-hdr">LACT DASHBOARD â€” CRD #1</text>
+        <text x="490" y="49" class="cr-lact-row">Mode</text><text x="555" y="49" class="cr-lact-val">Auto</text>
+        <text x="490" y="61" class="cr-lact-row">State</text><text x="555" y="61" class="cr-lact-val">Flowing</text>
+        <text x="490" y="73" class="cr-lact-row">Permissive</text><text x="555" y="73" class="cr-lact-val">Ready</text>
+        <circle cx="480" cy="25" r="4" class="cr-ok"/><circle cx="480" cy="25" r="7" class="cr-ok-ring"/>
+
+        <rect x="480" y="272" width="185" height="64" rx="3" class="cr-lact-box"/>
+        <text x="573" y="288" text-anchor="middle" class="cr-lact-hdr">LACT DASHBOARD â€” CRD #2</text>
+        <text x="490" y="303" class="cr-lact-row">Mode</text><text x="555" y="303" class="cr-lact-val">Auto</text>
+        <text x="490" y="315" class="cr-lact-row">State</text><text x="555" y="315" class="cr-lact-val">Flowing</text>
+        <text x="490" y="327" class="cr-lact-row">Permissive</text><text x="555" y="327" class="cr-lact-val">Ready</text>
+        <circle cx="480" cy="279" r="4" class="cr-ok"/><circle cx="480" cy="279" r="7" class="cr-ok-ring"/>
+
+        <!-- â”€â”€ Sales Tank â”€â”€ -->
+        <rect x="22" y="60" width="52" height="72" rx="2" class="cr-tank"/>
+        <rect x="22" y="60" width="52" height="72" rx="2" fill="rgba(212,135,10,0.07)"/>
+        <rect x="22" y="89" width="52" height="43" rx="0 0 2 2" fill="rgba(212,135,10,0.10)"/><!-- fill level 37% -->
+        <text x="48" y="78" text-anchor="middle" class="cr-tank-lbl">Sales Tank</text>
+        <text x="48" y="106" text-anchor="middle" class="cr-tank-val">37%</text>
+        <text x="48" y="119" text-anchor="middle" class="cr-tank-lbl">7.4 FT</text>
+        <!-- tank connection branch to run 1 -->
+        <path d="M 74,132 L 85,132 L 85,170" class="cr-pipe-branch"/>
+        <path d="M 74,132 L 85,132 L 85,310" class="cr-pipe-branch" stroke-dasharray="5 3"/>
+
+        <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+        <!-- CRUDE #1 â€” y=170                                      -->
+        <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+        <text x="86" y="160" class="cr-run-lbl">CRUDE #1</text>
+        <!-- main pipe -->
+        <path d="M 85,170 L 1420,170" class="cr-pipe"/>
+        <!-- outlet arrow -->
+        <polygon points="1400,163 1422,170 1400,177" class="cr-arrow"/>
+
+        <!-- NV-010 inlet valve -->
+        <circle cx="118" cy="170" r="11" class="cr-valve"/>
+        <line x1="111" y1="163" x2="125" y2="177" class="cr-vcross"/>
+        <line x1="125" y1="163" x2="111" y2="177" class="cr-vcross"/>
+        <text x="118" y="153" text-anchor="middle" class="cr-box-tag">NV-010</text>
+
+        <!-- H2S detector -->
+        <line x1="178" y1="170" x2="178" y2="130" class="cr-pipe-branch"/>
+        <rect x="150" y="108" width="56" height="24" rx="2" class="cr-box"/>
+        <text x="178" y="119" text-anchor="middle" class="cr-box-tag">H2S</text>
+        <text x="178" y="129" text-anchor="middle" class="cr-box-val" id="cr1-h2s">0.25</text>
+        <text x="203" y="129" class="cr-box-unit">ppm</text>
+
+        <!-- LEL detector -->
+        <line x1="178" y1="170" x2="178" y2="210" class="cr-pipe-branch"/>
+        <rect x="150" y="210" width="56" height="24" rx="2" class="cr-box"/>
+        <text x="178" y="221" text-anchor="middle" class="cr-box-tag">LEL</text>
+        <text x="178" y="231" text-anchor="middle" class="cr-box-val" id="cr1-lel">0</text>
+        <text x="194" y="231" class="cr-box-unit">%</text>
+
+        <!-- PIT-101 -->
+        <circle cx="258" cy="170" r="16" class="cr-inst"/>
+        <text x="258" y="167" text-anchor="middle" class="cr-inst-t">PT</text>
+        <text x="258" y="179" text-anchor="middle" class="cr-inst-n">101</text>
+        <rect x="232" y="140" width="52" height="20" rx="2" class="cr-box"/>
+        <text x="258" y="153" text-anchor="middle" class="cr-box-val" id="cr1-pit101">0.62</text>
+        <text x="278" y="153" class="cr-box-unit">PSI</text>
+        <line x1="258" y1="154" x2="258" y2="154" class="cr-pipe-branch"/>
+
+        <!-- P-135 pump -->
+        <circle cx="360" cy="170" r="22" class="cr-pump"/>
+        <text x="360" y="167" text-anchor="middle" class="cr-pump-lbl">P-135</text>
+        <text x="360" y="180" text-anchor="middle" class="cr-inst-n" style="fill:rgba(42,170,106,0.9);font-size:8px;">Running</text>
+        <circle cx="360" cy="170" r="5" fill="rgba(42,170,106,0.8)"/>
+
+        <!-- AIT-110 -->
+        <circle cx="455" cy="170" r="14" class="cr-inst"/>
+        <text x="455" y="167" text-anchor="middle" class="cr-inst-t">AT</text>
+        <text x="455" y="179" text-anchor="middle" class="cr-inst-n">110</text>
+
+        <!-- DV-150 divert valve -->
+        <circle cx="560" cy="170" r="14" class="cr-valve"/>
+        <line x1="550" y1="160" x2="570" y2="180" class="cr-vcross"/>
+        <line x1="570" y1="160" x2="550" y2="180" class="cr-vcross"/>
+        <text x="560" y="154" text-anchor="middle" class="cr-box-tag">DV-150</text>
+
+        <!-- FIT-160 -->
+        <circle cx="648" cy="170" r="16" class="cr-inst" style="stroke:rgba(240,168,48,0.65);fill:rgba(240,168,48,0.10);"/>
+        <text x="648" y="167" text-anchor="middle" class="cr-inst-t">FT</text>
+        <text x="648" y="179" text-anchor="middle" class="cr-inst-n">160</text>
+        <rect x="618" y="138" width="60" height="20" rx="2" class="cr-box"/>
+        <text x="648" y="151" text-anchor="middle" class="cr-box-val" id="cr1-fit160">400.2</text>
+        <text x="672" y="151" class="cr-box-unit">BPH</text>
+
+        <!-- Density -->
+        <line x1="730" y1="170" x2="730" y2="130" class="cr-pipe-branch"/>
+        <rect x="702" y="108" width="56" height="24" rx="2" class="cr-box"/>
+        <text x="730" y="119" text-anchor="middle" class="cr-box-tag">DENSITY</text>
+        <text x="730" y="129" text-anchor="middle" class="cr-box-val" id="cr1-dens">42.48</text>
+        <text x="754" y="129" class="cr-box-unit">API</text>
+
+        <!-- PIT-162 -->
+        <circle cx="810" cy="170" r="14" class="cr-inst"/>
+        <text x="810" y="167" text-anchor="middle" class="cr-inst-t">PT</text>
+        <text x="810" y="179" text-anchor="middle" class="cr-inst-n">162</text>
+        <rect x="782" y="138" width="56" height="20" rx="2" class="cr-box"/>
+        <text x="810" y="151" text-anchor="middle" class="cr-box-val" id="cr1-pit162">34.89</text>
+        <text x="832" y="151" class="cr-box-unit">PSI</text>
+
+        <!-- PIT-201 (branch above) -->
+        <line x1="860" y1="170" x2="860" y2="130" class="cr-pipe-branch"/>
+        <circle cx="860" cy="118" r="14" class="cr-inst"/>
+        <text x="860" y="115" text-anchor="middle" class="cr-inst-t">PT</text>
+        <text x="860" y="127" text-anchor="middle" class="cr-inst-n">201</text>
+
+        <!-- TIT-161 -->
+        <circle cx="940" cy="170" r="14" class="cr-inst"/>
+        <text x="940" y="167" text-anchor="middle" class="cr-inst-t">TT</text>
+        <text x="940" y="179" text-anchor="middle" class="cr-inst-n">161</text>
+        <rect x="912" y="138" width="60" height="20" rx="2" class="cr-box"/>
+        <text x="942" y="151" text-anchor="middle" class="cr-box-val" id="cr1-tit161">104.2</text>
+        <text x="966" y="151" class="cr-box-unit">Â°F</text>
+
+        <!-- P-200 pump -->
+        <circle cx="1050" cy="170" r="22" class="cr-pump"/>
+        <text x="1050" y="167" text-anchor="middle" class="cr-pump-lbl">P-200</text>
+        <text x="1050" y="180" text-anchor="middle" class="cr-inst-n" style="fill:rgba(42,170,106,0.9);font-size:8px;">Running</text>
+        <circle cx="1050" cy="170" r="5" fill="rgba(42,170,106,0.8)"/>
+
+        <!-- PIT-202 / PIT-203 -->
+        <line x1="1150" y1="170" x2="1150" y2="130" class="cr-pipe-branch"/>
+        <rect x="1120" y="108" width="60" height="24" rx="2" class="cr-box"/>
+        <text x="1150" y="119" text-anchor="middle" class="cr-box-tag">PIT-202</text>
+        <text x="1150" y="129" text-anchor="middle" class="cr-box-val" id="cr1-pit202">297.6</text>
+        <text x="1174" y="129" class="cr-box-unit">PSI</text>
+        <line x1="1230" y1="170" x2="1230" y2="130" class="cr-pipe-branch"/>
+        <rect x="1200" y="108" width="60" height="24" rx="2" class="cr-box"/>
+        <text x="1230" y="119" text-anchor="middle" class="cr-box-tag">PIT-203</text>
+        <text x="1230" y="129" text-anchor="middle" class="cr-box-val" id="cr1-pit203">289.8</text>
+        <text x="1254" y="129" class="cr-box-unit">PSI</text>
+
+        <!-- flow particles run 1 -->
+        <circle id="crp1a" cx="-20" cy="170" r="4.5" fill="#f0a830" opacity="0.9"/>
+        <circle id="crp1b" cx="-20" cy="170" r="3"   fill="#d4870a" opacity="0.7"/>
+        <circle id="crp1c" cx="-20" cy="170" r="3.5" fill="#f0a830" opacity="0.8"/>
+
+        <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+        <!-- CRUDE #2 â€” y=310                                      -->
+        <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+        <text x="86" y="300" class="cr-run-lbl">CRUDE #2</text>
+        <!-- main pipe -->
+        <path d="M 85,310 L 1420,310" class="cr-pipe"/>
+        <!-- outlet arrow -->
+        <polygon points="1400,303 1422,310 1400,317" class="cr-arrow"/>
+
+        <!-- NV inlet valve -->
+        <circle cx="118" cy="310" r="11" class="cr-valve"/>
+        <line x1="111" y1="303" x2="125" y2="317" class="cr-vcross"/>
+        <line x1="125" y1="303" x2="111" y2="317" class="cr-vcross"/>
+
+        <!-- H2S run2 -->
+        <line x1="178" y1="310" x2="178" y2="350" class="cr-pipe-branch"/>
+        <rect x="150" y="350" width="56" height="24" rx="2" class="cr-box"/>
+        <text x="178" y="361" text-anchor="middle" class="cr-box-tag">H2S</text>
+        <text x="178" y="371" text-anchor="middle" class="cr-box-val" id="cr2-h2s">0</text>
+        <text x="190" y="371" class="cr-box-unit">ppm</text>
+
+        <!-- LEL run2 -->
+        <line x1="178" y1="310" x2="178" y2="272" class="cr-pipe-branch"/>
+        <rect x="150" y="250" width="56" height="24" rx="2" class="cr-box"/>
+        <text x="178" y="261" text-anchor="middle" class="cr-box-tag">LEL</text>
+        <text x="178" y="271" text-anchor="middle" class="cr-box-val" id="cr2-lel">0</text>
+        <text x="190" y="271" class="cr-box-unit">%</text>
+
+        <!-- PIT-101 run2 -->
+        <circle cx="258" cy="310" r="16" class="cr-inst"/>
+        <text x="258" y="307" text-anchor="middle" class="cr-inst-t">PT</text>
+        <text x="258" y="319" text-anchor="middle" class="cr-inst-n">101</text>
+        <rect x="232" y="330" width="52" height="20" rx="2" class="cr-box"/>
+        <text x="258" y="343" text-anchor="middle" class="cr-box-val" id="cr2-pit101">1.3</text>
+        <text x="274" y="343" class="cr-box-unit">PSI</text>
+
+        <!-- P-135 run2 -->
+        <circle cx="360" cy="310" r="22" class="cr-pump"/>
+        <text x="360" y="307" text-anchor="middle" class="cr-pump-lbl">P-135</text>
+        <text x="360" y="320" text-anchor="middle" class="cr-inst-n" style="fill:rgba(42,170,106,0.9);font-size:8px;">Running</text>
+        <circle cx="360" cy="310" r="5" fill="rgba(42,170,106,0.8)"/>
+
+        <!-- AIT-110 run2 -->
+        <circle cx="455" cy="310" r="14" class="cr-inst"/>
+        <text x="455" y="307" text-anchor="middle" class="cr-inst-t">AT</text>
+        <text x="455" y="319" text-anchor="middle" class="cr-inst-n">110</text>
+
+        <!-- DV-150 run2 -->
+        <circle cx="560" cy="310" r="14" class="cr-valve"/>
+        <line x1="550" y1="300" x2="570" y2="320" class="cr-vcross"/>
+        <line x1="570" y1="300" x2="550" y2="320" class="cr-vcross"/>
+        <text x="560" y="296" text-anchor="middle" class="cr-box-tag">DV-150</text>
+
+        <!-- FIT-160 run2 -->
+        <circle cx="648" cy="310" r="16" class="cr-inst" style="stroke:rgba(240,168,48,0.65);fill:rgba(240,168,48,0.10);"/>
+        <text x="648" y="307" text-anchor="middle" class="cr-inst-t">FT</text>
+        <text x="648" y="319" text-anchor="middle" class="cr-inst-n">160</text>
+        <rect x="618" y="330" width="60" height="20" rx="2" class="cr-box"/>
+        <text x="648" y="343" text-anchor="middle" class="cr-box-val" id="cr2-fit160">42.3</text>
+        <text x="667" y="343" class="cr-box-unit">BPH</text>
+
+        <!-- Density run2 -->
+        <line x1="730" y1="310" x2="730" y2="350" class="cr-pipe-branch"/>
+        <rect x="702" y="350" width="56" height="24" rx="2" class="cr-box"/>
+        <text x="730" y="361" text-anchor="middle" class="cr-box-tag">DENSITY</text>
+        <text x="730" y="371" text-anchor="middle" class="cr-box-val" id="cr2-dens">42.39</text>
+        <text x="754" y="371" class="cr-box-unit">API</text>
+
+        <!-- PIT-162 run2 -->
+        <circle cx="810" cy="310" r="14" class="cr-inst"/>
+        <text x="810" y="307" text-anchor="middle" class="cr-inst-t">PT</text>
+        <text x="810" y="319" text-anchor="middle" class="cr-inst-n">162</text>
+        <rect x="782" y="330" width="56" height="20" rx="2" class="cr-box"/>
+        <text x="810" y="343" text-anchor="middle" class="cr-box-val" id="cr2-pit162">48.2</text>
+        <text x="832" y="343" class="cr-box-unit">PSI</text>
+
+        <!-- PIT-201 run2 (branch below) -->
+        <line x1="860" y1="310" x2="860" y2="350" class="cr-pipe-branch"/>
+        <circle cx="860" cy="362" r="14" class="cr-inst"/>
+        <text x="860" y="359" text-anchor="middle" class="cr-inst-t">PT</text>
+        <text x="860" y="371" text-anchor="middle" class="cr-inst-n">201</text>
+
+        <!-- TIT-161 run2 -->
+        <circle cx="940" cy="310" r="14" class="cr-inst"/>
+        <text x="940" y="307" text-anchor="middle" class="cr-inst-t">TT</text>
+        <text x="940" y="319" text-anchor="middle" class="cr-inst-n">161</text>
+        <rect x="912" y="330" width="60" height="20" rx="2" class="cr-box"/>
+        <text x="942" y="343" text-anchor="middle" class="cr-box-val" id="cr2-tit161">90.1</text>
+        <text x="963" y="343" class="cr-box-unit">Â°F</text>
+
+        <!-- P-210 pump run2 -->
+        <circle cx="1050" cy="310" r="22" class="cr-pump"/>
+        <text x="1050" y="307" text-anchor="middle" class="cr-pump-lbl">P-210</text>
+        <text x="1050" y="320" text-anchor="middle" class="cr-inst-n" style="fill:rgba(42,170,106,0.9);font-size:8px;">Running</text>
+        <circle cx="1050" cy="310" r="5" fill="rgba(42,170,106,0.8)"/>
+
+        <!-- PIT-202/203 run2 -->
+        <line x1="1150" y1="310" x2="1150" y2="350" class="cr-pipe-branch"/>
+        <rect x="1120" y="350" width="60" height="24" rx="2" class="cr-box"/>
+        <text x="1150" y="361" text-anchor="middle" class="cr-box-tag">PIT-202</text>
+        <text x="1150" y="371" text-anchor="middle" class="cr-box-val" id="cr2-pit202">295.3</text>
+        <text x="1174" y="371" class="cr-box-unit">PSI</text>
+        <line x1="1230" y1="310" x2="1230" y2="350" class="cr-pipe-branch"/>
+        <rect x="1200" y="350" width="60" height="24" rx="2" class="cr-box"/>
+        <text x="1230" y="361" text-anchor="middle" class="cr-box-tag">PIT-203</text>
+        <text x="1230" y="371" text-anchor="middle" class="cr-box-val" id="cr2-pit203">295.3</text>
+        <text x="1254" y="371" class="cr-box-unit">PSI</text>
+
+        <!-- flow particles run 2 -->
+        <circle id="crp2a" cx="-20" cy="310" r="4.5" fill="#f0a830" opacity="0.9"/>
+        <circle id="crp2b" cx="-20" cy="310" r="3"   fill="#d4870a" opacity="0.7"/>
+        <circle id="crp2c" cx="-20" cy="310" r="3.5" fill="#f0a830" opacity="0.8"/>
+
+        <!-- â”€â”€ Alarm bar at bottom â”€â”€ -->
+        <rect x="20" y="466" width="1400" height="34" rx="2" class="cr-lact-box"/>
+        <text x="40" y="488" class="cr-lact-row" style="fill:rgba(212,135,10,0.45);font-size:8px;letter-spacing:0.08em;">0 CRITICAL</text>
+        <text x="130" y="488" class="cr-lact-row" style="fill:rgba(230,120,10,0.75);font-size:8px;letter-spacing:0.08em;">16 HIGH ALARMS</text>
+        <text x="260" y="488" class="cr-lact-row" style="fill:rgba(212,135,10,0.55);font-size:8px;letter-spacing:0.08em;">2 MEDIUM ALARMS</text>
+        <text x="400" y="488" class="cr-lact-row" style="fill:rgba(212,135,10,0.35);font-size:8px;letter-spacing:0.08em;">1 LOW ALARM Â· 0 SHELVED</text>
+        <text x="1350" y="488" text-anchor="end" class="cr-lact-row" style="fill:rgba(212,135,10,0.4);font-size:8px;">DORADO CRUDE SITE TREND</text>
+
+      </svg>
+    </div>
+    <div style="position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:flex-end;overflow:hidden;pointer-events:none;z-index:4;padding-top:2rem;padding-right:2rem;"><span style="font-family:'SF Pro Display',-apple-system,sans-serif;font-weight:700;font-size:clamp(4.8rem,12.8vw,14.4rem);color:rgba(212,135,10,0.20);letter-spacing:-0.04em;white-space:nowrap;user-select:none;line-height:1;">Control Room</span></div>
+    <div class="section-inner relative" style="z-index:5;padding-top:clamp(12rem,16vw,16rem);padding-bottom:3rem;">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+            <div>
+                <div class="section-header text-left">
+                    <p class="section-tag">The OPS Control Center</p>
+                    <h2 class="section-title">24/7/365 monitoring. Zero compromise.</h2>
+                </div>
+                <p class="theme-text-secondary text-lg leading-relaxed mb-8" data-animate="fade-up">
+                    At the core of everything we do is 24/7 control room monitoring and emergency callout. Our controllers bring hands-on experience from across the oil and gas industry, with backgrounds spanning pipeline and field operations, terminals, exploration, production, compliance, and control rooms. Because weâ€™ve worked throughout the operational lifecycle, we understand the significance behind every alarm, operating condition, and response decision.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 gap-4">
+                <div class="ops-pill" data-animate="slide-right"><i data-lucide="eye" class="w-5 h-5 text-olive"></i><span>24/7 Monitoring and Control</span></div>
+                <div class="ops-pill" data-animate="slide-right"><i data-lucide="shield" class="w-5 h-5 text-olive"></i><span>PHMSA CRM Compliance (49 CFR 195.446 / 192.631)</span></div>
+                <div class="ops-pill" data-animate="slide-right"><i data-lucide="lock" class="w-5 h-5 text-olive"></i><span>Cyber and Physical Security</span></div>
+                <div class="ops-pill" data-animate="slide-right"><i data-lucide="server" class="w-5 h-5 text-olive"></i><span>Fully Redundant Power, Hardware, Software, and Networks</span></div>
+                <div class="ops-pill" data-animate="slide-right"><i data-lucide="siren" class="w-5 h-5 text-olive"></i><span>Emergency Response</span></div>
+                <div class="ops-pill" data-animate="slide-right"><i data-lucide="droplets" class="w-5 h-5 text-olive"></i><span>Leak Detection (CPM and non-CPM)</span></div>
+                <div class="ops-pill" data-animate="slide-right"><i data-lucide="building-2" class="w-5 h-5 text-olive"></i><span>Disaster Recovery Control Center</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- OPERATIONS EXPERTISE TAGS -->
+<section class="ops-section" data-theme="dark" style="position:relative;">
+    <div style="position:absolute;inset:0;background:url('scada-bg.svg') center/cover no-repeat;background-attachment:fixed;opacity:0.35;"></div>
+    <div class="section-inner" style="padding-top:4rem;padding-bottom:4rem;position:relative;z-index:1;">
+        <div class="section-header">
+            <p class="section-tag">Operations Expertise</p>
+            <h2 class="section-title">We speak your operation's language.</h2>
+            <p class="section-subtitle theme-text-secondary">We don't just understand the equipment &mdash; we understand the work.</p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-4xl mx-auto" data-animate="fade-up">
+            <div class="ops-pill-tag">24/7 Remote Monitoring</div>
+            <div class="ops-pill-tag">Emergency Callout</div>
+            <div class="ops-pill-tag">Pipeline Gathering Operations</div>
+            <div class="ops-pill-tag">Terminal &amp; Storage Operations</div>
+            <div class="ops-pill-tag">Custody Transfer &amp; Metering</div>
+            <div class="ops-pill-tag">PHMSA CRM Compliance</div>
+            <div class="ops-pill-tag">ISA-18.2 Alarm Rationalization</div>
+            <div class="ops-pill-tag">Alarm Performance Reviews</div>
+            <div class="ops-pill-tag">Safety-Related Alarm Reviews</div>
+            <div class="ops-pill-tag">Controller Fatigue Management</div>
+            <div class="ops-pill-tag">Point-to-Point Verification</div>
+            <div class="ops-pill-tag">Document Control &amp; Retention</div>
+            <div class="ops-pill-tag">CRM Plan Development</div>
+            <div class="ops-pill-tag">Mock Audits &amp; Gap Analysis</div>
+            <div class="ops-pill-tag">Audit Representation</div>
+            <div class="ops-pill-tag">Leak Detection (CPM &amp; Non-CPM)</div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ENGINEERING NARRATIVE -->
+<section class="ops-section" data-theme="dark" style="position:relative;">
+    <div style="position:absolute;inset:0;background:url('images/automation.jpg') center/cover no-repeat;background-attachment:fixed;opacity:0.35;"></div>
+    <div style="position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:flex-end;overflow:hidden;pointer-events:none;z-index:2;padding-top:2rem;padding-right:2rem;"><span style="font-family:'SF Pro Display',-apple-system,sans-serif;font-weight:700;font-size:clamp(4.8rem,12.8vw,14.4rem);color:rgba(255,255,255,0.07);letter-spacing:-0.04em;white-space:nowrap;user-select:none;line-height:1;">Automation</span></div>
+    <div class="section-inner" style="position:relative;padding-bottom:4rem;">
+        <div class="max-w-3xl">
+            <div class="section-header text-left" style="margin-bottom:2rem;">
+                <p class="section-tag">Automation Engineering</p>
+                <h2 class="section-title" style="max-width:48rem;">Our Automation Engineering Services</h2>
+            </div>
+            <div class="space-y-5 theme-text-secondary leading-relaxed text-lg" data-animate="fade-up">
+                <p>Our automation engineering practice is built on four decades of hands-on experience designing and commissioning control systems &mdash; back when the tools didn't do what you needed and you had to build the missing pieces yourself.</p>
+                <p>Whether you need a greenfield SCADA deployment, a PLC upgrade, a new terminal automation system, or a modernization of aging infrastructure, we design, integrate, and commission solutions tailored to your operation's specific requirements.</p>
+                <p>For operators who also rely on OPS for control room operations or compliance management, our automation team is already embedded in that environment. Changes move through the Management of Change process without the coordination overhead of working with a separate vendor.</p>
+            </div>
+        </div>
+
+        <div class="section-header mt-12">
+            <p class="section-tag">Experience</p>
+            <h2 class="section-title">Across every kind of operation.</h2>
+            <p class="section-subtitle theme-text-secondary">Over 100 documented projects across four decades and more than 20 industries.</p>
+        </div>
+        <div class="flex flex-wrap gap-3 justify-center max-w-4xl mx-auto" data-animate="fade-up">
+            <span class="industry-tag">Midstream Pipeline</span>
+            <span class="industry-tag">Crude Oil Gathering</span>
+            <span class="industry-tag">NGL &amp; Gas Processing</span>
+            <span class="industry-tag">Terminal Automation</span>
+            <span class="industry-tag">Produced Water</span>
+            <span class="industry-tag">Tank Farm Operations</span>
+            <span class="industry-tag">Custody Transfer Metering</span>
+            <span class="industry-tag">Chemical Processing</span>
+            <span class="industry-tag">Co-Generation &amp; Power</span>
+            <span class="industry-tag">Water &amp; Wastewater Treatment</span>
+            <span class="industry-tag">Leak Detection (CPM &amp; Non-CPM)</span>
+            <span class="industry-tag">Industrial Manufacturing &amp; Process Automation</span>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mt-16 text-center" data-animate="fade-up">
+            <div><div class="font-display font-bold text-4xl text-olive">40</div><p class="theme-text-secondary text-sm mt-2">Years of<br>SCADA Projects</p></div>
+            <div><div class="font-display font-bold text-4xl text-white">65+</div><p class="theme-text-secondary text-sm mt-2">Combined Years of<br>Automation Engineering</p></div>
+            <div><div class="font-display font-bold text-4xl text-white">150+</div><p class="theme-text-secondary text-sm mt-2">Documented Client<br>Projects</p></div>
+            <div><div class="font-display font-bold text-4xl text-white">44+</div><p class="theme-text-secondary text-sm mt-2">Custom<br>Applications</p></div>
+            <div><div class="font-display font-bold text-4xl text-olive">10+</div><p class="theme-text-secondary text-sm mt-2">Communications<br>Protocols</p></div>
+        </div>
+
+        <div class="mt-12">
+            <div class="section-header">
+                <p class="section-tag">Platform Expertise</p>
+                <h3 class="section-title">We speak your equipment's language.</h3>
+            </div>
+            <div class="max-w-5xl mx-auto space-y-2" data-animate="fade-up">
+                <div><p class="text-olive font-display font-semibold text-xs tracking-widest uppercase text-center py-1 border-t border-olive/30">SCADA Systems</p><div class="flex flex-wrap gap-2 justify-center"><div class="ops-pill-tag">Ignition SCADA</div><div class="ops-pill-tag">FactoryTalk View SE/ME</div><div class="ops-pill-tag">Wonderware / InTouch</div><div class="ops-pill-tag">RSView32</div><div class="ops-pill-tag">GE Cimplicity / Proficy</div></div></div>
+                <div><p class="text-olive font-display font-semibold text-xs tracking-widest uppercase text-center py-1 border-t border-olive/30">PLC Platforms</p><div class="flex flex-wrap gap-2 justify-center"><div class="ops-pill-tag">ControlLogix / CompactLogix</div><div class="ops-pill-tag">SLC-500 / PLC-5</div><div class="ops-pill-tag">Modicon 984 / Quantum</div><div class="ops-pill-tag">GE 90-30 / 90-70</div><div class="ops-pill-tag">SCADAPack / ISaGRAF</div></div></div>
+                <div><p class="text-olive font-display font-semibold text-xs tracking-widest uppercase text-center py-1 border-t border-olive/30">Flow Computers &amp; Metering</p><div class="flex flex-wrap gap-2 justify-center"><div class="ops-pill-tag">Omni Flow Computers</div><div class="ops-pill-tag">ABB Spirit FlowX</div><div class="ops-pill-tag">ABB Totalflow</div><div class="ops-pill-tag">Toptech Multiloads</div><div class="ops-pill-tag">Raptor Tank Gauging</div></div></div>
+                <div><p class="text-olive font-display font-semibold text-xs tracking-widest uppercase text-center py-1 border-t border-olive/30">Communications &amp; Infrastructure</p><div class="flex flex-wrap gap-2 justify-center"><div class="ops-pill-tag">MQTT / Sparkplug</div><div class="ops-pill-tag">Kepware OPC-UA</div><div class="ops-pill-tag">Stratus ftServers</div><div class="ops-pill-tag">Canary Historian</div><div class="ops-pill-tag">VMware / Hyper-V</div></div></div>
+                <div><p class="text-olive font-display font-semibold text-xs tracking-widest uppercase text-center py-1 border-t border-olive/30">Custom Solutions</p><div class="flex flex-wrap gap-2 justify-center"><div class="ops-pill-tag">Alarm Rationalization</div><div class="ops-pill-tag">Controller Scheduling &amp; HOS</div><div class="ops-pill-tag">Compliance Document Control</div><div class="ops-pill-tag">Operational Data Analytics</div><div class="ops-pill-tag">OPS CRM Suite</div></div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- AUTOMATION CAPABILITIES -->
+<section id="engineering" class="ops-section" data-theme="light">
+    <div class="section-inner" style="padding-top:4rem;padding-bottom:4rem;">
+        <div class="section-header">
+            <p class="section-tag">Automation Engineering</p>
+            <h2 class="section-title">Built to automate.<br>Built to deliver.</h2>
+            <p class="section-subtitle">From concept through commissioning, we design, build, and integrate the automation systems that keep your operation running.</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="capability-block" data-animate="fade-up" style="border-top:2px solid rgba(107,123,58,0.45);"><div class="w-12 h-12 rounded-xl bg-olive/10 flex items-center justify-center mb-4"><i data-lucide="award" class="w-6 h-6 text-olive"></i></div><h3 class="font-display font-semibold text-lg mb-3">PMP-Certified Project Delivery</h3><p class="text-sm leading-relaxed">Automation projects delivered on time and within scope by PMP-certified project managers. From initial scope definition through final commissioning and handover, we own the outcome at every stage.</p></div>
+            <div class="capability-block" data-animate="fade-up" style="border-top:2px solid rgba(196,99,58,0.45);"><div class="w-12 h-12 rounded-xl bg-copper-10 flex items-center justify-center mb-4"><i data-lucide="gauge" class="w-6 h-6 text-copper"></i></div><h3 class="font-display font-semibold text-lg mb-3">Pipeline &amp; Industrial Automation</h3><p class="text-sm leading-relaxed">Automation experience across midstream pipeline infrastructure and industrial manufacturing â€” two sectors that demand different disciplines, different tolerances, and different thinking.</p></div>
+            <div class="capability-block" data-animate="fade-up" style="border-top:2px solid rgba(74,127,165,0.45);"><div class="w-12 h-12 rounded-xl bg-steel-10 flex items-center justify-center mb-4"><i data-lucide="cpu" class="w-6 h-6 text-steel"></i></div><h3 class="font-display font-semibold text-lg mb-3">PLC, SCADA &amp; System Integration</h3><p class="text-sm leading-relaxed">From PLC programming and SCADA architecture to cloud deployment, data historians, enterprise system integration, and custom software solutions built specifically for your operation.</p></div>
+            <div class="capability-block" data-animate="fade-up" style="border-top:2px solid rgba(196,99,58,0.45);"><div class="w-12 h-12 rounded-xl bg-copper-10 flex items-center justify-center mb-4"><i data-lucide="hard-hat" class="w-6 h-6 text-copper"></i></div><h3 class="font-display font-semibold text-lg mb-3">Greenfield to Modernization</h3><p class="text-sm leading-relaxed">Whether you're automating a new facility from the ground up or replacing aging infrastructure, our team has done it across pumping stations, custody transfer, storage terminals, and unmanned remote sites.</p></div>
+        </div>
+    </div>
+</section>
+
+
+<!-- AUTOMATION PROJECTS -->
+<section id="automation" class="ops-section" data-theme="dark" style="position:relative;">
+    <div style="position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:flex-end;overflow:hidden;pointer-events:none;z-index:2;padding-top:2rem;padding-right:2rem;"><span style="font-family:'SF Pro Display',-apple-system,sans-serif;font-weight:700;font-size:clamp(4.8rem,12.8vw,14.4rem);color:rgba(255,255,255,0.07);letter-spacing:-0.04em;white-space:nowrap;user-select:none;line-height:1;">Projects</span></div>
+    <div class="section-inner">
+        <div class="section-header">
+            <p class="section-tag">Automation</p>
+            <h2 class="section-title">Featured projects.</h2>
+            <p class="section-subtitle">OPS delivers reliable, scalable automation solutions built to meet the demands of complex operations.</p>
+        </div>
+        <div class="space-y-8">
+            <div class="ops-panel" data-animate="fade-up"><div class="ops-panel-inner"><div class="ops-panel-content"><span class="ops-panel-tag text-olive">Terminal Automation</span><h3 class="ops-panel-title">Rail-to-Storage and Automated Truck Rack System</h3><p class="ops-panel-text">Managed the offloading of 80 rail cars into storage through three dedicated product meter skids. Automated multi-flowrate proving, direct integration with TMS6 for batch and transaction data, and an interface with Toptech Multiloads for fully unattended driver operations at an eight-bay truck rack.</p></div><div class="ops-panel-visual"><svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" style="width:90%;max-width:280px;">
+  <text x="8" y="11" font-family="SF Mono,Menlo,monospace" font-size="6" fill="rgba(212,135,10,0.5)" letter-spacing="1.5">TERM-AUTO Â· CRD-01</text>
+  <line x1="8" y1="15" x2="272" y2="15" stroke="rgba(212,135,10,0.15)" stroke-width="0.5"/>
+  <rect x="8" y="38" width="38" height="25" rx="2" fill="rgba(8,12,20,0.7)" stroke="rgba(212,135,10,0.55)" stroke-width="1.5"/>
+  <circle cx="17" cy="65" r="4" fill="none" stroke="rgba(212,135,10,0.45)" stroke-width="1.2"/>
+  <circle cx="37" cy="65" r="4" fill="none" stroke="rgba(212,135,10,0.45)" stroke-width="1.2"/>
+  <text x="27" y="53" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="7" font-weight="bold" fill="rgba(240,168,48,0.9)">Ã—80</text>
+  <text x="27" y="34" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="6" fill="rgba(212,135,10,0.5)">RAIL</text>
+  <path d="M 46,51 L 70,51 L 70,32" stroke="rgba(212,135,10,0.5)" stroke-width="2" fill="none"/>
+  <path d="M 70,51 L 70,70" stroke="rgba(212,135,10,0.5)" stroke-width="2" fill="none"/>
+  <rect x="78" y="22" width="46" height="22" rx="2" fill="rgba(8,12,20,0.7)" stroke="rgba(212,135,10,0.6)" stroke-width="1.5"/>
+  <text x="101" y="33" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="6" fill="rgba(240,168,48,0.85)">SKID-1</text>
+  <text x="101" y="41" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5.5" fill="rgba(212,135,10,0.55)">METER</text>
+  <line x1="70" y1="32" x2="78" y2="32" stroke="rgba(212,135,10,0.5)" stroke-width="2"/>
+  <rect x="78" y="51" width="46" height="22" rx="2" fill="rgba(8,12,20,0.7)" stroke="rgba(212,135,10,0.6)" stroke-width="1.5"/>
+  <text x="101" y="62" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="6" fill="rgba(240,168,48,0.85)">SKID-2</text>
+  <text x="101" y="70" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5.5" fill="rgba(212,135,10,0.55)">METER</text>
+  <line x1="70" y1="62" x2="78" y2="62" stroke="rgba(212,135,10,0.5)" stroke-width="2"/>
+  <rect x="78" y="80" width="46" height="22" rx="2" fill="rgba(8,12,20,0.7)" stroke="rgba(212,135,10,0.6)" stroke-width="1.5"/>
+  <text x="101" y="91" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="6" fill="rgba(240,168,48,0.85)">SKID-3</text>
+  <text x="101" y="99" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5.5" fill="rgba(212,135,10,0.55)">METER</text>
+  <line x1="70" y1="91" x2="78" y2="91" stroke="rgba(212,135,10,0.5)" stroke-width="2"/>
+  <line x1="124" y1="33" x2="148" y2="33" stroke="rgba(212,135,10,0.5)" stroke-width="2"/>
+  <line x1="124" y1="62" x2="148" y2="62" stroke="rgba(212,135,10,0.5)" stroke-width="2"/>
+  <line x1="124" y1="91" x2="148" y2="91" stroke="rgba(212,135,10,0.5)" stroke-width="2"/>
+  <line x1="148" y1="33" x2="148" y2="91" stroke="rgba(212,135,10,0.5)" stroke-width="2"/>
+  <line x1="148" y1="62" x2="160" y2="62" stroke="rgba(212,135,10,0.5)" stroke-width="2"/>
+  <ellipse cx="182" cy="50" rx="22" ry="8" fill="rgba(8,12,20,0.6)" stroke="rgba(212,135,10,0.65)" stroke-width="1.5"/>
+  <rect x="160" y="50" width="44" height="38" fill="rgba(8,12,20,0.5)" stroke="rgba(212,135,10,0.65)" stroke-width="1.5"/>
+  <rect x="160" y="66" width="44" height="22" fill="rgba(212,135,10,0.1)"/>
+  <ellipse cx="182" cy="88" rx="22" ry="8" fill="rgba(8,12,20,0.6)" stroke="rgba(212,135,10,0.65)" stroke-width="1.5"/>
+  <text x="182" y="71" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="6" fill="rgba(240,168,48,0.85)">STORAGE</text>
+  <text x="182" y="82" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="8" font-weight="bold" fill="rgba(212,135,10,0.85)">37%</text>
+  <rect x="220" y="28" width="52" height="36" rx="2" fill="rgba(8,12,20,0.8)" stroke="rgba(212,135,10,0.45)" stroke-width="1"/>
+  <text x="246" y="41" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="7" fill="rgba(212,135,10,0.7)">TMS6</text>
+  <text x="246" y="51" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5" fill="rgba(240,168,48,0.5)">BATCH / TRANS</text>
+  <text x="246" y="60" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5" fill="rgba(240,168,48,0.5)">TOPTECH MLA</text>
+  <line x1="220" y1="46" x2="204" y2="56" stroke="rgba(212,135,10,0.3)" stroke-dasharray="3 2" stroke-width="1"/>
+  <path d="M 182,96 L 182,112 L 220,112" stroke="rgba(212,135,10,0.45)" stroke-width="1.8" fill="none"/>
+  <rect x="220" y="104" width="52" height="22" rx="1" fill="rgba(8,12,20,0.7)" stroke="rgba(212,135,10,0.4)" stroke-width="1"/>
+  <text x="246" y="115" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5.5" fill="rgba(240,168,48,0.7)">TRUCK RACK</text>
+  <text x="246" y="123" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="7" font-weight="bold" fill="rgba(212,135,10,0.8)">8 BAYS</text>
+  <circle cx="14" cy="148" r="3" fill="rgba(74,222,128,0.65)"/>
+  <text x="22" y="151" font-family="SF Mono,Menlo,monospace" font-size="6" fill="rgba(212,135,10,0.45)">UNATTENDED OPS Â· ACTIVE</text>
+</svg></div></div></div>
+            <div class="ops-panel" data-animate="fade-up"><div class="ops-panel-inner"><div class="ops-panel-content"><span class="ops-panel-tag text-steel">SCADA Modernization</span><h3 class="ops-panel-title">Enterprise SCADA for Manufacturing</h3><p class="ops-panel-text">Enterprise-wide SCADA system using Ignition and Kepware OPC, replacing legacy systems. Centralized historical data for materials, batching, and forecasting with custom diagnostic tools that significantly reduced equipment downtime.</p></div><div class="ops-panel-visual"><svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" style="width:90%;max-width:280px;">
+  <text x="8" y="11" font-family="SF Mono,Menlo,monospace" font-size="6" fill="rgba(212,135,10,0.5)" letter-spacing="1.5">SCADA MODERNIZATION Â· ENTERPRISE MFG</text>
+  <line x1="8" y1="15" x2="272" y2="15" stroke="rgba(212,135,10,0.15)" stroke-width="0.5"/>
+  <text x="8" y="36" font-family="SF Mono,Menlo,monospace" font-size="6" fill="rgba(212,135,10,0.4)">FIELD LAYER</text>
+  <rect x="8" y="42" width="34" height="22" rx="1" fill="rgba(8,12,20,0.7)" stroke="rgba(212,135,10,0.5)" stroke-width="1.3"/>
+  <text x="25" y="53" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="6" fill="rgba(240,168,48,0.8)">PLC</text>
+  <text x="25" y="61" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5" fill="rgba(212,135,10,0.5)">LINE 1</text>
+  <rect x="50" y="42" width="34" height="22" rx="1" fill="rgba(8,12,20,0.7)" stroke="rgba(212,135,10,0.5)" stroke-width="1.3"/>
+  <text x="67" y="53" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="6" fill="rgba(240,168,48,0.8)">PLC</text>
+  <text x="67" y="61" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5" fill="rgba(212,135,10,0.5)">LINE 2</text>
+  <rect x="92" y="42" width="34" height="22" rx="1" fill="rgba(8,12,20,0.7)" stroke="rgba(212,135,10,0.5)" stroke-width="1.3"/>
+  <text x="109" y="53" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="6" fill="rgba(240,168,48,0.8)">PLC</text>
+  <text x="109" y="61" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5" fill="rgba(212,135,10,0.5)">LINE 3</text>
+  <line x1="25" y1="64" x2="25" y2="80" stroke="rgba(212,135,10,0.4)" stroke-width="1.5"/>
+  <line x1="67" y1="64" x2="67" y2="80" stroke="rgba(212,135,10,0.4)" stroke-width="1.5"/>
+  <line x1="109" y1="64" x2="109" y2="80" stroke="rgba(212,135,10,0.4)" stroke-width="1.5"/>
+  <line x1="25" y1="80" x2="109" y2="80" stroke="rgba(212,135,10,0.4)" stroke-width="1.5"/>
+  <line x1="67" y1="80" x2="67" y2="88" stroke="rgba(212,135,10,0.4)" stroke-width="1.5"/>
+  <rect x="32" y="88" width="70" height="26" rx="3" fill="rgba(8,12,20,0.75)" stroke="rgba(212,135,10,0.65)" stroke-width="1.5"/>
+  <text x="67" y="99" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="7" font-weight="bold" fill="rgba(212,135,10,0.8)">KEPWARE</text>
+  <text x="67" y="109" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5.5" fill="rgba(240,168,48,0.5)">OPC-UA GATEWAY</text>
+  <path d="M 102,101 L 136,101" stroke="rgba(212,135,10,0.55)" stroke-width="2" fill="none"/>
+  <polygon points="133,97 141,101 133,105" fill="rgba(212,135,10,0.55)"/>
+  <text x="119" y="96" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5" fill="rgba(212,135,10,0.4)">OPC-UA</text>
+  <rect x="141" y="74" width="72" height="54" rx="3" fill="rgba(8,12,20,0.8)" stroke="rgba(212,135,10,0.8)" stroke-width="2"/>
+  <text x="177" y="93" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="8" font-weight="bold" fill="rgba(240,168,48,0.95)">IGNITION</text>
+  <text x="177" y="104" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5.5" fill="rgba(212,135,10,0.6)">SCADA Â· HMI</text>
+  <text x="177" y="113" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5.5" fill="rgba(212,135,10,0.6)">HISTORIAN Â· REPORT</text>
+  <text x="177" y="122" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5.5" fill="rgba(212,135,10,0.6)">BATCH Â· FORECAST</text>
+  <path d="M 213,101 L 238,101" stroke="rgba(212,135,10,0.45)" stroke-width="1.5" fill="none"/>
+  <rect x="238" y="88" width="36" height="26" rx="2" fill="rgba(8,12,20,0.7)" stroke="rgba(212,135,10,0.45)" stroke-width="1"/>
+  <text x="256" y="100" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="6.5" fill="rgba(212,135,10,0.7)">OSI</text>
+  <text x="256" y="110" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="6.5" fill="rgba(212,135,10,0.65)">PI</text>
+  <circle cx="14" cy="148" r="3" fill="rgba(74,222,128,0.65)"/>
+  <text x="22" y="151" font-family="SF Mono,Menlo,monospace" font-size="6" fill="rgba(212,135,10,0.45)">ENTERPRISE-WIDE Â· LEGACY REPLACED</text>
+</svg></div></div></div>
+            <div class="ops-panel" data-animate="fade-up"><div class="ops-panel-inner"><div class="ops-panel-content"><span class="ops-panel-tag text-steel">Multi-Site Deployment</span><h3 class="ops-panel-title">Multi-Terminal Control and SCADA</h3><p class="ops-panel-text">Control systems for four terminals and a central control center using ControlLogix PLCs and Ignition SCADA on Stratus ftServers. Integrated with Omni flow computers, Raptor tank gauging, and Siemens/ABB VFDs.</p></div><div class="ops-panel-visual"><svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" style="width:90%;max-width:280px;">
+  <text x="8" y="11" font-family="SF Mono,Menlo,monospace" font-size="6" fill="rgba(212,135,10,0.5)" letter-spacing="1.5">MULTI-SITE CONTROL Â· 4 TERMINALS</text>
+  <line x1="8" y1="15" x2="272" y2="15" stroke="rgba(212,135,10,0.15)" stroke-width="0.5"/>
+  <rect x="96" y="58" width="88" height="48" rx="4" fill="rgba(8,12,20,0.85)" stroke="rgba(212,135,10,0.85)" stroke-width="2"/>
+  <text x="140" y="76" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="8" font-weight="bold" fill="rgba(240,168,48,0.95)">IGNITION</text>
+  <text x="140" y="87" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5.5" fill="rgba(212,135,10,0.6)">STRATUS FTSERVER</text>
+  <text x="140" y="97" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5.5" fill="rgba(212,135,10,0.6)">CONTROL CENTER</text>
+  <rect x="8" y="22" width="64" height="38" rx="2" fill="rgba(8,12,20,0.7)" stroke="rgba(212,135,10,0.55)" stroke-width="1.5"/>
+  <text x="40" y="36" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="7" font-weight="bold" fill="rgba(240,168,48,0.85)">TERM-01</text>
+  <text x="40" y="46" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5.5" fill="rgba(212,135,10,0.6)">CLGX Â· OMNI</text>
+  <text x="40" y="55" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5" fill="rgba(212,135,10,0.5)">RAPTOR GAUGING</text>
+  <path d="M 72,41 L 96,76" stroke="rgba(212,135,10,0.5)" stroke-width="1.5" fill="none"/>
+  <rect x="208" y="22" width="64" height="38" rx="2" fill="rgba(8,12,20,0.7)" stroke="rgba(212,135,10,0.55)" stroke-width="1.5"/>
+  <text x="240" y="36" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="7" font-weight="bold" fill="rgba(240,168,48,0.85)">TERM-02</text>
+  <text x="240" y="46" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5.5" fill="rgba(212,135,10,0.6)">CLGX Â· OMNI</text>
+  <text x="240" y="55" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5" fill="rgba(212,135,10,0.5)">RAPTOR GAUGING</text>
+  <path d="M 208,41 L 184,76" stroke="rgba(212,135,10,0.5)" stroke-width="1.5" fill="none"/>
+  <rect x="8" y="102" width="64" height="38" rx="2" fill="rgba(8,12,20,0.7)" stroke="rgba(212,135,10,0.55)" stroke-width="1.5"/>
+  <text x="40" y="116" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="7" font-weight="bold" fill="rgba(240,168,48,0.85)">TERM-03</text>
+  <text x="40" y="126" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5.5" fill="rgba(212,135,10,0.6)">CLGX Â· OMNI</text>
+  <text x="40" y="135" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5" fill="rgba(212,135,10,0.5)">ABB/SIEMENS VFD</text>
+  <path d="M 72,121 L 96,98" stroke="rgba(212,135,10,0.5)" stroke-width="1.5" fill="none"/>
+  <rect x="208" y="102" width="64" height="38" rx="2" fill="rgba(8,12,20,0.7)" stroke="rgba(212,135,10,0.55)" stroke-width="1.5"/>
+  <text x="240" y="116" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="7" font-weight="bold" fill="rgba(240,168,48,0.85)">TERM-04</text>
+  <text x="240" y="126" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5.5" fill="rgba(212,135,10,0.6)">CLGX Â· OMNI</text>
+  <text x="240" y="135" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5" fill="rgba(212,135,10,0.5)">ABB/SIEMENS VFD</text>
+  <path d="M 208,121 L 184,98" stroke="rgba(212,135,10,0.5)" stroke-width="1.5" fill="none"/>
+  <circle cx="14" cy="148" r="3" fill="rgba(74,222,128,0.65)"/>
+  <text x="22" y="151" font-family="SF Mono,Menlo,monospace" font-size="6" fill="rgba(212,135,10,0.45)">4 TERMINALS Â· CONTROLLOGIX + IGNITION</text>
+</svg></div></div></div>
+            <div class="ops-panel" data-animate="fade-up"><div class="ops-panel-inner"><div class="ops-panel-content"><span class="ops-panel-tag text-copper">HMI Modernization</span><h3 class="ops-panel-title">High-Performance HMI Consolidation</h3><p class="ops-panel-text">Overhauled existing HMI systems using FactoryTalk View SE Network Distributed application built to high-performance standards. Consolidated three standalone HMIs into a single Stratus server utilizing virtual machines and a unified HMI platform.</p></div><div class="ops-panel-visual"><svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" style="width:90%;max-width:280px;">
+  <text x="8" y="11" font-family="SF Mono,Menlo,monospace" font-size="6" fill="rgba(212,135,10,0.5)" letter-spacing="1.5">HMI CONSOLIDATION Â· FTVSE NETWORK</text>
+  <line x1="8" y1="15" x2="272" y2="15" stroke="rgba(212,135,10,0.15)" stroke-width="0.5"/>
+  <text x="40" y="34" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="6" fill="rgba(212,135,10,0.4)">BEFORE</text>
+  <rect x="8" y="40" width="44" height="30" rx="2" fill="rgba(8,12,20,0.6)" stroke="rgba(212,135,10,0.4)" stroke-width="1.5"/>
+  <rect x="12" y="44" width="36" height="19" rx="1" fill="rgba(212,135,10,0.07)"/>
+  <line x1="14" y1="49" x2="44" y2="49" stroke="rgba(212,135,10,0.2)" stroke-width="0.75"/>
+  <line x1="14" y1="54" x2="40" y2="54" stroke="rgba(212,135,10,0.15)" stroke-width="0.75"/>
+  <line x1="14" y1="59" x2="42" y2="59" stroke="rgba(212,135,10,0.15)" stroke-width="0.75"/>
+  <text x="30" y="78" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5.5" fill="rgba(212,135,10,0.45)">HMI-1</text>
+  <rect x="58" y="40" width="44" height="30" rx="2" fill="rgba(8,12,20,0.6)" stroke="rgba(212,135,10,0.4)" stroke-width="1.5"/>
+  <rect x="62" y="44" width="36" height="19" rx="1" fill="rgba(212,135,10,0.07)"/>
+  <line x1="64" y1="49" x2="94" y2="49" stroke="rgba(212,135,10,0.2)" stroke-width="0.75"/>
+  <line x1="64" y1="54" x2="88" y2="54" stroke="rgba(212,135,10,0.15)" stroke-width="0.75"/>
+  <line x1="64" y1="59" x2="92" y2="59" stroke="rgba(212,135,10,0.15)" stroke-width="0.75"/>
+  <text x="80" y="78" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5.5" fill="rgba(212,135,10,0.45)">HMI-2</text>
+  <rect x="108" y="40" width="44" height="30" rx="2" fill="rgba(8,12,20,0.6)" stroke="rgba(212,135,10,0.4)" stroke-width="1.5"/>
+  <rect x="112" y="44" width="36" height="19" rx="1" fill="rgba(212,135,10,0.07)"/>
+  <line x1="114" y1="49" x2="144" y2="49" stroke="rgba(212,135,10,0.2)" stroke-width="0.75"/>
+  <line x1="114" y1="54" x2="138" y2="54" stroke="rgba(212,135,10,0.15)" stroke-width="0.75"/>
+  <line x1="114" y1="59" x2="142" y2="59" stroke="rgba(212,135,10,0.15)" stroke-width="0.75"/>
+  <text x="130" y="78" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5.5" fill="rgba(212,135,10,0.45)">HMI-3</text>
+  <path d="M 162,55 L 182,55" stroke="rgba(212,135,10,0.7)" stroke-width="2.5" fill="none"/>
+  <polygon points="180,50 192,55 180,60" fill="rgba(212,135,10,0.7)"/>
+  <text x="172" y="48" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5.5" fill="rgba(212,135,10,0.5)">CONSOLIDATE</text>
+  <text x="240" y="34" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="6" fill="rgba(212,135,10,0.4)">AFTER</text>
+  <rect x="200" y="22" width="72" height="14" rx="1" fill="rgba(8,12,20,0.7)" stroke="rgba(212,135,10,0.45)" stroke-width="1"/>
+  <text x="236" y="31" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5.5" fill="rgba(240,168,48,0.6)">STRATUS FTSERVER + VM</text>
+  <line x1="236" y1="36" x2="236" y2="42" stroke="rgba(212,135,10,0.45)" stroke-width="1.2"/>
+  <rect x="198" y="42" width="76" height="50" rx="2" fill="rgba(8,12,20,0.7)" stroke="rgba(212,135,10,0.75)" stroke-width="2"/>
+  <rect x="204" y="48" width="64" height="36" rx="1" fill="rgba(212,135,10,0.09)"/>
+  <rect x="206" y="50" width="20" height="12" rx="1" fill="rgba(212,135,10,0.18)"/>
+  <rect x="230" y="50" width="20" height="12" rx="1" fill="rgba(212,135,10,0.12)"/>
+  <rect x="254" y="50" width="12" height="12" rx="1" fill="rgba(74,222,128,0.15)"/>
+  <line x1="206" y1="66" x2="264" y2="66" stroke="rgba(212,135,10,0.18)" stroke-width="0.75"/>
+  <line x1="206" y1="71" x2="256" y2="71" stroke="rgba(212,135,10,0.15)" stroke-width="0.75"/>
+  <line x1="206" y1="76" x2="260" y2="76" stroke="rgba(212,135,10,0.15)" stroke-width="0.75"/>
+  <text x="236" y="100" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5.5" fill="rgba(240,168,48,0.8)">FTVSE NETWORK</text>
+  <text x="236" y="109" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5.5" fill="rgba(212,135,10,0.6)">HP-HMI STANDARD</text>
+  <circle cx="14" cy="148" r="3" fill="rgba(74,222,128,0.65)"/>
+  <text x="22" y="151" font-family="SF Mono,Menlo,monospace" font-size="6" fill="rgba(212,135,10,0.45)">3x STANDALONE â†’ 1x UNIFIED PLATFORM</text>
+</svg></div></div></div>
+            <div class="ops-panel" data-animate="fade-up"><div class="ops-panel-inner"><div class="ops-panel-content"><span class="ops-panel-tag text-olive">Purpose-Built Software</span><h3 class="ops-panel-title">OPS Control Room Management Platform</h3><p class="ops-panel-text">A proprietary operations management platform developed specifically to support pipeline control room compliance under 49 CFR 195.446, 49 CFR 192.631, and ISA-18.2. Modules span alarm rationalization, automated monthly and annual alarm performance reviews, controller scheduling with HOS compliance tracking, dynamic point-to-point verification, and integrated document control.</p></div><div class="ops-panel-visual"><svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" style="width:90%;max-width:280px;">
+  <text x="8" y="11" font-family="SF Mono,Menlo,monospace" font-size="6" fill="rgba(212,135,10,0.5)" letter-spacing="1.5">OPS-CRM Â· 49 CFR 195.446 / 192.631</text>
+  <line x1="8" y1="15" x2="272" y2="15" stroke="rgba(212,135,10,0.15)" stroke-width="0.5"/>
+  <rect x="8" y="24" width="58" height="84" rx="2" fill="rgba(8,12,20,0.6)" stroke="rgba(212,135,10,0.5)" stroke-width="1.3"/>
+  <text x="37" y="36" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5.5" fill="rgba(212,135,10,0.7)">ALARM RAT</text>
+  <circle cx="14" cy="47" r="2" fill="rgba(74,222,128,0.65)"/>
+  <text x="20" y="50" font-family="SF Mono,Menlo,monospace" font-size="5" fill="rgba(240,168,48,0.6)">ISA-18.2</text>
+  <circle cx="14" cy="59" r="2" fill="rgba(74,222,128,0.65)"/>
+  <text x="20" y="62" font-family="SF Mono,Menlo,monospace" font-size="5" fill="rgba(240,168,48,0.6)">MAR/AAR</text>
+  <circle cx="14" cy="71" r="2" fill="rgba(74,222,128,0.65)"/>
+  <text x="20" y="74" font-family="SF Mono,Menlo,monospace" font-size="5" fill="rgba(240,168,48,0.6)">AUDIT LOG</text>
+  <text x="37" y="94" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="9" font-weight="bold" fill="rgba(212,135,10,0.85)">15K+</text>
+  <text x="37" y="104" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5" fill="rgba(212,135,10,0.5)">ALARMS</text>
+  <rect x="72" y="24" width="58" height="84" rx="2" fill="rgba(8,12,20,0.6)" stroke="rgba(212,135,10,0.5)" stroke-width="1.3"/>
+  <text x="101" y="36" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5.5" fill="rgba(212,135,10,0.7)">SCHEDULE</text>
+  <circle cx="78" cy="47" r="2" fill="rgba(74,222,128,0.65)"/>
+  <text x="84" y="50" font-family="SF Mono,Menlo,monospace" font-size="5" fill="rgba(240,168,48,0.6)">HOS TRACK</text>
+  <circle cx="78" cy="59" r="2" fill="rgba(74,222,128,0.65)"/>
+  <text x="84" y="62" font-family="SF Mono,Menlo,monospace" font-size="5" fill="rgba(240,168,48,0.6)">FATIGUE</text>
+  <circle cx="78" cy="71" r="2" fill="rgba(74,222,128,0.65)"/>
+  <text x="84" y="74" font-family="SF Mono,Menlo,monospace" font-size="5" fill="rgba(240,168,48,0.6)">SHIFT BRIEF</text>
+  <text x="101" y="94" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="9" font-weight="bold" fill="rgba(212,135,10,0.85)">24/7</text>
+  <text x="101" y="104" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5" fill="rgba(212,135,10,0.5)">COVERAGE</text>
+  <rect x="136" y="24" width="58" height="84" rx="2" fill="rgba(8,12,20,0.6)" stroke="rgba(212,135,10,0.5)" stroke-width="1.3"/>
+  <text x="165" y="36" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5.5" fill="rgba(212,135,10,0.7)">DOC CTRL</text>
+  <circle cx="142" cy="47" r="2" fill="rgba(74,222,128,0.65)"/>
+  <text x="148" y="50" font-family="SF Mono,Menlo,monospace" font-size="5" fill="rgba(240,168,48,0.6)">REV CTRL</text>
+  <circle cx="142" cy="59" r="2" fill="rgba(74,222,128,0.65)"/>
+  <text x="148" y="62" font-family="SF Mono,Menlo,monospace" font-size="5" fill="rgba(240,168,48,0.6)">AUTO-GEN</text>
+  <circle cx="142" cy="71" r="2" fill="rgba(74,222,128,0.65)"/>
+  <text x="148" y="74" font-family="SF Mono,Menlo,monospace" font-size="5" fill="rgba(240,168,48,0.6)">E-SIGN</text>
+  <text x="165" y="94" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="9" font-weight="bold" fill="rgba(212,135,10,0.85)">265+</text>
+  <text x="165" y="104" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5" fill="rgba(212,135,10,0.5)">DOCS</text>
+  <rect x="202" y="24" width="70" height="84" rx="3" fill="rgba(8,12,20,0.85)" stroke="rgba(212,135,10,0.7)" stroke-width="1.8"/>
+  <text x="237" y="40" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="6" fill="rgba(212,135,10,0.6)">SCOPE</text>
+  <text x="237" y="60" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="18" font-weight="bold" fill="rgba(240,168,48,0.95)">149</text>
+  <text x="237" y="71" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5.5" fill="rgba(212,135,10,0.6)">REMOTE SITES</text>
+  <line x1="208" y1="77" x2="266" y2="77" stroke="rgba(212,135,10,0.2)" stroke-width="0.5"/>
+  <text x="237" y="88" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="5.5" fill="rgba(212,135,10,0.5)">PHMSA AUDITS</text>
+  <text x="237" y="99" text-anchor="middle" font-family="SF Mono,Menlo,monospace" font-size="8" font-weight="bold" fill="rgba(74,222,128,0.85)">PASSED</text>
+  <circle cx="14" cy="148" r="3" fill="rgba(74,222,128,0.65)"/>
+  <text x="22" y="151" font-family="SF Mono,Menlo,monospace" font-size="6" fill="rgba(212,135,10,0.45)">PROPRIETARY Â· ACTIVELY DEPLOYED</text>
+</svg></div></div></div>
+        </div>
+    </div>
+</section>
+
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<!-- COMPLIANCE â€” UPGRADED: SELF-CHECKING AUDIT LIST            -->
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section id="compliance" style="background:#F5F5F7;position:relative;overflow:hidden;padding-top:12rem;">
+    <div style="position:absolute;top:2rem;right:2rem;font-family:'SF Pro Display',-apple-system,sans-serif;font-weight:700;font-size:clamp(4.8rem,12.8vw,14.4rem);color:rgba(45,45,45,0.07);letter-spacing:-0.04em;user-select:none;line-height:1;pointer-events:none;z-index:0;">Compliance</div>
+
+    <div class="comp-header" style="position:relative;z-index:1;">
+        <div>
+            <span class="section-tag" style="font-family:'SF Mono',Menlo,monospace;font-size:0.65rem;color:#6B7B3A;letter-spacing:0.2em;text-transform:uppercase;display:block;margin-bottom:1.25rem;">CRM Compliance</span>
+            <h2 class="comp-title">Audit-ready.<br>Always.</h2>
+        </div>
+        <div>
+            <p class="comp-sub">We are dedicated to providing superior compliance services, helping control rooms meet every requirement defined in 49 CFR 195.446 and 192.631. Our team has successfully navigated multiple audits from PHMSA &mdash; and we know exactly what they look for.</p>
+            <div class="comp-cred">
+                <strong>Our compliance team has managed CRM programs since the rule was written in 2010.</strong> Purpose-built tooling generates and tracks every deliverable automatically. When the inspector arrives, nothing is scrambled for.
+            </div>
+        </div>
+    </div>
+
+    <div class="checklist-wrap" style="position:relative;z-index:1;">
+        <div class="progress-track" id="progress-col">
+            <div class="progress-line"></div>
+            <div class="progress-fill" id="prog-fill"></div>
+            <div class="reg-label">
+                <span class="reg-ref">49 CFR</span>
+                195.446<br>&amp;<br>192.631
+            </div>
+        </div>
+
+        <div class="checklist" id="checklist">
+            <div class="check-item" id="ci-0"><div class="check-circle" id="cc-0"><svg viewBox="0 0 16 16"><polyline points="2.5,8.5 6,12 13.5,4.5"/></svg></div><div><div class="check-cfr">195.446(b) â€” Written Procedures</div><div class="check-title">Written Control Room Management Procedures</div><div class="check-desc">Each operator must have and follow written procedures that implement all requirements of the CRM rule, revision-controlled and available to controllers during their watch.</div><div class="check-ops" id="co-0">OPS develops, maintains, and tracks revisions to all CRMP documentation with full audit history.</div></div></div>
+
+            <div class="check-item" id="ci-1"><div class="check-circle" id="cc-1"><svg viewBox="0 0 16 16"><polyline points="2.5,8.5 6,12 13.5,4.5"/></svg></div><div><div class="check-cfr">195.446(c) â€” Alarm Management</div><div class="check-title">Alarm Management &amp; ISA-18.2 Rationalization</div><div class="check-desc">Operators must have a program to identify and manage each alarm, reduce unnecessary alarms, and provide controllers with actionable information per API RP 1167 and ISA-18.2.</div><div class="check-ops" id="co-1">OPS performs full ISA-18.2 alarm rationalization, monthly alarm performance reviews, and annual alarm reviews &mdash; documented automatically.</div></div></div>
+
+            <div class="check-item" id="ci-2"><div class="check-circle" id="cc-2"><svg viewBox="0 0 16 16"><polyline points="2.5,8.5 6,12 13.5,4.5"/></svg></div><div><div class="check-cfr">195.446(d) â€” Change Management</div><div class="check-title">Management of Change for SCADA &amp; Systems</div><div class="check-desc">Whenever a SCADA system is added, expanded, or replaced, operators must implement API RP 1165 for display design and conduct point-to-point verification between SCADA displays and field equipment.</div><div class="check-ops" id="co-2">OPS manages all SCADA changes through a documented MOC process, including point-to-point verification with full sign-off documentation.</div></div></div>
+
+            <div class="check-item" id="ci-3"><div class="check-circle" id="cc-3"><svg viewBox="0 0 16 16"><polyline points="2.5,8.5 6,12 13.5,4.5"/></svg></div><div><div class="check-cfr">195.446(e) â€” Fatigue Management</div><div class="check-title">Controller Fatigue Management</div><div class="check-desc">Operators must develop a fatigue management plan and educate controllers on the effects of fatigue. Shift scheduling must be designed to reduce fatigue-related errors in human performance.</div><div class="check-ops" id="co-3">OPS tracks controller hours, enforces fatigue management protocols on every shift, and documents compliance in the shift log &mdash; automatically.</div></div></div>
+
+            <div class="check-item" id="ci-4"><div class="check-circle" id="cc-4"><svg viewBox="0 0 16 16"><polyline points="2.5,8.5 6,12 13.5,4.5"/></svg></div><div><div class="check-cfr">195.446(f) â€” Training</div><div class="check-title">Controller Training &amp; Qualification</div><div class="check-desc">Each operator must establish and implement a controller training program. Controllers must be qualified per API RP 1168 and retrained whenever systems or procedures change.</div><div class="check-ops" id="co-4">All OPS controllers are API RP 1168 qualified. Training records are updated whenever a SCADA change or procedure revision occurs.</div></div></div>
+
+            <div class="check-item" id="ci-5"><div class="check-circle" id="cc-5"><svg viewBox="0 0 16 16"><polyline points="2.5,8.5 6,12 13.5,4.5"/></svg></div><div><div class="check-cfr">195.446(g) â€” Shift Handover</div><div class="check-title">Shift Handover &amp; Documentation</div><div class="check-desc">Operators must implement procedures for when a different controller assumes responsibility, including a briefing on system status, recent events, and outstanding items.</div><div class="check-ops" id="co-5">OPS follows a structured handover protocol on every shift change &mdash; documented, timestamped, and retained in the compliance record.</div></div></div>
+
+            <div class="check-item" id="ci-6"><div class="check-circle" id="cc-6"><svg viewBox="0 0 16 16"><polyline points="2.5,8.5 6,12 13.5,4.5"/></svg></div><div><div class="check-cfr">195.446(h) â€” Backup SCADA</div><div class="check-title">Backup SCADA &amp; Communication Systems</div><div class="check-desc">Operators must test backup SCADA systems at least once each calendar year, test internal communication plans annually, and verify that backup systems can adequately support operations during an outage.</div><div class="check-ops" id="co-6">OPS maintains hot-standby backup SCADA, conducts annual tests with documented outcomes, and verifies communication plans every 15 months.</div></div></div>
+
+            <div class="check-item" id="ci-7"><div class="check-circle" id="cc-7"><svg viewBox="0 0 16 16"><polyline points="2.5,8.5 6,12 13.5,4.5"/></svg></div><div><div class="check-cfr">195.446(i) â€” Annual Review</div><div class="check-title">Annual CRM Program Review</div><div class="check-desc">Operators must conduct an annual review of the CRM program to determine effectiveness, identify deficiencies, and document any changes made, signed by senior management.</div><div class="check-ops" id="co-7">OPS prepares the annual CRM review report, documents all findings, and coordinates management sign-off &mdash; every calendar year without exception.</div></div></div>
+        </div>
+    </div>
+
+    <div class="comp-closing" id="comp-closing">
+        <span class="comp-closing-tag">OPS covers all of this. Every item. Every year.</span>
+        <h2 class="comp-closing-statement">When the inspector arrives,<br>we're <em>already ready.</em></h2>
+        <p class="comp-closing-sub">We've managed CRM compliance since the rule was written. Our team has navigated PHMSA audits directly &mdash; and our purpose-built tooling means the documentation was never scrambled for.</p>
+        <a href="#contact" class="comp-closing-cta">Talk to Our Compliance Team</a>
+    </div>
+</section>
+
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<!-- CASE STUDY â€” UPGRADED: KINETIC STATS                       -->
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section id="case-study" style="position:relative;background:#0d0d0d;overflow:hidden;padding-top:12rem;">
+    <div style="position:absolute;inset:0;background:url('images/pipeline-aerial.jpg') center/cover no-repeat;background-attachment:fixed;opacity:0.35;"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(17,17,17,0.3) 0%,rgba(17,17,17,0.85) 100%);"></div>
+    <div style="position:absolute;top:2rem;right:2rem;font-family:'SF Pro Display',-apple-system,sans-serif;font-weight:700;font-size:clamp(4.8rem,12.8vw,14.4rem);color:rgba(255,255,255,0.07);letter-spacing:-0.04em;user-select:none;line-height:1;pointer-events:none;z-index:0;">Case Study</div>
+
+    <div style="position:relative;z-index:2;text-align:center;max-width:80rem;margin:0 auto;padding:0 3rem 2.5rem;">
+        <span class="section-tag" style="display:block;text-align:center;font-family:'SF Mono',Menlo,monospace;font-size:0.7rem;color:#6B7B3A;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:1.25rem;">Case Study</span>
+        <h2 id="cs-title" class="case-title">Managed SCADA Operations for a<br>Major Midstream Operator</h2>
+        <p id="cs-sub" class="case-sub-text" style="margin-top:1.25rem;">How OPS manages full-spectrum SCADA operations and compliance for a major midstream pipeline operator across a multi-state gathering system.</p>
+    </div>
+
+    <div class="stats-grid" id="stats-grid" style="position:relative;z-index:2;">
+        <div class="stat-block" id="stat-0">
+            <span class="stat-num accent" id="n-sites">0</span>
+            <div class="stat-divider"></div>
+            <div class="stat-label">Sites Monitored</div>
+            <div class="stat-desc">Remote pipeline, gathering, and terminal locations across multiple states</div>
+        </div>
+        <div class="stat-block" id="stat-1">
+            <span class="stat-num" id="n-alarms">0</span>
+            <div class="stat-divider"></div>
+            <div class="stat-label">Alarms Rationalized</div>
+            <div class="stat-desc">ISA-18.2 review, classification, and documentation for every alarm point</div>
+        </div>
+        <div class="stat-block" id="stat-2">
+            <span class="stat-num" id="n-docs">0</span>
+            <div class="stat-divider"></div>
+            <div class="stat-label">Compliance Documents</div>
+            <div class="stat-desc">Revision-controlled, audit-ready, maintained with full lifecycle tracking</div>
+        </div>
+        <div class="stat-block" id="stat-3">
+            <span class="stat-num accent">24<span class="stat-suffix">/7</span></span>
+            <div class="stat-divider"></div>
+            <div class="stat-label">Coverage</div>
+            <div class="stat-desc">Continuous monitoring with no gaps â€” every hour, every day, every year</div>
+        </div>
+        <div class="stat-block" id="stat-4">
+            <span class="stat-num accent" id="n-proto">0</span><span style="font-family:'SF Pro Display',sans-serif;font-size:clamp(3.5rem,5vw,6rem);font-weight:700;color:#8A9B55;letter-spacing:-0.04em;line-height:1;">+</span>
+            <div class="stat-divider"></div>
+            <div class="stat-label">Protocols Supported</div>
+            <div class="stat-desc">SCADA, RTU, PLC, and communications protocols across heterogeneous systems</div>
+        </div>
+    </div>
+
+    <div class="cs-narrative" id="cs-narrative">
+        <p>OPS serves as the dedicated control room for a major midstream pipeline and gathering operator running Ignition SCADA across dozens of remote sites handling <strong>crude oil, produced water, and natural gas.</strong></p>
+        <p>This is more than a contract â€” it is a continuous, evolving partnership where OPS automation engineering, compliance, and control room operations function as <strong>a single integrated team</strong> alongside the customer. New sites onboard without scheduling delays. Monthly compliance reports generate automatically. When an inspector arrives, the documentation is already done.</p>
+        <a href="case-study-midstream.html" class="cs-narrative-cta">Read the Full Case Study â†’</a>
+    </div>
+</section>
+
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<!-- TESTIMONIALS                                                -->
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section id="testimonials" class="ops-section" data-theme="dark" style="position:relative;">
+    <div style="position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:flex-end;overflow:hidden;pointer-events:none;z-index:2;padding-top:2rem;padding-right:2rem;"><span style="font-family:'SF Pro Display',-apple-system,sans-serif;font-weight:700;font-size:clamp(4.8rem,12.8vw,14.4rem);color:rgba(255,255,255,0.07);letter-spacing:-0.04em;white-space:nowrap;user-select:none;line-height:1;">Clients</span></div>
+    <div class="section-inner max-w-5xl">
+        <div class="section-header">
+            <p class="section-tag">What Our Clients Say</p>
+            <h2 class="section-title">Trusted by operators.</h2>
+            <p class="section-subtitle">From the people who depend on us every day.</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-12">
+            <div class="ops-quote" data-animate="fade-up">
+                <div class="text-olive mb-6"><i data-lucide="quote" class="w-10 h-10"></i></div>
+                <blockquote class="theme-text-secondary text-lg leading-relaxed mb-8 italic">"We are very happy with our decision to switch from our previous control room provider to OPS. Highly skilled in control center operations, and we know the OPS team can be trusted with our assets. We are certainly satisfied with the level of service they provide."</blockquote>
+                <div class="border-t border-white/10 pt-6">
+                    <p class="font-display font-semibold text-white">Dave Brazeal</p>
+                    <p class="theme-text-muted text-sm">VP of Operations and Construction, Taproot Energy Partners</p>
+                </div>
+            </div>
+            <div class="ops-quote" data-animate="fade-up">
+                <div class="text-olive mb-6"><i data-lucide="quote" class="w-10 h-10"></i></div>
+                <blockquote class="theme-text-secondary text-lg leading-relaxed mb-8 italic">"I've trusted this team on automation projects well before OPS existed, and I consider them a dependable resource. They've always been solid &mdash; technically strong, responsive, and easy to work with."</blockquote>
+                <div class="border-t border-white/10 pt-6">
+                    <p class="font-display font-semibold text-white">Travis Cundiff</p>
+                    <p class="theme-text-muted text-sm">VP of Operations, NGL Crude Terminals</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- HOW WE WORK -->
+<section id="how-we-work" class="ops-section" data-theme="light" style="position:relative;">
+    <div style="position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:flex-end;overflow:hidden;pointer-events:none;z-index:2;padding-top:2rem;padding-right:2rem;"><span style="font-family:'SF Pro Display',-apple-system,sans-serif;font-weight:700;font-size:clamp(4.8rem,12.8vw,14.4rem);color:rgba(45,45,45,0.07);letter-spacing:-0.04em;white-space:nowrap;user-select:none;line-height:1;">Process</span></div>
+    <div class="section-inner">
+        <div class="section-header">
+            <p class="section-tag">How We Work</p>
+            <h2 class="section-title">Not just a vendor.<br>A partner.</h2>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="value-block" data-animate="fade-up"><div class="w-12 h-12 rounded-xl bg-olive/10 flex items-center justify-center mb-4"><i data-lucide="handshake" class="w-6 h-6 text-olive"></i></div><h3 class="font-display font-semibold text-lg mb-2 text-charcoal">We Work With You</h3><p class="text-charcoal/60 text-sm leading-relaxed">We don't hand you a system and walk away. We operate it with you, improve it with you, and adapt it as your operation changes.</p></div>
+            <div class="value-block" data-animate="fade-up"><div class="w-12 h-12 rounded-xl bg-steel-10 flex items-center justify-center mb-4"><i data-lucide="clock" class="w-6 h-6 text-steel"></i></div><h3 class="font-display font-semibold text-lg mb-2 text-charcoal">Integrated Operations &amp; Engineering</h3><p class="text-charcoal/60 text-sm leading-relaxed">When something needs to change, it moves through the process without scheduling delays â€” because the team monitoring your systems is the same team making the change.</p></div>
+            <div class="value-block" data-animate="fade-up"><div class="w-12 h-12 rounded-xl bg-steel-10 flex items-center justify-center mb-4"><i data-lucide="layers" class="w-6 h-6 text-steel"></i></div><h3 class="font-display font-semibold text-lg mb-2 text-charcoal">We've Seen It Before</h3><p class="text-charcoal/60 text-sm leading-relaxed">Four decades across 20+ industries means we've encountered most problems in some form already.</p></div>
+            <div class="value-block" data-animate="fade-up"><div class="w-12 h-12 rounded-xl bg-copper-10 flex items-center justify-center mb-4"><i data-lucide="wrench" class="w-6 h-6 text-copper"></i></div><h3 class="font-display font-semibold text-lg mb-2 text-charcoal">We Build What You Need</h3><p class="text-charcoal/60 text-sm leading-relaxed">If the tool doesn't exist, we build it. Our platform grew entirely from real operational needs.</p></div>
+            <div class="value-block" data-animate="fade-up"><div class="w-12 h-12 rounded-xl bg-olive/10 flex items-center justify-center mb-4"><i data-lucide="shield-check" class="w-6 h-6 text-olive"></i></div><h3 class="font-display font-semibold text-lg mb-2 text-charcoal">We Keep You Audit-Ready</h3><p class="text-charcoal/60 text-sm leading-relaxed">Compliance isn't a project we finish â€” it's a state we maintain. When an inspector arrives, the answer is already on the screen.</p></div>
+            <div class="value-block" data-animate="fade-up"><div class="w-12 h-12 rounded-xl bg-steel-10 flex items-center justify-center mb-4"><i data-lucide="trending-up" class="w-6 h-6 text-steel"></i></div><h3 class="font-display font-semibold text-lg mb-2 text-charcoal">We Scale With You</h3><p class="text-charcoal/60 text-sm leading-relaxed">Add sites, add systems, add product streams. Our architecture and tooling are built to grow with your operation without requiring you to grow your own staff proportionally.</p></div>
+        </div>
+    </div>
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact" class="ops-section" data-theme="dark" style="position:relative;">
+    <div style="position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:flex-end;overflow:hidden;pointer-events:none;z-index:2;padding-top:2rem;padding-right:2rem;"><span style="font-family:'SF Pro Display',-apple-system,sans-serif;font-weight:700;font-size:clamp(4.8rem,12.8vw,14.4rem);color:rgba(255,255,255,0.07);letter-spacing:-0.04em;white-space:nowrap;user-select:none;line-height:1;">Contact</span></div>
+    <div class="contact-glow"></div>
+    <div class="section-inner relative max-w-4xl text-center">
+        <div class="section-header">
+            <p class="section-tag">Get Started</p>
+            <h2 class="section-title">Ready to modernize<br>your operations?</h2>
+            <p class="section-subtitle">Whether you need full remote monitoring, compliance support, automation services, or custom tooling &mdash; we'd like to hear from you.</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+            <a href="mailto:info@optimalpipeline.com" class="btn-primary text-lg px-10 py-4"><i data-lucide="mail" class="w-5 h-5 inline-block mr-2 -mt-0.5"></i>info@optimalpipeline.com</a>
+            <a href="tel:8667603933" class="btn-secondary text-lg px-10 py-4"><i data-lucide="phone" class="w-5 h-5 inline-block mr-2 -mt-0.5"></i>866-760-3933</a>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-8 justify-center text-white/40 text-sm">
+            <div><p class="font-medium text-white/60 mb-1">Career Inquiries</p><a href="mailto:careers@optimalpipeline.com" class="hover:text-olive transition">careers@optimalpipeline.com</a><span class="mx-2">|</span><a href="tel:14054077846" class="hover:text-olive transition">405-407-7846</a></div>
+        </div>
+    </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="bg-midnight border-t border-white/5 py-12">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid md:grid-cols-3 gap-8 items-start">
+            <div class="flex flex-col items-center">
+                <div class="mb-3"><img src="images/logo.png" alt="Optimal Pipeline Solutions" class="h-8 w-auto" style="background:rgba(255,255,255,0.85);border-radius:6px;padding:3px 10px;"></div>
+                <p class="text-white/40 text-sm">Automation | Remote Monitoring | Compliance</p>
+            </div>
+            <div class="text-center text-white/40 text-sm space-y-3">
+                <div><p class="font-medium text-white/60">Stillwater, Oklahoma</p><p>203 E 80th Street, Stillwater, OK 74074</p></div>
+                <div><p class="font-medium text-white/60">Kansas City, Missouri</p><p>7505 NW Tiffany Springs Pkwy, STE 540, Kansas City, MO 64153</p></div>
+            </div>
+            <div class="text-right">
+                <div class="flex flex-wrap justify-end gap-x-6 gap-y-2">
+                    <a href="#services" class="text-white/40 hover:text-white transition text-sm">Services</a>
+                    <a href="#control-room" class="text-white/40 hover:text-white transition text-sm">Control Room</a>
+                    <a href="#about-ops" class="text-white/40 hover:text-white transition text-sm">About</a>
+                    <a href="#automation" class="text-white/40 hover:text-white transition text-sm">Projects</a>
+                    <a href="#compliance" class="text-white/40 hover:text-white transition text-sm">Compliance</a>
+                    <a href="#case-study" class="text-white/40 hover:text-white transition text-sm">Case Study</a>
+                    <a href="#contact" class="text-white/40 hover:text-white transition text-sm">Contact</a>
+                </div>
+            </div>
+        </div>
+        <p class="text-white/30 text-sm text-center mt-8">&copy; 2026 Optimal Pipeline Solutions. All rights reserved.</p>
+    </div>
+</footer>
+
+
+<!-- Load main.js for nav, hero, and data-animate sections -->
+<script src="js/main.js"></script>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// â”€â”€ UPGRADE 1: Magazine Spread animations â”€â”€
+document.querySelectorAll('.mag-row').forEach(function(row) {
+    var visual  = row.querySelector('.mag-visual');
+    var content = row.querySelector('.mag-content');
+    var isRev   = row.classList.contains('reversed');
+    if (!visual || !content) return;
+    gsap.fromTo(visual,
+        { opacity:0, x: isRev ? 60 : -60 },
+        { opacity:1, x:0, duration:0.9, ease:'power3.out', scrollTrigger:{ trigger:row, start:'top 72%' } }
+    );
+    gsap.fromTo(content,
+        { opacity:0, x: isRev ? -60 : 60 },
+        { opacity:1, x:0, duration:0.9, ease:'power3.out', delay:0.1, scrollTrigger:{ trigger:row, start:'top 72%' } }
+    );
+});
+
+// â”€â”€ UPGRADE 2: Compliance checklist animations â”€â”€
+(function() {
+    var items = document.querySelectorAll('.check-item');
+    var TOTAL = items.length;
+
+    gsap.fromTo('.comp-header',
+        { opacity:0, y:30 },
+        { opacity:1, y:0, duration:1, ease:'power3.out', scrollTrigger:{ trigger:'.comp-header', start:'top 80%' } }
+    );
+
+    items.forEach(function(item, i) {
+        var circle  = document.getElementById('cc-' + i);
+        var svg     = circle ? circle.querySelector('svg') : null;
+        var opsNote = document.getElementById('co-' + i);
+
+        ScrollTrigger.create({
+            trigger: item,
+            start: 'top 62%',
+            once: true,
+            onEnter: function() {
+                gsap.fromTo(item, { opacity:0, x:-20 }, { opacity:1, x:0, duration:0.55, ease:'power2.out' });
+                setTimeout(function() {
+                    if (circle) circle.classList.add('checked');
+                    if (svg) gsap.fromTo(svg, { opacity:0, scale:0.3 }, { opacity:1, scale:1, duration:0.4, ease:'back.out(1.8)' });
+                    if (opsNote) gsap.fromTo(opsNote, { opacity:0, x:-8 }, { opacity:1, x:0, duration:0.4, ease:'power2.out', delay:0.15 });
+                }, 200);
+                var prog = ((i + 1) / TOTAL) * 100;
+                gsap.to('#prog-fill', { height: prog + '%', duration:0.6, ease:'power2.out' });
+            }
+        });
+    });
+
+    gsap.fromTo('#comp-closing',
+        { opacity:0, y:30 },
+        { opacity:1, y:0, duration:1, ease:'power3.out', scrollTrigger:{ trigger:'#comp-closing', start:'top 80%' } }
+    );
+})();
+
+// â”€â”€ UPGRADE 3: Kinetic stats animations â”€â”€
+(function() {
+    gsap.fromTo('#cs-title', { opacity:0, y:30 }, { opacity:1, y:0, duration:1, ease:'power3.out', scrollTrigger:{ trigger:'#cs-title', start:'top 85%' } });
+    gsap.fromTo('#cs-sub',   { opacity:0, y:20 }, { opacity:1, y:0, duration:0.9, ease:'power3.out', delay:0.15, scrollTrigger:{ trigger:'#cs-sub', start:'top 85%' } });
+
+    function animateCounter(el, target, duration) {
+        if (!el) return;
+        var obj = { val: 0 };
+        gsap.to(obj, { val:target, duration:duration, ease:'power2.out',
+            onUpdate: function() { el.textContent = Math.round(obj.val).toLocaleString(); }
+        });
+    }
+
+    ScrollTrigger.create({
+        trigger: '#stats-grid',
+        start: 'top 75%',
+        once: true,
+        onEnter: function() {
+            gsap.fromTo('.stat-block', { opacity:0, y:50 }, { opacity:1, y:0, duration:0.8, stagger:0.12, ease:'power3.out' });
+            setTimeout(function() { animateCounter(document.getElementById('n-sites'),  149,   1.8); }, 100);
+            setTimeout(function() { animateCounter(document.getElementById('n-alarms'), 15485, 2.2); }, 200);
+            setTimeout(function() { animateCounter(document.getElementById('n-docs'),   265,   1.6); }, 300);
+            setTimeout(function() { animateCounter(document.getElementById('n-proto'),  10,    1.2); }, 400);
+        }
+    });
+
+    gsap.fromTo('#cs-narrative', { opacity:0, y:30 }, { opacity:1, y:0, duration:1, ease:'power3.out', scrollTrigger:{ trigger:'#cs-narrative', start:'top 80%' } });
+})();
+
+// â”€â”€ Control Room: live data fluctuation â”€â”€
+(function() {
+
+    // Live data fluctuation
+    function cr_fluc(id, base, range, dec) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        setInterval(function() {
+            var v = base + (Math.random() * range * 2 - range);
+            el.textContent = dec > 0 ? v.toFixed(dec) : Math.round(v).toString();
+        }, 2500 + Math.random() * 1500);
+    }
+    // Crude #1
+    cr_fluc('cr1-h2s',    0.25,  0.08, 2);
+    cr_fluc('cr1-pit101', 0.62,  0.12, 2);
+    cr_fluc('cr1-fit160', 400.2, 4.5,  1);
+    cr_fluc('cr1-dens',   42.48, 0.06, 2);
+    cr_fluc('cr1-pit162', 34.89, 0.8,  2);
+    cr_fluc('cr1-tit161', 104.2, 0.5,  1);
+    cr_fluc('cr1-pit202', 297.6, 1.2,  1);
+    cr_fluc('cr1-pit203', 289.8, 1.1,  1);
+    // Crude #2
+    cr_fluc('cr2-pit101', 1.3,   0.15, 2);
+    cr_fluc('cr2-fit160', 42.3,  1.8,  1);
+    cr_fluc('cr2-dens',   42.39, 0.06, 2);
+    cr_fluc('cr2-pit162', 48.2,  0.9,  1);
+    cr_fluc('cr2-tit161', 90.1,  0.4,  1);
+    cr_fluc('cr2-pit202', 295.3, 1.1,  1);
+    cr_fluc('cr2-pit203', 295.3, 1.0,  1);
+})();
+
+// â”€â”€ Hero: ember trail â”€â”€
+(function () {
+  var canvas = document.getElementById('ops-particle-canvas');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var W, H;
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  var embers = [], MAX = 28, lastX = -999, lastY = -999;
+  var hero = document.getElementById('hero');
+
+  window.addEventListener('mousemove', function (e) {
+    if (!hero) return;
+    var r = hero.getBoundingClientRect();
+    if (e.clientY < r.top || e.clientY > r.bottom) return;
+    var dx = e.clientX - lastX, dy = e.clientY - lastY;
+    if (dx*dx + dy*dy < 64) return; // skip tiny jitter
+    lastX = e.clientX; lastY = e.clientY;
+    var spawn = 2 + Math.floor(Math.random() * 2);
+    for (var i = 0; i < spawn; i++) {
+      if (embers.length >= MAX) break;
+      var angle = Math.random() * Math.PI * 2;
+      var spd   = 0.9 + Math.random() * 1.6;
+      embers.push({
+        x:  e.clientX + (Math.random() - 0.5) * 8,
+        y:  e.clientY + (Math.random() - 0.5) * 8,
+        vx: Math.cos(angle) * spd * 0.55,
+        vy: Math.sin(angle) * spd - 1.4,   // bias upward
+        life: 1.0,
+        decay: 0.020 + Math.random() * 0.022,
+        sz:  1.0 + Math.random() * 2.0,
+        hu:  24 + Math.random() * 26        // amber â†’ gold
+      });
+    }
+  });
+
+  function frame() {
+    ctx.clearRect(0, 0, W, H);
+    for (var i = embers.length - 1; i >= 0; i--) {
+      var p = embers[i];
+      p.vy  += 0.07;          // gravity
+      p.vx  *= 0.97;          // light air drag
+      p.x   += p.vx;
+      p.y   += p.vy;
+      p.life -= p.decay;
+      if (p.life <= 0) { embers.splice(i, 1); continue; }
+
+      var al = p.life;
+      // soft outer glow
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.sz * 3.0, 0, 6.28318);
+      ctx.fillStyle = 'hsla(' + (p.hu + 8) + ',90%,62%,' + (al * 0.28) + ')';
+      ctx.fill();
+      // bright core
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.sz, 0, 6.28318);
+      ctx.fillStyle = 'hsla(' + p.hu + ',98%,82%,' + al + ')';
+      ctx.fill();
+    }
+    requestAnimationFrame(frame);
+  }
+  frame();
+})();
+</script>
+
+</body>
+</html>
