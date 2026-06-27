@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<!--
+═══════════════════════════════════════════════════════════════════════════════
+  Title:            OPS Website — Site Upgrade Concept
+  Audience:         Engineering / Design Reference
+  Author:           Chris Babb
+  Date:             2026-06-22
+═══════════════════════════════════════════════════════════════════════════════
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OPS Website — Site Upgrade Concept</title>
+<style>
+  :root {
+    --olive: #969977;
+    --olive-light: #E9EBE1;
+    --olive-bg: #f4f5ef;
+    --charcoal: #4E4E4F;
+    --charcoal-light: #6B6B6C;
+    --logo-gray: #8C8C84;
+    --blue: #1f3864;
+    --blue-light: #e3eaf5;
+    --blue-bg: #f0f4fa;
+    --amber: #c47a00;
+    --amber-light: #fdf3e7;
+    --steel: #4A7FA5;
+    --steel-light: #e8f1f8;
+    --copper: #C4633A;
+    --copper-light: #faf0eb;
+    --white: #ffffff;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-400: #9ca3af;
+    --gray-600: #4b5563;
+    --shadow: rgba(0,0,0,0.06);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--white);
+    color: var(--charcoal);
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 48px 36px 72px;
+    line-height: 1.6;
+  }
+
+  /* ── Letterhead ───────────────────────── */
+  .letterhead {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 36px;
+    padding-bottom: 18px;
+    border-bottom: 2px solid var(--gray-200);
+  }
+  .letterhead .logo-block { flex-shrink: 0; }
+  .letterhead .logo-block img { height: 52px; width: auto; display: block; }
+  .letterhead .company-info { flex: 1; }
+  .letterhead .company-name {
+    font-size: 15px; font-weight: 700; color: var(--charcoal); margin-bottom: 2px;
+  }
+  .letterhead .company-tagline {
+    font-size: 12px; color: var(--charcoal-light); margin-bottom: 2px;
+  }
+  .letterhead .company-website {
+    font-size: 11px; color: var(--logo-gray);
+  }
+  .letterhead .offices {
+    display: flex; gap: 32px; flex-shrink: 0; text-align: right;
+  }
+  .letterhead .office {
+    font-size: 11px; line-height: 1.5; color: var(--charcoal-light);
+  }
+  .letterhead .office .city {
+    font-weight: 700; color: var(--charcoal);
+    font-size: 11.5px; margin-bottom: 1px;
+  }
+
+  /* ── Hero ─────────────────────────────── */
+  .hero {
+    text-align: center;
+    margin-bottom: 36px;
+    padding-bottom: 18px;
+    border-bottom: 3px solid var(--olive);
+  }
+  .hero .doctype {
+    font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--olive); font-weight: 700; margin-bottom: 8px;
+  }
+  .hero h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 6px;
+  }
+  .hero .tagline {
+    font-size: 15px;
+    color: var(--gray-600);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .hero .meta {
+    font-size: 13px; color: var(--gray-600);
+  }
+
+  /* ── Section headers ──────────────────── */
+  h2 {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--blue);
+    margin: 44px 0 14px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--blue-light);
+  }
+  h2 .sec-num {
+    display: inline-block;
+    width: 26px; height: 26px;
+    line-height: 26px;
+    text-align: center;
+    border-radius: 50%;
+    background: var(--blue);
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 700;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin: 18px 0 6px;
+  }
+
+  /* ── Body text ────────────────────────── */
+  p { margin-bottom: 12px; color: #444; }
+  p.lead { font-size: 15px; }
+
+  ul, ol { margin: 6px 0 14px 24px; color: #444; }
+  li { margin-bottom: 5px; }
+
+  /* ── Status badge ─────────────────────── */
+  .status-row {
+    display: flex; gap: 12px; flex-wrap: wrap; margin: 16px 0 24px;
+  }
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 12px; border-radius: 20px;
+    font-size: 12px; font-weight: 600;
+  }
+  .badge-green { background: #d1fae5; color: #065f46; }
+  .badge-amber { background: var(--amber-light); color: var(--amber); }
+  .badge-blue  { background: var(--blue-light); color: var(--blue); }
+  .badge-gray  { background: var(--gray-100); color: var(--gray-600); }
+
+  /* ── Info/decision boxes ──────────────── */
+  .box {
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 14px 0;
+    font-size: 14px;
+  }
+  .box-blue  { background: var(--blue-bg);   border-left: 4px solid var(--blue); }
+  .box-amber { background: var(--amber-light); border-left: 4px solid var(--amber); }
+  .box-olive { background: var(--olive-bg);   border-left: 4px solid var(--olive); }
+  .box-steel { background: var(--steel-light); border-left: 4px solid var(--steel); }
+  .box p:last-child { margin-bottom: 0; }
+
+  /* ── Comparison table ─────────────────── */
+  .compare {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 13.5px;
+  }
+  .compare th {
+    background: var(--blue);
+    color: var(--white);
+    padding: 8px 12px;
+    text-align: left;
+    font-weight: 600;
+  }
+  .compare td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--gray-200);
+    vertical-align: top;
+  }
+  .compare tr:nth-child(even) td { background: var(--gray-50); }
+  .compare tr:hover td { background: var(--blue-light); }
+
+  /* ── Color swatches ───────────────────── */
+  .palette {
+    display: flex; gap: 12px; flex-wrap: wrap; margin: 14px 0;
+  }
+  .swatch {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 14px; border-radius: 8px;
+    border: 1px solid var(--gray-200);
+    font-size: 13px;
+  }
+  .swatch .dot {
+    width: 22px; height: 22px; border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .swatch .label { font-weight: 600; color: var(--charcoal); }
+  .swatch .hex   { color: var(--gray-600); font-family: monospace; font-size: 12px; }
+
+  /* ── Code blocks ──────────────────────── */
+  pre {
+    background: #1e2533;
+    color: #e2e8f0;
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 12.5px;
+    overflow-x: auto;
+    margin: 12px 0 16px;
+    line-height: 1.55;
+  }
+
+  /* ── Print ────────────────────────────── */
+  @media print {
+    body { padding: 20px; }
+    pre { font-size: 11px; }
+    h2 { page-break-before: auto; }
+    .box { border: 1px solid #ccc; }
+  }
+</style>
+</head>
+<body>
+
+<div class="letterhead">
+  <div class="logo-block">
+    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwMDAwYEBAMFBwYHBwcGBwcICQsJCAgKCAcHCg0KCgsMDAwMBwkODw0MDgsMDAz/2wBDAQICAgMDAwYDAwYMCAcIDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAz/wAARCABMAKUDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9/Kw/iPaa1qXhC6tdAkgt9SvMQJcTMQtqrHDy4HJZVyQBjJxzW5RQB4ZY/Dn4paT4VbQYNRgjtbWwlggu478tM7BbkRjc6s+5i8BLsxIEQHUk1bk8DfFIy3UNvrkltZqPKiaS6illeNRmMqTF8r/KEdm3bi5YABRXtFFR7MDxmPwP8VIbyzt28Qm4to5meS582JHI+XIZRF8wbBChcbd5JJwKp6P8Nvido9vp4g1QrJ5VtHPLPepNMGiSIkysYz5iMzXI2rg8xnOAa9ovtdsdMfbc3lrbt6Syqh/U1X/4TLR/+grpv/gSn+NHs0B5ynw78eXvhJbfUNaa8vv7c0u+DecIwkEUkElygKKvynbKoQ5yAMn5qyvGHwo+IEnxA1vX9J1RY21BjFbQrclfs0AaBOFb5GZo0kYZA2MxOSTx63/wmWj/APQV03/wJT/Gj/hMtH/6Cum/+BKf40+XSwHmLeA/ieNZS4j8UFoo5E2RS+V5bqrIP3gWPPzKrswUjJkAGNtZsvgL4rS2ltdf2xML2GK4KRG9jKxyMLdfnCxqsgOLlkHSMtGCTgmvYP8AhMtH/wCgrpv/AIEp/jXkn7efx5uvhD+xp8SvFHhPXtPs/EmhaDcXmnTq8U5imVcqdjZVvoQc0uQDT8afDbxxqsXg+TTta/07QY99xcXM237RLIyI/mJGNsgSIykAjBYL9axvDXws+J3hixh0+z1wx28MLgTzXYuCTKzF9wdCzSqz7wxbbtQKF5Nfmt+yf/wVg+PXxL0GabW/G0V3ImqR24b+yLSPEZCZHyxj1PNfsgviKwx/x/Wf/f5f8aXKmwPHbv4ZfEpr23vU1ktfWqSJE/2pU8zEU5h88BMSKJJVBAAzsBxVofD34jalpLJeat5ixvG0FrNPG+5fPeRhO6xjeyosSArgfOx5wCfWP+Eh0/8A5/rP/v8AL/jR/wAJDp//AD/Wf/f5f8aORAeNW2lfFDRPHHh/TrrUtQ1Kxnu0mubqJY/LijHlmYSt5YG1tkgRQQw8wHJxWvq/w08VPoGqW5ZtQhvPFkupS2g1F4WudOZflhEn8GH2sUGAVUjPNenf8JDp/wDz/Wf/AH+X/Gj/AISHT/8An+s/+/y/41XKrWA8jn8B/FDGoQWesR6babmjtkS4STy0QTGHyy0ZKrjyEbeWYkO2RxVSXwz8VrjW7nTY9Wmkt7ON3W7uGiSK63mbCHEeWO0R/d27N3OcCvZ/+Eh0/wD5/rP/AL/L/jR/wkOn/wDP9Z/9/l/xqeRdwPF9M+GHxM8MrHaaXqNra2kMchj23ClM7JUQOrRlmPy2xzuAAVxyTWhdeD/ilaWl5DDrTXTxxsLKdp4Vb5rht3mr5Y3P5G0oQVVWznPWvWP+Eh0//n+s/wDv8v8AjR/wkOn/APP9Z/8Af5f8aORdwIvCNheaX4X0+31C6mvr6GBFnnlCh5XxyTtAXOfSirEOs2dxny7q2k29dsqnH60VoBZoor5H/wCCvn/BQ/8A4YS+AUcOgyQyfELxh5lpocbgMLJVA828de4jDAKDwzso5AagBn/BRX/gr/4E/YSWTw/axr4x+Ikke9NEtpgkdgCMq93Lg+WD1CAF2HYAhq/Ir9o7/grR8ef2mdQuP7U8c6h4d0mYkLpPh12061RD/CzIfNk+ruc18867rt94o1y81TVLy61LUtSne5u7u5kMk1zK5yzux5ZiTkk1654F+DXhz4wfsf8AinXNJm+x/Eb4Y3P9o6nZGT5dd0KZkQ3CL2ltZTh8cGKQE8gGgDyof2x4xmupDLqmrSWsD3ly8k0k7RRJy8jFiSFGRknpms7H+03/AH0a9p/Yp+Jnh34ZX/xUk8SGLy9c+G2taPp4cZ8y8mWIRIv+0SCR/u1yf7LvwFuf2lPjbofg+PULfR7S88y51TVbggQ6TYQIZbm6csQMJErEZOC20d6AOCx/tN/30aMf7Tf99Guo+Nt94X1H4ueIpPA9rcWfg5L14dFS4cvNJax4SOWQn/lpIF8xunLkYHStP9mi4+H8fxt0GL4pWOp3ngW8nFtqb6feNa3Fir/KLlWUHcIzhmXHK7u+KAOEx/tN/wB9GjH+03/fRr90rD/g3t/Zt1SxhurZfGlxb3EayxSx+InZJEYZDAhcEEEEEV5l+25/wQ8+B/wC/ZH+IfjTw3a+MW17w1ok9/YCfWXnj85Fyu5NvzD270AfBn7Fn/JPdW/7CX/tNK9ix7t+deU/sPaLcTeD7yGW0vFWbWERswuvBWMHt71+xQ/4JO/CQj/U+JP/AAat/hXPKLlJ2A/MvHu350Y92/Ov00/4dOfCT/nj4k/8Grf4Uf8ADpz4Sf8APHxJ/wCDVv8ACj2TA/MvHu350Y92/Ov00/4dOfCT/nj4k/8ABq3+FH/Dpz4Sf88fEn/g1b/Cj2TA/MvHu350Y92/Ov00/wCHTnwk/wCePiT/AMGrf4Uf8OnPhJ/zx8Sf+DVv8KPZMD8y8e7fnRj3b86/TT/h058JP+ePiT/wat/hR/w6c+En/PHxJ/4NW/wo9kwPlH9gb/XeLvvdLLv/ANfFFfbXwt/YD+H/AMH2vzo8etL/AGl5fneffmT7m/bjjj75orSMWlYD55+Av/BY06t+3t4s+A/jLw7cS30fjG+0Pw7rGloCjxJI/lpdRkgqVRSPMTIIAyoOSfzN/wCCwf7RNx+0b+3743uftBl0nwncHw1paBsokVsSsjL/AL8xlb3yPSvdP2WdJh1b/g4x8RCfGLXxj4juY8/31huMfzNfB3idh4m+K+sNfX0Nj/aGtXT3F3OrukBedyzsEDOQMkkKCfatAPQvgX4l+DniPwXceFvidoetaBqGWbS/G/h0tPcWbHpHe2TNsuIgejR7ZAMj5uCMT4C/s9eLvj38fYfAnw6lXWtYvnmt0vrWSS3tWtMFZbiRmAZICh+YMM/MFwSQDvfEP9m74f8Ag/4fyatpXx/8BeKNUSPeNGs9G1SG4lP9xXkh25/3to969O/ZY8RXXwb/AOCYfx+8Z+H2e28Ta9rOk+Dpb6Fitxp+nTZkmCsOVEhOwn6dwKAOmvv2Vv2PPgRetoHxC+OPjLxh4ot/3V8/gvTA2m2Ew4ZBIY5PM2nuGJ9h0HO/Hz/gnjp+g/A/Vvip8A/iQPin8ObSL7P4hhjjNrrGiRMQxF1CMF4vlBbKrgLu2lQWHyQiLGgVQFVRgAdq+qP+CMvxG1PwZ/wUA8I6HahrnRfHy3Hh/XdPfLQX9pJbyN+8XodjIGBPTkdCcgHlf7O1t8IdFt73xB8VLrxJri2bbNO8JaCv2ebVXxnfc3rfLbwdsIGkbngAc8J8RPFFn418ZahqWn6DpfhjT7qTNtpOnl2t7KMcKgaRmdzjqzEliSeOg+ifgZ8EfC3/AAn3xP0e60ux1Sz8O+JLnTbGW4TeY4Y5ZUXB+ij8qp/B7xB8MPGvieTwbZ+D42UpIIb67RZHvimSxLfeQkAkYP5V5tXMVCU4qDfLva2xXKfqL/wRb/bGs/Fn/BNyG88WakY2+FtxJoV7cuGkf7MgRrZiACT+7lRBj+5X1p8GPjbof7QfgmbXPD63U2mpcyWYN1D5RlZMZIU5O05HXB9q/H39iT4NeIvCPgb9oHT9D8SS6f4R8NyaZf3emtuY6mlwsgRSRx8mzGT1wK+4P+CY/wANfF95ptj4mt/Fjw+Dre8u4J9Aw22abYB5n937xU/8BqVj5yxEacI+61f7+u+y+8OXS56p+yv8Wfid8Qfil4m03xt4Lg0HRbFWa1nFm0OyQSBVjDMSJQUJbcPQeoFfQFfG/wDwTu+NHi34j/Hrxnp+v+ItV1ixsbSV7eC6m3pCRdBQVH+7x9K4P9nf4hfGH48fFjxV4X0fx5e2cflTtLeXzGf+z4VuNo8leznIXPZc96zw+PUacN5OTdtr6BY/QSivz1+EfxM+NGj/AB51r4U2njCS+1S8nmsHvtRka6TT/LBd7mEv82fLBwp4yw4yM1teAviN8SP2b/219J8E+IvGGoeKLHVLqC3uBcTvLFNHcD5JFDkmN1b0PYjkGrjmsWk3B2vZ7aMOU+8KK+bP2ttJ166+IPmXnxos/hn4W+yRrBaxzBbq4ly298BkYr0H3j06CvNP2NP2kvEWlftPN4DvPGknj/wzqSyx2eoylnO9I/MV0Z/nAIDKykkZ5HvtLHxhVVKS3dr3X5XvYVjuvDn7WnjDU/2+Lr4dyyab/wAI3DeTQqotcT7VtvMHz5/ve3SvqSvg/wAGf8patQ/7CNz/AOkVfeFTl1Sc1U5ne0mvkOQUUUV6JIUUUUAfjT+y98BfiF4z/wCC6vjTxz4b8NX974V8K/EPV01nVmIhtLeOTzonQOxAkkG8HYmW9cV8RftpfCa4+Bf7XPxJ8J3EbR/2T4hu/J3DG+CSQyxMPYxyIfxr+mvTdJtdGhkjs7W3tY5ZXndYYxGHkdizuQOrMxJJ6kkk1+Uf/BxX+w9dTXum/HXw9ZvNBHDHpPipYlyYlU4trs/7Iz5THt+67ZoA/PT9n79kDxl+0ZpOra1pi6XoXg/w8N2r+J9euxY6Rp3faZWBMkmORHGrOcjjkV3n7EX7RXg34LeJPHfw4+IMtxrvwd+J9uNK1m9sYXSWzlhcm11OGNhvHlsScEbtpB2krtPgeo+MNW1fw7Y6PdapqNxo+lsz2dhJcO1rasxyzJFnarE8lgMn1r1P4ZfAnRbL9lLxl8VfF1wyw/aP+Ea8G6asm19X1ZgrTTt3MFrC2444aRkUnsQD2zU/+CH3xK8Y3A1H4U+KPh98U/Bt3+8stYstbitn8o/d86Js7HA+8FLYPp0rsfBPgjwd/wAEaNB1fxb4g8WeHfHH7RGoadLp/hvQdDn+1WfhTzlKPd3MmP8AWAZGCFyMqoIYuPjf4D/BvXPi/N4uj0G7ms38L+Gb7xPdiKVo/PhtQhZPlI+Y7+/oan/ZW8N+CfGvxu0nw/4+vJNH8N+JhJpr6vE21tGuZVxb3jZ4ZEm2bw3BRn5HUAHrf7BlxJeeH/Fs1xJJcTTXsck0jHLSMyMWYn1JJP41L8G/gl4Z+GXiuXxofGGl32kxRymzy6x+SHyCZCTyygkYAzn8qo/CLVbP9j7xr8QPBHju6/s7XtH1c2MqxQvNHK0QZS6lQflbhlPdWBrxf4L/AAV179o34x6L4L8K2f23XvEl6La2Xb8sQJy0zn+GNFy7E9AprxPqdWpXrK7inbpuralX0R+sX/BNr4Zal8bv2Ifjx4s0azllfx9qa2WjRMu2S7t9OjRQQD3eQzAD14r2L/gmr8a9S8JzRfDK98J6xDJPeXV6+oyxvFHajywSkisvDbkwOf4vz7r4l/D8/sQfsJeFfCHgm+1DT08O3Gl6SLmyRPtV0JLlFnZQwK+ZKzuef4nrJsPjN46+E1zps3ixdeuvLtvEeqaVbahdQ29zc2VrbxSQrfRwoUaTJbBUgqDkgniuuWDUasJwduVW73XYL6WOP/4JoeENX8P/ALQ/jm41DSdUsIJrOURyXNrJEkh+1g8FgAeOeO1H/BNjwfrGgftK+OLjUNJ1Sxt5rKdY5bi1kijkJvFIAZgAeOeO1egXn7f+p6LZXUN94Z0t9SuIdJn042Govd2yrqBcKtwyx7ldPLYlUVi2QBXO/ED9pnxJql9fapeRa94cjXwdDcS6TBem2aO5GtpbGeNmQkB06EpkodpANZ08BGHJaXwtv7xXMH4V+ENXtv8AgqZq+pSaTqkenNfX7LdtayLAwNqQCHxt5PHWm/tH+ENXvv8AgpX4V1CDSdUn0+O70kvdR2sjQoFf5suBtGO/PFesXn7bWpaF40uIr7wza/8ACOwa3q2hLc2984l5JLY27T7vKKBdrKpH3sg+1dN+zf8AtIax8ePD2sXV5oMegLBZQX1jes0j2kyTI7BSXRCWjKjcVypBypo/s+Lh7Pm+1zbfgPmPln4v2118Lv269d17x54I1Pxpo19K502EW5njljZVEJQEFG2AFSh6Ek4zirvwU8M+ILv/AIKE6TrN14HvPCVhO7yx2UVkUt7CI2bCNWZVCByMFgMfMxHWua+EP7evi79mrR/GcPxK1TxL4w+K1rFp7JYTavp8nhG9j1DUfslrf2lxbR7rW3DOBIkuWCrwCTkb3jD/AIKI+MNW+KfhWSa1t9Lvvh/q/ivTfEem6NqzXWjeJJLLQhfQ+XMY1ZkBZchl3RuDnNL+y1z83Npzc2y/PcOY6Lwh4Q1eL/gqjfak2k6oumtqFwwuzayCAg2eAd+NvXjr1r7gr4D+PP8AwVW8ZXfwp1y68A6X4Ts9S0jwv4R8TT311qP2mK3GsXIilt9oTbmM7V3MR8sjNjKgHas/28vFHgv4t+K/C9jp1nqvi3xD49j8N2P9ueJmTw7pbR6HBfzNHKIN8cRywSMKzSOS2RnFdeFwyoqSTvzNv7xN3PuKivgbW/8Agsl4iufhx/wk2h/DnSJrPSfBT+MtbW911ozFHBqsunXEdsVhYTAmIvE52hgRnHf3L9nj9tbUvjH+1D4u8Aa1oOn+Fl0m0a/0WCa4mlv9asw8a/bUIj+zmEmTaQkrOjABlGeOoR9D0UUUAFUfE3hnT/Gnh2+0jVrO31HS9Tge1u7W4jEkVxE4KsjKeCCCQRV6igD8N/8Agpf/AMER/FX7M+s6j4u+GNhfeLPh1IzTvYwK0+peH16lWQfNNAOzrllAww43H4Putcu9S0+zs5ru4mtdN8xLWB5CY7Xe26QKvRSzctjknr0r+rivnr9pD/glh8C/2pr+bUPE3gXT4NauOX1XSWbTrxz6s8RAc+7hqAPwC+Afx81D4A3HjKXT7dbh/GHhTUPC0pY48lLsIDIPUrs6e9ef7F8vbjK4xg9xX67fFb/ggn8G/CniVrex174jxQnnadTtXx+Jtia9U+Bf/AAT9n3SLW11TVrXxd4qbO422q6xi3OPVYEiJHsSaAPx2+DXwP8AiJ+2J8TYdD8JaRrHjDxBOI4pZSxdLWNVWNWnnb5Y0VVUZc9FAGeBX7lf8EuP+CV+g/sAeEJtU1Ka18QfEjW4RHqWqoh8mzj4P2W2B5EYIBZjhnIBOAAo+kvhV8GvCfwM8KQ6H4O8O6P4Z0mHG21061S3jJ9W2j5m/wBpsk+tdLQBS17w5p/imyW21Kytb+3SVJ1juIhIokRgyNg/xKwBB7EVjfFH4V6Z8VPDGoWF5HHFc3mn3OnRXyxK1xZpOmyQxsRxkYyOhwM101FAHF+Ff2ffB/hXwI3h6Pw7os1hdRRJfK1jEBqDxqFEkoAwzcZyeh6Vop8IPCsdglqvhzRfs8dstksf2OPaIFk80R4x90SDfjpu5610dFAGMnw70GO6jmXRdLE0d3JfI/2ZNy3Ei7ZJQcffZSQW6kcGmeE/hn4d8B2t5Bouh6VpMGoNvuY7W1SJZzyPmCjB6njpya3KKAPP/DH7J/ww8FeHda0jSPh74M03S/Ea7NUtLfR4I4dQXrtlULh1B5AOQD0xV/w3+zz4D8HaVpNjpPg3wzp9noRnOnw2+mwxpZmdCkxQBflMiEq5HLA4Oa7GigDzzR/2Sfhb4e8Mapotj8O/BdnpOuWws9Qs4dHgSG+hVi6xyqFw6hmLAHOCcirGsfsv/DjxB4UvNCvvAvhO70fUJorm5s5dLhaGaWKNYopGUrgukaqgbqFAGccV3dFAHI3fwB8DX2nPZzeD/DMlnJpS6G0B02HyzYK+9bTbtx5Ib5hH90HnFSeCvgZ4M+HHifUta8P+FdA0bWNY/wCP69s7GOGe65zhnUAkZ5x0J5611VFABRRRQB//2Q==" alt="Optimal Pipeline Solutions">
+  </div>
+  <div class="company-info">
+    <div class="company-name">Optimal Pipeline Solutions</div>
+    <div class="company-tagline">Remote Monitoring &amp; Compliance Services</div>
+    <div class="company-website">www.optimalpipeline.com &nbsp;|&nbsp; 866-760-3933 &nbsp;|&nbsp; info@optimalpipeline.com</div>
+  </div>
+  <div class="offices">
+    <div class="office">
+      <div class="city">Stillwater, OK</div>
+      203 E 80th Street<br>
+      Stillwater, OK 74074
+    </div>
+    <div class="office">
+      <div class="city">Midland, TX</div>
+      3200 N A St., Bldg B<br>
+      Midland, TX 79705
+    </div>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="doctype">Design Reference &nbsp;|&nbsp; Internal</div>
+  <h1>OPS Website — Site Upgrade Concept</h1>
+  <p class="tagline">Decisions, rationale, and technical patterns for the site-upgraded.html design iteration</p>
+  <p class="meta">Author: Chris Babb &nbsp;|&nbsp; Date: 2026-06-22 &nbsp;|&nbsp; Status: Concept / In Progress</p>
+</div>
+
+<div class="status-row">
+  <span class="badge badge-amber">Concept — Not Production</span>
+  <span class="badge badge-blue">Working File: F:\web site ideas\site-upgraded.html</span>
+  <span class="badge badge-green">Preview: /index-update.html on GitHub Pages</span>
+</div>
+
+
+<h2><span class="sec-num">1</span> Overview</h2>
+
+<p class="lead"><code>site-upgraded.html</code> is an iterative upgrade to the production <code>index.html</code>, developed in <code>F:\web site ideas\</code> and pushed as <code>index-update.html</code> on the live GitHub Pages repo for preview. It shares the same section structure, content rules, and component system as production but introduces a semantic color palette, improved card treatment, and a SCADA fixed-parallax background spanning two dark sections.</p>
+
+<div class="box box-blue">
+  <p><strong>Critical constraint:</strong> <code>F:\OPS Website\index.html</code> is the live production file and must never be edited directly. All design work happens in <code>F:\web site ideas\site-upgraded.html</code>. Changes are previewed at <code>/index-update.html</code> before any promotion decision.</p>
+</div>
+
+<table class="compare">
+  <tr>
+    <th>File</th>
+    <th>Location</th>
+    <th>Purpose</th>
+    <th>Status</th>
+  </tr>
+  <tr>
+    <td><code>index.html</code></td>
+    <td>F:\OPS Website\</td>
+    <td>Live production site</td>
+    <td>DO NOT EDIT</td>
+  </tr>
+  <tr>
+    <td><code>site-upgraded.html</code></td>
+    <td>F:\web site ideas\</td>
+    <td>Upgrade working copy</td>
+    <td>Active development</td>
+  </tr>
+  <tr>
+    <td><code>index-update.html</code></td>
+    <td>F:\OPS Website\ (GitHub)</td>
+    <td>Live concept preview (not linked)</td>
+    <td>Pushed 2026-06-22</td>
+  </tr>
+  <tr>
+    <td><code>scada-bg.svg</code></td>
+    <td>F:\OPS Website\ (GitHub)</td>
+    <td>SCADA background asset for parallax</td>
+    <td>Pushed 2026-06-22</td>
+  </tr>
+</table>
+
+
+<h2><span class="sec-num">2</span> Semantic Color Palette</h2>
+
+<p>The upgrade introduces named semantic colors that carry thematic meaning across section types, card accents, icon tints, and border accents. These supplement (not replace) the existing olive/charcoal/blue brand palette.</p>
+
+<div class="palette">
+  <div class="swatch">
+    <div class="dot" style="background:#4A7FA5;"></div>
+    <div>
+      <div class="label">Steel</div>
+      <div class="hex">#4A7FA5 &nbsp;|&nbsp; .text-steel / .bg-steel-10</div>
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="dot" style="background:#C4633A;"></div>
+    <div>
+      <div class="label">Copper</div>
+      <div class="hex">#C4633A &nbsp;|&nbsp; .text-copper / .bg-copper-10</div>
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="dot" style="background:#969977;"></div>
+    <div>
+      <div class="label">Olive</div>
+      <div class="hex">#969977 &nbsp;|&nbsp; .text-olive (existing brand color)</div>
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="dot" style="background:#c47a00;"></div>
+    <div>
+      <div class="label">Amber</div>
+      <div class="hex">#c47a00 &nbsp;|&nbsp; SCADA / operational contexts</div>
+    </div>
+  </div>
+</div>
+
+<h3>Semantic Assignments</h3>
+<table class="compare">
+  <tr><th>Color</th><th>Theme / Usage</th><th>Examples</th></tr>
+  <tr>
+    <td><strong>Steel</strong></td>
+    <td>Technology, data, systems integration</td>
+    <td>PLC/SCADA card accents, tech tag pills, CPU icon tint</td>
+  </tr>
+  <tr>
+    <td><strong>Copper</strong></td>
+    <td>Field engineering, hands-on, physical pipeline work</td>
+    <td>Field work cards, gauge/hard-hat icons, greenfield cards</td>
+  </tr>
+  <tr>
+    <td><strong>Olive</strong></td>
+    <td>Compliance, PMP/certification, brand identity</td>
+    <td>PMP card accent, compliance section, award icon</td>
+  </tr>
+  <tr>
+    <td><strong>Amber</strong></td>
+    <td>SCADA, operational, control room</td>
+    <td>Alarm bar in SCADA SVG, live data readouts, Control Room header</td>
+  </tr>
+</table>
+
+<div class="box box-olive">
+  <p><strong>CSS definitions (in &lt;style&gt; block of site-upgraded.html):</strong></p>
+  <pre>.text-steel  { color: #4A7FA5; }
+.text-copper { color: #C4633A; }
+.bg-steel-10  { background: rgba(74,127,165,0.10); }
+.bg-copper-10 { background: rgba(196,99,58,0.10); }</pre>
+  <p>Olive and amber reuse existing variables already defined in the stylesheet.</p>
+</div>
+
+
+<h2><span class="sec-num">3</span> SCADA Fixed-Parallax Background</h2>
+
+<p>The Control Room section and the Operations Expertise section (immediately below) share a fixed-parallax SCADA diagram background — the same technique used by the About page hero background.</p>
+
+<h3>The Pattern</h3>
+<pre>&lt;section id="control-room" class="ops-section" data-theme="dark"
+         style="background:#050810; position:relative;"&gt;
+  &lt;div style="position:absolute;inset:0;
+              background:url('scada-bg.svg') center/cover no-repeat;
+              background-attachment:fixed;
+              opacity:0.35;"&gt;&lt;/div&gt;
+  &lt;div class="section-inner relative" style="z-index:5; ..."&gt;
+    ...content...
+  &lt;/div&gt;
+&lt;/section&gt;</pre>
+
+<p>The same background div is repeated verbatim at the top of the Operations Expertise section, causing the SCADA image to visually continue across the section boundary as the user scrolls — reinforcing that both sections belong to the "control room" part of the narrative.</p>
+
+<h3>Why This Pattern</h3>
+
+<div class="box box-amber">
+  <p><strong>Three prior approaches failed before this solution.</strong> All attempts to use <code>position:fixed</code> on a DOM element caused the SCADA graphic to leak over unrelated sections regardless of parent <code>overflow</code>, <code>z-index</code>, or JS toggling.</p>
+</div>
+
+<table class="compare">
+  <tr><th>Approach</th><th>Why It Failed</th></tr>
+  <tr>
+    <td>GSAP ScrollTrigger with <code>position:fixed</code></td>
+    <td>Section height &lt; viewport height caused <code>onLeave</code> to fire before <code>onEnter</code> — callbacks permanently misfired. SCADA showed on full page.</td>
+  </tr>
+  <tr>
+    <td>IntersectionObserver + <code>visibility:hidden/visible</code></td>
+    <td><code>threshold:0</code> fires when 1px of section enters viewport at bottom edge. With <code>position:fixed</code>, the SCADA then covers all sections still visible above. No CSS mechanism clips a <code>position:fixed</code> element to its parent's bounds.</td>
+  </tr>
+  <tr>
+    <td><code>position:fixed</code> + inline opacity/visibility CSS</td>
+    <td>Same root cause — <code>position:fixed</code> removes the element from normal flow; parent <code>overflow:hidden</code> has no effect on fixed children.</td>
+  </tr>
+  <tr>
+    <td><strong><code>background-attachment:fixed</code> on <code>position:absolute</code> div</strong></td>
+    <td><strong>Works correctly.</strong> The div is positioned absolutely within the section (clipped to section bounds). The background image is fixed relative to the viewport within those clipped bounds. Matches the About page pattern exactly.</td>
+  </tr>
+</table>
+
+<h3>scada-bg.svg Requirements</h3>
+<p>When extracting an SVG for use as a CSS background image, the host page's <code>&lt;style&gt;</code> block does not apply. All CSS classes used by the SVG must be embedded inside a <code>&lt;defs&gt;&lt;style&gt;&lt;/style&gt;&lt;/defs&gt;</code> block within the SVG file itself.</p>
+<p>The SCADA background is static — no animated particle circles, no live-data element IDs. The original <code>#cr-scada</code> inline SVG (with live data IDs) is preserved in the DOM as <code>display:none</code> for reference.</p>
+
+
+<h2><span class="sec-num">4</span> Automation Engineering Capabilities Cards</h2>
+
+<p>The four <code>capability-block</code> cards were upgraded from text-only to icon + color accent treatment using the semantic palette.</p>
+
+<h3>Card Pattern</h3>
+<pre>&lt;div class="capability-block" data-animate="fade-up"
+     style="border-top:2px solid rgba(107,123,58,0.45);"&gt;
+  &lt;div class="w-12 h-12 rounded-xl bg-olive/10
+              flex items-center justify-center mb-4"&gt;
+    &lt;i data-lucide="award" class="w-6 h-6 text-olive"&gt;&lt;/i&gt;
+  &lt;/div&gt;
+  &lt;h3 ...&gt;PMP-Certified Project Delivery&lt;/h3&gt;
+  ...
+&lt;/div&gt;</pre>
+
+<table class="compare">
+  <tr><th>Card</th><th>Icon</th><th>Color</th><th>Rationale</th></tr>
+  <tr>
+    <td>PMP-Certified Project Delivery</td>
+    <td>award</td>
+    <td>Olive</td>
+    <td>Certification / brand identity color</td>
+  </tr>
+  <tr>
+    <td>Pipeline &amp; Industrial Automation</td>
+    <td>gauge</td>
+    <td>Copper</td>
+    <td>Field / physical industrial work</td>
+  </tr>
+  <tr>
+    <td>PLC, SCADA &amp; System Integration</td>
+    <td>cpu</td>
+    <td>Steel</td>
+    <td>Technology / systems / data</td>
+  </tr>
+  <tr>
+    <td>Greenfield to Modernization</td>
+    <td>hard-hat</td>
+    <td>Copper</td>
+    <td>Hands-on / field engineering work</td>
+  </tr>
+</table>
+
+
+<h2><span class="sec-num">5</span> Magazine-Style Services Layout</h2>
+
+<p>The Services / "What We Do" section uses a magazine two-column layout (<code>mag-row</code>, <code>mag-visual</code>, <code>mag-content</code>) with GSAP scroll-triggered entrance animations — content slides in from the left/right alternately on scroll.</p>
+
+<div class="box box-steel">
+  <p><strong>Animation note:</strong> The scroll-triggered entrance animations require GSAP ScrollTrigger. If the page is visited with GSAP not yet initialized (e.g., very fast scroll before CDN loads), cards may appear in their initial off-screen position. This is a CDN load-order concern, not a bug in the implementation.</p>
+</div>
+
+
+<h2><span class="sec-num">6</span> Spacing Decisions</h2>
+
+<p>Several padding reductions were made to tighten vertical rhythm between sections:</p>
+
+<table class="compare">
+  <tr><th>Area</th><th>Before</th><th>After</th></tr>
+  <tr>
+    <td>Control Room section-inner top padding</td>
+    <td>Default section padding</td>
+    <td><code>clamp(12rem,16vw,16rem)</code> — pushes content below hero-height viewport area</td>
+  </tr>
+  <tr>
+    <td>Control Room section-inner bottom padding</td>
+    <td>Default</td>
+    <td><code>3rem</code></td>
+  </tr>
+  <tr>
+    <td>Operations Expertise section padding</td>
+    <td>Default ops-section</td>
+    <td><code>padding-top:4rem; padding-bottom:4rem</code></td>
+  </tr>
+  <tr>
+    <td><code>.stat-block</code> padding</td>
+    <td><code>4rem</code> all sides</td>
+    <td><code>2rem 2rem 1.25rem</code></td>
+  </tr>
+  <tr>
+    <td><code>.cs-narrative</code> top padding</td>
+    <td><code>6rem</code></td>
+    <td><code>2rem</code></td>
+  </tr>
+  <tr>
+    <td>Case Study title div bottom padding</td>
+    <td><code>5rem</code></td>
+    <td><code>2.5rem</code></td>
+  </tr>
+</table>
+
+
+<h2><span class="sec-num">7</span> Promotion Path</h2>
+
+<p>When the upgrade concept is approved for promotion to production:</p>
+<ol>
+  <li>Verify <code>index-update.html</code> on the live GitHub Pages URL renders correctly with no broken assets</li>
+  <li>Confirm <code>scada-bg.svg</code> is present at repo root (already pushed)</li>
+  <li>Copy <code>site-upgraded.html</code> content to <code>index.html</code>, adjusting any path references</li>
+  <li>Push via GitHub Manager (or direct MCP push)</li>
+  <li>Update Obsidian note status and this document's status badge</li>
+</ol>
+
+<div class="box box-amber">
+  <p><strong>Never directly edit index.html.</strong> Always make changes in <code>site-upgraded.html</code>, test via <code>index-update.html</code>, then do a deliberate copy-over. This keeps a clean audit trail and prevents accidental pushes of broken states to production.</p>
+</div>
+
+</body>
+</html>
