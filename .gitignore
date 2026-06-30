@@ -1,2 +1,6 @@
 # graphify knowledge graph — local regenerable artifact (rebuilt nightly)
 graphify-out/
+
+# Python bytecode — generated artifacts, never commit
+__pycache__/
+*.pyc
