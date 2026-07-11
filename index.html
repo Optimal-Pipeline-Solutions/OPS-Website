@@ -2146,9 +2146,13 @@
                 <button type="button" class="af-cancel" onclick="closeApplyModal()">Cancel</button>
                 <button type="submit" class="af-submit">Submit Application</button>
             </div>
-            <p class="af-note" style="background:rgba(107,123,58,0.12);border:1px solid rgba(107,123,58,0.3);border-radius:0.5rem;padding:0.75rem 1rem;color:rgba(255,255,255,0.8);font-size:0.85rem;line-height:1.5;margin-top:0.75rem;">
-                <strong style="color:#8A9B55;">Before you send:</strong> Your email client will open with this form pre-filled. <strong>Please attach your resume</strong> (and optionally a cover letter) to the email before hitting Send. Submissions without a resume will not be considered.
-            </p>
+            <div style="margin-top:1rem;background:rgba(220,38,38,0.12);border:2px solid rgba(220,38,38,0.5);border-radius:0.6rem;padding:1rem 1.25rem;display:flex;gap:0.85rem;align-items:flex-start;">
+                <i data-lucide="triangle-alert" style="color:#f87171;width:22px;height:22px;flex-shrink:0;margin-top:0.05rem;"></i>
+                <div>
+                    <p style="color:#f87171;font-weight:700;font-size:0.9rem;margin:0 0 0.3rem;">Your email client will open — attach your resume before sending.</p>
+                    <p style="color:rgba(255,255,255,0.7);font-size:0.82rem;margin:0;line-height:1.5;">A cover letter is encouraged but optional. <strong style="color:#fca5a5;">Submissions received without a resume will not be considered.</strong></p>
+                </div>
+            </div>
 
         </form>
     </div>
