@@ -519,6 +519,52 @@ html { scroll-behavior: smooth; }
     .ops-panel { padding: 1.5rem; }
 }
 
+/* ── Hiring notification dots ───────────────────────────────── */
+/* Remove data-hiring="true" from the nav Careers link to hide all dots */
+@keyframes hiring-pulse {
+    0%,100% { transform:scale(1);   opacity:1; }
+    50%      { transform:scale(1.5); opacity:0.5; }
+}
+
+.hiring-dot-nav,
+.hiring-dot-burger {
+    display: none;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #8A9B55;
+    box-shadow: 0 0 0 2px rgba(107,123,58,0.3);
+    animation: hiring-pulse 1.8s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+/* Desktop nav dot — shown when data-hiring exists on the Careers link */
+[data-hiring] .hiring-dot-nav,
+[data-hiring].hiring-dot-nav,
+a[data-hiring="true"] .hiring-dot-nav {
+    display: inline-block;
+    position: absolute;
+    top: -3px;
+    right: -10px;
+}
+
+/* Mobile menu dot — inline after "Careers" text */
+.mobile-link .hiring-dot-nav {
+    display: none;
+    position: static;
+}
+
+/* Burger badge — top-right corner of the hamburger button */
+.hiring-dot-burger {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 9px;
+    height: 9px;
+    border: 1.5px solid rgba(0,0,0,0.5);
+    display: none;
+}
+
 /* ── iOS/Touch: background-attachment:fixed unsupported ─────── */
 /* Converts all fixed-parallax backgrounds to scroll on touch devices */
 @media (hover: none) and (pointer: coarse) {

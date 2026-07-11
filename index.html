@@ -212,12 +212,13 @@
                 <a href="#automation" class="nav-link">Projects</a>
                 <a href="#compliance" class="nav-link">Compliance</a>
                 <a href="#case-study" class="nav-link">Case Study</a>
-                <a href="#careers" class="nav-link" style="color:#8A9B55;font-weight:600;">Careers</a>
+                <a href="#careers" class="nav-link" data-hiring="true" style="color:#8A9B55;font-weight:600;position:relative;">Careers<span class="hiring-dot-nav"></span></a>
                 <a href="#" class="nav-link" onclick="openGolfModal();return false;" style="color:#8A9B55;font-weight:600;display:none;">⛳ Golf</a>
                 <a href="#contact" class="nav-cta">Contact Us</a>
             </div>
-            <button id="mobile-toggle" class="md:hidden text-white p-2 -mr-2 touch-manipulation" style="min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 0 3px rgba(0,0,0,0.8));">
+            <button id="mobile-toggle" class="md:hidden text-white p-2 -mr-2 touch-manipulation" style="min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 0 3px rgba(0,0,0,0.8));position:relative;">
                 <i data-lucide="menu" class="w-6 h-6"></i>
+                <span class="hiring-dot-burger" id="hiring-burger-dot"></span>
             </button>
         </div>
     </nav>
@@ -231,7 +232,7 @@
         <a href="#automation" class="mobile-link">Projects</a>
         <a href="#compliance" class="mobile-link">Compliance</a>
         <a href="#case-study" class="mobile-link">Case Study</a>
-        <a href="#careers" class="mobile-link" style="color:#8A9B55;">Careers</a>
+        <a href="#careers" class="mobile-link" style="color:#8A9B55;position:relative;display:inline-flex;align-items:center;gap:0.5rem;">Careers<span class="hiring-dot-nav"></span></a>
         <a href="#contact" class="mobile-link">Contact Us</a>
         <a href="#" class="mobile-link" onclick="openGolfModal();document.getElementById('mobile-menu').classList.add('hidden');return false;" style="color:#8A9B55;">⛳ Golf Challenge</a>
     </div>
@@ -1708,6 +1709,21 @@
                 if (w && w.style.display !== 'none') gCloseModal();
                 gCloseLightbox();
             }
+        });
+    })();
+    </script>
+
+    <!-- Hiring indicator — set data-hiring="true" on the desktop Careers nav link to activate all dots -->
+    <script>
+    (function() {
+        var hiringActive = !!document.querySelector('a[data-hiring="true"]');
+        if (!hiringActive) return;
+        // Burger badge
+        var burger = document.getElementById('hiring-burger-dot');
+        if (burger) burger.style.display = 'block';
+        // Both Careers links (desktop nav + mobile menu)
+        document.querySelectorAll('.hiring-dot-nav').forEach(function(d) {
+            d.style.display = 'inline-block';
         });
     })();
     </script>
