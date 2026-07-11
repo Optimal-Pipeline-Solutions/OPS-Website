@@ -2142,6 +2142,27 @@
         var m = document.getElementById('apply-modal');
         m.style.display = 'block';
         document.body.style.overflow = 'hidden';
+
+        // Restore saved data if available
+        try {
+            var saved = JSON.parse(localStorage.getItem('ops_application') || 'null');
+            if (saved) {
+                function sv(id, val) { var el = document.getElementById(id); if (el && val) el.value = val; }
+                function sr(name, val) { var el = document.querySelector('input[name="' + name + '"][value="' + val + '"]'); if (el) { el.checked = true; el.dispatchEvent(new Event('change')); } }
+                sv('af-last', saved.last); sv('af-first', saved.first); sv('af-mi', saved.mi);
+                sv('af-dob', saved.dob); sv('af-phone', saved.phone); sv('af-email', saved.email);
+                sv('af-street', saved.street); sv('af-apt', saved.apt); sv('af-city', saved.city);
+                sv('af-state', saved.state); sv('af-zip', saved.zip);
+                sv('af-position', saved.position); sv('af-available', saved.available);
+                sv('af-salary', saved.salary); sv('af-source', saved.source);
+                sr('af-18', saved.r18); sr('af-citizen', saved.citizen);
+                if (saved.citizen === 'No') sr('af-authorized', saved.authorized);
+                sr('af-worked', saved.worked); sv('af-worked-when', saved.workedWhen);
+                sr('af-felony', saved.felony); sv('af-felony-explain', saved.felonyExplain);
+                sr('af-employed', saved.employed); sv('af-employer', saved.employer);
+                if (saved.employed === 'Yes') sr('af-contact-employer', saved.contactEmployer);
+            }
+        } catch(e) {}
     };
 
     window.closeApplyModal = function() {
@@ -2240,9 +2261,28 @@
             empLine,
         ].join('\n');
 
+        // Save to localStorage so applicant can re-submit if email client fails
+        var saveData = {
+            last: v('af-last'), first: v('af-first'), mi: v('af-mi'),
+            dob: v('af-dob'), phone: v('af-phone'), email: v('af-email'),
+            street: v('af-street'), apt: v('af-apt'), city: v('af-city'),
+            state: v('af-state'), zip: v('af-zip'),
+            position: v('af-position'), available: v('af-available'),
+            salary: v('af-salary'), source: v('af-source'),
+            r18: r('af-18'), citizen: r('af-citizen'), authorized: r('af-authorized'),
+            worked: r('af-worked'), workedWhen: v('af-worked-when'),
+            felony: r('af-felony'), felonyExplain: v('af-felony-explain'),
+            employed: r('af-employed'), employer: v('af-employer'),
+            contactEmployer: r('af-contact-employer'),
+            savedAt: new Date().toISOString()
+        };
+        try { localStorage.setItem('ops_application', JSON.stringify(saveData)); } catch(e) {}
+
         var subject = encodeURIComponent('System Controller Application — ' + v('af-first') + ' ' + v('af-last'));
         var mailBody = encodeURIComponent(body);
         window.location.href = 'mailto:careers@optimalpipeline.com?subject=' + subject + '&body=' + mailBody;
+
+        closeApplyModal();
     };
 })();
 </script>
