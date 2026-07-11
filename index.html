@@ -171,6 +171,25 @@
             width: 2px;
             background: linear-gradient(to bottom, #6B7B3A, rgba(107, 123, 58, 0.1));
         }
+
+        /* Careers section */
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.75); }
+        }
+        .careers-benefit-block:hover {
+            background: rgba(255, 255, 255, 0.06) !important;
+            border-color: rgba(107, 123, 58, 0.25) !important;
+            transform: translateY(-3px);
+        }
+        .careers-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+        @media (max-width: 640px) {
+            .careers-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-midnight text-white font-body antialiased overflow-x-hidden">
@@ -193,7 +212,8 @@
                 <a href="#automation" class="nav-link">Projects</a>
                 <a href="#compliance" class="nav-link">Compliance</a>
                 <a href="#case-study" class="nav-link">Case Study</a>
-                <a href="#" class="nav-link" onclick="openGolfModal();return false;" style="color:#8A9B55;font-weight:600;">⛳ Golf</a>
+                <a href="#careers" class="nav-link" style="color:#8A9B55;font-weight:600;">Careers</a>
+                <a href="#" class="nav-link" onclick="openGolfModal();return false;" style="color:#8A9B55;font-weight:600;display:none;">⛳ Golf</a>
                 <a href="#contact" class="nav-cta">Contact Us</a>
             </div>
             <button id="mobile-toggle" class="md:hidden text-white p-2 -mr-2 touch-manipulation" style="min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 0 3px rgba(0,0,0,0.8));" onclick="var m=document.getElementById('mobile-menu');m.style.display=m.style.display==='flex'?'none':'flex';">
@@ -211,6 +231,7 @@
         <a href="#automation" class="mobile-link">Projects</a>
         <a href="#compliance" class="mobile-link">Compliance</a>
         <a href="#case-study" class="mobile-link">Case Study</a>
+        <a href="#careers" class="mobile-link" style="color:#8A9B55;">Careers</a>
         <a href="#contact" class="mobile-link">Contact Us</a>
         <a href="#" class="mobile-link" onclick="openGolfModal();document.getElementById('mobile-menu').classList.add('hidden');return false;" style="color:#8A9B55;">⛳ Golf Challenge</a>
     </div>
@@ -1152,6 +1173,163 @@
 
 
     <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- CAREERS                                                     -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section id="careers" class="ops-section" data-theme="dark" style="position:relative;background-image:url('images/oil-pipeline-control-operator.jpg');background-size:cover;background-position:center top;background-attachment:fixed;">
+        <div style="position:absolute;inset:0;background:rgba(8,10,8,0.82);"></div>
+        <div style="position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:flex-end;overflow:hidden;pointer-events:none;z-index:2;padding-top:2rem;padding-right:2rem;"><span style="font-family:'SF Pro Display',-apple-system,sans-serif;font-weight:700;font-size:clamp(4.8rem,12.8vw,14.4rem);color:rgba(255,255,255,0.07);letter-spacing:-0.04em;white-space:nowrap;user-select:none;line-height:1;">Careers</span></div>
+
+        <div class="section-inner relative" style="z-index:3;">
+
+            <!-- Section header -->
+            <div class="section-header text-center">
+                <div style="display:inline-flex;align-items:center;gap:0.6rem;background:rgba(107,123,58,0.12);border:1px solid rgba(107,123,58,0.35);border-radius:2rem;padding:0.45rem 1.25rem;margin-bottom:1.75rem;">
+                    <span style="width:8px;height:8px;border-radius:50%;background:#8A9B55;display:inline-block;animation:pulse-dot 2s infinite;flex-shrink:0;"></span>
+                    <span style="color:#8A9B55;font-size:0.72rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;">Now Hiring</span>
+                </div>
+                <p class="section-tag">Join Our Team</p>
+                <h2 class="section-title">Operate at<br><span class="text-gradient">the highest level.</span></h2>
+                <p class="section-subtitle">We are looking for experienced pipeline and control room professionals who take operations seriously &mdash; people with the background to understand what they're monitoring and the discipline to respond when it matters.</p>
+            </div>
+
+            <!-- Job posting card -->
+            <div style="max-width:920px;margin:0 auto 4rem;background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.10);border-radius:1.5rem;overflow:hidden;" data-animate="fade-up">
+
+                <!-- Role header bar -->
+                <div style="background:linear-gradient(135deg,rgba(107,123,58,0.28),rgba(107,123,58,0.06));border-bottom:1px solid rgba(107,123,58,0.18);padding:2rem 2.5rem;display:flex;flex-wrap:wrap;gap:1.25rem;align-items:center;justify-content:space-between;">
+                    <div>
+                        <p style="color:#8A9B55;font-size:0.72rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.5rem;">Open Position</p>
+                        <h3 style="font-family:'SF Pro Display',-apple-system,sans-serif;font-weight:700;font-size:clamp(1.5rem,3vw,2.1rem);color:#fff;line-height:1.1;margin:0;">System Controller</h3>
+                    </div>
+                    <div style="display:flex;flex-wrap:wrap;gap:0.6rem;">
+                        <span style="display:inline-flex;align-items:center;gap:0.4rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);border-radius:0.5rem;padding:0.4rem 0.85rem;font-size:0.8rem;color:rgba(255,255,255,0.65);">
+                            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-olive"></i> Stillwater, OK
+                        </span>
+                        <span style="display:inline-flex;align-items:center;gap:0.4rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);border-radius:0.5rem;padding:0.4rem 0.85rem;font-size:0.8rem;color:rgba(255,255,255,0.65);">
+                            <i data-lucide="clock" class="w-3.5 h-3.5 text-olive"></i> Full-Time / Shift Work
+                        </span>
+                        <span style="display:inline-flex;align-items:center;gap:0.4rem;background:rgba(107,123,58,0.14);border:1px solid rgba(107,123,58,0.32);border-radius:0.5rem;padding:0.4rem 0.85rem;font-size:0.8rem;color:#8A9B55;font-weight:600;">
+                            <i data-lucide="calendar" class="w-3.5 h-3.5"></i> Deadline: July 20, 2026
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Two-column role details -->
+                <div class="careers-grid" style="padding:2.5rem;display:grid;gap:2.5rem;">
+                    <!-- What you'll do -->
+                    <div>
+                        <p style="color:#8A9B55;font-size:0.72rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:1.25rem;">What You'll Do</p>
+                        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.9rem;">
+                            <li style="display:flex;gap:0.75rem;align-items:flex-start;color:rgba(255,255,255,0.72);font-size:0.9rem;line-height:1.55;">
+                                <i data-lucide="monitor" class="w-4 h-4 text-olive flex-shrink-0" style="margin-top:0.18rem;"></i>
+                                Monitor pipeline systems 24/7 using SCADA for safe, efficient operation
+                            </li>
+                            <li style="display:flex;gap:0.75rem;align-items:flex-start;color:rgba(255,255,255,0.72);font-size:0.9rem;line-height:1.55;">
+                                <i data-lucide="sliders-horizontal" class="w-4 h-4 text-olive flex-shrink-0" style="margin-top:0.18rem;"></i>
+                                Manage flow rates, pressures, and operating parameters in real time
+                            </li>
+                            <li style="display:flex;gap:0.75rem;align-items:flex-start;color:rgba(255,255,255,0.72);font-size:0.9rem;line-height:1.55;">
+                                <i data-lucide="siren" class="w-4 h-4 text-olive flex-shrink-0" style="margin-top:0.18rem;"></i>
+                                Respond quickly to alarms and anomalies, coordinating with field teams
+                            </li>
+                            <li style="display:flex;gap:0.75rem;align-items:flex-start;color:rgba(255,255,255,0.72);font-size:0.9rem;line-height:1.55;">
+                                <i data-lucide="shield-check" class="w-4 h-4 text-olive flex-shrink-0" style="margin-top:0.18rem;"></i>
+                                Ensure compliance with PHMSA regulations and OPS safety policies
+                            </li>
+                            <li style="display:flex;gap:0.75rem;align-items:flex-start;color:rgba(255,255,255,0.72);font-size:0.9rem;line-height:1.55;">
+                                <i data-lucide="clipboard-list" class="w-4 h-4 text-olive flex-shrink-0" style="margin-top:0.18rem;"></i>
+                                Maintain accurate logs of operations, incidents, and maintenance activities
+                            </li>
+                            <li style="display:flex;gap:0.75rem;align-items:flex-start;color:rgba(255,255,255,0.72);font-size:0.9rem;line-height:1.55;">
+                                <i data-lucide="triangle-alert" class="w-4 h-4 text-olive flex-shrink-0" style="margin-top:0.18rem;"></i>
+                                Participate in emergency response drills and actual emergency events
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- What we're looking for -->
+                    <div>
+                        <p style="color:#8A9B55;font-size:0.72rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:1.25rem;">What We're Looking For</p>
+                        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.9rem;">
+                            <li style="display:flex;gap:0.75rem;align-items:flex-start;color:rgba(255,255,255,0.72);font-size:0.9rem;line-height:1.55;">
+                                <i data-lucide="graduation-cap" class="w-4 h-4 text-olive flex-shrink-0" style="margin-top:0.18rem;"></i>
+                                HS diploma required; associate degree or technical certification preferred
+                            </li>
+                            <li style="display:flex;gap:0.75rem;align-items:flex-start;color:rgba(255,255,255,0.72);font-size:0.9rem;line-height:1.55;">
+                                <i data-lucide="briefcase" class="w-4 h-4 text-olive flex-shrink-0" style="margin-top:0.18rem;"></i>
+                                Background in pipeline ops, control room operations, or related field
+                            </li>
+                            <li style="display:flex;gap:0.75rem;align-items:flex-start;color:rgba(255,255,255,0.72);font-size:0.9rem;line-height:1.55;">
+                                <i data-lucide="cpu" class="w-4 h-4 text-olive flex-shrink-0" style="margin-top:0.18rem;"></i>
+                                Proficiency with SCADA systems and control technologies
+                            </li>
+                            <li style="display:flex;gap:0.75rem;align-items:flex-start;color:rgba(255,255,255,0.72);font-size:0.9rem;line-height:1.55;">
+                                <i data-lucide="message-square" class="w-4 h-4 text-olive flex-shrink-0" style="margin-top:0.18rem;"></i>
+                                Strong verbal and written communication skills
+                            </li>
+                            <li style="display:flex;gap:0.75rem;align-items:flex-start;color:rgba(255,255,255,0.72);font-size:0.9rem;line-height:1.55;">
+                                <i data-lucide="zap" class="w-4 h-4 text-olive flex-shrink-0" style="margin-top:0.18rem;"></i>
+                                Quick problem-solver who stays sharp under pressure
+                            </li>
+                            <li style="display:flex;gap:0.75rem;align-items:flex-start;color:rgba(255,255,255,0.72);font-size:0.9rem;line-height:1.55;">
+                                <i data-lucide="moon" class="w-4 h-4 text-olive flex-shrink-0" style="margin-top:0.18rem;"></i>
+                                Comfortable with 12-hour shifts, weekends, and holidays as needed
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Why Join OPS — 4 benefit blocks -->
+            <div style="max-width:920px;margin:0 auto 3.5rem;">
+                <p style="text-align:center;color:#8A9B55;font-size:0.72rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:2rem;">Why Join OPS</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="careers-benefit-block" data-animate="fade-up" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:1.25rem;padding:2rem 1.5rem;text-align:center;transition:all 0.3s ease;cursor:default;">
+                        <div style="width:48px;height:48px;border-radius:50%;background:rgba(107,123,58,0.12);border:1px solid rgba(107,123,58,0.28);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;">
+                            <i data-lucide="dollar-sign" class="w-5 h-5 text-olive"></i>
+                        </div>
+                        <h4 style="color:#fff;font-weight:700;font-size:0.95rem;margin-bottom:0.5rem;">Competitive Pay</h4>
+                        <p style="color:rgba(255,255,255,0.45);font-size:0.83rem;line-height:1.55;margin:0;">Salary and benefits designed to attract the best in the business.</p>
+                    </div>
+                    <div class="careers-benefit-block" data-animate="fade-up" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:1.25rem;padding:2rem 1.5rem;text-align:center;transition:all 0.3s ease;cursor:default;">
+                        <div style="width:48px;height:48px;border-radius:50%;background:rgba(107,123,58,0.12);border:1px solid rgba(107,123,58,0.28);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;">
+                            <i data-lucide="trending-up" class="w-5 h-5 text-olive"></i>
+                        </div>
+                        <h4 style="color:#fff;font-weight:700;font-size:0.95rem;margin-bottom:0.5rem;">Career Growth</h4>
+                        <p style="color:rgba(255,255,255,0.45);font-size:0.83rem;line-height:1.55;margin:0;">Real advancement in a growing company &mdash; not a dead-end shift.</p>
+                    </div>
+                    <div class="careers-benefit-block" data-animate="fade-up" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:1.25rem;padding:2rem 1.5rem;text-align:center;transition:all 0.3s ease;cursor:default;">
+                        <div style="width:48px;height:48px;border-radius:50%;background:rgba(107,123,58,0.12);border:1px solid rgba(107,123,58,0.28);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;">
+                            <i data-lucide="users" class="w-5 h-5 text-olive"></i>
+                        </div>
+                        <h4 style="color:#fff;font-weight:700;font-size:0.95rem;margin-bottom:0.5rem;">Tight-Knit Team</h4>
+                        <p style="color:rgba(255,255,255,0.45);font-size:0.83rem;line-height:1.55;margin:0;">Work alongside operators, engineers, and compliance experts who care.</p>
+                    </div>
+                    <div class="careers-benefit-block" data-animate="fade-up" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:1.25rem;padding:2rem 1.5rem;text-align:center;transition:all 0.3s ease;cursor:default;">
+                        <div style="width:48px;height:48px;border-radius:50%;background:rgba(107,123,58,0.12);border:1px solid rgba(107,123,58,0.28);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;">
+                            <i data-lucide="shield" class="w-5 h-5 text-olive"></i>
+                        </div>
+                        <h4 style="color:#fff;font-weight:700;font-size:0.95rem;margin-bottom:0.5rem;">Mission-Driven</h4>
+                        <p style="color:rgba(255,255,255,0.45);font-size:0.83rem;line-height:1.55;margin:0;">A safe, inclusive workplace where your work keeps real people safe.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Apply CTA -->
+            <div style="text-align:center;" data-animate="fade-up">
+                <p style="color:rgba(255,255,255,0.7);font-size:0.9rem;margin-bottom:1.5rem;">Submit your resume and cover letter to be considered</p>
+                <a href="mailto:careers@optimalpipeline.com?subject=System Controller Application" class="btn-primary" style="display:inline-flex;align-items:center;gap:0.6rem;font-size:1.1rem;padding:1rem 2.5rem;">
+                    <i data-lucide="send" class="w-5 h-5"></i>
+                    Apply Now &mdash; careers@optimalpipeline.com
+                </a>
+                <p style="color:rgba(255,255,255,0.55);font-size:0.78rem;margin-top:1.25rem;letter-spacing:0.03em;">OPS is an Equal Opportunity Employer &nbsp;&bull;&nbsp; Application Deadline: July 20, 2026</p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
     <!-- CONTACT                                                     -->
     <!-- ═══════════════════════════════════════════════════════════ -->
     <section id="contact" class="ops-section" data-theme="dark" style="position:relative;">
@@ -1230,8 +1408,6 @@
             <p class="text-white/30 text-sm text-center mt-8">&copy; 2026 Optimal Pipeline Solutions. All rights reserved. <span id="ops-stats-trigger" onclick="document.getElementById('ops-stats-overlay').classList.add('open');window.loadStats();" style="cursor:default;color:inherit;user-select:none;" title="">&middot;</span></p>
         </div>
     </footer>
-
-    <script src="js/main.js"></script>
 
     <!-- ════════════════════════════════════════════════════════
          GOLF CHALLENGE MODAL
