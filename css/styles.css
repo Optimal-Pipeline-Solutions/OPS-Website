@@ -518,3 +518,11 @@ html { scroll-behavior: smooth; }
     .section-title { font-size: 2rem !important; }
     .ops-panel { padding: 1.5rem; }
 }
+
+/* ── iOS/Touch: background-attachment:fixed unsupported ─────── */
+/* Converts all fixed-parallax backgrounds to scroll on touch devices */
+@media (hover: none) and (pointer: coarse) {
+    [style*="background-attachment"] {
+        background-attachment: scroll !important;
+    }
+}
