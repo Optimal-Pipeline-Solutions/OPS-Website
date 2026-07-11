@@ -1,0 +1,1876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimal Pipeline Solutions | Automation, Remote Monitoring, CRM Compliance</title>
+    <meta name="description" content="Optimal Pipeline Solutions delivers custom tailored automation and control room monitoring services for energy infrastructure worldwide.">
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Optimal Pipeline Solutions | Automation, Remote Monitoring, CRM Compliance">
+    <meta property="og:description" content="Custom tailored automation and control room monitoring services for energy infrastructure worldwide.">
+    <meta property="og:image" content="images/hero-bg.jpg">
+    <meta property="og:url" content="https://www.optimalpipeline.com/">
+    <meta property="og:site_name" content="Optimal Pipeline Solutions">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Optimal Pipeline Solutions">
+    <meta name="twitter:description" content="Automation, remote monitoring, and CRM compliance services for energy infrastructure.">
+    <meta name="twitter:image" content="images/hero-bg.jpg">
+
+    <!-- Preload hero background -->
+    <link rel="preload" as="image" href="images/hero-bg.jpg">
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        olive:     { DEFAULT: '#6B7B3A', light: '#8A9B55', dark: '#4F5C2A' },
+                        charcoal:  { DEFAULT: '#2D2D2D', light: '#3D3D3D', dark: '#1A1A1A' },
+                        logogray:  '#8C8C8C',
+                        surface:   '#F5F5F7',
+                        midnight:  '#111111',
+                    },
+                    fontFamily: {
+                        display: ['"SF Pro Display"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+                        body:    ['"SF Pro Text"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+
+
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        /* Industry tags (from about-v2) */
+        .industry-tag {
+            display: inline-block;
+            padding: 0.375rem 0.875rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 0.5rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+        .industry-tag:hover {
+            background: rgba(107, 123, 58, 0.1);
+            border-color: rgba(107, 123, 58, 0.3);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Capability blocks — dark theme (original from about-v2) */
+        .capability-block {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 1.25rem;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+        }
+        .capability-block:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(107, 123, 58, 0.2);
+        }
+
+        /* Capability blocks — light theme override */
+        [data-theme="light"] .capability-block {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        [data-theme="light"] .capability-block:hover {
+            background: #ffffff;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            border-color: rgba(107, 123, 58, 0.3);
+        }
+        [data-theme="light"] .capability-block h3 {
+            color: #2D2D2D;
+        }
+        [data-theme="light"] .capability-block p {
+            color: rgba(45, 45, 45, 0.6);
+        }
+
+        /* Value blocks (from about-v2) */
+        .value-block {
+            padding: 2rem;
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+        }
+        [data-theme="light"] .value-block {
+            background: #ffffff;
+            border: 1px solid rgba(0,0,0,0.06);
+        }
+        [data-theme="light"] .value-block:hover {
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+            border-color: rgba(107, 123, 58, 0.2);
+        }
+
+        /* Case study metric rings */
+        .cs-metric-ring {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid rgba(107, 123, 58, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin: 0 auto 1rem;
+        }
+
+        /* Case study capability grid */
+        .cs-capability-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Case study capability cards */
+        .cs-capability {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 1rem;
+            padding: 1.75rem;
+            transition: all 0.3s ease;
+        }
+        .cs-capability:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(107, 123, 58, 0.2);
+        }
+
+        /* Case study timeline */
+        .cs-timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+        .cs-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.75rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #6B7B3A, rgba(107, 123, 58, 0.1));
+        }
+
+        /* Careers section */
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.75); }
+        }
+        .careers-benefit-block:hover {
+            background: rgba(255, 255, 255, 0.06) !important;
+            border-color: rgba(107, 123, 58, 0.25) !important;
+            transform: translateY(-3px);
+        }
+        .careers-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+        @media (max-width: 640px) {
+            .careers-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-midnight text-white font-body antialiased overflow-x-hidden">
+
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- NAVIGATION                                                  -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+        <div class="nav-blur"></div>
+        <div class="relative max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="#hero" class="nav-logo flex items-center gap-3">
+                <img src="images/logo.png" alt="Optimal Pipeline Solutions" class="h-10 w-auto">
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#about-ops" class="nav-link">About</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#control-room" class="nav-link">Control Room</a>
+                <a href="#engineering" class="nav-link">Automation</a>
+                <a href="#automation" class="nav-link">Projects</a>
+                <a href="#compliance" class="nav-link">Compliance</a>
+                <a href="#case-study" class="nav-link">Case Study</a>
+                <a href="#careers" class="nav-link" style="color:#8A9B55;font-weight:600;">Careers</a>
+                <a href="#" class="nav-link" onclick="openGolfModal();return false;" style="color:#8A9B55;font-weight:600;display:none;">⛳ Golf</a>
+                <a href="#contact" class="nav-cta">Contact Us</a>
+            </div>
+            <button id="mobile-toggle" class="md:hidden text-white p-2 -mr-2 touch-manipulation" style="min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 0 3px rgba(0,0,0,0.8));" onclick="var m=document.getElementById('mobile-menu');m.style.display=m.style.display==='flex'?'none':'flex';">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-midnight/95 backdrop-blur-xl flex-col items-center justify-center gap-8" style="display:none;">
+        <a href="#about-ops" class="mobile-link">About</a>
+        <a href="#services" class="mobile-link">Services</a>
+        <a href="#control-room" class="mobile-link">Control Room</a>
+        <a href="#engineering" class="mobile-link">Automation</a>
+        <a href="#automation" class="mobile-link">Projects</a>
+        <a href="#compliance" class="mobile-link">Compliance</a>
+        <a href="#case-study" class="mobile-link">Case Study</a>
+        <a href="#careers" class="mobile-link" style="color:#8A9B55;">Careers</a>
+        <a href="#contact" class="mobile-link">Contact Us</a>
+        <a href="#" class="mobile-link" onclick="openGolfModal();document.getElementById('mobile-menu').classList.add('hidden');return false;" style="color:#8A9B55;">⛳ Golf Challenge</a>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- HERO                                                        -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section id="hero" class="ops-section relative h-screen flex items-center justify-center overflow-hidden" data-theme="dark">
+        <div class="absolute inset-0" style="overflow:hidden;">
+            <div class="hero-drift" style="position:absolute;inset:-5%;background:url('images/hero-bg.jpg') center/cover no-repeat;"></div>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-b from-midnight/80 via-midnight/60 to-midnight"></div>
+        <div class="hero-grid absolute inset-0 opacity-[0.03]"></div>
+
+        <div class="relative z-10 text-center max-w-5xl mx-auto px-6">
+            <div style="display:flex;justify-content:center;margin-bottom:1.25rem;">
+                <div class="hero-logo opacity-0">
+                    <img src="images/logo.png" alt="Optimal Pipeline Solutions" style="height:100%;width:auto;display:block;">
+                </div>
+            </div>
+            <p class="hero-tag text-olive-light font-display font-medium tracking-widest uppercase text-sm mb-6 opacity-0">
+                Automation | Remote Monitoring | Compliance
+            </p>
+            <h1 class="hero-title font-display font-bold text-5xl md:text-7xl lg:text-8xl tracking-tight leading-[0.95] mb-8 opacity-0">
+                Driving efficiency.<br>
+                <span class="text-gradient">Ensuring compliance.</span>
+            </h1>
+            <p class="hero-sub text-xl md:text-2xl text-white/60 font-light max-w-3xl mx-auto mb-12 opacity-0">
+                We apply decades of specialized experience to the forefront of automation,
+                control, and compliance for the modern energy and manufacturing sectors.
+            </p>
+            <div class="hero-cta flex flex-col sm:flex-row gap-4 justify-center opacity-0">
+                <a href="#services" class="btn-primary">Explore Our Services</a>
+                <a href="#contact" class="btn-secondary">Get in Touch</a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 scroll-indicator opacity-0">
+            <div class="w-6 h-10 rounded-full border-2 border-white/20 flex justify-center pt-2">
+                <div class="w-1 h-2 bg-white/40 rounded-full scroll-dot"></div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- ABOUT / WHAT MAKES US DIFFERENT                             -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section id="about-ops" class="ops-section" data-theme="dark" style="position: relative;">
+        <!-- engineering.jpg background -->
+        <div style="position: absolute; inset: 0; background: url('images/engineering.jpg') center/cover no-repeat; background-attachment: fixed; opacity: 0.35;"></div>
+        <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(17,17,17,0.2) 0%, rgba(17,17,17,0.85) 100%);"></div>
+
+        <div style="position: absolute; inset: 0; display: flex; align-items: flex-start; justify-content: flex-end; overflow: hidden; pointer-events: none; z-index: 2; padding-top: 2rem; padding-right: 2rem;">
+            <span style="font-family: 'SF Pro Display', -apple-system, sans-serif; font-weight: 700; font-size: clamp(6rem, 16vw, 18rem); color: rgba(255,255,255,0.07); letter-spacing: -0.04em; white-space: nowrap; user-select: none; line-height: 1;">About</span>
+        </div>
+        <div class="section-inner" style="position: relative;">
+            <div class="section-header text-left" style="margin-bottom: 2rem;">
+                <p class="section-tag">About Optimal Pipeline Solutions</p>
+                <h2 class="section-title" style="max-width: 48rem;">
+                    Your operation. Our commitment.
+                </h2>
+                <p class="section-subtitle theme-text-secondary" style="margin: 1.5rem 0 0; max-width: 48rem; text-align: left;">
+                    Your operation doesn't stop, and neither do we. Optimal Pipeline
+                    Solutions provides 24/7 third-party control room operations, SCADA
+                    and automation engineering, and full CRM compliance management for
+                    pipeline operators. We've operated control rooms, engineered and
+                    commissioned critical field infrastructure, built and maintained
+                    SCADA systems, successfully navigated control room audits, and
+                    worked in the field long before supporting operations from a control
+                    center. When you hand us your operation, you're handing it to a
+                    team that understands every part of it &mdash; because we've done
+                    every part of it.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- WHAT WE DO (Capabilities from about-v2, light theme)        -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section id="services" class="ops-section" data-theme="light" style="position:relative;">
+        <div style="position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:flex-end;overflow:hidden;pointer-events:none;z-index:2;padding-top:2rem;padding-right:2rem;"><span style="font-family:'SF Pro Display',-apple-system,sans-serif;font-weight:700;font-size:clamp(4.8rem,12.8vw,14.4rem);color:rgba(45,45,45,0.04);letter-spacing:-0.04em;white-space:nowrap;user-select:none;line-height:1;">Services</span></div>
+        <div class="section-inner">
+            <div class="section-header">
+                <p class="section-tag">Our Capabilities</p>
+                <h2 class="section-title">What we deliver.</h2>
+                <p class="section-subtitle">Pipeline operations demand more than isolated services&mdash;they require a partner who can monitor and control systems around the clock, respond instantly to operational events, stay ahead of compliance requirements, and engineer the infrastructure that connects it all.</p>
+                <p class="section-subtitle" style="margin-top:1rem;">That's exactly what we do. OPS was built to provide operators with a single, accountable partner for control room operations, compliance management, automation engineering, and operational support. Our services are designed to work together as an integrated solution, but each can also be delivered as a standalone offering. Whether you need support in one area or across your entire operation, we tailor our services to fit your needs. Every capability below exists because operators need it&mdash;and because we have the expertise to deliver it.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="capability-block" data-animate="fade-up">
+                    <div class="w-10 h-10 rounded-lg bg-olive/10 flex items-center justify-center mb-4">
+                        <i data-lucide="eye" class="w-5 h-5 text-olive"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-lg mb-3">24/7 Monitoring &amp; Callout</h3>
+                    <p class="text-sm leading-relaxed">
+                        Our controllers provide continuous, around-the-clock monitoring of
+                        pipeline, gathering, and terminal operations, ensuring your assets
+                        remain under constant supervision.
+                        <br><br>
+                        With dedicated staffing 24 hours a day, 365 days a year, we deliver
+                        uninterrupted coverage that enhances reliability, minimizes downtime,
+                        and reduces operational risk.
+                        <br><br>
+                        Whether your operation requires full remote control of critical assets
+                        or simply alarm monitoring and field callout services, we offer scalable
+                        solutions tailored to your operational requirements. From single
+                        facilities to complex multi-asset systems, our services are designed
+                        to provide the level of support, oversight, and responsiveness that
+                        best fits your organization's needs.
+                    </p>
+                </div>
+
+                <div class="capability-block" data-animate="fade-up">
+                    <div class="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center mb-4">
+                        <i data-lucide="radio-tower" class="w-5 h-5 text-red-400"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-lg mb-3">Control Room Operations</h3>
+                    <p class="text-sm leading-relaxed">
+                        Our controllers provide professional oversight backed by real-world
+                        operational experience. With backgrounds spanning pipeline control,
+                        field operations, military service, and law enforcement, our team
+                        brings a disciplined approach to monitoring, communication, and
+                        incident response.
+                        <br><br>
+                        This depth of experience translates into greater situational awareness,
+                        sound decision-making, and consistent execution in both routine and
+                        abnormal operating conditions. More than simply monitoring alarms, our
+                        controllers understand the operational impact of events and the importance
+                        of timely, accurate response to support the safe and reliable operation
+                        of your assets.
+                    </p>
+                </div>
+
+                <div class="capability-block" data-animate="fade-up">
+                    <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center mb-4">
+                        <i data-lucide="shield-check" class="w-5 h-5 text-purple-400"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-lg mb-3">CRM Compliance Management</h3>
+                    <p class="text-sm leading-relaxed">
+                        The full PHMSA compliance stack &mdash; ISA-18.2 alarm
+                        rationalization, monthly alarm performance reviews, annual alarm
+                        reviews, safety-related alarm reviews, controller fatigue
+                        management, point-to-point verification, and revision-controlled
+                        document management. Our compliance team has managed these
+                        programs since the birth of the CRM rule, and purpose-built tooling generates
+                        and tracks every deliverable automatically.
+                    </p>
+                </div>
+
+                <div class="capability-block" data-animate="fade-up">
+                    <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center mb-4">
+                        <i data-lucide="clipboard-check" class="w-5 h-5 text-blue-400"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-lg mb-3">Compliance Consulting</h3>
+                    <p class="text-sm leading-relaxed">
+                        Third-party compliance consulting for operators who need expertise
+                        without a long-term contract. CRM plan development and review,
+                        mock audits, gap analysis, documentation assessment, and direct
+                        audit representation. Our team has successfully navigated control room audits
+                        from regulatory agencies including PHMSA &mdash; we know exactly what they
+                        look for and how to be ready for it.
+                    </p>
+                </div>
+
+                <div class="capability-block" data-animate="fade-up">
+                    <div class="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center mb-4">
+                        <i data-lucide="hard-hat" class="w-5 h-5 text-amber-400"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-lg mb-3">SCADA &amp; Automation Engineering</h3>
+                    <p class="text-sm leading-relaxed">
+                        Our automation and control system services are available as part of
+                        a complete OPS Control Center solution or as a standalone engagement.
+                        From greenfield projects to system upgrades and modernization efforts,
+                        we design, integrate, and commission solutions tailored to each
+                        operation's needs.
+                        <br><br>
+                        Our expertise spans SCADA, PLCs, control panels, communications,
+                        field commissioning, and system integration across a wide range of
+                        industrial applications. Whether supporting a control center, pumping
+                        station, custody transfer facility, storage terminal, or other critical
+                        infrastructure, we deliver practical solutions backed by proven
+                        engineering and field experience.
+                    </p>
+                </div>
+
+                <div class="capability-block" data-animate="fade-up">
+                    <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center mb-4">
+                        <i data-lucide="code" class="w-5 h-5 text-emerald-400"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-lg mb-3">Purpose-Built Compliance &amp; Operations Software</h3>
+                    <p class="text-sm leading-relaxed">
+                        When the off-the-shelf tools failed to fit our needs, we built our
+                        own. Developed in-house to solve real-world pipeline operational and
+                        compliance challenges, our proprietary software platform is now
+                        available to help other operators improve efficiency, compliance,
+                        and visibility. From alarm rationalization and automated reporting
+                        to controller scheduling, document control, and large-scale
+                        operational data analysis, our tools are purpose-built for pipeline
+                        and control room operations and proven before ever being brought
+                        to market.
+                    </p>
+                    <a href="#contact" class="btn-primary inline-flex mt-4 text-sm" style="padding:0.625rem 1.25rem;">Schedule a Demo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- CONTROL ROOM                                                -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section id="control-room" class="ops-section" data-theme="dark" style="background-image: url('images/control-room.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+        <div style="position:absolute;inset:0;background:rgba(18,18,18,0.65);"></div>
+        <div style="position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:flex-end;overflow:hidden;pointer-events:none;z-index:2;padding-top:2rem;padding-right:2rem;"><span style="font-family:'SF Pro Display',-apple-system,sans-serif;font-weight:700;font-size:clamp(4.8rem,12.8vw,14.4rem);color:rgba(255,255,255,0.07);letter-spacing:-0.04em;white-space:nowrap;user-select:none;line-height:1;">Control Room</span></div>
+        <div class="section-inner relative">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <div class="section-header text-left">
+                        <p class="section-tag">The OPS Control Center</p>
+                        <h2 class="section-title">24/7/365 monitoring. Zero compromise.</h2>
+                    </div>
+                    <p class="theme-text-secondary text-lg leading-relaxed mb-8" data-animate="fade-up">
+                        At the core of everything we do is 24/7 control room monitoring
+                        and emergency callout. Our controllers bring hands-on experience
+                        from across the oil and gas industry, with backgrounds spanning
+                        pipeline and field operations, terminals, exploration, production,
+                        compliance, and control rooms. Because we've worked throughout
+                        the operational lifecycle, we understand the significance behind
+                        every alarm, operating condition, and response decision. That
+                        expertise shapes how we manage compliance, execute alarm
+                        rationalization, and respond when critical situations arise.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 gap-4">
+                    <div class="ops-pill" data-animate="slide-right"><i data-lucide="eye" class="w-5 h-5 text-olive"></i><span>24/7 Monitoring and Control</span></div>
+                    <div class="ops-pill" data-animate="slide-right"><i data-lucide="shield" class="w-5 h-5 text-olive"></i><span>PHMSA CRM Compliance (49 CFR 195.446 / 192.631)</span></div>
+                    <div class="ops-pill" data-animate="slide-right"><i data-lucide="lock" class="w-5 h-5 text-olive"></i><span>Cyber and Physical Security</span></div>
+
+                    <div class="ops-pill" data-animate="slide-right"><i data-lucide="server" class="w-5 h-5 text-olive"></i><span>Fully Redundant Power, Hardware, Software, and Networks</span></div>
+                    <div class="ops-pill" data-animate="slide-right"><i data-lucide="siren" class="w-5 h-5 text-olive"></i><span>Emergency Response</span></div>
+                    <div class="ops-pill" data-animate="slide-right"><i data-lucide="droplets" class="w-5 h-5 text-olive"></i><span>Leak Detection (CPM and non-CPM)</span></div>
+                    <div class="ops-pill" data-animate="slide-right"><i data-lucide="building-2" class="w-5 h-5 text-olive"></i><span>Disaster Recovery Control Center</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- DIFFERENTIATORS (temporarily hidden)                        -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- <section id="stats" class="ops-section" data-theme="light">
+        <div class="section-inner" style="padding-top: 4rem; padding-bottom: 4rem;">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 text-center">
+                <div class="ops-stat" data-animate="fade-up">
+                    <div class="font-display font-bold text-2xl md:text-3xl text-charcoal mb-3">3 Locations</div>
+                    <p class="text-charcoal/60 mt-3 text-lg">Redundant Control Room Coverage</p>
+                </div>
+                <div class="ops-stat" data-animate="fade-up">
+                    <div class="font-display font-bold text-2xl md:text-3xl text-charcoal mb-3">PMP Certified</div>
+                    <p class="text-charcoal/60 mt-3 text-lg">Project Delivery</p>
+                </div>
+                <div class="ops-stat" data-animate="fade-up">
+                    <div class="font-display font-bold text-2xl md:text-3xl text-olive mb-3">Pipeline &amp; Manufacturing</div>
+                    <p class="text-charcoal/60 mt-3 text-lg">Dual-Sector Expertise</p>
+                </div>
+                <div class="ops-stat" data-animate="fade-up">
+                    <div class="font-display font-bold text-2xl md:text-3xl text-charcoal mb-3">One Team</div>
+                    <p class="text-charcoal/60 mt-3 text-lg">Operations, Automation &amp; Compliance</p>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+
+    <!-- OPERATIONS EXPERTISE TAGS — grouped with control room -->
+    <section class="ops-section" data-theme="dark">
+        <div class="section-inner" style="padding-top:4rem;padding-bottom:4rem;">
+            <div class="section-header">
+                <p class="section-tag">Operations Expertise</p>
+                <h2 class="section-title">We speak your operation's language.</h2>
+                <p class="section-subtitle theme-text-secondary">
+                    We don't just understand the equipment &mdash; we understand the work.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-4xl mx-auto" data-animate="fade-up">
+                <div class="ops-pill-tag">24/7 Remote Monitoring</div>
+                <div class="ops-pill-tag">Emergency Callout</div>
+                <div class="ops-pill-tag">Pipeline Gathering Operations</div>
+                <div class="ops-pill-tag">Terminal &amp; Storage Operations</div>
+                <div class="ops-pill-tag">Custody Transfer &amp; Metering</div>
+                <div class="ops-pill-tag">PHMSA CRM Compliance</div>
+                <div class="ops-pill-tag">ISA-18.2 Alarm Rationalization</div>
+                <div class="ops-pill-tag">Alarm Performance Reviews</div>
+                <div class="ops-pill-tag">Safety-Related Alarm Reviews</div>
+                <div class="ops-pill-tag">Controller Fatigue Management</div>
+                <div class="ops-pill-tag">Point-to-Point Verification</div>
+                <div class="ops-pill-tag">Document Control &amp; Retention</div>
+                <div class="ops-pill-tag">CRM Plan Development</div>
+                <div class="ops-pill-tag">Mock Audits &amp; Gap Analysis</div>
+                <div class="ops-pill-tag">Audit Representation</div>
+                <div class="ops-pill-tag">Leak Detection (CPM &amp; Non-CPM)</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ENGINEERING — WHAT MAKES US DIFFERENT -->
+    <section class="ops-section" data-theme="dark" style="position: relative;">
+        <div style="position: absolute; inset: 0; background: url('images/automation.jpg') center/cover no-repeat; background-attachment: fixed; opacity: 0.35;"></div>
+        <div style="position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:flex-end;overflow:hidden;pointer-events:none;z-index:2;padding-top:2rem;padding-right:2rem;"><span style="font-family:'SF Pro Display',-apple-system,sans-serif;font-weight:700;font-size:clamp(4.8rem,12.8vw,14.4rem);color:rgba(255,255,255,0.07);letter-spacing:-0.04em;white-space:nowrap;user-select:none;line-height:1;">Automation</span></div>
+        <div class="section-inner" style="position: relative; padding-top:4rem;padding-bottom:4rem;">
+            <div class="max-w-3xl">
+                <div class="section-header text-left" style="margin-bottom: 2rem;">
+                    <p class="section-tag">Automation Engineering</p>
+                    <h2 class="section-title" style="max-width: 48rem;">Our Automation Engineering Services</h2>
+                </div>
+                <div class="space-y-5 theme-text-secondary leading-relaxed text-lg" data-animate="fade-up">
+                    <p>
+                        Our automation engineering practice is built on four decades of hands-on
+                        experience designing and commissioning control systems &mdash; back when
+                        the tools didn't do what you needed and you had to build the missing pieces
+                        yourself. That depth spans pumping stations, custody transfer metering,
+                        multi-terminal storage facilities, control center implementations, and
+                        large-scale industrial automation across more than 20 industries.
+                    </p>
+                    <p>
+                        Whether you need a greenfield SCADA deployment, a PLC upgrade, a new
+                        terminal automation system, or a modernization of aging infrastructure,
+                        we design, integrate, and commission solutions tailored to your operation's
+                        specific requirements. Our engineers bring the kind of knowledge that only
+                        comes from decades of field delivery &mdash; understanding what works on
+                        the ground, not just on paper.
+                    </p>
+                    <p>
+                        For operators who also rely on OPS for control room operations or compliance
+                        management, our automation team is already embedded in that environment.
+                        Changes move through the Management of Change process without the
+                        coordination overhead of working with a separate vendor &mdash; because
+                        the team maintaining your compliance programs is the same team making the
+                        change. But that relationship isn't a prerequisite. We bring the same depth
+                        and accountability to standalone automation engagements.
+                    </p>
+                    <p>
+                        Every control system we engineer carries the weight of everything that
+                        came before it. That kind of experience doesn't come from a textbook
+                        &mdash; it comes from decades of delivering solutions that had to work
+                        the first time, every time.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Industry Experience Tags -->
+            <div class="section-header mt-12">
+                <p class="section-tag">Experience</p>
+                <h2 class="section-title">Across every kind of operation.</h2>
+                <p class="section-subtitle theme-text-secondary">
+                    Over 100 documented projects across four decades and more than 20 industries.
+                </p>
+            </div>
+
+            <div class="flex flex-wrap gap-3 justify-center max-w-4xl mx-auto" data-animate="fade-up">
+                <span class="industry-tag">Midstream Pipeline</span>
+                <span class="industry-tag">Crude Oil Gathering</span>
+                <span class="industry-tag">NGL &amp; Gas Processing</span>
+                <span class="industry-tag">Terminal Automation</span>
+                <span class="industry-tag">Produced Water</span>
+                <span class="industry-tag">Tank Farm Operations</span>
+                <span class="industry-tag">Custody Transfer Metering</span>
+                <span class="industry-tag">Chemical Processing</span>
+                <span class="industry-tag">Co-Generation &amp; Power</span>
+                <span class="industry-tag">Water &amp; Wastewater Treatment</span>
+                <span class="industry-tag">Leak Detection (CPM &amp; Non-CPM)</span>
+                <span class="industry-tag">Oil Field Operations</span>
+                <span class="industry-tag">Control Room Operations</span>
+                <span class="industry-tag">Industrial Manufacturing &amp; Process Automation</span>
+                <span class="industry-tag">Enterprise Network Infrastructure</span>
+            </div>
+
+            <!-- 5-column stats row -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mt-16 text-center" data-animate="fade-up">
+                <div>
+                    <div class="font-display font-bold text-4xl text-olive">40</div>
+                    <p class="theme-text-secondary text-sm mt-2">Years of<br>SCADA Projects</p>
+                </div>
+                <div>
+                    <div class="font-display font-bold text-4xl text-white">65+</div>
+                    <p class="theme-text-secondary text-sm mt-2">Combined Years of<br>Automation Engineering</p>
+                </div>
+                <div>
+                    <div class="font-display font-bold text-4xl text-white">150+</div>
+                    <p class="theme-text-secondary text-sm mt-2">Documented Client<br>Projects</p>
+                </div>
+                <div>
+                    <div class="font-display font-bold text-4xl text-white">44+</div>
+                    <p class="theme-text-secondary text-sm mt-2">Custom<br>Applications</p>
+                </div>
+                <div>
+                    <div class="font-display font-bold text-4xl text-olive">10+</div>
+                    <p class="theme-text-secondary text-sm mt-2">Communications<br>Protocols</p>
+                </div>
+            </div>
+
+            <!-- Platform Expertise -->
+            <div class="mt-12">
+                <div class="section-header">
+                    <p class="section-tag">Platform Expertise</p>
+                    <h3 class="section-title">We speak your equipment's language.</h3>
+                    <p class="section-subtitle theme-text-secondary">
+                        Our team has direct, hands-on experience with a multitude of platforms and systems deployed across modern pipeline and industrial operations including but not limited to the following.
+                    </p>
+                </div>
+
+                <div class="max-w-5xl mx-auto space-y-2" data-animate="fade-up">
+
+                    <div>
+                        <p class="text-olive font-display font-semibold text-xs tracking-widest uppercase text-center py-1 border-t border-olive/30">SCADA Systems</p>
+                        <div class="flex flex-wrap gap-2 justify-center">
+                            <div class="ops-pill-tag">Ignition SCADA</div>
+                            <div class="ops-pill-tag">FactoryTalk View SE/ME</div>
+                            <div class="ops-pill-tag">Wonderware / InTouch</div>
+                            <div class="ops-pill-tag">RSView32</div>
+                            <div class="ops-pill-tag">GE Cimplicity / Proficy</div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="text-olive font-display font-semibold text-xs tracking-widest uppercase text-center py-1 border-t border-olive/30">PLC Platforms</p>
+                        <div class="flex flex-wrap gap-2 justify-center">
+                            <div class="ops-pill-tag">ControlLogix / CompactLogix</div>
+                            <div class="ops-pill-tag">SLC-500 / PLC-5</div>
+                            <div class="ops-pill-tag">Modicon 984 / Quantum</div>
+                            <div class="ops-pill-tag">GE 90-30 / 90-70</div>
+                            <div class="ops-pill-tag">Siemens TI-505</div>
+                            <div class="ops-pill-tag">SCADAPack / ISaGRAF</div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="text-olive font-display font-semibold text-xs tracking-widest uppercase text-center py-1 border-t border-olive/30">Flow Computers &amp; Metering</p>
+                        <div class="flex flex-wrap gap-2 justify-center">
+                            <div class="ops-pill-tag">Omni Flow Computers</div>
+                            <div class="ops-pill-tag">ABB Spirit FlowX</div>
+                            <div class="ops-pill-tag">ABB Totalflow</div>
+                            <div class="ops-pill-tag">Toptech Multiloads</div>
+                            <div class="ops-pill-tag">Raptor Tank Gauging</div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="text-olive font-display font-semibold text-xs tracking-widest uppercase text-center py-1 border-t border-olive/30">Communications &amp; Infrastructure</p>
+                        <div class="flex flex-wrap gap-2 justify-center">
+                            <div class="ops-pill-tag">MQTT / Sparkplug</div>
+                            <div class="ops-pill-tag">Kepware OPC-UA</div>
+                            <div class="ops-pill-tag">Stratus ftServers</div>
+                            <div class="ops-pill-tag">Canary Historian</div>
+                            <div class="ops-pill-tag">VMware / Hyper-V</div>
+                            <div class="ops-pill-tag">Docker</div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="text-olive font-display font-semibold text-xs tracking-widest uppercase text-center py-1 border-t border-olive/30">Data &amp; Development</p>
+                        <div class="flex flex-wrap gap-2 justify-center">
+                            <div class="ops-pill-tag">React</div>
+                            <div class="ops-pill-tag">TypeScript</div>
+                            <div class="ops-pill-tag">ASP.NET Core</div>
+                            <div class="ops-pill-tag">C#</div>
+                            <div class="ops-pill-tag">Python</div>
+                            <div class="ops-pill-tag">T-SQL</div>
+                            <div class="ops-pill-tag">MySQL</div>
+                            <div class="ops-pill-tag">Tauri</div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="text-olive font-display font-semibold text-xs tracking-widest uppercase text-center py-1 border-t border-olive/30">Custom Solutions</p>
+                        <div class="flex flex-wrap gap-2 justify-center">
+                            <div class="ops-pill-tag">Alarm Rationalization</div>
+                            <div class="ops-pill-tag">Controller Scheduling &amp; HOS</div>
+                            <div class="ops-pill-tag">Compliance Document Control</div>
+                            <div class="ops-pill-tag">Operational Data Analytics</div>
+                            <div class="ops-pill-tag">Pipeline Simulation &amp; Testing</div>
+                            <div class="ops-pill-tag">OPS CRM Suite</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- ENGINEERING CAPABILITIES                                     -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section id="engineering" class="ops-section" data-theme="light">
+        <div class="section-inner" style="padding-top:4rem;padding-bottom:4rem;">
+            <div class="section-header">
+                <p class="section-tag">Automation Engineering</p>
+                <h2 class="section-title">Built to automate.<br>Built to deliver.</h2>
+                <p class="section-subtitle">From concept through commissioning, we design, build, and integrate the automation systems that keep your operation running — pipelines, terminals, gathering systems, and everything in between.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="capability-block" data-animate="fade-up">
+                    <div class="w-10 h-10 rounded-lg bg-olive/10 flex items-center justify-center mb-4">
+                        <i data-lucide="briefcase" class="w-5 h-5 text-olive"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-lg mb-3">PMP-Certified Project Delivery</h3>
+                    <p class="text-sm leading-relaxed">
+                        Automation projects delivered on time and within scope by PMP-certified project managers. From initial scope definition through final commissioning and handover, we own the outcome at every stage.
+                    </p>
+                </div>
+
+                <div class="capability-block" data-animate="fade-up">
+                    <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center mb-4">
+                        <i data-lucide="factory" class="w-5 h-5 text-blue-500"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-lg mb-3">Pipeline &amp; Industrial Automation</h3>
+                    <p class="text-sm leading-relaxed">
+                        Automation experience across midstream pipeline infrastructure and industrial manufacturing — two sectors that demand different disciplines, different tolerances, and different thinking. We bring both to every engagement.
+                    </p>
+                </div>
+
+                <div class="capability-block" data-animate="fade-up">
+                    <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center mb-4">
+                        <i data-lucide="layers" class="w-5 h-5 text-purple-500"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-lg mb-3">PLC, SCADA &amp; System Integration</h3>
+                    <p class="text-sm leading-relaxed">
+                        From PLC programming and SCADA architecture to cloud deployment, data historians, enterprise system integration, and custom software solutions built specifically for your operation. We design it, we integrate it, we commission it.
+                    </p>
+                </div>
+
+                <div class="capability-block" data-animate="fade-up">
+                    <div class="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center mb-4">
+                        <i data-lucide="construction" class="w-5 h-5 text-amber-500"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-lg mb-3">Greenfield to Modernization</h3>
+                    <p class="text-sm leading-relaxed">
+                        Whether you're automating a new facility from the ground up or replacing aging infrastructure, our team has done it across pumping stations, custody transfer, storage terminals, and unmanned remote sites — at every scale.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- AUTOMATION PROJECTS                                         -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section id="automation" class="ops-section" data-theme="dark" style="position:relative;">
+        <div style="position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:flex-end;overflow:hidden;pointer-events:none;z-index:2;padding-top:2rem;padding-right:2rem;"><span style="font-family:'SF Pro Display',-apple-system,sans-serif;font-weight:700;font-size:clamp(4.8rem,12.8vw,14.4rem);color:rgba(255,255,255,0.07);letter-spacing:-0.04em;white-space:nowrap;user-select:none;line-height:1;">Projects</span></div>
+        <div class="section-inner">
+            <div class="section-header">
+                <p class="section-tag">Automation</p>
+                <h2 class="section-title">Featured projects.</h2>
+                <p class="section-subtitle">OPS delivers reliable, scalable automation solutions built to meet the demands of complex operations &mdash; from initial PLC design to comprehensive system integration.</p>
+            </div>
+
+            <div class="space-y-8">
+                <div class="ops-panel" data-animate="fade-up">
+                    <div class="ops-panel-inner">
+                        <div class="ops-panel-content">
+                            <span class="ops-panel-tag text-olive">Terminal Automation</span>
+                            <h3 class="ops-panel-title">Rail-to-Storage and Automated Truck Rack System</h3>
+                            <p class="ops-panel-text">Managed the offloading of 80 rail cars into storage through three dedicated product meter skids. Automated multi-flowrate proving, direct integration with TMS6 for batch and transaction data, and an interface with Toptech Multiloads for fully unattended driver operations at an eight-bay truck rack.</p>
+                        </div>
+                        <div class="ops-panel-visual"><i data-lucide="train-front" class="w-20 h-20 text-olive/30"></i></div>
+                    </div>
+                </div>
+
+                <div class="ops-panel" data-animate="fade-up">
+                    <div class="ops-panel-inner">
+                        <div class="ops-panel-content">
+                            <span class="ops-panel-tag text-blue-400">SCADA Modernization</span>
+                            <h3 class="ops-panel-title">Enterprise SCADA for Manufacturing</h3>
+                            <p class="ops-panel-text">Enterprise-wide SCADA system using Ignition and Kepware OPC, replacing legacy systems. Centralized historical data for materials, batching, and forecasting with custom diagnostic tools that significantly reduced equipment downtime. SQL-driven configuration backend enabled rapid operational adjustments.</p>
+                        </div>
+                        <div class="ops-panel-visual"><i data-lucide="database" class="w-20 h-20 text-blue-400/30"></i></div>
+                    </div>
+                </div>
+
+                <div class="ops-panel" data-animate="fade-up">
+                    <div class="ops-panel-inner">
+                        <div class="ops-panel-content">
+                            <span class="ops-panel-tag text-purple-400">Multi-Site Deployment</span>
+                            <h3 class="ops-panel-title">Multi-Terminal Control and SCADA</h3>
+                            <p class="ops-panel-text">Control systems for four terminals and a central control center using ControlLogix PLCs and Ignition SCADA on Stratus ftServers. Integrated with Omni flow computers, Raptor tank gauging, and Siemens/ABB VFDs. Standardized operational control with fault-tolerant server infrastructure.</p>
+                        </div>
+                        <div class="ops-panel-visual"><i data-lucide="network" class="w-20 h-20 text-purple-400/30"></i></div>
+                    </div>
+                </div>
+
+                <div class="ops-panel" data-animate="fade-up">
+                    <div class="ops-panel-inner">
+                        <div class="ops-panel-content">
+                            <span class="ops-panel-tag text-amber-400">HMI Modernization</span>
+                            <h3 class="ops-panel-title">High-Performance HMI Consolidation</h3>
+                            <p class="ops-panel-text">Overhauled existing HMI systems using FactoryTalk View SE Network Distributed application built to high-performance standards. Consolidated three standalone HMIs into a single Stratus server utilizing virtual machines and a unified HMI platform.</p>
+                        </div>
+                        <div class="ops-panel-visual"><i data-lucide="monitor" class="w-20 h-20 text-amber-400/30"></i></div>
+                    </div>
+                </div>
+
+                <div class="ops-panel" data-animate="fade-up">
+                    <div class="ops-panel-inner">
+                        <div class="ops-panel-content">
+                            <span class="ops-panel-tag text-emerald-400">Purpose-Built Software</span>
+                            <h3 class="ops-panel-title">OPS Control Room Management Platform</h3>
+                            <p class="ops-panel-text">A proprietary operations management platform developed specifically to support pipeline control room compliance under 49 CFR 195.446, 49 CFR 192.631, and ISA-18.2. Modules span alarm rationalization, automated monthly and annual alarm performance reviews, safety-related alarm reviews, controller scheduling with HOS compliance tracking, dynamic point-to-point verification with auto-generated controlled documents, and large-scale operational metrics collection and analysis. An integrated document control system maintains full revision history and audit-ready retrieval for every compliance deliverable. A purpose-built pipeline simulation environment supports development and integration testing.</p>
+                        </div>
+                        <div class="ops-panel-visual"><i data-lucide="layout-dashboard" class="w-20 h-20 text-emerald-400/30"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- COMPLIANCE                                                  -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section id="compliance" class="ops-section" data-theme="light" style="position:relative;">
+        <div style="position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:flex-end;overflow:hidden;pointer-events:none;z-index:2;padding-top:2rem;padding-right:2rem;"><span style="font-family:'SF Pro Display',-apple-system,sans-serif;font-weight:700;font-size:clamp(4.8rem,12.8vw,14.4rem);color:rgba(45,45,45,0.04);letter-spacing:-0.04em;white-space:nowrap;user-select:none;line-height:1;">Compliance</span></div>
+        <div class="section-inner">
+            <div class="section-header">
+                <p class="section-tag">Compliance</p>
+                <h2 class="section-title">Audit-ready.<br>Always.</h2>
+                <p class="section-subtitle">We are dedicated to providing superior compliance services, helping control rooms meet the standards set out by PHMSA CRM regulations defined in CFR 195.446 and 192.631. Our team has successfully navigated multiple audits from regulatory agencies including PHMSA.</p>
+            </div>
+
+            <div class="ops-hscroll flex gap-8 pb-8">
+                <div class="ops-card ops-card--fixed" data-animate="fade-up">
+                    <div class="ops-card-icon bg-olive/10 text-olive"><i data-lucide="file-plus" class="w-8 h-8"></i></div>
+                    <h3 class="ops-card-title">CRM Plan Development</h3>
+                    <p class="ops-card-text">Development and implementation of tailored Control Room Management plans. We help new control rooms build their framework and established control rooms strengthen theirs.</p>
+                </div>
+                <div class="ops-card ops-card--fixed" data-animate="fade-up">
+                    <div class="ops-card-icon bg-blue-500/10 text-blue-600"><i data-lucide="refresh-ccw" class="w-8 h-8"></i></div>
+                    <h3 class="ops-card-title">Ongoing CRM Improvements</h3>
+                    <p class="ops-card-text">Continuous evaluation and improvement of existing CRM plans to stay ahead of regulatory changes and operational needs.</p>
+                </div>
+                <div class="ops-card ops-card--fixed" data-animate="fade-up">
+                    <div class="ops-card-icon bg-purple-500/10 text-purple-600"><i data-lucide="file-text" class="w-8 h-8"></i></div>
+                    <h3 class="ops-card-title">Documentation Services</h3>
+                    <p class="ops-card-text">Comprehensive compliance documentation &mdash; revision-controlled, audit-ready, and maintained with full lifecycle tracking.</p>
+                </div>
+                <div class="ops-card ops-card--fixed" data-animate="fade-up">
+                    <div class="ops-card-icon bg-amber-500/10 text-amber-600"><i data-lucide="clipboard-check" class="w-8 h-8"></i></div>
+                    <h3 class="ops-card-title">Mock Audits</h3>
+                    <p class="ops-card-text">Rigorous mock audits that identify gaps before the real inspector arrives. Know exactly where you stand and what needs attention.</p>
+                </div>
+                <div class="ops-card ops-card--fixed" data-animate="fade-up">
+                    <div class="ops-card-icon bg-emerald-500/10 text-emerald-600"><i data-lucide="scale" class="w-8 h-8"></i></div>
+                    <h3 class="ops-card-title">Audit Services &amp; Consulting</h3>
+                    <p class="ops-card-text">Full audit support and consulting from a team that has been through the process. We provide the framework for successful outcomes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- CASE STUDY (condensed)                                      -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section id="case-study" class="ops-section" data-theme="dark" style="position: relative;">
+        <!-- pipeline-aerial.jpg background -->
+        <div style="position: absolute; inset: 0; background: url('images/pipeline-aerial.jpg') center/cover no-repeat; background-attachment: fixed; opacity: 0.35;"></div>
+        <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(17,17,17,0.3) 0%, rgba(17,17,17,0.85) 100%);"></div>
+        <div style="position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:flex-end;overflow:hidden;pointer-events:none;z-index:2;padding-top:2rem;padding-right:2rem;"><span style="font-family:'SF Pro Display',-apple-system,sans-serif;font-weight:700;font-size:clamp(4.8rem,12.8vw,14.4rem);color:rgba(255,255,255,0.07);letter-spacing:-0.04em;white-space:nowrap;user-select:none;line-height:1;">Case Study</span></div>
+
+        <div class="section-inner" style="position: relative;">
+            <!-- Header -->
+            <div class="section-header">
+                <p class="section-tag">Case Study</p>
+                <h2 class="section-title">Managed SCADA Operations for a<br>Major Midstream Operator</h2>
+                <p class="section-subtitle">How OPS manages full-spectrum SCADA operations and compliance for a major midstream pipeline operator across a multi-state gathering system.</p>
+            </div>
+
+            <!-- 5 Metric Rings -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-16">
+                <div class="text-center" data-animate="fade-up">
+                    <div class="cs-metric-ring">
+                        <span class="font-display font-bold text-2xl text-olive">149</span>
+                    </div>
+                    <p class="theme-text-secondary text-sm">Sites Monitored</p>
+                </div>
+                <div class="text-center" data-animate="fade-up">
+                    <div class="cs-metric-ring">
+                        <span class="font-display font-bold text-2xl text-white">15,485</span>
+                    </div>
+                    <p class="theme-text-secondary text-sm">Alarms Rationalized</p>
+                </div>
+                <div class="text-center" data-animate="fade-up">
+                    <div class="cs-metric-ring">
+                        <span class="font-display font-bold text-2xl text-white">265</span>
+                    </div>
+                    <p class="theme-text-secondary text-sm">Compliance Documents</p>
+                </div>
+                <div class="text-center" data-animate="fade-up">
+                    <div class="cs-metric-ring">
+                        <span class="font-display font-bold text-2xl text-white">24/7</span>
+                    </div>
+                    <p class="theme-text-secondary text-sm">Monitoring Coverage</p>
+                </div>
+                <div class="text-center" data-animate="fade-up">
+                    <div class="cs-metric-ring">
+                        <span class="font-display font-bold text-2xl text-olive">10+</span>
+                    </div>
+                    <p class="theme-text-secondary text-sm">Protocols Supported</p>
+                </div>
+            </div>
+
+            <!-- Condensed engagement summary -->
+            <div class="max-w-3xl mx-auto mb-16" data-animate="fade-up">
+                <div class="space-y-5 theme-text-secondary leading-relaxed text-lg">
+                    <p>
+                        OPS serves as the dedicated control room for a major midstream pipeline and
+                        gathering operator running Ignition SCADA across dozens of remote sites
+                        handling crude oil, produced water and natural gas.
+                        This is more than a contract with a start and end date &mdash; it is a
+                        continuous, evolving partnership where OPS automation engineering, compliance,
+                        and control room operations function as a single integrated team
+                        alongside the customer.
+                    </p>
+                    <p>
+                        Because our team understands both the systems and the operations
+                        they support, implementation follows the Management of Change process
+                        without the delays that come with coordinating separate contractors.
+                    </p>
+                </div>
+            </div>
+
+            <!-- 6 Results cards (dark-theme capability-style) -->
+            <div class="cs-capability-grid">
+                <div class="cs-capability" data-animate="fade-up">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center">
+                            <i data-lucide="zap" class="w-5 h-5 text-blue-400"></i>
+                        </div>
+                        <h3 class="font-display font-semibold text-lg">Integrated Operations &amp; Engineering</h3>
+                    </div>
+                    <p class="theme-text-secondary text-sm leading-relaxed">
+                        New site onboarding &mdash; SCADA integration, alarm rationalization,
+                        compliance documentation &mdash; moves through the process without
+                        the scheduling delays that come with coordinating separate contractors.
+                    </p>
+                </div>
+
+                <div class="cs-capability" data-animate="fade-up">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center">
+                            <i data-lucide="refresh-ccw" class="w-5 h-5 text-purple-400"></i>
+                        </div>
+                        <h3 class="font-display font-semibold text-lg">Always Current</h3>
+                    </div>
+                    <p class="theme-text-secondary text-sm leading-relaxed">
+                        Alarm metrics, monthly reviews, and compliance reports generate automatically.
+                        The data is never stale. When an inspector asks "show me last month's
+                        alarm performance," it's already done.
+                    </p>
+                </div>
+
+                <div class="cs-capability" data-animate="fade-up">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+                            <i data-lucide="trending-up" class="w-5 h-5 text-emerald-400"></i>
+                        </div>
+                        <h3 class="font-display font-semibold text-lg">Scales Without Headcount</h3>
+                    </div>
+                    <p class="theme-text-secondary text-sm leading-relaxed">
+                        The operator has added dozens of sites without proportionally growing
+                        the compliance team. Automation handles the documentation burden
+                        that would otherwise require dedicated staff.
+                    </p>
+                </div>
+
+                <div class="cs-capability" data-animate="fade-up">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center">
+                            <i data-lucide="lock" class="w-5 h-5 text-red-400"></i>
+                        </div>
+                        <h3 class="font-display font-semibold text-lg">Single Source of Truth</h3>
+                    </div>
+                    <p class="theme-text-secondary text-sm leading-relaxed">
+                        One integrated platform for alarms, schedules, documents, and reports.
+                        No spreadsheets, no disconnected systems. Everything traces back
+                        to one authoritative data source.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- TESTIMONIALS                                                -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section id="testimonials" class="ops-section" data-theme="dark" style="position:relative;">
+        <div style="position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:flex-end;overflow:hidden;pointer-events:none;z-index:2;padding-top:2rem;padding-right:2rem;"><span style="font-family:'SF Pro Display',-apple-system,sans-serif;font-weight:700;font-size:clamp(4.8rem,12.8vw,14.4rem);color:rgba(255,255,255,0.07);letter-spacing:-0.04em;white-space:nowrap;user-select:none;line-height:1;">Clients</span></div>
+        <div class="section-inner max-w-5xl">
+            <div class="section-header">
+                <p class="section-tag">What Our Clients Say</p>
+                <h2 class="section-title">Trusted by operators.</h2>
+                <p class="section-subtitle">From the people who depend on us every day.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="ops-quote" data-animate="fade-up">
+                    <div class="text-olive mb-6"><i data-lucide="quote" class="w-10 h-10"></i></div>
+                    <blockquote class="theme-text-secondary text-lg leading-relaxed mb-8 italic">
+                        "We are very happy with our decision to switch from our previous control room provider
+                        to OPS. Highly skilled in control center operations, and we know the OPS team can be
+                        trusted with our assets. We are certainly satisfied with the level of service they provide."
+                    </blockquote>
+                    <div class="border-t border-white/10 pt-6">
+                        <p class="font-display font-semibold text-white">Dave Brazeal</p>
+                        <p class="theme-text-muted text-sm">VP of Operations and Construction, Taproot Energy Partners</p>
+                    </div>
+                </div>
+
+                <div class="ops-quote" data-animate="fade-up">
+                    <div class="text-olive mb-6"><i data-lucide="quote" class="w-10 h-10"></i></div>
+                    <blockquote class="theme-text-secondary text-lg leading-relaxed mb-8 italic">
+                        "I've trusted this team on automation projects well before OPS existed, and I consider
+                        them a dependable resource. They've always been solid &mdash; technically strong, responsive,
+                        and easy to work with."
+                    </blockquote>
+                    <div class="border-t border-white/10 pt-6">
+                        <p class="font-display font-semibold text-white">Travis Cundiff</p>
+                        <p class="theme-text-muted text-sm">VP of Operations, NGL Crude Terminals</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- HOW WE WORK                                                 -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section id="how-we-work" class="ops-section" data-theme="light" style="position:relative;">
+        <div style="position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:flex-end;overflow:hidden;pointer-events:none;z-index:2;padding-top:2rem;padding-right:2rem;"><span style="font-family:'SF Pro Display',-apple-system,sans-serif;font-weight:700;font-size:clamp(4.8rem,12.8vw,14.4rem);color:rgba(45,45,45,0.04);letter-spacing:-0.04em;white-space:nowrap;user-select:none;line-height:1;">Process</span></div>
+        <div class="section-inner">
+            <div class="section-header">
+                <p class="section-tag">How We Work</p>
+                <h2 class="section-title">Not just a vendor.<br>A partner.</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="value-block" data-animate="fade-up">
+                    <div class="w-12 h-12 rounded-xl bg-olive/10 flex items-center justify-center mb-4">
+                        <i data-lucide="handshake" class="w-6 h-6 text-olive"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-lg mb-2 text-charcoal">We Work With You</h3>
+                    <p class="text-charcoal/60 text-sm leading-relaxed">
+                        We don't hand you a system and walk away. We operate it with you,
+                        improve it with you, and adapt it as your operation changes. Our
+                        engineers and your operations team share the same data, the same
+                        tools, and the same goals.
+                    </p>
+                </div>
+
+                <div class="value-block" data-animate="fade-up">
+                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center mb-4">
+                        <i data-lucide="clock" class="w-6 h-6 text-blue-600"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-lg mb-2 text-charcoal">Integrated Operations &amp; Engineering</h3>
+                    <p class="text-charcoal/60 text-sm leading-relaxed">
+                        When something needs to change, it moves through the process without
+                        scheduling delays &mdash; because the team monitoring your systems
+                        and managing your compliance programs is the same team making the change.
+                    </p>
+                </div>
+
+                <div class="value-block" data-animate="fade-up">
+                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center mb-4">
+                        <i data-lucide="layers" class="w-6 h-6 text-purple-600"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-lg mb-2 text-charcoal">We've Seen It Before</h3>
+                    <p class="text-charcoal/60 text-sm leading-relaxed">
+                        Four decades across 20+ industries means we've encountered most
+                        problems in some form already. We bring solutions from manufacturing
+                        floors, chemical plants, and power generation facilities into
+                        pipeline operations &mdash; approaches that a single-industry
+                        team wouldn't think to try.
+                    </p>
+                </div>
+
+                <div class="value-block" data-animate="fade-up">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center mb-4">
+                        <i data-lucide="wrench" class="w-6 h-6 text-amber-600"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-lg mb-2 text-charcoal">We Build What You Need</h3>
+                    <p class="text-charcoal/60 text-sm leading-relaxed">
+                        If the tool doesn't exist, we build it. Our platform grew
+                        entirely from real operational needs &mdash; alarm rationalization,
+                        automated compliance reporting, controller scheduling, document
+                        control. Every feature exists because a customer needed it.
+                    </p>
+                </div>
+
+                <div class="value-block" data-animate="fade-up">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-4">
+                        <i data-lucide="shield-check" class="w-6 h-6 text-emerald-600"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-lg mb-2 text-charcoal">We Keep You Audit-Ready</h3>
+                    <p class="text-charcoal/60 text-sm leading-relaxed">
+                        Compliance isn't a project we finish &mdash; it's a state we
+                        maintain. Every alarm is rationalized, every document is tracked,
+                        every controller shift is logged. When an inspector arrives,
+                        the answer is already on the screen.
+                    </p>
+                </div>
+
+                <div class="value-block" data-animate="fade-up">
+                    <div class="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center mb-4">
+                        <i data-lucide="trending-up" class="w-6 h-6 text-red-600"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-lg mb-2 text-charcoal">We Scale With You</h3>
+                    <p class="text-charcoal/60 text-sm leading-relaxed">
+                        Add sites, add systems, add product streams. Our architecture
+                        and our tooling are built to grow with your operation without
+                        requiring you to grow your own staff proportionally. The
+                        automation handles the scale.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- CAREERS                                                     -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section id="careers" class="ops-section" data-theme="dark" style="position:relative;background-image:url('images/oil-pipeline-control-operator.jpg');background-size:cover;background-position:center top;background-attachment:fixed;">
+        <div style="position:absolute;inset:0;background:rgba(8,10,8,0.82);"></div>
+        <div style="position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:flex-end;overflow:hidden;pointer-events:none;z-index:2;padding-top:2rem;padding-right:2rem;"><span style="font-family:'SF Pro Display',-apple-system,sans-serif;font-weight:700;font-size:clamp(4.8rem,12.8vw,14.4rem);color:rgba(255,255,255,0.07);letter-spacing:-0.04em;white-space:nowrap;user-select:none;line-height:1;">Careers</span></div>
+
+        <div class="section-inner relative" style="z-index:3;">
+
+            <!-- Section header -->
+            <div class="section-header text-center">
+                <div style="display:inline-flex;align-items:center;gap:0.6rem;background:rgba(107,123,58,0.12);border:1px solid rgba(107,123,58,0.35);border-radius:2rem;padding:0.45rem 1.25rem;margin-bottom:1.75rem;">
+                    <span style="width:8px;height:8px;border-radius:50%;background:#8A9B55;display:inline-block;animation:pulse-dot 2s infinite;flex-shrink:0;"></span>
+                    <span style="color:#8A9B55;font-size:0.72rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;">Now Hiring</span>
+                </div>
+                <p class="section-tag">Join Our Team</p>
+                <h2 class="section-title">Operate at<br><span class="text-gradient">the highest level.</span></h2>
+                <p class="section-subtitle">At OPS, our controllers are not just monitors &mdash; they are the decision-makers on shift. We invest in our people with continuous training, real operational input, and the support structure to do this job with confidence.</p>
+            </div>
+
+            <!-- Job posting card -->
+            <div style="max-width:920px;margin:0 auto 4rem;background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.10);border-radius:1.5rem;overflow:hidden;" data-animate="fade-up">
+
+                <!-- Role header bar -->
+                <div style="background:linear-gradient(135deg,rgba(107,123,58,0.28),rgba(107,123,58,0.06));border-bottom:1px solid rgba(107,123,58,0.18);padding:2rem 2.5rem;display:flex;flex-wrap:wrap;gap:1.25rem;align-items:center;justify-content:space-between;">
+                    <div>
+                        <p style="color:#8A9B55;font-size:0.72rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.5rem;">Open Position</p>
+                        <h3 style="font-family:'SF Pro Display',-apple-system,sans-serif;font-weight:700;font-size:clamp(1.5rem,3vw,2.1rem);color:#fff;line-height:1.1;margin:0;">System Controller</h3>
+                    </div>
+                    <div style="display:flex;flex-wrap:wrap;gap:0.6rem;">
+                        <span style="display:inline-flex;align-items:center;gap:0.4rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);border-radius:0.5rem;padding:0.4rem 0.85rem;font-size:0.8rem;color:rgba(255,255,255,0.65);">
+                            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-olive"></i> Stillwater, OK
+                        </span>
+                        <span style="display:inline-flex;align-items:center;gap:0.4rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);border-radius:0.5rem;padding:0.4rem 0.85rem;font-size:0.8rem;color:rgba(255,255,255,0.65);">
+                            <i data-lucide="clock" class="w-3.5 h-3.5 text-olive"></i> Full-Time / Shift Work
+                        </span>
+                        <span style="display:inline-flex;align-items:center;gap:0.4rem;background:rgba(107,123,58,0.14);border:1px solid rgba(107,123,58,0.32);border-radius:0.5rem;padding:0.4rem 0.85rem;font-size:0.8rem;color:#8A9B55;font-weight:600;">
+                            <i data-lucide="calendar" class="w-3.5 h-3.5"></i> Deadline: July 20, 2026
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Two-column role details -->
+                <div class="careers-grid" style="padding:2.5rem;display:grid;gap:2.5rem;">
+                    <!-- What you'll do -->
+                    <div>
+                        <p style="color:#8A9B55;font-size:0.72rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:1.25rem;">What You'll Do</p>
+                        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.9rem;">
+                            <li style="display:flex;gap:0.75rem;align-items:flex-start;color:rgba(255,255,255,0.72);font-size:0.9rem;line-height:1.55;">
+                                <i data-lucide="monitor" class="w-4 h-4 text-olive flex-shrink-0" style="margin-top:0.18rem;"></i>
+                                Monitor pipeline systems 24/7 using SCADA for safe, efficient operation
+                            </li>
+                            <li style="display:flex;gap:0.75rem;align-items:flex-start;color:rgba(255,255,255,0.72);font-size:0.9rem;line-height:1.55;">
+                                <i data-lucide="sliders-horizontal" class="w-4 h-4 text-olive flex-shrink-0" style="margin-top:0.18rem;"></i>
+                                Manage flow rates, pressures, and operating parameters in real time
+                            </li>
+                            <li style="display:flex;gap:0.75rem;align-items:flex-start;color:rgba(255,255,255,0.72);font-size:0.9rem;line-height:1.55;">
+                                <i data-lucide="siren" class="w-4 h-4 text-olive flex-shrink-0" style="margin-top:0.18rem;"></i>
+                                Respond quickly to alarms and anomalies, coordinating with field teams
+                            </li>
+                            <li style="display:flex;gap:0.75rem;align-items:flex-start;color:rgba(255,255,255,0.72);font-size:0.9rem;line-height:1.55;">
+                                <i data-lucide="shield-check" class="w-4 h-4 text-olive flex-shrink-0" style="margin-top:0.18rem;"></i>
+                                Ensure compliance with PHMSA regulations and OPS safety policies
+                            </li>
+                            <li style="display:flex;gap:0.75rem;align-items:flex-start;color:rgba(255,255,255,0.72);font-size:0.9rem;line-height:1.55;">
+                                <i data-lucide="clipboard-list" class="w-4 h-4 text-olive flex-shrink-0" style="margin-top:0.18rem;"></i>
+                                Maintain accurate logs of operations, incidents, and maintenance activities
+                            </li>
+                            <li style="display:flex;gap:0.75rem;align-items:flex-start;color:rgba(255,255,255,0.72);font-size:0.9rem;line-height:1.55;">
+                                <i data-lucide="triangle-alert" class="w-4 h-4 text-olive flex-shrink-0" style="margin-top:0.18rem;"></i>
+                                Participate in emergency response drills and actual emergency events
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- What we're looking for -->
+                    <div>
+                        <p style="color:#8A9B55;font-size:0.72rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:1.25rem;">What We're Looking For</p>
+                        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.9rem;">
+                            <li style="display:flex;gap:0.75rem;align-items:flex-start;color:rgba(255,255,255,0.72);font-size:0.9rem;line-height:1.55;">
+                                <i data-lucide="graduation-cap" class="w-4 h-4 text-olive flex-shrink-0" style="margin-top:0.18rem;"></i>
+                                HS diploma required; associate degree or technical certification preferred
+                            </li>
+                            <li style="display:flex;gap:0.75rem;align-items:flex-start;color:rgba(255,255,255,0.72);font-size:0.9rem;line-height:1.55;">
+                                <i data-lucide="briefcase" class="w-4 h-4 text-olive flex-shrink-0" style="margin-top:0.18rem;"></i>
+                                Background in pipeline ops, control room operations, or related field
+                            </li>
+                            <li style="display:flex;gap:0.75rem;align-items:flex-start;color:rgba(255,255,255,0.72);font-size:0.9rem;line-height:1.55;">
+                                <i data-lucide="cpu" class="w-4 h-4 text-olive flex-shrink-0" style="margin-top:0.18rem;"></i>
+                                Proficiency with SCADA systems and control technologies
+                            </li>
+                            <li style="display:flex;gap:0.75rem;align-items:flex-start;color:rgba(255,255,255,0.72);font-size:0.9rem;line-height:1.55;">
+                                <i data-lucide="message-square" class="w-4 h-4 text-olive flex-shrink-0" style="margin-top:0.18rem;"></i>
+                                Strong verbal and written communication skills
+                            </li>
+                            <li style="display:flex;gap:0.75rem;align-items:flex-start;color:rgba(255,255,255,0.72);font-size:0.9rem;line-height:1.55;">
+                                <i data-lucide="zap" class="w-4 h-4 text-olive flex-shrink-0" style="margin-top:0.18rem;"></i>
+                                Fast problem-solver who stays sharp under pressure
+                            </li>
+                            <li style="display:flex;gap:0.75rem;align-items:flex-start;color:rgba(255,255,255,0.72);font-size:0.9rem;line-height:1.55;">
+                                <i data-lucide="moon" class="w-4 h-4 text-olive flex-shrink-0" style="margin-top:0.18rem;"></i>
+                                Comfortable with 12-hour shifts, weekends, and holidays as needed
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Why Join OPS — 4 benefit blocks -->
+            <div style="max-width:920px;margin:0 auto 3.5rem;">
+                <p style="text-align:center;color:#8A9B55;font-size:0.72rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:2rem;">Why Join OPS</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="careers-benefit-block" data-animate="fade-up" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:1.25rem;padding:2rem 1.5rem;text-align:center;transition:all 0.3s ease;cursor:default;">
+                        <div style="width:48px;height:48px;border-radius:50%;background:rgba(107,123,58,0.12);border:1px solid rgba(107,123,58,0.28);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;">
+                            <i data-lucide="dollar-sign" class="w-5 h-5 text-olive"></i>
+                        </div>
+                        <h4 style="color:#fff;font-weight:700;font-size:0.95rem;margin-bottom:0.5rem;">Competitive Pay</h4>
+                        <p style="color:rgba(255,255,255,0.45);font-size:0.83rem;line-height:1.55;margin:0;">Salary and benefits designed to attract the best in the business.</p>
+                    </div>
+                    <div class="careers-benefit-block" data-animate="fade-up" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:1.25rem;padding:2rem 1.5rem;text-align:center;transition:all 0.3s ease;cursor:default;">
+                        <div style="width:48px;height:48px;border-radius:50%;background:rgba(107,123,58,0.12);border:1px solid rgba(107,123,58,0.28);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;">
+                            <i data-lucide="trending-up" class="w-5 h-5 text-olive"></i>
+                        </div>
+                        <h4 style="color:#fff;font-weight:700;font-size:0.95rem;margin-bottom:0.5rem;">Career Growth</h4>
+                        <p style="color:rgba(255,255,255,0.45);font-size:0.83rem;line-height:1.55;margin:0;">Real advancement in a growing company &mdash; not a dead-end shift.</p>
+                    </div>
+                    <div class="careers-benefit-block" data-animate="fade-up" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:1.25rem;padding:2rem 1.5rem;text-align:center;transition:all 0.3s ease;cursor:default;">
+                        <div style="width:48px;height:48px;border-radius:50%;background:rgba(107,123,58,0.12);border:1px solid rgba(107,123,58,0.28);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;">
+                            <i data-lucide="users" class="w-5 h-5 text-olive"></i>
+                        </div>
+                        <h4 style="color:#fff;font-weight:700;font-size:0.95rem;margin-bottom:0.5rem;">Tight-Knit Team</h4>
+                        <p style="color:rgba(255,255,255,0.45);font-size:0.83rem;line-height:1.55;margin:0;">Work alongside operators, engineers, and compliance experts who care.</p>
+                    </div>
+                    <div class="careers-benefit-block" data-animate="fade-up" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:1.25rem;padding:2rem 1.5rem;text-align:center;transition:all 0.3s ease;cursor:default;">
+                        <div style="width:48px;height:48px;border-radius:50%;background:rgba(107,123,58,0.12);border:1px solid rgba(107,123,58,0.28);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;">
+                            <i data-lucide="shield" class="w-5 h-5 text-olive"></i>
+                        </div>
+                        <h4 style="color:#fff;font-weight:700;font-size:0.95rem;margin-bottom:0.5rem;">Mission-Driven</h4>
+                        <p style="color:rgba(255,255,255,0.45);font-size:0.83rem;line-height:1.55;margin:0;">A safe, inclusive workplace where your work keeps real people safe.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Apply CTA -->
+            <div style="text-align:center;" data-animate="fade-up">
+                <p style="color:rgba(255,255,255,0.7);font-size:0.9rem;margin-bottom:1.5rem;">Submit your resume and cover letter to be considered</p>
+                <a href="mailto:careers@optimalpipeline.com?subject=System Controller Application" class="btn-primary" style="display:inline-flex;align-items:center;gap:0.6rem;font-size:1.1rem;padding:1rem 2.5rem;">
+                    <i data-lucide="send" class="w-5 h-5"></i>
+                    Apply Now &mdash; careers@optimalpipeline.com
+                </a>
+                <p style="color:rgba(255,255,255,0.55);font-size:0.78rem;margin-top:1.25rem;letter-spacing:0.03em;">OPS is an Equal Opportunity Employer &nbsp;&bull;&nbsp; Application Deadline: July 20, 2026</p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- CONTACT                                                     -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <section id="contact" class="ops-section" data-theme="dark" style="position:relative;">
+        <div style="position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:flex-end;overflow:hidden;pointer-events:none;z-index:2;padding-top:2rem;padding-right:2rem;"><span style="font-family:'SF Pro Display',-apple-system,sans-serif;font-weight:700;font-size:clamp(4.8rem,12.8vw,14.4rem);color:rgba(255,255,255,0.07);letter-spacing:-0.04em;white-space:nowrap;user-select:none;line-height:1;">Contact</span></div>
+        <div class="contact-glow"></div>
+        <div class="section-inner relative max-w-4xl text-center">
+            <div class="section-header">
+                <p class="section-tag">Get Started</p>
+                <h2 class="section-title">Ready to modernize<br>your operations?</h2>
+                <p class="section-subtitle">Whether you need full remote monitoring, compliance support, automation services, or custom tooling &mdash; we'd like to hear from you.</p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+                <a href="mailto:info@optimalpipeline.com" class="btn-primary text-lg px-10 py-4">
+                    <i data-lucide="mail" class="w-5 h-5 inline-block mr-2 -mt-0.5"></i>
+                    info@optimalpipeline.com
+                </a>
+                <a href="tel:8667603933" class="btn-secondary text-lg px-10 py-4">
+                    <i data-lucide="phone" class="w-5 h-5 inline-block mr-2 -mt-0.5"></i>
+                    866-760-3933
+                </a>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-8 justify-center text-white/40 text-sm">
+                <div>
+                    <p class="font-medium text-white/60 mb-1">Career Inquiries</p>
+                    <a href="mailto:careers@optimalpipeline.com" class="hover:text-olive transition">careers@optimalpipeline.com</a>
+                    <span class="mx-2">|</span>
+                    <a href="tel:14054077846" class="hover:text-olive transition">405-407-7846</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- FOOTER                                                      -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <footer class="bg-midnight border-t border-white/5 py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8 items-start">
+                <!-- Left: Logo + tagline -->
+                <div class="flex flex-col items-center">
+                    <div class="mb-3">
+                        <img src="images/logo.png" alt="Optimal Pipeline Solutions" class="h-8 w-auto" style="background: rgba(255,255,255,0.85); border-radius: 6px; padding: 3px 10px;">
+                    </div>
+                    <p class="text-white/40 text-sm">Automation | Remote Monitoring | Compliance</p>
+                </div>
+
+                <!-- Center: Office addresses -->
+                <div class="text-center text-white/40 text-sm space-y-3">
+                    <div>
+                        <p class="font-medium text-white/60">Stillwater, Oklahoma</p>
+                        <p>203 E 80th Street, Stillwater, OK 74074</p>
+                    </div>
+                    <div>
+                        <p class="font-medium text-white/60">Kansas City, Missouri</p>
+                        <p>7505 NW Tiffany Springs Pkwy, STE 540, Kansas City, MO 64153</p>
+                    </div>
+                </div>
+
+                <!-- Right: Nav -->
+                <div class="text-right">
+                    <div class="flex flex-wrap justify-end gap-x-6 gap-y-2">
+                        <a href="#services" class="text-white/40 hover:text-white transition text-sm">Services</a>
+                        <a href="#control-room" class="text-white/40 hover:text-white transition text-sm">Control Room</a>
+                        <a href="#about-ops" class="text-white/40 hover:text-white transition text-sm">About</a>
+                        <a href="#automation" class="text-white/40 hover:text-white transition text-sm">Projects</a>
+                        <a href="#compliance" class="text-white/40 hover:text-white transition text-sm">Compliance</a>
+                        <a href="#case-study" class="text-white/40 hover:text-white transition text-sm">Case Study</a>
+                        <a href="#contact" class="text-white/40 hover:text-white transition text-sm">Contact</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Copyright: full-width centered below the 3-column grid -->
+            <p class="text-white/30 text-sm text-center mt-8">&copy; 2026 Optimal Pipeline Solutions. All rights reserved. <span id="ops-stats-trigger" onclick="document.getElementById('ops-stats-overlay').classList.add('open');window.loadStats();" style="cursor:default;color:inherit;user-select:none;" title="">&middot;</span></p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+
+    <!-- ════════════════════════════════════════════════════════
+         GOLF CHALLENGE MODAL
+    ════════════════════════════════════════════════════════ -->
+    <div id="golf-modal-wrapper" style="display:none;position:fixed;inset:0;z-index:9000;align-items:center;justify-content:center;padding:1.5rem;pointer-events:none;background:rgba(0,0,0,0.55);">
+
+        <style>
+        #g-popup-card {
+            position: relative;
+            width: 100%;
+            max-width: 880px;
+            height: auto;
+            max-height: 82vh;
+            border-radius: 14px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            border: 1px solid rgba(107,123,58,0.45);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.85), 0 0 0 1px rgba(107,123,58,0.1);
+            background: #0a0d0a;
+            flex-shrink: 0;
+            pointer-events: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        #g-golf-bg {
+            position: absolute;
+            inset: -5%;
+            background: url('images/golf-bg.jpg') center/cover no-repeat;
+            animation: hero-drift 18s ease-in-out infinite;
+            transform-origin: center center;
+            will-change: transform;
+            z-index: 0;
+        }
+
+        /* ── Winners Screen ─────────────────────────────────── */
+        #g-winners-wrap {
+            position: relative; width: 100%; z-index: 20;
+            background: rgba(6,10,14,0.97);
+            display: none; flex-direction: column;
+        }
+        #g-winners-panel {
+            width: 100%; background: #0a0f0b;
+            border: 1px solid rgba(107,123,58,0.45); border-radius: 3px;
+            display: flex; flex-direction: column; position: relative; overflow: hidden;
+        }
+        #g-winners-panel::before, #g-winners-panel::after {
+            content: ''; position: absolute; width: 18px; height: 18px;
+            border-color: #6B7B3A; border-style: solid; z-index: 1;
+        }
+        #g-winners-panel::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+        #g-winners-panel::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+        #g-winners-header {
+            padding: 1.2rem 1.4rem 0.9rem;
+            border-bottom: 1px solid rgba(107,123,58,0.18);
+            background: rgba(107,123,58,0.04); text-align: center;
+        }
+        #g-winners-title {
+            font-family: 'Courier New', monospace; font-size: 1.05rem;
+            font-weight: 700; letter-spacing: 0.07em; color: #c8dc88; text-transform: uppercase;
+        }
+        #g-winners-subtitle {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 1.05rem; color: rgba(220,240,160,0.95); margin-top: 0.4rem; font-style: italic;
+        }
+        .g-winner-cards {
+            display: flex; gap: 1rem; padding: 1.5rem 1.4rem;
+            justify-content: center; flex-wrap: wrap;
+        }
+        .g-winner-card {
+            background: rgba(107,123,58,0.07); border: 1px solid rgba(107,123,58,0.35);
+            border-radius: 4px; padding: 1.4rem 1.5rem; text-align: center;
+            flex: 1 1 180px; max-width: 240px;
+            display: flex; flex-direction: column; align-items: center;
+        }
+        .g-winner-card.g-card-1st { border-color: rgba(212,175,55,0.65); background: rgba(212,175,55,0.06); }
+        #g-photo-lightbox {
+            display: none; position: fixed; inset: 0; z-index: 99999;
+            background: rgba(0,0,0,0.88); align-items: center; justify-content: center; cursor: zoom-out;
+        }
+        #g-photo-lightbox.open { display: flex; }
+        #g-photo-lightbox img {
+            max-width: 90vw; max-height: 90vh; border-radius: 6px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.7); object-fit: contain; cursor: default;
+        }
+        .g-winner-photo {
+            width: 100px; height: 100px; border-radius: 50%; overflow: hidden;
+            margin-bottom: 0.75rem; flex-shrink: 0;
+            border: 2px solid rgba(212,175,55,0.55);
+            background: rgba(0,0,0,0.25);
+            box-shadow: 0 0 18px rgba(212,175,55,0.2);
+        }
+        .g-winner-card:not(.g-card-1st) .g-winner-photo {
+            width: 82px; height: 82px;
+            border-color: rgba(107,123,58,0.5);
+            box-shadow: 0 0 12px rgba(107,123,58,0.15);
+        }
+        .g-winner-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+        .g-winner-trophy { font-size: 1.5rem; margin-bottom: 0.4rem; line-height: 1; }
+        .g-winner-label {
+            font-family: 'Courier New', monospace; font-size: 0.62rem;
+            letter-spacing: 0.14em; color: rgba(200,220,136,0.65);
+            text-transform: uppercase; margin-bottom: 0.85rem;
+        }
+        .g-winner-name {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 1.1rem; font-weight: 700; color: #e8f0c0;
+            margin-bottom: 0.1rem; line-height: 1.2;
+        }
+        .g-winner-company {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 0.8rem; font-weight: 400; color: rgba(200,220,136,0.65);
+            margin-bottom: 0.35rem; line-height: 1.2; font-style: italic;
+        }
+        .g-winner-score {
+            font-family: 'Courier New', monospace; font-size: 2rem;
+            font-weight: 700; color: #c8dc88; line-height: 1;
+        }
+        .g-winner-card.g-card-1st .g-winner-score { color: #d4af37; }
+        .g-winner-score-label {
+            font-family: 'Courier New', monospace; font-size: 0.58rem;
+            color: rgba(200,220,136,0.4); letter-spacing: 0.1em;
+            text-transform: uppercase; margin-top: 0.2rem;
+        }
+        .g-day-section { padding: 0.5rem 0 0; }
+        .g-day-label {
+            font-family: 'Courier New', monospace; font-size: 0.68rem;
+            letter-spacing: 0.14em; color: rgba(200,220,136,0.5);
+            text-transform: uppercase; padding: 0.6rem 1.4rem 0.1rem;
+        }
+        #g-day-divider { height: 1px; background: rgba(107,123,58,0.18); margin: 0.5rem 1.4rem; }
+        #g-winners-footer {
+            padding: 0.85rem 1.4rem; border-top: 1px solid rgba(107,123,58,0.12);
+            display: flex; justify-content: center; align-items: center; flex-shrink: 0;
+        }
+        .g-close-winners {
+            background: transparent; color: rgba(255,255,255,0.9);
+            border: 1px solid rgba(255,255,255,0.45); padding: 0.45rem 1.25rem;
+            font-family: 'Courier New', monospace; font-size: 0.62rem;
+            letter-spacing: 0.18em; text-transform: uppercase;
+            border-radius: 2px; cursor: pointer; transition: all 0.2s;
+        }
+        .g-close-winners:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
+        @media (max-width: 640px) {
+            #g-winners-header { padding: 0.85rem 1rem 0.7rem; }
+            #g-winners-title { font-size: 0.7rem; letter-spacing: 0.05em; }
+            #g-winners-subtitle { font-size: 0.88rem; }
+            .g-winner-cards { padding: 1rem; gap: 0.75rem; }
+            .g-winner-card { max-width: 100%; flex: 1 1 100%; padding: 1rem 1.2rem; }
+            .g-winner-photo { width: 80px; height: 80px; }
+            .g-winner-card:not(.g-card-1st) .g-winner-photo { width: 68px; height: 68px; }
+            .g-winner-score { font-size: 1.6rem; }
+            .g-winner-name { font-size: 0.95rem; }
+        }
+        #g-close-x {
+            position: absolute;
+            top: 0.6rem;
+            right: 0.6rem;
+            z-index: 50;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.4);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            line-height: 1;
+        }
+        #g-close-x:hover { background: rgba(255,255,255,0.14); color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.25); }
+        </style>
+
+        <div id="g-popup-card">
+
+        <!-- Golf course background (add images/golf-bg.jpg to enable) -->
+        <div id="g-golf-bg"></div>
+
+        <!-- Close button -->
+        <button id="g-close-x" onclick="gCloseModal()" aria-label="Close">&times;</button>
+
+        <!-- ── WINNERS SCREEN ── -->
+        <div id="g-winners-wrap">
+            <div id="g-winners-panel">
+
+                <div id="g-winners-header">
+                    <div id="g-winners-title">&#9971;&nbsp; Pipeline Crossroads Festival Golf Challenge</div>
+                    <div id="g-winners-subtitle">Congratulations to Our Winners!</div>
+                </div>
+
+                <!-- Thursday results -->
+                <div class="g-day-section" id="g-day-thu" style="display:block;">
+                    <div class="g-day-label">&#9632;&nbsp; Thursday</div>
+                    <div class="g-winner-cards">
+                        <div class="g-winner-card g-card-1st">
+                            <div class="g-winner-photo" onclick="gOpenLightbox('images/winners/tony-alford.jpg','Tony Alford')" style="cursor:zoom-in"><img src="images/winners/tony-alford.jpg" alt="Tony Alford" onerror="this.closest('.g-winner-photo').style.display='none'"></div>
+                            <div class="g-winner-trophy">&#127942;</div>
+                            <div class="g-winner-label">1st Place</div>
+                            <div class="g-winner-name">Tony Alford</div>
+                            <div class="g-winner-company">Energy Transfer</div>
+                            <div class="g-winner-score">172</div>
+                            <div class="g-winner-score-label">points</div>
+                        </div>
+                        <div class="g-winner-card">
+                            <div class="g-winner-photo" onclick="gOpenLightbox('images/winners/mason.jpg','Mason Perryman')" style="cursor:zoom-in"><img src="images/winners/mason.jpg" alt="Mason Perryman" onerror="this.closest('.g-winner-photo').style.display='none'"></div>
+                            <div class="g-winner-trophy">&#127866;</div>
+                            <div class="g-winner-label">Dead Last &mdash; DL</div>
+                            <div class="g-winner-name">Mason Perryman</div>
+                            <div class="g-winner-company">Plains</div>
+                            <div class="g-winner-score">-89</div>
+                            <div class="g-winner-score-label">points</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="g-day-divider" style="display:block;"></div>
+
+                <!-- Friday results -->
+                <div class="g-day-section" id="g-day-fri" style="display:block;">
+                    <div class="g-day-label">&#9632;&nbsp; Friday</div>
+                    <div class="g-winner-cards">
+                        <div class="g-winner-card g-card-1st">
+                            <div class="g-winner-photo" onclick="gOpenLightbox('images/winners/jr-rodriguez.jpg','JR Rodriguez')" style="cursor:zoom-in"><img src="images/winners/jr-rodriguez.jpg" alt="JR Rodriguez" onerror="this.closest('.g-winner-photo').style.display='none'"></div>
+                            <div class="g-winner-trophy">&#127942;</div>
+                            <div class="g-winner-label">1st Place</div>
+                            <div class="g-winner-name">JR Rodriguez</div>
+                            <div class="g-winner-company">Mint Turbines</div>
+                            <div class="g-winner-score">272</div>
+                            <div class="g-winner-score-label">points</div>
+                        </div>
+                        <div class="g-winner-card">
+                            <div class="g-winner-photo" onclick="gOpenLightbox('images/winners/jeff-cooper.jpg','Jeff Cooper')" style="cursor:zoom-in"><img src="images/winners/jeff-cooper.jpg" alt="Jeff Cooper" onerror="this.closest('.g-winner-photo').style.display='none'"></div>
+                            <div class="g-winner-trophy">&#127866;</div>
+                            <div class="g-winner-label">Dead Last &mdash; DL</div>
+                            <div class="g-winner-name">Jeff Cooper</div>
+                            <div class="g-winner-company">Plains</div>
+                            <div class="g-winner-score">-96</div>
+                            <div class="g-winner-score-label">points</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="padding:1rem 1.4rem 0.75rem;text-align:center;border-top:1px solid rgba(107,123,58,0.12);">
+                    <div style="font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:0.95rem;color:rgba(200,220,136,0.75);font-style:italic;line-height:1.5;">
+                        Thank you to everyone who visited with us during the challenge!<br>See you next year at the Pipeline Crossroads Festival.
+                    </div>
+                </div>
+
+                <div id="g-winners-footer">
+                    <button class="g-close-winners" onclick="gCloseModal()">[ DISMISS ]</button>
+                </div>
+
+            </div>
+        </div><!-- /g-winners-wrap -->
+
+        </div><!-- /g-popup-card -->
+    </div><!-- /golf-modal-wrapper -->
+
+    <div id="g-photo-lightbox" onclick="gCloseLightbox()">
+        <img id="g-photo-lightbox-img" src="" alt="" onclick="event.stopPropagation()">
+    </div>
+
+    <script>
+    (function() {
+        window.openGolfModal = function() {
+            var w = document.getElementById('golf-modal-wrapper');
+            w.style.display = 'flex';
+            document.getElementById('g-winners-wrap').style.display = 'flex';
+            gsap.fromTo(w, {opacity: 0}, {opacity: 1, duration: 0.35});
+        };
+
+        window.gCloseModal = function() {
+            var w = document.getElementById('golf-modal-wrapper');
+            gsap.to(w, {opacity: 0, duration: 0.4, onComplete: function() {
+                w.style.display = 'none';
+                gsap.set(w, {opacity: 1});
+            }});
+        };
+
+        window.gOpenLightbox = function(src, alt) {
+            var lb = document.getElementById('g-photo-lightbox');
+            var img = document.getElementById('g-photo-lightbox-img');
+            img.src = src; img.alt = alt;
+            lb.classList.add('open');
+        };
+
+        window.gCloseLightbox = function() {
+            document.getElementById('g-photo-lightbox').classList.remove('open');
+        };
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                var w = document.getElementById('golf-modal-wrapper');
+                if (w && w.style.display !== 'none') gCloseModal();
+                gCloseLightbox();
+            }
+        });
+    })();
+    </script>
+
+    <script src="js/main.js"></script>
+
+    <!-- GoatCounter analytics -->
+    <script data-goatcounter="https://optimalpipeline.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+    <!-- Hidden stats panel (Ctrl+Shift+S) -->
+    <style>
+        #ops-stats-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 99999;
+            align-items: center;
+            justify-content: center;
+        }
+        #ops-stats-overlay.open { display: flex; }
+        #ops-stats-card {
+            background: rgba(8,12,16,0.98);
+            border: 1px solid rgba(255,140,0,0.35);
+            border-radius: 6px;
+            padding: 2rem 2.5rem;
+            min-width: 320px;
+            font-family: 'Courier New', monospace;
+            color: rgba(255,255,255,0.9);
+        }
+        #ops-stats-card h3 {
+            font-size: 0.7rem;
+            letter-spacing: 0.25em;
+            color: rgba(255,140,0,0.85);
+            margin: 0 0 1.25rem;
+            text-transform: uppercase;
+        }
+        .ops-stat-row {
+            display: grid;
+            grid-template-columns: 1fr 5rem 5rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            padding: 0.3rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .ops-stat-row.header {
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+            opacity: 0.45;
+            font-size: 0.65rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .ops-stat-row.total {
+            border-bottom: none;
+            border-top: 1px solid rgba(255,140,0,0.25);
+            margin-top: 0.5rem;
+            padding-top: 0.6rem;
+            color: rgba(255,140,0,0.9);
+            font-weight: bold;
+        }
+        .ops-stat-val { color: #fff; text-align: right; }
+        .ops-stat-row.header .ops-stat-val { color: inherit; }
+        .ops-stat-row.total .ops-stat-val { color: inherit; }
+        #ops-stats-link {
+            display: block;
+            margin-top: 1.25rem;
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            color: rgba(255,140,0,0.7);
+            text-decoration: none;
+            text-align: right;
+            text-transform: uppercase;
+        }
+        #ops-stats-link:hover { color: rgba(255,140,0,1); }
+        #ops-stats-close {
+            float: right;
+            cursor: pointer;
+            color: rgba(255,255,255,0.3);
+            font-size: 0.7rem;
+            margin-top: -0.2rem;
+        }
+        #ops-stats-close:hover { color: #fff; }
+    </style>
+
+    <div id="ops-stats-overlay">
+        <div id="ops-stats-card">
+            <h3>&#9632; Site Analytics <span id="ops-stats-close" onclick="opsStatsClose()">&#10005; ESC</span></h3>
+            <div id="ops-stats-body"><div style="font-size:0.7rem;opacity:0.4;letter-spacing:0.1em;">LOADING...</div></div>
+            <a id="ops-stats-link" href="https://optimalpipeline.goatcounter.com" target="_blank">Open Full Dashboard &rarr;</a>
+        </div>
+    </div>
+
+    <script>
+    (function() {
+        var overlay = document.getElementById('ops-stats-overlay');
+
+        window.opsStatsClose = function() {
+            overlay.classList.remove('open');
+        };
+
+        window.loadStats = loadStats;
+
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.shiftKey && (e.key === 'S' || e.key === 's')) {
+                e.preventDefault();
+                if (overlay.classList.contains('open')) { opsStatsClose(); return; }
+                overlay.classList.add('open');
+                loadStats();
+            }
+            if (e.key === 'Escape') opsStatsClose();
+        });
+
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) opsStatsClose();
+        });
+
+        // Also open via ?stats in the URL (bookmarkable on mobile)
+        if (new URLSearchParams(window.location.search).has('stats')) {
+            overlay.classList.add('open');
+            loadStats();
+        }
+
+        function loadStats() {
+            var body = document.getElementById('ops-stats-body');
+            body.innerHTML = '<div style="font-size:0.7rem;opacity:0.4;letter-spacing:0.1em;">LOADING...</div>';
+
+            var pages = [
+                { label: 'Homepage',              path: '%2F' },
+                { label: 'Alarm Rationalization', path: '%2Falarm-rationalization.html' }
+            ];
+
+            var results = {}, done = 0;
+
+            function finish() { if (++done === pages.length) render(pages, results); }
+
+            pages.forEach(function(p) {
+                fetch('https://optimalpipeline.goatcounter.com/counter/' + p.path + '.json')
+                    .then(function(r) { return r.json(); })
+                    .then(function(d) { results[p.label] = { count: d.count || '0', unique: d.count_unique || '0' }; finish(); })
+                    .catch(function() { results[p.label] = { count: '—', unique: '—' }; finish(); });
+            });
+        }
+
+        function render(pages, results) {
+            var totalHits = 0, totalUnique = 0;
+            pages.forEach(function(p) {
+                var h = parseInt((results[p.label].count || '0').replace(/,/g, ''), 10);
+                var u = parseInt((results[p.label].unique || '0').replace(/,/g, ''), 10);
+                if (!isNaN(h)) totalHits += h;
+                if (!isNaN(u)) totalUnique += u;
+            });
+
+            var html = '<div class="ops-stat-row header"><span></span><span class="ops-stat-val">Hits</span><span class="ops-stat-val">Unique</span></div>';
+            html += pages.map(function(p) {
+                var r = results[p.label];
+                return '<div class="ops-stat-row"><span>' + p.label + '</span><span class="ops-stat-val">' + r.count + '</span><span class="ops-stat-val">' + r.unique + '</span></div>';
+            }).join('');
+            html += '<div class="ops-stat-row total"><span>Total</span><span class="ops-stat-val">' + totalHits.toLocaleString() + '</span><span class="ops-stat-val">' + totalUnique.toLocaleString() + '</span></div>';
+
+            document.getElementById('ops-stats-body').innerHTML = html;
+        }
+    })();
+    </script>
+</body>
+</html>
