@@ -2146,7 +2146,9 @@
                 <button type="button" class="af-cancel" onclick="closeApplyModal()">Cancel</button>
                 <button type="submit" class="af-submit">Submit Application</button>
             </div>
-            <p class="af-note">Clicking "Submit Application" will open your email client with this information pre-filled. Send the email to complete your application.</p>
+            <p class="af-note" style="background:rgba(107,123,58,0.12);border:1px solid rgba(107,123,58,0.3);border-radius:0.5rem;padding:0.75rem 1rem;color:rgba(255,255,255,0.8);font-size:0.85rem;line-height:1.5;margin-top:0.75rem;">
+                <strong style="color:#8A9B55;">Before you send:</strong> Your email client will open with this form pre-filled. <strong>Please attach your resume</strong> (and optionally a cover letter) to the email before hitting Send. Submissions without a resume will not be considered.
+            </p>
 
         </form>
     </div>
@@ -2251,6 +2253,8 @@
         var citizenLine = 'U.S. Citizen: ' + citizenAns + (citizenAns === 'No' ? '\nAuthorized to work in U.S.: ' + r('af-authorized') : '');
 
         var body = [
+            '*** IMPORTANT: Please attach your resume before sending this email. ***',
+            '',
             'SYSTEM CONTROLLER APPLICATION',
             '================================',
             '',
