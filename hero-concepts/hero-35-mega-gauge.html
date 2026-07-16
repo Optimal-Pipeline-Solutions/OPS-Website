@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 35 — The Mega Gauge</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+:root { --olive:#6B7B3A; --olive-lt:#8A9B55; --amber:#F0A830; --ink:#141518; --red:#E0483A; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; }
+body { font-family:'Inter',sans-serif; overflow:hidden; color:#fff;
+    background:radial-gradient(circle at 50% 120%, #23252B 0%, var(--ink) 55%, #0C0D10 100%); }
+
+/* the gauge fills the whole screen from the bottom */
+.gauge { position:absolute; left:50%; bottom:-24vh; transform:translateX(-50%);
+    width:min(150vh,96vw); z-index:2; }
+.gauge svg { width:100%; height:auto; display:block; }
+.arc-bg { fill:none; stroke:#26282E; stroke-width:34; }
+.arc-green { fill:none; stroke:var(--olive); stroke-width:34; }
+.arc-red { fill:none; stroke:var(--red); stroke-width:34; }
+.tick { stroke:#4A4D55; stroke-width:2.5; }
+.tick-num { fill:#7C8089; font-family:'IBM Plex Mono',monospace; font-size:15px; text-anchor:middle; }
+#needle-g { will-change:transform; }
+.needle { stroke:#fff; stroke-width:7; stroke-linecap:round;
+    filter:drop-shadow(0 0 14px rgba(255,255,255,0.5)); }
+.needle-tail { stroke:#fff; stroke-width:10; }
+.hub { fill:#1B1C20; stroke:#fff; stroke-width:4; }
+.dial-brand { fill:rgba(255,255,255,0.28); font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.3em; text-anchor:middle; }
+
+/* big digits */
+.readout { position:absolute; z-index:5; left:50%; bottom:9vh; transform:translateX(-50%); text-align:center; }
+.readout .v { font-family:'Barlow Condensed',sans-serif; font-weight:800;
+    font-size:clamp(4.4rem,13vh,9rem); line-height:0.9; letter-spacing:-0.01em; }
+.readout .v small { font-size:0.32em; color:var(--olive-lt); vertical-align:super; }
+.readout .k { font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.3em;
+    text-transform:uppercase; color:rgba(255,255,255,0.45); margin-top:4px; }
+.mode-chip { display:inline-block; margin-top:10px; font-family:'IBM Plex Mono',monospace; font-size:10px;
+    letter-spacing:0.2em; text-transform:uppercase; padding:6px 16px; border-radius:999px;
+    background:rgba(107,123,58,0.2); border:1px solid rgba(138,155,85,0.5); color:var(--olive-lt); }
+
+/* header content */
+.head { position:absolute; z-index:6; top:5vh; left:0; right:0; text-align:center; padding:0 20px; }
+.logo-chip { display:inline-flex; background:rgba(255,255,255,0.96); border-radius:9px; padding:9px 20px; margin-bottom:0.9rem; }
+.logo-chip img { height:42px; display:block; }
+.svc { font-family:'IBM Plex Mono',monospace; font-size:0.64rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--olive-lt); margin-bottom:0.8rem; }
+h1 { font-family:'Barlow Condensed',sans-serif; font-weight:800; text-transform:uppercase;
+    font-size:clamp(2.2rem,5.2vw,4.2rem); line-height:0.92; }
+h1 em { font-style:normal; color:var(--olive-lt); }
+.sub { margin:0.7rem auto 0; max-width:560px; font-size:clamp(0.88rem,1.2vw,1.02rem); color:rgba(255,255,255,0.7); }
+.ctas { display:flex; gap:0.9rem; margin-top:1.2rem; flex-wrap:wrap; justify-content:center; }
+.btn { font-size:0.82rem; font-weight:600; padding:0.85rem 2rem; border-radius:999px; text-decoration:none; transition:all 0.2s; }
+.btn-solid { background:var(--olive); color:#fff; }
+.btn-solid:hover { background:var(--olive-lt); transform:scale(1.04); }
+.btn-ghost { color:#fff; border:1px solid rgba(255,255,255,0.35); }
+.btn-ghost:hover { background:rgba(255,255,255,0.08); }
+/* corner status lamps */
+.lamp { position:absolute; z-index:6; bottom:4vh; display:flex; align-items:center; gap:9px;
+    font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.5); }
+.lamp i { width:11px; height:11px; border-radius:50%; background:#5FBF77; box-shadow:0 0 12px rgba(95,191,119,0.8); animation:lp 2s ease-in-out infinite; }
+@keyframes lp { 50%{ opacity:0.35; } }
+.lamp.l { left:clamp(18px,3vw,44px); } .lamp.r { right:clamp(18px,3vw,44px); }
+</style>
+</head>
+<body>
+
+<div class="gauge">
+<svg viewBox="0 0 1000 560" aria-hidden="true">
+    <path class="arc-bg"    d="M 80 520 A 420 420 0 0 1 920 520"/>
+    <path class="arc-green" d="M 80 520 A 420 420 0 0 1 803 210"/>
+    <path class="arc-red"   d="M 803 210 A 420 420 0 0 1 920 520"/>
+    <g id="ticks"></g>
+    <text class="dial-brand" x="500" y="416">OPS · LINE PRESSURE · PSIG</text>
+    <g id="needle-g" transform="rotate(-74 500 520)">
+        <line class="needle" x1="500" y1="520" x2="500" y2="148"/>
+        <line class="needle-tail" x1="500" y1="520" x2="500" y2="568"/>
+    </g>
+    <circle class="hub" cx="500" cy="520" r="30"/>
+</svg>
+</div>
+
+<div class="readout">
+    <div class="v"><span id="big-v">0</span><small> PSIG</small></div>
+    <div class="k" id="big-k">Live from Station 12 — watched every second</div>
+    <div class="mode-chip" id="mode">IN THE GREEN — AS ALWAYS</div>
+</div>
+
+<div class="head">
+    <div class="logo-chip" data-in><img src="../images/logo.png" alt="Optimal Pipeline Solutions"></div>
+    <div class="svc" data-in>Automation | Remote Monitoring | Compliance</div>
+    <h1 data-in>Driving efficiency. <em>Ensuring compliance.</em></h1>
+    <p class="sub" data-in>Your dedicated pipeline operations and automation engineering partner —
+        controllers and automation engineers who keep the needle out of the red, 24/7.</p>
+    <div class="ctas" data-in>
+        <a href="#services" class="btn btn-solid">Explore Our Services</a>
+        <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+    </div>
+</div>
+
+<div class="lamp l"><i></i>Console Staffed</div>
+<div class="lamp r"><i style="animation-delay:0.8s"></i>149 Sites Polling</div>
+
+<script>
+/* ticks: -74deg .. +74deg maps 0..800 psig */
+(function(){
+    var g = document.getElementById('ticks'), s = '';
+    for (var i=0;i<=16;i++){
+        var a = (-74 + i*(148/16)) * Math.PI/180;
+        var x1 = 500 + Math.sin(a)*398, y1 = 520 - Math.cos(a)*398;
+        var x2 = 500 + Math.sin(a)*(i%4===0?352:372), y2 = 520 - Math.cos(a)*(i%4===0?352:372);
+        s += '<line class="tick" x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'"/>';
+        if (i%4===0){
+            var xn = 500 + Math.sin(a)*322, yn = 520 - Math.cos(a)*322 + 6;
+            s += '<text class="tick-num" x="'+xn+'" y="'+yn+'">'+(i*50)+'</text>';
+        }
+    }
+    g.innerHTML = s;
+})();
+
+function deg(v){ return -74 + (v/800)*148; }
+var big = document.getElementById('big-v'), mode = document.getElementById('mode');
+
+/* OPENING SLAM: needle whips 0 -> deep red -> settles green. Instant drama. */
+var o = { v: 0 };
+function setV(v){
+    document.getElementById('needle-g').setAttribute('transform', 'rotate('+deg(v)+' 500 520)');
+    big.textContent = Math.round(v);
+    var red = v > 690;
+    big.style.color = red ? '#E0483A' : '';
+    if (red){ mode.textContent = 'HIGH — OPS RESPONDING'; mode.style.borderColor='rgba(224,72,58,0.7)';
+        mode.style.background='rgba(224,72,58,0.18)'; mode.style.color='#F0968C'; }
+    else { mode.textContent = 'IN THE GREEN — AS ALWAYS'; mode.style.borderColor=''; mode.style.background=''; mode.style.color=''; }
+}
+gsap.timeline()
+    .to(o, { v:762, duration:0.85, ease:'power3.in', onUpdate:function(){ setV(o.v); } })
+    .call(function(){ gsap.fromTo('body',{x:-8},{x:8,duration:0.05,repeat:6,yoyo:true,clearProps:'x'}); })
+    .to(o, { v:612, duration:1.4, ease:'elastic.out(1,0.32)', onUpdate:function(){ setV(o.v); } });
+
+/* forever after: living needle with occasional red flirts that OPS "catches" */
+setTimeout(function(){
+    (function wander(){
+        var target = Math.random() < 0.18 ? 700 + Math.random()*40 : 585 + Math.random()*55;
+        gsap.to(o, { v:target, duration:1.3, ease:'elastic.out(1,0.45)',
+            onUpdate:function(){ setV(o.v); },
+            onComplete:function(){
+                if (target > 690){
+                    gsap.to(o, { v:604, duration:1.0, delay:0.7, ease:'power3.out',
+                        onUpdate:function(){ setV(o.v); }, onComplete:function(){ setTimeout(wander, 900); } });
+                } else setTimeout(wander, 1100 + Math.random()*900);
+            }});
+    })();
+}, 2600);
+
+gsap.from('[data-in]', { opacity:0, y:20, duration:0.7, ease:'power3.out', stagger:0.08 });
+gsap.from(['.gauge','.readout'], { opacity:0, y:40, duration:0.8, ease:'power3.out', stagger:0.1 });
+</script>
+</body>
+</html>

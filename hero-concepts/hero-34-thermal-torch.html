@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 34 — The Torch (Your Cursor Sees What We See)</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+:root { --olive:#6B7B3A; --olive-lt:#8A9B55; --amber:#F0A830; --ink:#070808; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; }
+body { font-family:'Inter',sans-serif; overflow:hidden; background:var(--ink); color:#fff; cursor:none; }
+
+/* the hidden world (thermal SCADA layer) revealed by the torch */
+.world { position:absolute; inset:0; z-index:2;
+    -webkit-mask-image:radial-gradient(circle var(--r,220px) at var(--mx,50%) var(--my,55%), black 0%, black 62%, transparent 100%);
+            mask-image:radial-gradient(circle var(--r,220px) at var(--mx,50%) var(--my,55%), black 0%, black 62%, transparent 100%); }
+.world-bg { position:absolute; inset:0;
+    background:linear-gradient(135deg, #3A0CA3 0%, #7209B7 22%, #F72585 48%, #FF6D00 74%, #FFD60A 100%); }
+.world svg { position:absolute; inset:0; width:100%; height:100%; mix-blend-mode:multiply; opacity:0.35; }
+.world .hot { mix-blend-mode:normal; opacity:1; }
+.hot .pipe { stroke:rgba(10,10,14,0.85); stroke-width:9; fill:none; stroke-linecap:round; }
+.hot .pipe-core { stroke:#fff; stroke-width:2.5; fill:none; stroke-dasharray:6 20; animation:fl 1.2s linear infinite; }
+@keyframes fl { to { stroke-dashoffset:-26; } }
+.hot .tagbox { fill:rgba(8,8,10,0.85); stroke:#fff; stroke-width:1.4; }
+.hot .tagtxt { fill:#fff; font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600; letter-spacing:0.1em; }
+.hot .tagval { fill:#FFD60A; font-family:'IBM Plex Mono',monospace; font-size:15px; font-weight:700; }
+
+/* torch ring cursor */
+#torch { position:fixed; z-index:9; width:36px; height:36px; border-radius:50%; pointer-events:none;
+    border:2.5px solid var(--amber); transform:translate(-50%,-50%);
+    box-shadow:0 0 22px rgba(240,168,48,0.65), inset 0 0 12px rgba(240,168,48,0.4); }
+#torch::after { content:'THERMAL — LIVE'; position:absolute; top:44px; left:50%; transform:translateX(-50%);
+    font-family:'IBM Plex Mono',monospace; font-size:8.5px; letter-spacing:0.22em; color:rgba(240,168,48,0.85); white-space:nowrap; }
+
+/* dark surface layer content */
+.dark-content { position:absolute; inset:0; z-index:4; display:flex; flex-direction:column; align-items:center;
+    justify-content:center; text-align:center; padding:0 20px; pointer-events:none; }
+.dark-content > * { pointer-events:auto; }
+.logo-chip { background:rgba(255,255,255,0.96); border-radius:10px; padding:10px 24px; margin-bottom:1.3rem; }
+.logo-chip img { height:46px; display:block; }
+.svc { font-family:'IBM Plex Mono',monospace; font-size:0.66rem; letter-spacing:0.32em; text-transform:uppercase;
+    color:var(--olive-lt); margin-bottom:1.2rem; }
+h1 { font-family:'Barlow Condensed',sans-serif; font-weight:800; text-transform:uppercase;
+    font-size:clamp(3rem,8.6vw,7.4rem); line-height:0.9; mix-blend-mode:difference; }
+h1 em { font-style:normal; color:var(--olive-lt); }
+.sub { margin-top:1.2rem; max-width:620px; font-size:clamp(0.94rem,1.35vw,1.14rem); color:rgba(255,255,255,0.8); mix-blend-mode:difference; }
+.sub b { color:#fff; }
+.ctas { display:flex; gap:1rem; margin-top:2rem; flex-wrap:wrap; justify-content:center; }
+.btn { font-size:0.85rem; font-weight:600; padding:0.9rem 2.2rem; border-radius:999px; text-decoration:none;
+    transition:all 0.22s; cursor:none; }
+.btn-solid { background:var(--olive); color:#fff; }
+.btn-solid:hover { background:var(--olive-lt); transform:scale(1.04); }
+.btn-ghost { color:#fff; border:1px solid rgba(255,255,255,0.4); }
+.btn-ghost:hover { background:rgba(255,255,255,0.1); }
+.hint { position:absolute; z-index:6; bottom:3.4vh; left:50%; transform:translateX(-50%);
+    font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.26em; text-transform:uppercase;
+    color:rgba(255,255,255,0.4); }
+.hint b { color:var(--amber); }
+@media (hover:none){ body{ cursor:auto; } #torch{ display:none; } }
+</style>
+</head>
+<body>
+
+<!-- the hidden thermal world -->
+<div class="world" id="world">
+    <div class="world-bg"></div>
+    <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" class="hot" aria-hidden="true">
+        <path class="pipe" d="M -20 640 C 300 600, 520 700, 820 650 S 1360 560, 1620 610"/>
+        <path class="pipe-core" d="M -20 640 C 300 600, 520 700, 820 650 S 1360 560, 1620 610"/>
+        <path class="pipe" d="M 820 650 C 860 480, 940 420, 1080 380" style="stroke-width:6;"/>
+        <path class="pipe-core" d="M 820 650 C 860 480, 940 420, 1080 380"/>
+        <g transform="translate(300,608)"><rect class="tagbox" x="-70" y="-64" width="140" height="46" rx="5"/>
+            <text class="tagtxt" x="-58" y="-45">PT-1042</text><text class="tagval" x="-58" y="-26">612.4 PSIG</text></g>
+        <g transform="translate(1080,380)"><rect class="tagbox" x="-70" y="-64" width="150" height="46" rx="5"/>
+            <text class="tagtxt" x="-58" y="-45">TK-101 LVL</text><text class="tagval" x="-58" y="-26">18.2 FT ✓</text></g>
+        <g transform="translate(1380,580)"><rect class="tagbox" x="-70" y="-64" width="160" height="46" rx="5"/>
+            <text class="tagtxt" x="-58" y="-45">P-201 PUMP</text><text class="tagval" x="-58" y="-26">RUNNING ✓</text></g>
+        <g transform="translate(620,672)"><rect class="tagbox" x="-70" y="24" width="170 " height="46" rx="5"/>
+            <text class="tagtxt" x="-58" y="43">FT-1051 FLOW</text><text class="tagval" x="-58" y="62">1,847 BPH</text></g>
+    </svg>
+</div>
+
+<div id="torch"></div>
+
+<div class="dark-content">
+    <div class="logo-chip" data-in><img src="../images/logo.png" alt="Optimal Pipeline Solutions"></div>
+    <div class="svc" data-in>Automation | Remote Monitoring | Compliance</div>
+    <h1 data-in>Driving efficiency.<br><em>Ensuring compliance.</em></h1>
+    <p class="sub" data-in><b>Your pipeline is invisible. Not to us.</b> Your dedicated pipeline operations and automation
+        engineering partner — controllers and automation engineers who keep it running and compliant.</p>
+    <div class="ctas" data-in>
+        <a href="#services" class="btn btn-solid">Explore Our Services</a>
+        <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+    </div>
+</div>
+
+<div class="hint">Move your mouse — <b>see what we see</b></div>
+
+<script>
+/* torch follows cursor instantly; when idle it roams on its own so the reveal never stops */
+var mx = innerWidth*0.5, my = innerHeight*0.55, idle = true, lastMove = 0;
+var world = document.getElementById('world'), torch = document.getElementById('torch');
+
+addEventListener('mousemove', function(e){ mx = e.clientX; my = e.clientY; idle = false; lastMove = performance.now(); });
+setInterval(function(){ if (performance.now() - lastMove > 2400) idle = true; }, 500);
+
+var rx = mx, ry = my, t = 0;
+(function frame(){
+    t += 0.016;
+    if (idle){
+        // lazy lissajous roam
+        mx = innerWidth  * (0.5 + 0.33*Math.sin(t*0.5));
+        my = innerHeight * (0.55 + 0.24*Math.sin(t*0.83 + 1.2));
+    }
+    rx += (mx-rx)*0.22; ry += (my-ry)*0.22;
+    world.style.setProperty('--mx', rx+'px');
+    world.style.setProperty('--my', ry+'px');
+    torch.style.left = rx+'px'; torch.style.top = ry+'px';
+    requestAnimationFrame(frame);
+})();
+
+/* opening: the torch blooms wide immediately so the first frame already wows, then settles */
+gsap.fromTo(world, { '--r':'12px' }, { '--r':'560px', duration:0.9, ease:'power3.out', delay:0.15 });
+gsap.to(world, { '--r':'230px', duration:1.0, ease:'power2.inOut', delay:1.5 });
+/* heartbeat pulse forever */
+gsap.to(world, { '--r':'265px', duration:1.1, yoyo:true, repeat:-1, ease:'sine.inOut', delay:2.6 });
+
+gsap.from('[data-in]', { opacity:0, y:20, duration:0.7, ease:'power3.out', stagger:0.09 });
+gsap.from('.hint', { opacity:0, duration:0.8, delay:1.2 });
+</script>
+</body>
+</html>

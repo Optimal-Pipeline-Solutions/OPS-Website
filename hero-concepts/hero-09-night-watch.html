@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 09 — The Night Watch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+:root { --olive:#6B7B3A; --olive-lt:#8A9B55; --olive-pale:#B8C97A; --amber:#F0A830; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; }
+body { color:#fff; font-family:'Inter',sans-serif; overflow:hidden;
+    background:linear-gradient(to bottom, #05070E 0%, #0A101C 42%, #131B2A 68%, #1A2233 100%); }
+
+/* stars */
+#stars { position:absolute; inset:0; z-index:1; }
+
+/* landscape */
+.scene { position:absolute; inset:0; z-index:2; }
+.scene svg { width:100%; height:100%; }
+.ridge-far  { fill:#0C1220; }
+.ridge-near { fill:#080D16; }
+.pipe-sil   { stroke:#1E2A3E; stroke-width:7; fill:none; stroke-linecap:round; }
+.pipe-glint { stroke:rgba(138,155,85,0.4); stroke-width:1.5; fill:none; stroke-linecap:round; }
+
+/* site beacons */
+.beacon { fill:var(--amber); }
+.beacon-halo { fill:none; stroke:var(--amber); stroke-width:1; opacity:0; }
+.site-lbl { fill:rgba(184,201,122,0.5); font-family:'IBM Plex Mono',monospace; font-size:8.5px; text-anchor:middle; letter-spacing:0.1em; }
+
+/* signal paths to the control room -->*/
+.sig { stroke:rgba(240,168,48,0.35); stroke-width:1.2; fill:none; stroke-dasharray:3 7; }
+.sig-pulse { fill:var(--amber); }
+
+/* control room glow, bottom right */
+.cr-glow { fill:url(#crglow); }
+.cr-box { fill:#0A0F18; stroke:rgba(138,155,85,0.55); stroke-width:1.2; }
+.cr-screen { fill:rgba(138,155,85,0.5); animation:screenflicker 4s ease-in-out infinite; }
+@keyframes screenflicker { 0%,100%{opacity:0.55;} 48%{opacity:0.85;} 52%{opacity:0.6;} 70%{opacity:0.9;} }
+.cr-lbl { fill:var(--olive-pale); font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.16em; text-anchor:middle; }
+
+/* headline content */
+.content { position:absolute; z-index:5; left:0; right:0; top:11vh; display:flex; flex-direction:column; align-items:center; text-align:center; padding:0 20px; }
+.logo-chip { background:rgba(255,255,255,0.94); border-radius:9px; padding:11px 24px; margin-bottom:1.4rem; opacity:0;
+    box-shadow:0 14px 50px rgba(0,0,0,0.55); }
+.logo-chip img { height:52px; display:block; }
+.svc { font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.34em; text-transform:uppercase;
+    color:var(--olive-pale); margin-bottom:1.3rem; opacity:0; }
+h1 { font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase;
+    font-size:clamp(3rem,8.4vw,7.2rem); line-height:0.92; opacity:0; }
+h1 .moon { color:var(--olive-pale); }
+.sub { margin-top:1.5rem; max-width:640px; font-size:clamp(0.98rem,1.5vw,1.22rem); color:rgba(255,255,255,0.8); opacity:0; }
+.sub b { color:#fff; }
+.sub small { display:block; margin-top:0.5rem; font-size:0.86rem; color:rgba(255,255,255,0.45); }
+.ctas { display:flex; gap:1rem; margin-top:2.3rem; flex-wrap:wrap; justify-content:center; opacity:0; }
+.btn { font-size:0.85rem; font-weight:600; padding:0.92rem 2.2rem; border-radius:999px; text-decoration:none; transition:all 0.25s; }
+.btn-solid { background:var(--olive); color:#fff; }
+.btn-solid:hover { background:var(--olive-lt); transform:translateY(-2px); box-shadow:0 12px 34px rgba(107,123,58,0.45); }
+.btn-ghost { color:rgba(255,255,255,0.85); border:1px solid rgba(255,255,255,0.28); }
+.btn-ghost:hover { border-color:rgba(255,255,255,0.6); background:rgba(255,255,255,0.06); }
+.watch-line { position:absolute; z-index:5; bottom:4.5vh; left:50%; transform:translateX(-50%);
+    font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.26em; text-transform:uppercase;
+    color:rgba(184,201,122,0.55); white-space:nowrap; opacity:0; }
+.watch-line b { color:var(--amber); font-weight:500; }
+@media (max-width:640px){ .watch-line { white-space:normal; width:92vw; text-align:center; } }
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+
+<!-- night landscape with beacons and the control room answering -->
+<div class="scene">
+<svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+        <radialGradient id="crglow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(138,155,85,0.30)"/>
+            <stop offset="100%" stop-color="rgba(138,155,85,0)"/>
+        </radialGradient>
+    </defs>
+
+    <!-- ridgelines -->
+    <path class="ridge-far" d="M0 640 L180 600 L340 632 L520 585 L700 622 L900 578 L1100 618 L1300 588 L1600 626 L1600 900 L0 900 Z"/>
+    <path class="ridge-near" d="M0 730 L220 698 L420 736 L640 690 L860 732 L1080 700 L1320 738 L1600 704 L1600 900 L0 900 Z"/>
+
+    <!-- pipeline silhouette tracing the near ridge -->
+    <path class="pipe-sil"   d="M-20 745 L220 713 L420 751 L640 705 L860 747 L1080 715 L1320 753 L1620 719"/>
+    <path class="pipe-glint" d="M-20 741 L220 709 L420 747 L640 701 L860 743 L1080 711 L1320 749 L1620 715"/>
+
+    <!-- remote site beacons on the far ridge -->
+    <g id="siteA" transform="translate(340,616)">
+        <circle class="beacon" r="3"/><circle class="beacon-halo" r="3"/>
+        <text class="site-lbl" y="-14">SITE 042</text>
+    </g>
+    <g id="siteB" transform="translate(700,606)">
+        <circle class="beacon" r="3"/><circle class="beacon-halo" r="3"/>
+        <text class="site-lbl" y="-14">SITE 087</text>
+    </g>
+    <g id="siteC" transform="translate(1100,602)">
+        <circle class="beacon" r="3"/><circle class="beacon-halo" r="3"/>
+        <text class="site-lbl" y="-14">SITE 117</text>
+    </g>
+    <g id="siteD" transform="translate(180,588)">
+        <circle class="beacon" r="3"/><circle class="beacon-halo" r="3"/>
+        <text class="site-lbl" y="-14">SITE 009</text>
+    </g>
+
+    <!-- signals arcing to the control room -->
+    <path class="sig" id="sgA" d="M 340 616 C 640 430, 1080 560, 1352 758"/>
+    <path class="sig" id="sgB" d="M 700 606 C 940 480, 1180 600, 1352 758"/>
+    <path class="sig" id="sgC" d="M 1100 602 C 1220 640, 1300 700, 1352 758"/>
+    <path class="sig" id="sgD" d="M 180 588 C 560 380, 1120 520, 1352 758"/>
+    <circle class="sig-pulse" r="3.2"><animateMotion dur="3.6s" repeatCount="indefinite"><mpath href="#sgA"/></animateMotion></circle>
+    <circle class="sig-pulse" r="2.8"><animateMotion dur="4.4s" begin="0.9s" repeatCount="indefinite"><mpath href="#sgB"/></animateMotion></circle>
+    <circle class="sig-pulse" r="2.6"><animateMotion dur="2.8s" begin="1.6s" repeatCount="indefinite"><mpath href="#sgC"/></animateMotion></circle>
+    <circle class="sig-pulse" r="3.0"><animateMotion dur="5.0s" begin="2.2s" repeatCount="indefinite"><mpath href="#sgD"/></animateMotion></circle>
+
+    <!-- the lit control room, bottom right -->
+    <circle class="cr-glow" cx="1352" cy="760" r="150"/>
+    <g transform="translate(1352,758)">
+        <rect class="cr-box" x="-64" y="-38" width="128" height="76" rx="4"/>
+        <rect class="cr-screen" x="-50" y="-24" width="28" height="18" rx="1.5"/>
+        <rect class="cr-screen" x="-14" y="-24" width="28" height="18" rx="1.5" style="animation-delay:1.2s"/>
+        <rect class="cr-screen" x="22" y="-24" width="28" height="18" rx="1.5" style="animation-delay:2.3s"/>
+        <rect class="cr-screen" x="-50" y="2"  width="64" height="18" rx="1.5" style="animation-delay:0.6s"/>
+        <rect class="cr-screen" x="22" y="2"  width="28" height="18" rx="1.5" style="animation-delay:1.8s"/>
+        <text class="cr-lbl" y="62">OPS CONTROL ROOM — STAFFED</text>
+    </g>
+</svg>
+</div>
+
+<div class="content">
+    <div class="logo-chip"><img src="../images/logo.png" alt="Optimal Pipeline Solutions"></div>
+    <p class="svc">Automation | Remote Monitoring | Compliance</p>
+    <h1>Driving efficiency.<br><span class="moon">Ensuring compliance.</span></h1>
+    <p class="sub"><b>It's 3:17 AM and someone is watching your pipeline.</b>
+        Your dedicated pipeline operations and automation engineering partner.
+        <small>Controllers and automation engineers who keep your pipeline running and compliant — while the rest of the world sleeps.</small></p>
+    <div class="ctas">
+        <a href="#services" class="btn btn-solid">Explore Our Services</a>
+        <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+    </div>
+</div>
+
+<div class="watch-line">Every light on that horizon <b>answers to a human being</b> on our console</div>
+
+<script>
+// starfield
+(function(){
+    var cv = document.getElementById('stars'), ctx = cv.getContext('2d');
+    var W,H,stars=[], DPR = Math.min(devicePixelRatio||1,2);
+    function rs(){ W=cv.width=innerWidth*DPR; H=cv.height=innerHeight*DPR;
+        cv.style.width=innerWidth+'px'; cv.style.height=innerHeight+'px'; }
+    addEventListener('resize',rs); rs();
+    for (var i=0;i<170;i++) stars.push({ x:Math.random()*W, y:Math.random()*H*0.62,
+        r:(0.4+Math.random()*1.1)*DPR, p:Math.random()*Math.PI*2, s:0.4+Math.random()*1.4 });
+    var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches, t=0;
+    function frame(){
+        t+=0.016; ctx.clearRect(0,0,W,H);
+        for (var i=0;i<stars.length;i++){
+            var s=stars[i], tw = reduced ? 0.7 : 0.45+0.55*Math.abs(Math.sin(t*s.s+s.p));
+            ctx.fillStyle='rgba(215,225,240,'+(tw*0.8)+')';
+            ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,6.283); ctx.fill();
+        }
+        requestAnimationFrame(frame);
+    }
+    frame();
+})();
+
+// beacons blink in sequence with expanding halos
+['#siteD','#siteA','#siteB','#siteC'].forEach(function(sel,i){
+    var halo = document.querySelector(sel+' .beacon-halo');
+    gsap.timeline({ repeat:-1, delay: i*0.9, repeatDelay:2.6 })
+        .fromTo(halo, { attr:{r:3}, opacity:0.85 }, { attr:{r:26}, opacity:0, duration:1.8, ease:'power1.out' });
+    gsap.fromTo(sel+' .beacon', { opacity:0.5 }, { opacity:1, duration:0.5, yoyo:true, repeat:-1, repeatDelay:1.4, delay:i*0.9 });
+});
+
+// entrance
+gsap.timeline({defaults:{ease:'power3.out'}})
+    .from('.scene', { opacity:0, duration:1.4 }, 0)
+    .to('.logo-chip', { opacity:1, y:0, startAt:{y:22}, duration:0.85 }, 0.5)
+    .to('.svc', { opacity:1, duration:0.7 }, 0.8)
+    .to('h1',  { opacity:1, y:0, startAt:{y:32}, duration:1 }, 0.9)
+    .to('.sub',{ opacity:1, y:0, startAt:{y:22}, duration:0.85 }, 1.25)
+    .to('.ctas',{ opacity:1, y:0, startAt:{y:16}, duration:0.8 }, 1.45)
+    .to('.watch-line', { opacity:1, duration:1.1 }, 1.9);
+</script>
+</body>
+</html>

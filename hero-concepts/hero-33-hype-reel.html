@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 33 — The Hype Reel (Word Strobe)</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+:root { --olive:#6B7B3A; --olive-lt:#8A9B55; --amber:#F0A830; --ink:#0D0D0B; --paper:#F2EFE6; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; }
+body { font-family:'Inter',sans-serif; overflow:hidden; background:var(--ink); color:#fff; }
+
+/* the flash stage */
+#stage { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; z-index:3; }
+#flashword { font-family:'Barlow Condensed',sans-serif; font-weight:800; text-transform:uppercase;
+    font-size:clamp(4rem,16vw,15rem); line-height:0.86; text-align:center; letter-spacing:0.01em; will-change:transform; }
+/* inverted beat */
+body.inv { background:var(--paper); }
+body.inv #flashword { color:var(--ink); }
+body.olivebeat { background:var(--olive); }
+body.amberbeat { background:var(--amber); }
+body.amberbeat #flashword, body.olivebeat #flashword { color:#fff; }
+
+/* persistent chrome */
+.chrome { position:absolute; z-index:6; left:0; right:0; display:flex; align-items:center; justify-content:space-between;
+    padding:22px clamp(18px,3.4vw,46px); }
+.chrome.top { top:0; } .chrome.bot { bottom:0; }
+.logo-chip { background:rgba(255,255,255,0.96); border-radius:9px; padding:8px 18px; box-shadow:0 8px 30px rgba(0,0,0,0.4); }
+.logo-chip img { height:38px; display:block; }
+.svc { font-family:'IBM Plex Mono',monospace; font-size:0.64rem; letter-spacing:0.3em; text-transform:uppercase; color:currentColor; opacity:0.7; }
+.beatbar { display:flex; gap:6px; }
+.beatbar i { width:22px; height:4px; background:currentColor; opacity:0.25; border-radius:2px; }
+.beatbar i.on { opacity:1; }
+.sub { font-size:clamp(0.82rem,1.1vw,0.98rem); max-width:520px; opacity:0.85; }
+.sub b { font-weight:700; }
+.ctas { display:flex; gap:0.8rem; }
+.btn { font-size:0.82rem; font-weight:700; padding:0.85rem 2rem; border-radius:999px; text-decoration:none;
+    transition:transform 0.15s; border:2px solid currentColor; color:inherit; }
+.btn:hover { transform:scale(1.05); }
+.btn-solid { background:var(--olive); border-color:var(--olive); color:#fff !important; }
+@media (max-width:760px){ .sub{ display:none; } }
+@media (prefers-reduced-motion: reduce){ #flashword{ font-size:clamp(2.4rem,8vw,6rem); } }
+</style>
+</head>
+<body>
+
+<div class="chrome top">
+    <div class="logo-chip"><img src="../images/logo.png" alt="Optimal Pipeline Solutions"></div>
+    <div class="svc">Automation | Remote Monitoring | Compliance</div>
+    <div class="beatbar" id="beatbar"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+</div>
+
+<div id="stage"><div id="flashword">YOUR<br>PIPELINE.</div></div>
+
+<div class="chrome bot">
+    <div class="sub"><b>Driving efficiency. Ensuring compliance.</b> Your dedicated pipeline operations and
+        automation engineering partner — controllers and automation engineers who keep your pipeline running and compliant.</div>
+    <div class="ctas">
+        <a href="#services" class="btn btn-solid">Explore Our Services</a>
+        <a href="#contact" class="btn">Get In Touch</a>
+    </div>
+</div>
+
+<script>
+/* the reel: hard cuts, each beat ~650ms — full message lands in ~6 seconds, then loops with variation */
+var BEATS = [
+    // [html, bodyClass, punch]
+    ['YOUR<br>PIPELINE.', '', 1],
+    ['149 SITES.', 'inv', 1],
+    ['WATCHED.', '', 1.15],
+    ['3:00 AM?', 'inv', 1],
+    ['WATCHED.', 'olivebeat', 1.2],
+    ['ALARM?', '', 1],
+    ['<span style="color:var(--amber)">ANSWERED.</span>', 'inv', 1.2],
+    ['41 SEC.', 'amberbeat', 1.25],
+    ['AUDIT?', '', 1],
+    ['READY.', 'olivebeat', 1.2],
+    ['DRIVING<br>EFFICIENCY.', '', 1.05],
+    ['ENSURING<br>COMPLIANCE.', 'olivebeat', 1.15],
+    ['24/7/365.', 'inv', 1.3]
+];
+var word = document.getElementById('flashword'),
+    beats = document.querySelectorAll('#beatbar i'),
+    reduced = matchMedia('(prefers-reduced-motion: reduce)').matches,
+    i = 0;
+
+function beat(){
+    var b = BEATS[i % BEATS.length];
+    document.body.className = b[1];
+    word.innerHTML = b[0];
+    beats.forEach(function(el,k){ el.classList.toggle('on', k === i % beats.length); });
+    if (!reduced){
+        gsap.fromTo(word, { scale: b[2]*1.14, opacity:0.4 }, { scale:1, opacity:1, duration:0.34, ease:'power3.out', overwrite:true });
+        if (b[2] > 1.18) gsap.fromTo('#stage', { x:-7 }, { x:7, duration:0.045, repeat:5, yoyo:true, clearProps:'x' });
+    }
+    i++;
+    // hold the closing frame a touch longer so the loop breathes
+    setTimeout(beat, (i % BEATS.length === 0) ? 1600 : (reduced ? 1400 : 680));
+}
+beat();
+
+gsap.from('.chrome', { opacity:0, duration:0.8, delay:0.3 });
+</script>
+</body>
+</html>

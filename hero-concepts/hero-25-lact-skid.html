@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 25 — The LACT Unit (Custody Transfer, Live)</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+:root { --olive:#5C7030; --olive-lt:#7E9448; --ink:#20242B; --steel:#5E6773; --steel-lt:#B9C1CC;
+        --paper:#EEF1F4; --crude:#7A4A1E; --amber:#E8940A; --red:#C0392B; --green:#2E7D4F; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; }
+body { font-family:'Inter',sans-serif; overflow:hidden; color:var(--ink);
+    background:linear-gradient(to bottom, var(--paper) 0%, #DDE3E9 100%); }
+/* subtle engineering grid */
+body::before { content:''; position:fixed; inset:0; pointer-events:none; opacity:0.55;
+    background-image:linear-gradient(rgba(32,36,43,0.05) 1px, transparent 1px),
+                     linear-gradient(90deg, rgba(32,36,43,0.05) 1px, transparent 1px);
+    background-size:44px 44px; }
+
+.wrap { position:relative; height:100%; display:grid; grid-template-rows:auto 1fr auto; }
+
+/* header row */
+.top { display:flex; align-items:flex-start; justify-content:space-between; gap:18px;
+    padding:26px clamp(20px,4vw,56px) 4px; }
+.brand { display:flex; align-items:center; gap:16px; }
+.logo-chip { background:#fff; border-radius:10px; padding:9px 20px; box-shadow:0 8px 26px rgba(32,36,43,0.14); }
+.logo-chip img { height:42px; display:block; }
+.svc { font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.26em; text-transform:uppercase; color:var(--olive); font-weight:600; }
+h1 { font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase; text-align:right;
+    font-size:clamp(1.9rem,4vw,3.3rem); line-height:0.92; }
+h1 em { font-style:normal; color:var(--olive); }
+
+/* the skid stage */
+.stage { position:relative; padding:0 clamp(12px,2.5vw,40px); min-height:0; }
+.stage svg { width:100%; height:100%; }
+.skid-frame { fill:none; stroke:#8A93A0; stroke-width:3; }
+.pipe { stroke:var(--steel); stroke-width:14; fill:none; stroke-linecap:round; }
+.pipe-flow { stroke:var(--crude); stroke-width:8; fill:none; stroke-linecap:round;
+    stroke-dasharray:12 20; animation:flow 1.1s linear infinite; }
+@keyframes flow { to { stroke-dashoffset:-32; } }
+.pipe-flow.divert { stroke:#A33A2A; }
+.equip { fill:#fff; stroke:var(--steel); stroke-width:2.5; }
+.equip-dk { fill:var(--steel-lt); stroke:var(--steel); stroke-width:2.5; }
+.lbl { font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.08em; fill:#4E5560; text-anchor:middle; font-weight:600; }
+.lbl2 { font-family:'IBM Plex Mono',monospace; font-size:9px; fill:#8A93A0; text-anchor:middle; }
+.rotor { stroke:var(--olive); stroke-width:3; transform-box:fill-box; transform-origin:center; animation:spin 1.8s linear infinite; }
+@keyframes spin { to{ transform:rotate(360deg); } }
+/* totalizer */
+.tot-box { fill:#161A14; stroke:var(--olive); stroke-width:2; }
+.tot-txt { font-family:'IBM Plex Mono',monospace; font-size:24px; font-weight:600; fill:#9FE08A; text-anchor:end; }
+.tot-lbl { font-family:'IBM Plex Mono',monospace; font-size:8.5px; letter-spacing:0.14em; fill:rgba(159,224,138,0.6); text-anchor:end; }
+/* status board -->*/
+.status { fill:#fff; stroke:var(--steel); stroke-width:2; }
+.st-line { font-family:'IBM Plex Mono',monospace; font-size:11px; fill:#4E5560; }
+.st-val { font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; fill:var(--green); text-anchor:end; }
+/* sampler plunger */
+#plunger { transform-box:fill-box; }
+/* ticket */
+.ticket { fill:#fff; stroke:#B9C1CC; stroke-width:1.5; }
+.tk-txt { font-family:'IBM Plex Mono',monospace; font-size:8.5px; fill:#4E5560; }
+
+/* bottom row */
+.bottom { display:flex; align-items:center; justify-content:space-between; gap:16px;
+    padding:10px clamp(20px,4vw,56px) 26px; }
+.sub { max-width:620px; font-size:clamp(0.9rem,1.25vw,1.05rem); line-height:1.55; color:#4A5058; }
+.sub b { color:var(--ink); }
+.ctas { display:flex; gap:0.8rem; flex-wrap:wrap; }
+.btn { font-size:0.82rem; font-weight:600; padding:0.85rem 2rem; border-radius:999px; text-decoration:none; transition:all 0.22s; white-space:nowrap; }
+.btn-solid { background:var(--olive); color:#fff; }
+.btn-solid:hover { background:var(--olive-lt); transform:translateY(-2px); }
+.btn-ghost { color:var(--ink); border:1.5px solid rgba(32,36,43,0.3); background:#fff; }
+.btn-ghost:hover { border-color:var(--ink); }
+@media (max-width:860px){ .bottom{ flex-direction:column; align-items:flex-start; } h1{ text-align:left; } .top{ flex-direction:column; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+    <div class="top">
+        <div class="brand" data-in>
+            <div class="logo-chip"><img src="../images/logo.png" alt="Optimal Pipeline Solutions"></div>
+            <div class="svc">Automation |<br>Remote Monitoring |<br>Compliance</div>
+        </div>
+        <h1 data-in>Driving efficiency. <em>Ensuring compliance.</em><br>
+            <span style="font-size:0.48em; letter-spacing:0.06em; color:#7A828E;">This LACT unit is doing both, right now.</span></h1>
+    </div>
+
+    <div class="stage" data-in>
+    <svg viewBox="0 0 1600 560" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <!-- skid frame -->
+        <rect class="skid-frame" x="90" y="120" width="1180" height="330" rx="10"/>
+        <text class="lbl" x="680" y="108">LACT UNIT 7 — LEASE AUTOMATIC CUSTODY TRANSFER · DESIGNED &amp; RUN BY OPS</text>
+
+        <!-- main line through the skid -->
+        <path class="pipe" d="M 20 330 H 1330"/>
+        <path class="pipe-flow" id="mainflow" d="M 20 330 H 1330"/>
+        <!-- divert loop back to tank -->
+        <path class="pipe" d="M 1050 330 V 210 H 240 V 322" style="stroke-width:10; opacity:0.55;"/>
+        <path class="pipe-flow divert" id="divflow" d="M 1050 330 V 210 H 240 V 322" style="opacity:0;"/>
+
+        <!-- equipment along the run -->
+        <g transform="translate(240,330)">
+            <rect class="equip" x="-34" y="-40" width="68" height="80" rx="8"/>
+            <path d="M -20 -24 L 20 24 M -20 24 L 20 -24" stroke="#8A93A0" stroke-width="2.5"/>
+            <text class="lbl" y="66">STRAINER</text>
+        </g>
+        <g transform="translate(420,330)">
+            <circle class="equip" r="44"/>
+            <path d="M -18 12 Q 0 -34 18 12" fill="none" stroke="#8A93A0" stroke-width="2.5"/>
+            <text class="lbl" y="72">AIR ELIMINATOR</text>
+        </g>
+        <!-- sampler -->
+        <g transform="translate(580,330)">
+            <rect class="equip" x="-26" y="-70" width="52" height="46" rx="6"/>
+            <rect id="plunger" x="-7" y="-70" width="14" height="30" fill="var(--olive)"/>
+            <line x1="0" y1="-24" x2="0" y2="-8" stroke="#8A93A0" stroke-width="6"/>
+            <text class="lbl" y="66">SAMPLER</text>
+            <text class="lbl2" y="82" id="grab-note"> </text>
+        </g>
+        <!-- charge pump -->
+        <g transform="translate(740,330)">
+            <circle class="equip-dk" r="40"/>
+            <g class="rotor"><line x1="-24" y1="0" x2="24" y2="0"/><line x1="0" y1="-24" x2="0" y2="24"/></g>
+            <text class="lbl" y="68">CHARGE PUMP</text>
+        </g>
+        <!-- coriolis meter + totalizer -->
+        <g transform="translate(930,330)">
+            <rect class="equip" x="-52" y="-46" width="104" height="92" rx="10"/>
+            <path d="M -34 18 Q 0 -52 34 18" fill="none" stroke="var(--olive)" stroke-width="4"/>
+            <path d="M -34 24 Q 0 -40 34 24" fill="none" stroke="#8A93A0" stroke-width="3"/>
+            <text class="lbl" y="72">CORIOLIS METER</text>
+            <g transform="translate(0,-92)">
+                <rect class="tot-box" x="-92" y="-34" width="184" height="52" rx="6"/>
+                <text class="tot-txt" x="78" y="0" id="totalizer">128,447.2</text>
+                <text class="tot-lbl" x="78" y="13">NET BBL — TOTALIZER</text>
+            </g>
+        </g>
+        <!-- BS&W probe + divert valve -->
+        <g transform="translate(1050,330)">
+            <path class="equip" d="M -26 -22 L 26 -22 L 0 22 Z"/>
+            <circle id="divert-ind" cx="0" cy="-38" r="8" fill="var(--green)"/>
+            <text class="lbl" y="60">BS&amp;W / DIVERT</text>
+        </g>
+        <!-- outlet to pipeline -->
+        <g transform="translate(1330,330)">
+            <text class="lbl" x="90" y="6" style="text-anchor:start;">TO PIPELINE →</text>
+        </g>
+        <!-- tank on far left feeding the skid -->
+        <g transform="translate(20,330)">
+            <text class="lbl" x="-4" y="-56" style="text-anchor:start;">FROM LEASE TANKS</text>
+        </g>
+
+        <!-- status board, right side -->
+        <g transform="translate(1395,140)">
+            <rect class="status" x="0" y="0" width="190" height="230" rx="10"/>
+            <text class="st-line" x="16" y="30" style="font-weight:700; letter-spacing:0.12em;">RUN STATUS</text>
+            <text class="st-line" x="16" y="64">Gravity</text><text class="st-val" x="174" y="64">41.6 API</text>
+            <text class="st-line" x="16" y="92">Temp</text><text class="st-val" x="174" y="92" id="st-temp">78.2 °F</text>
+            <text class="st-line" x="16" y="120">BS&amp;W</text><text class="st-val" x="174" y="120" id="st-bsw">0.18 %</text>
+            <text class="st-line" x="16" y="148">Flow</text><text class="st-val" x="174" y="148" id="st-flow">312 BPH</text>
+            <text class="st-line" x="16" y="176">Divert</text><text class="st-val" x="174" y="176" id="st-div">NORMAL ✓</text>
+            <text class="st-line" x="16" y="204">Console</text><text class="st-val" x="174" y="204">WATCHING</text>
+        </g>
+
+        <!-- the run ticket that prints and flies to the console -->
+        <g id="ticket" opacity="0" transform="translate(930,420)">
+            <rect class="ticket" x="-58" y="0" width="116" height="88" rx="4"/>
+            <text class="tk-txt" x="-46" y="20" style="font-weight:700;">RUN TICKET #48113</text>
+            <text class="tk-txt" x="-46" y="38">NET BBL: 1,204.6</text>
+            <text class="tk-txt" x="-46" y="52">API: 41.6 · BSW .18%</text>
+            <text class="tk-txt" x="-46" y="66">MEAS: CORIOLIS</text>
+            <text class="tk-txt" x="-46" y="80" style="fill:#2E7D4F; font-weight:700;">→ FILED. AUDIT READY.</text>
+        </g>
+    </svg>
+    </div>
+
+    <div class="bottom">
+        <p class="sub" data-in><b>Your dedicated pipeline operations and automation engineering partner.</b>
+            Controllers and automation engineers who keep your pipeline running and compliant —
+            LACT units, Coriolis measurement, tank gauging, and every run ticket accounted for.</p>
+        <div class="ctas" data-in>
+            <a href="#services" class="btn btn-solid">Explore Our Services</a>
+            <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+        </div>
+    </div>
+</div>
+
+<script>
+gsap.from('[data-in]', { opacity:0, y:22, duration:0.9, ease:'power3.out', stagger:0.14, delay:0.2 });
+
+/* totalizer rolls forever */
+(function(){
+    var el = document.getElementById('totalizer'), v = 128447.2;
+    setInterval(function(){ v += 0.9 + Math.random()*0.7; el.textContent = v.toLocaleString('en-US',{minimumFractionDigits:1, maximumFractionDigits:1}); }, 350);
+})();
+
+/* small live values */
+function jitter(id, base, spread, dec, suffix){
+    var el = document.getElementById(id);
+    setInterval(function(){ el.textContent = (base + (Math.random()-0.5)*spread).toFixed(dec) + suffix; }, 2100);
+}
+jitter('st-temp', 78.2, 1.2, 1, ' °F'); jitter('st-flow', 312, 14, 0, ' BPH');
+
+/* sampler grabs every few seconds */
+(function(){
+    var note = document.getElementById('grab-note');
+    function grab(){
+        gsap.timeline()
+            .to('#plunger', { y:16, duration:0.22, ease:'power2.in' })
+            .to('#plunger', { y:0, duration:0.35, ease:'back.out(2)' })
+            .call(function(){ note.textContent = 'SAMPLE GRABBED'; gsap.fromTo(note,{opacity:1},{opacity:0,duration:2.2}); });
+        setTimeout(grab, 5200);
+    }
+    setTimeout(grab, 2200);
+})();
+
+/* the story loop: normal run -> BS&W excursion -> divert -> clear -> ticket prints */
+(function(){
+    var bsw = document.getElementById('st-bsw'), dv = document.getElementById('st-div'),
+        ind = document.getElementById('divert-ind');
+    function episode(){
+        var tl = gsap.timeline({ onComplete:function(){ setTimeout(episode, 9000); } });
+        // BS&W creeps up
+        tl.call(function(){ animBSW(0.18, 1.42, 2.2); })
+          .to({}, { duration:2.3 })
+          // divert!
+          .call(function(){
+              dv.textContent = 'DIVERTING'; dv.style.fill = '#C0392B';
+              ind.setAttribute('fill', '#C0392B');
+              gsap.to('#divflow', { opacity:1, duration:0.4 });
+              gsap.to('#mainflow', { opacity:0.25, duration:0.4 });
+          })
+          .to({}, { duration:3.6 })
+          // clears
+          .call(function(){
+              animBSW(1.42, 0.18, 1.6);
+              dv.textContent = 'NORMAL ✓'; dv.style.fill = '';
+              ind.setAttribute('fill', '#2E7D4F');
+              gsap.to('#divflow', { opacity:0, duration:0.5 });
+              gsap.to('#mainflow', { opacity:1, duration:0.5 });
+          })
+          .to({}, { duration:2.0 })
+          // ticket prints and files
+          .set('#ticket', { opacity:1, y:0, x:0, scale:1 })
+          .from('#ticket', { y:-46, opacity:0, duration:0.6, ease:'power2.out' })
+          .to('#ticket', { x:430, y:-160, scale:0.55, opacity:0, duration:1.3, ease:'power2.in', delay:2.2 });
+    }
+    function animBSW(from, to, dur){
+        var o = { v:from };
+        gsap.to(o, { v:to, duration:dur, ease:'power1.inOut', onUpdate:function(){
+            bsw.textContent = o.v.toFixed(2) + ' %';
+            bsw.style.fill = o.v > 1 ? '#C0392B' : '';
+        }});
+    }
+    setTimeout(episode, 3000);
+})();
+</script>
+</body>
+</html>

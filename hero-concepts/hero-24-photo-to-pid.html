@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 24 — How We See Your Site (Photo ⇄ P&amp;ID)</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+:root { --olive:#6B7B3A; --olive-lt:#8A9B55; --amber:#F0A830; --bp:#12283A; --bp-line:#8FD0F0; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; }
+body { font-family:'Inter',sans-serif; overflow:hidden; color:#fff; background:#0E1013; }
+
+/* the photo — grade morphs to blueprint and back */
+.photo { position:absolute; inset:0; background:url('../images/hero-bg.jpg') center/cover no-repeat; }
+.bp-tint { position:absolute; inset:0; background:var(--bp); mix-blend-mode:color; opacity:0; }
+.bp-wash { position:absolute; inset:0; background:rgba(18,40,58,0.55); opacity:0; }
+.grade { position:absolute; inset:0; background:linear-gradient(to right, rgba(10,12,10,0.85) 0%, rgba(10,12,10,0.45) 42%, rgba(10,12,10,0.15) 70%, rgba(10,12,10,0.4) 100%); }
+
+/* schematic overlay that traces the photo */
+.trace { position:absolute; inset:0; z-index:4; pointer-events:none; }
+.trace svg { width:100%; height:100%; }
+.tline { fill:none; stroke:var(--bp-line); stroke-width:2.2; opacity:0.9;
+    filter:drop-shadow(0 0 6px rgba(143,208,240,0.6)); }
+.tnode { fill:none; stroke:var(--bp-line); stroke-width:2; }
+.ttag { fill:#0E1013; stroke:var(--bp-line); stroke-width:1.4; }
+.ttxt { fill:var(--bp-line); font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.1em; font-weight:600; }
+.tsub { fill:rgba(143,208,240,0.65); font-family:'IBM Plex Mono',monospace; font-size:8.5px; letter-spacing:0.08em; }
+
+/* mode chip */
+.mode { position:absolute; z-index:8; top:26px; right:clamp(20px,3vw,46px);
+    display:flex; border:1px solid rgba(255,255,255,0.25); border-radius:999px; overflow:hidden;
+    font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; }
+.mode span { padding:9px 18px; color:rgba(255,255,255,0.5); transition:all 0.4s; }
+.mode span.on { background:var(--bp-line); color:#0E1013; font-weight:600; }
+
+/* content */
+.content { position:absolute; z-index:8; left:clamp(22px,4.5vw,70px); bottom:7vh; max-width:640px; }
+.logo-chip { display:inline-flex; background:rgba(255,255,255,0.95); border-radius:9px; padding:10px 22px; margin-bottom:1.1rem; }
+.logo-chip img { height:46px; display:block; }
+.svc { font-family:'IBM Plex Mono',monospace; font-size:0.66rem; letter-spacing:0.3em; text-transform:uppercase;
+    color:var(--olive-lt); margin-bottom:1rem; text-shadow:0 2px 8px rgba(0,0,0,0.7); }
+h1 { font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase;
+    font-size:clamp(2.8rem,6.6vw,5.6rem); line-height:0.9; text-shadow:0 5px 30px rgba(0,0,0,0.65); }
+h1 em { font-style:normal; color:var(--olive-lt); }
+.sub { margin-top:1rem; font-size:clamp(0.95rem,1.35vw,1.15rem); line-height:1.6; color:rgba(255,255,255,0.85);
+    max-width:560px; text-shadow:0 2px 12px rgba(0,0,0,0.7); }
+.sub b { color:#fff; }
+.ctas { display:flex; gap:0.9rem; margin-top:1.6rem; flex-wrap:wrap; }
+.btn { font-size:0.85rem; font-weight:600; padding:0.9rem 2.2rem; border-radius:999px; text-decoration:none; transition:all 0.25s; }
+.btn-solid { background:var(--olive); color:#fff; }
+.btn-solid:hover { background:var(--olive-lt); transform:translateY(-2px); }
+.btn-ghost { color:#fff; border:1px solid rgba(255,255,255,0.4); backdrop-filter:blur(4px); }
+.btn-ghost:hover { background:rgba(255,255,255,0.1); }
+.explain { position:absolute; z-index:8; right:clamp(20px,3vw,46px); bottom:7vh; width:min(320px,80vw); text-align:right;
+    font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.18em; text-transform:uppercase;
+    color:rgba(255,255,255,0.55); line-height:2; }
+.explain b { color:var(--bp-line); }
+@media (max-width:760px){ .explain{ display:none; } }
+</style>
+</head>
+<body>
+
+<div class="photo" id="photo"></div>
+<div class="bp-tint" id="tint"></div>
+<div class="bp-wash" id="wash"></div>
+<div class="grade"></div>
+
+<!-- engineering trace drawn over the real equipment -->
+<div class="trace">
+<svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <!-- main yard line following the foreground pipe run -->
+    <path class="tline" id="L1" d="M 60 700 C 380 640, 760 660, 1020 610 S 1440 560, 1580 585"/>
+    <!-- branch to the valve set -->
+    <path class="tline" id="L2" d="M 640 655 C 660 560, 700 500, 780 470"/>
+    <!-- instrument bubbles anchored to real gear -->
+    <g id="N1" class="callout" transform="translate(500,646)">
+        <circle class="tnode" r="15"/><line class="tline" x1="0" y1="-15" x2="0" y2="-56"/>
+        <rect class="ttag" x="-70" y="-100" width="140" height="44" rx="4"/>
+        <text class="ttxt" x="-58" y="-81">PV-2041 · 12"</text>
+        <text class="tsub" x="-58" y="-66">ACTUATED MAINLINE VALVE</text>
+    </g>
+    <g id="N2" class="callout" transform="translate(780,470)">
+        <circle class="tnode" r="15"/><line class="tline" x1="0" y1="-15" x2="0" y2="-52"/>
+        <rect class="ttag" x="-66" y="-96" width="150" height="44" rx="4"/>
+        <text class="ttxt" x="-54" y="-77">PT-2042 · 4-20mA</text>
+        <text class="tsub" x="-54" y="-62">PRESSURE — POLLED EVERY 2s</text>
+    </g>
+    <g id="N3" class="callout" transform="translate(1180,592)">
+        <circle class="tnode" r="15"/><line class="tline" x1="0" y1="-15" x2="0" y2="-58"/>
+        <rect class="ttag" x="-60" y="-102" width="170" height="44" rx="4"/>
+        <text class="ttxt" x="-48" y="-83">FE-2043 · METER RUN</text>
+        <text class="tsub" x="-48" y="-68">CUSTODY MEASUREMENT</text>
+    </g>
+    <!-- flow arrows on the traced line -->
+    <path class="tline" id="Lflow" d="M 60 700 C 380 640, 760 660, 1020 610 S 1440 560, 1580 585"
+          style="stroke-dasharray:4 18; stroke-width:3; opacity:0;"/>
+</svg>
+</div>
+
+<div class="mode"><span id="m-photo" class="on">Your Site</span><span id="m-pid">Our P&amp;ID</span></div>
+
+<div class="content">
+    <div class="logo-chip" data-in><img src="../images/logo.png" alt="Optimal Pipeline Solutions"></div>
+    <div class="svc" data-in>Automation | Remote Monitoring | Compliance</div>
+    <h1 data-in>Driving efficiency.<br><em>Ensuring compliance.</em></h1>
+    <p class="sub" data-in><b>Your dedicated pipeline operations and automation engineering partner.</b>
+        You see steel in a field. We see tags, loops, and setpoints — controllers and automation engineers
+        who keep your pipeline running and compliant.</p>
+    <div class="ctas" data-in>
+        <a href="#services" class="btn btn-solid">Explore Our Services</a>
+        <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+    </div>
+</div>
+
+<div class="explain" data-in>
+    The overlay is how our engineers<br>see this photograph —<br><b>every asset tagged, trended, alarmed</b>
+</div>
+
+<script>
+/* draw-in prep */
+['#L1','#L2'].forEach(function(s){
+    var p = document.querySelector(s), len = p.getTotalLength();
+    p.style.strokeDasharray = len; p.style.strokeDashoffset = len;
+});
+gsap.set('.callout', { opacity:0 });
+
+/* the eternal morph: photo -> traced P&ID world -> back */
+var mPhoto = document.getElementById('m-photo'), mPid = document.getElementById('m-pid');
+function cycle(){
+    var tl = gsap.timeline({ onComplete:function(){ setTimeout(cycle, 2600); } });
+    // to P&ID
+    tl.call(function(){ mPid.classList.add('on'); mPhoto.classList.remove('on'); })
+      .to('#photo', { filter:'grayscale(0.9) contrast(1.25) brightness(0.75)', duration:1.4, ease:'power2.inOut' }, 0)
+      .to(['#tint','#wash'], { opacity:1, duration:1.4, ease:'power2.inOut' }, 0)
+      .to('#L1', { strokeDashoffset:0, duration:1.6, ease:'power2.inOut' }, 0.4)
+      .to('#L2', { strokeDashoffset:0, duration:1.0, ease:'power2.inOut' }, 1.2)
+      .to('#N1', { opacity:1, duration:0.5 }, 1.5)
+      .to('#N2', { opacity:1, duration:0.5 }, 1.8)
+      .to('#N3', { opacity:1, duration:0.5 }, 2.1)
+      .to('#Lflow', { opacity:0.9, duration:0.5 }, 2.3)
+      .to('#Lflow', { strokeDashoffset:-220, duration:5.4, ease:'none' }, 2.3)
+      // hold, then back to photo
+      .call(function(){ mPhoto.classList.add('on'); mPid.classList.remove('on'); }, null, 7.2)
+      .to(['#N1','#N2','#N3','#Lflow'], { opacity:0, duration:0.7 }, 7.2)
+      .to(['#L1','#L2'], { opacity:0, duration:0.8 }, 7.4)
+      .to('#photo', { filter:'grayscale(0) contrast(1) brightness(1)', duration:1.4, ease:'power2.inOut' }, 7.4)
+      .to(['#tint','#wash'], { opacity:0, duration:1.4, ease:'power2.inOut' }, 7.4)
+      .call(function(){
+          // reset stroke draw for next pass
+          ['#L1','#L2'].forEach(function(s){
+              var p = document.querySelector(s), len = p.getTotalLength();
+              gsap.set(p, { opacity:0.9, strokeDashoffset:len });
+          });
+          gsap.set('#Lflow', { strokeDashoffset:0 });
+      }, null, 8.9);
+}
+setTimeout(cycle, 1600);
+
+gsap.from('[data-in]', { opacity:0, y:24, duration:0.95, ease:'power3.out', stagger:0.12, delay:0.25 });
+</script>
+</body>
+</html>

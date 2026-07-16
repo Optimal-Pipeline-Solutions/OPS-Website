@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 17 — Safety Bold (Yellow / Black Signage)</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+:root { --yellow:#F5C518; --yellow-dk:#D9A800; --ink:#151310; --paper:#FBF7EC; --olive:#6B7B3A; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; }
+body { background:var(--paper); color:var(--ink); font-family:'Inter',sans-serif; overflow:hidden;
+    display:flex; flex-direction:column; }
+
+/* hazard stripe bands, top & bottom, always moving */
+.hazard { height:26px; flex-shrink:0; overflow:hidden; position:relative; background:var(--ink); }
+.hazard i { position:absolute; inset:0; width:200%;
+    background:repeating-linear-gradient(-45deg, var(--yellow) 0 26px, var(--ink) 26px 52px);
+    animation:hz 8s linear infinite; }
+.hazard.rev i { animation-direction:reverse; }
+@keyframes hz { to { transform:translateX(-73.5px); } }
+
+/* masthead */
+.mast { display:flex; align-items:center; justify-content:space-between; gap:16px;
+    padding:16px clamp(18px,3.5vw,48px); border-bottom:4px solid var(--ink); background:var(--paper); }
+.logo-chip { background:#fff; border:3px solid var(--ink); padding:7px 16px; }
+.logo-chip img { height:38px; display:block; }
+.svc { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.28em; text-transform:uppercase; font-weight:600; }
+@media (max-width:700px){ .svc{ display:none; } }
+.badge { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.16em; font-weight:600;
+    background:var(--yellow); border:3px solid var(--ink); padding:7px 14px; text-transform:uppercase;
+    box-shadow:4px 4px 0 var(--ink); }
+
+/* main */
+.main { flex:1; display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); min-height:0; }
+@media (max-width:900px){ .main{ grid-template-columns:1fr; } .right{ display:none; } }
+.leftcol { padding:clamp(16px,3.5vh,40px) clamp(18px,3.5vw,48px); display:flex; flex-direction:column; justify-content:center; min-width:0; }
+h1 { font-family:'Barlow Condensed',sans-serif; font-weight:800; text-transform:uppercase;
+    font-size:clamp(3rem,8.2vh,7rem); line-height:0.88; letter-spacing:0.005em; }
+h1 .tape { display:inline-block; background:var(--ink); color:var(--yellow); padding:0.04em 0.16em; transform:rotate(-1.2deg); }
+h1 .slot { display:inline-flex; overflow:hidden; vertical-align:bottom; background:var(--yellow);
+    border:3px solid var(--ink); box-shadow:5px 5px 0 var(--ink); padding:0 0.15em; transform:rotate(1deg); min-width:6.2ch; }
+h1 .slot span { display:block; }
+.deck { margin-top:2.4vh; max-width:640px; font-size:clamp(0.98rem,1.5vw,1.2rem); line-height:1.6; color:#3B372F; }
+.deck b { color:var(--ink); }
+.ctas { display:flex; margin-top:3vh; flex-wrap:wrap; }
+.btn { font-family:'IBM Plex Mono',monospace; font-size:0.82rem; font-weight:600; letter-spacing:0.14em;
+    text-transform:uppercase; padding:1.05rem 2.3rem; text-decoration:none; border:3px solid var(--ink); transition:all 0.15s; }
+.btn-solid { background:var(--ink); color:var(--yellow); }
+.btn-solid:hover { background:var(--yellow); color:var(--ink); }
+.btn-ghost { background:var(--paper); color:var(--ink); border-left:none; }
+.btn-ghost:hover { background:#fff; }
+
+/* right column: working gauge + counters */
+.right { border-left:4px solid var(--ink); display:flex; flex-direction:column; min-width:0; }
+.gauge-box { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+    border-bottom:4px solid var(--ink); background:#fff; position:relative; overflow:hidden; }
+.gauge-box .k { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.24em; text-transform:uppercase; color:#8A8272; }
+.gauge-box svg { width:min(64%, 300px); }
+.g-arc { fill:none; stroke:#D9D2BB; stroke-width:16; }
+.g-zone { fill:none; stroke:var(--yellow); stroke-width:16; }
+.g-zone.red { stroke:#C64B3C; }
+.g-needle { stroke:var(--ink); stroke-width:5; stroke-linecap:round; }
+.g-hub { fill:var(--ink); }
+.g-val { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:44px; fill:var(--ink); text-anchor:middle;
+    stroke:#fff; stroke-width:10; paint-order:stroke; }
+.g-unit { font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; fill:#8A8272; text-anchor:middle; }
+.stats { display:grid; grid-template-columns:1fr 1fr; }
+.stat { padding:18px 20px; border-right:4px solid var(--ink); background:var(--yellow); }
+.stat:last-child { border-right:none; background:#fff; }
+.stat .n { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:clamp(1.8rem,3.4vh,2.6rem); line-height:1; }
+.stat .l { font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.18em; text-transform:uppercase; margin-top:5px; color:#3B372F; }
+
+/* bottom marquee */
+.mq { flex-shrink:0; background:var(--ink); color:var(--yellow); overflow:hidden; padding:12px 0; border-top:4px solid var(--ink); }
+.mq-track { display:flex; gap:54px; white-space:nowrap; width:max-content; animation:mq 26s linear infinite; }
+.mq-track span { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.05rem; letter-spacing:0.14em;
+    text-transform:uppercase; display:flex; align-items:center; gap:54px; }
+.mq-track span::after { content:'▸'; color:var(--yellow-dk); }
+@keyframes mq { to { transform:translateX(-50%); } }
+@media (prefers-reduced-motion: reduce){ .hazard i, .mq-track { animation:none; } }
+</style>
+</head>
+<body>
+
+<div class="hazard"><i></i></div>
+
+<header class="mast">
+    <div class="logo-chip"><img src="../images/logo.png" alt="Optimal Pipeline Solutions"></div>
+    <div class="svc">Automation &nbsp;|&nbsp; Remote Monitoring &nbsp;|&nbsp; Compliance</div>
+    <div class="badge" id="days-badge">Every shift covered — 24/7/365</div>
+</header>
+
+<main class="main">
+    <div class="leftcol">
+        <h1 data-in>
+            Driving <span class="tape">efficiency.</span><br>
+            Ensuring<br>
+            <span style="white-space:nowrap;">compliance <span class="slot" id="slot"><span>SIGNED.</span></span></span>
+        </h1>
+        <p class="deck" data-in><b>Your dedicated pipeline operations and automation engineering partner.</b>
+            Controllers and automation engineers who keep your pipeline running and compliant —
+            with the hard hats to prove they've stood where your operators stand.</p>
+        <div class="ctas" data-in>
+            <a href="#services" class="btn btn-solid">Explore Our Services</a>
+            <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+        </div>
+    </div>
+
+    <aside class="right">
+        <div class="gauge-box" data-in>
+            <div class="k">Line Pressure — Watched Every Second</div>
+            <svg viewBox="0 0 300 190">
+                <path class="g-arc"  d="M 40 160 A 110 110 0 0 1 260 160"/>
+                <path class="g-zone" d="M 205 62 A 110 110 0 0 1 260 160" />
+                <line class="g-needle" id="needle" x1="150" y1="160" x2="150" y2="66" transform="rotate(-52 150 160)"/>
+                <circle class="g-hub" cx="150" cy="160" r="11"/>
+                <text class="g-val" x="150" y="130" id="g-val">612</text>
+                <text class="g-unit" x="150" y="150">PSIG</text>
+            </svg>
+        </div>
+        <div class="stats">
+            <div class="stat"><div class="n" id="st-alarm">0</div><div class="l">Unanswered alarms — ever</div></div>
+            <div class="stat"><div class="n" id="st-sites">0</div><div class="l">Sites on the board</div></div>
+        </div>
+    </aside>
+</main>
+
+<div class="mq">
+    <div class="mq-track" id="mq">
+        <span>Driving efficiency</span><span>Ensuring compliance</span><span>49 CFR 195.446</span>
+        <span>ISA-18.2 Rationalized</span><span>Control Room Staffed</span><span>Zero Gaps</span>
+    </div>
+</div>
+
+<div class="hazard rev"><i></i></div>
+
+<script>
+var mq = document.getElementById('mq'); mq.innerHTML += mq.innerHTML;
+
+gsap.from('[data-in]', { opacity:0, y:26, duration:0.9, ease:'power3.out', stagger:0.14, delay:0.2 });
+
+/* rotating slot word — slams like a stamp */
+(function(){
+    var words = ['SIGNED.','AUDITED.','DAILY.','24/7.'], i = 0;
+    var slot = document.getElementById('slot').firstElementChild;
+    setInterval(function(){
+        i = (i+1) % words.length;
+        gsap.to(slot, { yPercent:-110, duration:0.28, ease:'power3.in', onComplete:function(){
+            slot.textContent = words[i];
+            gsap.fromTo(slot, { yPercent:110 }, { yPercent:0, duration:0.34, ease:'back.out(1.4)' });
+        }});
+    }, 2400);
+})();
+
+/* live gauge — needle chases a drifting setpoint */
+(function(){
+    var target = 612, needle = document.getElementById('needle'), val = document.getElementById('g-val');
+    // map 500..720 psig to -80..80 degrees
+    function toDeg(v){ return -80 + (v-500)/(720-500)*160; }
+    setInterval(function(){
+        target = Math.max(540, Math.min(690, target + (Math.random()-0.5)*26));
+        gsap.to(needle, { attr:{ transform:'rotate('+toDeg(target).toFixed(1)+' 150 160)' },
+            duration:1.1, ease:'elastic.out(1,0.55)' });
+        val.textContent = Math.round(target);
+    }, 1600);
+})();
+
+/* counters */
+[['st-alarm',0],['st-sites',149]].forEach(function(c,idx){
+    var el = document.getElementById(c[0]), o = { v: c[0]==='st-alarm' ? 40 : 0 };
+    gsap.to(o, { v:c[1], duration:2, delay:0.8+idx*0.2, ease:'power2.out',
+        onUpdate:function(){ el.textContent = Math.round(o.v); } });
+});
+</script>
+</body>
+</html>

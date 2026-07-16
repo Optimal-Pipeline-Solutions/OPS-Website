@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 08 — Bento Mission Control</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+:root { --olive:#6B7B3A; --olive-lt:#8A9B55; --olive-pale:#B8C97A; --amber:#F0A830; --ink:#0B0D08;
+        --tile:#12150E; --tile-edge:rgba(138,155,85,0.16); }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; }
+body { background:var(--ink); color:#fff; font-family:'Inter',sans-serif; overflow:hidden;
+    display:flex; align-items:center; justify-content:center; }
+
+.board { width:min(1360px, 96vw); height:min(760px, 92vh); display:grid; gap:14px; padding:14px;
+    grid-template-columns:repeat(12, 1fr); grid-template-rows:repeat(8, 1fr); }
+.tile { background:var(--tile); border:1px solid var(--tile-edge); border-radius:18px; overflow:hidden;
+    position:relative; padding:20px; opacity:0; transition:border-color 0.3s ease, transform 0.3s ease; }
+.tile:hover { border-color:rgba(138,155,85,0.45); }
+.tl { font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:0.22em; text-transform:uppercase;
+    color:rgba(138,155,85,0.65); display:flex; align-items:center; gap:8px; }
+.tl::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--olive-lt); }
+
+/* hero tile */
+.t-hero { grid-column:4 / 10; grid-row:1 / 7; display:flex; flex-direction:column; align-items:center;
+    justify-content:center; text-align:center;
+    background:radial-gradient(ellipse 90% 70% at 50% 30%, rgba(107,123,58,0.14), var(--tile) 75%); }
+.logo-chip { background:rgba(255,255,255,0.95); border-radius:9px; padding:10px 24px; margin-bottom:1.3rem; }
+.logo-chip img { height:48px; display:block; }
+.svc { font-family:'IBM Plex Mono',monospace; font-size:0.64rem; letter-spacing:0.3em; text-transform:uppercase;
+    color:var(--olive-pale); margin-bottom:1.1rem; }
+h1 { font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase;
+    font-size:clamp(2.4rem,5.4vw,4.6rem); line-height:0.93; }
+h1 em { font-style:normal; color:var(--olive-pale); }
+.sub { margin-top:1.1rem; font-size:clamp(0.9rem,1.25vw,1.08rem); color:rgba(255,255,255,0.72); max-width:480px; }
+.ctas { display:flex; gap:0.8rem; margin-top:1.8rem; flex-wrap:wrap; justify-content:center; }
+.btn { font-size:0.82rem; font-weight:600; padding:0.82rem 1.9rem; border-radius:999px; text-decoration:none; transition:all 0.25s; }
+.btn-solid { background:var(--olive); color:#fff; }
+.btn-solid:hover { background:var(--olive-lt); box-shadow:0 10px 30px rgba(107,123,58,0.4); }
+.btn-ghost { color:rgba(255,255,255,0.85); border:1px solid rgba(255,255,255,0.2); }
+.btn-ghost:hover { border-color:rgba(255,255,255,0.5); }
+
+/* sites tile */
+.t-sites { grid-column:1 / 4; grid-row:1 / 4; }
+.big-n { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:clamp(2.6rem,4.6vw,4.4rem);
+    line-height:1; margin-top:12px; color:#fff; }
+.big-n .unit { font-size:0.4em; color:var(--olive-pale); }
+.spark { position:absolute; left:0; right:0; bottom:0; height:44%; opacity:0.85; }
+
+/* alarm feed tile */
+.t-feed { grid-column:1 / 4; grid-row:4 / 9; display:flex; flex-direction:column; }
+.feed { margin-top:12px; flex:1; overflow:hidden; font-family:'IBM Plex Mono',monospace; font-size:10.5px; line-height:2.1; }
+.feed div { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:rgba(255,255,255,0.5); }
+.feed .t { color:rgba(138,155,85,0.7); margin-right:8px; }
+.feed .ok { color:#5fbf77; } .feed .alm { color:var(--amber); }
+
+/* compliance gauge tile */
+.t-comp { grid-column:10 / 13; grid-row:1 / 5; display:flex; flex-direction:column; }
+.gauge-wrap { flex:1; display:flex; align-items:center; justify-content:center; position:relative; }
+.gauge-wrap svg { width:min(150px,80%); }
+.gauge-bg { stroke:rgba(138,155,85,0.15); stroke-width:9; fill:none; }
+.gauge-fg { stroke:var(--olive-lt); stroke-width:9; fill:none; stroke-linecap:round;
+    stroke-dasharray:326.7; stroke-dashoffset:326.7; transform:rotate(-90deg); transform-origin:center; }
+.gauge-txt { position:absolute; text-align:center; }
+.gauge-txt .v { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:2rem; color:#fff; }
+.gauge-txt .k { font-family:'IBM Plex Mono',monospace; font-size:8.5px; letter-spacing:0.18em; color:rgba(138,155,85,0.7); text-transform:uppercase; }
+.cfr { font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.14em; color:rgba(255,255,255,0.35);
+    text-transform:uppercase; text-align:center; }
+
+/* clock tile */
+.t-clock { grid-column:10 / 13; grid-row:5 / 7; display:flex; flex-direction:column; justify-content:space-between; }
+.clock { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:clamp(1.9rem,3vw,2.9rem); color:#fff; letter-spacing:0.04em; }
+.clock small { font-size:0.42em; color:var(--olive-pale); letter-spacing:0.12em; }
+.shift { font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:0.2em; color:rgba(255,255,255,0.4); text-transform:uppercase; }
+
+/* protocols marquee tile */
+.t-proto { grid-column:4 / 13; grid-row:7 / 9; display:flex; flex-direction:column; justify-content:center; gap:12px; }
+.proto-track { display:flex; gap:44px; white-space:nowrap; width:max-content; animation:mq 30s linear infinite; }
+.proto-track span { font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em;
+    text-transform:uppercase; color:rgba(255,255,255,0.42); }
+.proto-track span b { color:var(--olive-pale); font-weight:500; }
+@keyframes mq { to { transform:translateX(-50%); } }
+@media (prefers-reduced-motion:reduce){ .proto-track { animation:none; } }
+
+@media (max-width:900px){
+    body { overflow-y:auto; }
+    .board { height:auto; grid-template-columns:1fr 1fr; grid-template-rows:none; }
+    .t-hero { grid-column:1/3; grid-row:1; min-height:70vh; }
+    .t-sites { grid-column:1/2; grid-row:2; min-height:150px; }
+    .t-comp { grid-column:2/3; grid-row:2; }
+    .t-clock { grid-column:1/2; grid-row:3; }
+    .t-feed { grid-column:2/3; grid-row:3; min-height:170px; }
+    .t-proto { grid-column:1/3; grid-row:4; min-height:80px; }
+}
+</style>
+</head>
+<body>
+
+<div class="board">
+
+    <!-- central headline tile -->
+    <div class="tile t-hero">
+        <div class="logo-chip"><img src="../images/logo.png" alt="Optimal Pipeline Solutions"></div>
+        <div class="svc">Automation | Remote Monitoring | Compliance</div>
+        <h1>Driving efficiency.<br><em>Ensuring compliance.</em></h1>
+        <p class="sub">Your dedicated pipeline operations and automation engineering partner.
+            Controllers and automation engineers who keep your pipeline running and compliant.</p>
+        <div class="ctas">
+            <a href="#services" class="btn btn-solid">Explore Our Services</a>
+            <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+        </div>
+    </div>
+
+    <!-- sites online -->
+    <div class="tile t-sites">
+        <div class="tl">Sites Online</div>
+        <div class="big-n"><span id="n-sites">0</span><span class="unit"> / 149</span></div>
+        <svg class="spark" viewBox="0 0 300 80" preserveAspectRatio="none">
+            <path id="sparkline" fill="none" stroke="rgba(138,155,85,0.8)" stroke-width="2"/>
+            <path id="sparkfill" fill="rgba(138,155,85,0.12)" stroke="none"/>
+        </svg>
+    </div>
+
+    <!-- live event feed -->
+    <div class="tile t-feed">
+        <div class="tl">Control Room Feed</div>
+        <div class="feed" id="feed"></div>
+    </div>
+
+    <!-- compliance gauge -->
+    <div class="tile t-comp">
+        <div class="tl">Audit Readiness</div>
+        <div class="gauge-wrap">
+            <svg viewBox="0 0 120 120">
+                <circle class="gauge-bg" cx="60" cy="60" r="52"/>
+                <circle class="gauge-fg" id="gauge" cx="60" cy="60" r="52"/>
+            </svg>
+            <div class="gauge-txt"><div class="v"><span id="n-comp">0</span>%</div><div class="k">Documented</div></div>
+        </div>
+        <div class="cfr">49 CFR 195.446 · 192.631 · ISA-18.2</div>
+    </div>
+
+    <!-- clock -->
+    <div class="tile t-clock">
+        <div class="tl">Console Time</div>
+        <div class="clock" id="clock">--:--:-- <small>CST</small></div>
+        <div class="shift" id="shift">CONSOLE 1 — STAFFED</div>
+    </div>
+
+    <!-- protocol / standards marquee -->
+    <div class="tile t-proto">
+        <div class="tl">One Team, Every Layer</div>
+        <div class="proto-track" id="proto">
+            <span><b>Ignition</b> SCADA</span><span><b>Modbus</b> RTU/TCP</span><span><b>API RP 1168</b> Control Room</span>
+            <span><b>ISA-18.2</b> Rationalization</span><span><b>Allen-Bradley</b> PLC</span><span><b>MQTT</b> Sparkplug</span>
+            <span><b>OPC-UA</b></span><span><b>PHMSA</b> Audit Ready</span>
+        </div>
+    </div>
+
+</div>
+
+<script>
+// tiles cascade in
+gsap.to('.tile', { opacity:1, y:0, startAt:{y:26}, duration:0.8, ease:'power3.out', stagger:0.09, delay:0.15 });
+gsap.from('.t-hero > *', { opacity:0, y:16, duration:0.7, ease:'power3.out', stagger:0.09, delay:0.55 });
+
+// counters
+function count(id, end, dur, delay){
+    var el = document.getElementById(id), o = { v:0 };
+    gsap.to(o, { v:end, duration:dur, delay:delay, ease:'power2.out',
+        onUpdate:function(){ el.textContent = Math.round(o.v).toLocaleString('en-US'); } });
+}
+count('n-sites', 149, 2.2, 0.9);
+count('n-comp', 100, 2.6, 1.1);
+gsap.to('#gauge', { strokeDashoffset:0, duration:2.6, delay:1.1, ease:'power2.out' });
+
+// sparkline (synthetic uptime history)
+(function(){
+    var pts = [], y = 40;
+    for (var x=0; x<=300; x+=10){ y = Math.max(14, Math.min(66, y + (Math.random()-0.5)*14)); pts.push([x, y]); }
+    var d = 'M' + pts.map(function(p){ return p[0]+','+p[1]; }).join(' L');
+    document.getElementById('sparkline').setAttribute('d', d);
+    document.getElementById('sparkfill').setAttribute('d', d + ' L300,80 L0,80 Z');
+})();
+
+// clock + shift
+function tick(){
+    var t = new Date().toLocaleTimeString('en-US',{hour12:false,timeZone:'America/Chicago'});
+    document.getElementById('clock').innerHTML = t + ' <small>CST</small>';
+    var h = parseInt(t.slice(0,2),10);
+    document.getElementById('shift').textContent = 'CONSOLE 1 — ' + (h>=6&&h<18?'DAY':'NIGHT') + ' SHIFT STAFFED';
+}
+setInterval(tick,1000); tick();
+
+// rolling event feed
+(function(){
+    var feed = document.getElementById('feed');
+    var events = [
+        ['ok','SITE 042 POLL OK — 1.2s'], ['ok','TK-101 LEVEL 18.2 FT — NORMAL'],
+        ['alm','PT-1042 HI PRESS — ACK BY CONTROLLER'], ['ok','P-201 RESTART CONFIRMED'],
+        ['ok','SHIFT LOG ENTRY FILED'], ['ok','SITE 117 COMMS RESTORED'],
+        ['alm','FT-1051 LOW FLOW — FIELD CALLOUT MADE'], ['ok','MOC-2261 POINT-TO-POINT VERIFIED'],
+        ['ok','DAILY COMPLIANCE REPORT GENERATED'], ['ok','SITE 093 POLL OK — 0.9s']
+    ];
+    var i = 0;
+    function add(){
+        var e = events[i % events.length]; i++;
+        var t = new Date().toLocaleTimeString('en-US',{hour12:false,timeZone:'America/Chicago'});
+        var row = document.createElement('div');
+        row.innerHTML = '<span class="t">'+t+'</span><span class="'+e[0]+'">'+e[1]+'</span>';
+        feed.prepend(row);
+        gsap.from(row, { opacity:0, x:-12, duration:0.4, ease:'power2.out' });
+        while (feed.children.length > 12) feed.lastChild.remove();
+    }
+    add(); add(); add();
+    setInterval(add, 2600);
+})();
+
+// marquee duplicate for loop
+var pr = document.getElementById('proto'); pr.innerHTML += pr.innerHTML;
+</script>
+</body>
+</html>

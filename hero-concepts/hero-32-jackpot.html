@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 32 — Jackpot (Numbers That Slam)</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+:root { --olive:#6B7B3A; --olive-lt:#8A9B55; --amber:#F0A830; --ink:#100E0A; --red:#E0483A; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; }
+body { font-family:'Inter',sans-serif; overflow:hidden; color:#fff;
+    background:radial-gradient(ellipse 120% 100% at 50% 0%, #1C1810 0%, var(--ink) 65%); }
+
+/* chasing marquee bulbs around the edge */
+.bulbs { position:fixed; inset:14px; z-index:2; pointer-events:none; border-radius:22px;
+    border:3px dashed rgba(240,168,48,0.0); }
+.bulb { position:absolute; width:10px; height:10px; border-radius:50%; background:#3A2F1A; }
+.bulb.lit { background:var(--amber); box-shadow:0 0 12px rgba(240,168,48,0.9); }
+
+.wrap { position:relative; z-index:5; height:100%; display:flex; flex-direction:column; align-items:center;
+    justify-content:center; text-align:center; padding:0 20px; gap:2.6vh; }
+.logo-chip { background:rgba(255,255,255,0.96); border-radius:10px; padding:10px 24px; }
+.logo-chip img { height:46px; display:block; }
+.svc { font-family:'IBM Plex Mono',monospace; font-size:0.66rem; letter-spacing:0.34em; text-transform:uppercase; color:var(--olive-lt); }
+h1 { font-family:'Barlow Condensed',sans-serif; font-weight:800; text-transform:uppercase;
+    font-size:clamp(2.2rem,5vw,4rem); line-height:0.94; }
+h1 em { font-style:normal; color:var(--olive-lt); }
+
+/* the reel row */
+.reels { display:flex; gap:clamp(10px,1.6vw,26px); align-items:stretch; flex-wrap:wrap; justify-content:center; }
+.reel { background:linear-gradient(to bottom,#1E1912,#141109); border:3px solid #3A2F1A; border-radius:16px;
+    padding:clamp(14px,2.4vh,26px) clamp(16px,2vw,30px); min-width:clamp(150px,15vw,230px); position:relative;
+    box-shadow:inset 0 8px 24px rgba(0,0,0,0.7), 0 14px 40px rgba(0,0,0,0.55); }
+.reel.locked { border-color:var(--amber); box-shadow:inset 0 8px 24px rgba(0,0,0,0.7), 0 0 34px rgba(240,168,48,0.35); }
+.reel .win { height:clamp(3.4rem,8vh,5.2rem); overflow:hidden; position:relative;
+    -webkit-mask-image:linear-gradient(to bottom, transparent, black 22%, black 78%, transparent);
+            mask-image:linear-gradient(to bottom, transparent, black 22%, black 78%, transparent); }
+.reel .col { position:absolute; left:0; right:0; top:0; }
+.reel .cell { height:clamp(3.4rem,8vh,5.2rem); display:flex; align-items:center; justify-content:center;
+    font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:clamp(2.6rem,6.4vh,4.2rem); color:#fff; }
+.reel .cell em { font-style:normal; color:var(--amber); }
+.reel .lbl { margin-top:8px; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.2em;
+    text-transform:uppercase; color:rgba(255,255,255,0.45); }
+/* spark burst on lock */
+.spark { position:absolute; left:50%; top:38%; width:4px; height:4px; pointer-events:none; }
+.spark i { position:absolute; width:5px; height:5px; border-radius:50%; background:var(--amber); opacity:0; }
+
+.tag { font-family:'IBM Plex Mono',monospace; font-size:clamp(0.72rem,1vw,0.85rem); letter-spacing:0.22em;
+    text-transform:uppercase; color:rgba(255,255,255,0.55); }
+.tag b { color:var(--amber); }
+.ctas { display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; }
+.btn { font-size:0.86rem; font-weight:600; padding:0.95rem 2.3rem; border-radius:999px; text-decoration:none; transition:all 0.22s; }
+.btn-solid { background:var(--olive); color:#fff; }
+.btn-solid:hover { background:var(--olive-lt); transform:translateY(-2px); box-shadow:0 12px 34px rgba(107,123,58,0.4); }
+.btn-ghost { color:#fff; border:1px solid rgba(255,255,255,0.35); }
+.btn-ghost:hover { background:rgba(255,255,255,0.08); }
+@media (prefers-reduced-motion: reduce){ .bulb.lit { box-shadow:none; } }
+</style>
+</head>
+<body>
+
+<div class="bulbs" id="bulbs"></div>
+
+<div class="wrap">
+    <div class="logo-chip" data-in><img src="../images/logo.png" alt="Optimal Pipeline Solutions"></div>
+    <div class="svc" data-in>Automation | Remote Monitoring | Compliance</div>
+    <h1 data-in>Driving efficiency. <em>Ensuring compliance.</em></h1>
+
+    <div class="reels" data-in>
+        <div class="reel" id="r1">
+            <div class="win"><div class="col" id="c1"></div></div>
+            <div class="lbl">Sites Monitored</div><div class="spark"></div>
+        </div>
+        <div class="reel" id="r2">
+            <div class="win"><div class="col" id="c2"></div></div>
+            <div class="lbl">Alarms Rationalized</div><div class="spark"></div>
+        </div>
+        <div class="reel" id="r3">
+            <div class="win"><div class="col" id="c3"></div></div>
+            <div class="lbl">Coverage</div><div class="spark"></div>
+        </div>
+        <div class="reel" id="r4">
+            <div class="win"><div class="col" id="c4"></div></div>
+            <div class="lbl">Missed Alarms — Ever</div><div class="spark"></div>
+        </div>
+    </div>
+
+    <div class="tag" data-in>Every reel is rigged — <b>in your favor</b>. Your dedicated pipeline operations &amp; automation engineering partner.<br>
+        Controllers and automation engineers who keep your pipeline running and compliant.</div>
+    <div class="ctas" data-in>
+        <a href="#services" class="btn btn-solid">Explore Our Services</a>
+        <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+    </div>
+</div>
+
+<script>
+/* edge bulbs that chase */
+(function(){
+    var host = document.getElementById('bulbs'), N = 0, bulbs = [];
+    function build(){
+        host.innerHTML = ''; bulbs = [];
+        var W = innerWidth-28, H = innerHeight-28, per = 34;
+        var xs = Math.round(W/per), ys = Math.round(H/per);
+        function add(x,y){ var b = document.createElement('div'); b.className='bulb';
+            b.style.left=x+'px'; b.style.top=y+'px'; host.appendChild(b); bulbs.push(b); }
+        for (var i=0;i<xs;i++) add(i*W/xs, 0);
+        for (var i=0;i<ys;i++) add(W-5, i*H/ys);
+        for (var i=xs;i>0;i--) add(i*W/xs, H-5);
+        for (var i=ys;i>0;i--) add(0, i*H/ys);
+        N = bulbs.length;
+    }
+    build(); addEventListener('resize', build);
+    var head = 0;
+    setInterval(function(){
+        head = (head+1) % N;
+        for (var i=0;i<N;i++) bulbs[i].classList.toggle('lit', ((i-head+N)%N) < Math.floor(N/3) && ((i-head+N)%N)%2===0);
+    }, 70);
+})();
+
+/* slot reels: strips of decoy values that whip past, then SLAM onto the real number */
+function spinReel(colId, reelId, decoys, finalHTML, delay){
+    var col = document.getElementById(colId), reel = document.getElementById(reelId);
+    var strip = [];
+    for (var i=0;i<14;i++) strip.push('<div class="cell">'+decoys[i%decoys.length]+'</div>');
+    strip.push('<div class="cell">'+finalHTML+'</div>');
+    col.innerHTML = strip.join('');
+    var cellH = col.querySelector('.cell').getBoundingClientRect().height;
+    gsap.fromTo(col, { y:0 }, { y:-(cellH*14), duration:1.15, delay:delay, ease:'power4.inOut',
+        onComplete:function(){
+            reel.classList.add('locked');
+            gsap.fromTo(reel, { x:-5 }, { x:5, duration:0.05, repeat:5, yoyo:true, clearProps:'x' });
+            burst(reel.querySelector('.spark'));
+        }});
+}
+function burst(sp){
+    sp.innerHTML = '';
+    for (var i=0;i<12;i++){
+        var d = document.createElement('i'); sp.appendChild(d);
+        var a = Math.random()*6.283, r = 34+Math.random()*46;
+        gsap.fromTo(d, { x:0, y:0, opacity:1 },
+            { x:Math.cos(a)*r, y:Math.sin(a)*r, opacity:0, duration:0.6+Math.random()*0.3, ease:'power2.out' });
+    }
+}
+var D1 = ['12','387','64','291','8'], D2 = ['9,204','44','7,761','128','902'],
+    D3 = ['9–5','8–4','M–F','10–6'], D4 = ['14','3','96','27','61'];
+function spinAll(first){
+    ['r1','r2','r3','r4'].forEach(function(r){ document.getElementById(r).classList.remove('locked'); });
+    spinReel('c1','r1', D1, '149', 0.1);
+    spinReel('c2','r2', D2, '15,485', 0.28);
+    spinReel('c3','r3', D3, '24<em>/7</em>', 0.46);
+    spinReel('c4','r4', D4, '<em>0</em>', 0.64);
+}
+spinAll(true);
+setInterval(spinAll, 7000);   /* re-slam on a short loop — always something happening */
+
+gsap.from('[data-in]', { opacity:0, y:20, duration:0.7, ease:'power3.out', stagger:0.08 });
+</script>
+</body>
+</html>

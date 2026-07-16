@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 30 — Tank Farm at Golden Hour</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+:root { --olive:#6B7B3A; --olive-lt:#8A9B55; --amber:#F0A830;
+        --sky1:#4A2E52; --sky2:#8C4A63; --sky3:#E2764C; --sky4:#F5A65B; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; }
+body { font-family:'Inter',sans-serif; overflow:hidden; color:#fff;
+    background:linear-gradient(to bottom, var(--sky1) 0%, var(--sky2) 42%, var(--sky3) 68%, var(--sky4) 78%, #1E1610 78.2%, #140F0B 100%); }
+
+/* setting sun */
+.sun { position:absolute; left:64%; top:58%; width:150px; height:150px; border-radius:50%; z-index:1;
+    background:radial-gradient(circle, #FFE9B8 10%, #FFB964 55%, rgba(255,164,84,0) 74%);
+    box-shadow:0 0 130px 50px rgba(255,170,90,0.5); }
+/* birds */
+.bird { position:absolute; z-index:2; font-size:0; }
+.bird svg { width:26px; }
+.bird path { stroke:#2A1E16; stroke-width:2.5; fill:none; stroke-linecap:round; }
+
+/* the tank farm scene */
+.scene { position:absolute; inset:0; z-index:3; }
+.scene svg { width:100%; height:100%; }
+.tank { fill:#241A12; stroke:rgba(240,168,48,0.35); stroke-width:1.6; }
+.tank-top { fill:#2E2117; stroke:rgba(240,168,48,0.35); stroke-width:1.6; }
+.stair { stroke:rgba(240,168,48,0.3); stroke-width:1.6; fill:none; }
+.lvl-glass { fill:rgba(240,168,48,0.10); }
+.lvl-liq { fill:rgba(240,168,48,0.55); }
+.lvl-txt { font-family:'IBM Plex Mono',monospace; font-size:12px; fill:#FFD98A; text-anchor:middle; font-weight:600; }
+.lvl-sub { font-family:'IBM Plex Mono',monospace; font-size:8.5px; fill:rgba(255,217,138,0.55); text-anchor:middle; }
+.manifold { stroke:#100C08; stroke-width:8; fill:none; stroke-linecap:round; }
+.mani-flow { stroke:var(--amber); stroke-width:2.6; fill:none; stroke-dasharray:6 20; animation:mflow 1.4s linear infinite; }
+@keyframes mflow { to { stroke-dashoffset:-26; } }
+.xfer-lbl { font-family:'IBM Plex Mono',monospace; font-size:10.5px; fill:rgba(255,255,255,0.65); letter-spacing:0.14em; }
+.tower { stroke:rgba(240,168,48,0.5); stroke-width:2.6; fill:none; }
+.tower-ring { fill:none; stroke:rgba(240,168,48,0.75); stroke-width:1.6; opacity:0; }
+.blink { fill:#FF5A48; animation:bk 1.6s step-end infinite alternate; }
+@keyframes bk { 50%{ opacity:0.2; } }
+
+/* content -->*/
+.head { position:absolute; z-index:8; top:6vh; left:clamp(22px,4.5vw,70px); max-width:660px; }
+.logo-chip { display:inline-flex; background:rgba(255,255,255,0.95); border-radius:9px; padding:10px 22px; margin-bottom:1.1rem; }
+.logo-chip img { height:46px; display:block; }
+.svc { font-family:'IBM Plex Mono',monospace; font-size:0.66rem; letter-spacing:0.3em; text-transform:uppercase;
+    color:#FFE0B0; margin-bottom:1rem; text-shadow:0 2px 10px rgba(40,20,10,0.7); }
+h1 { font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase;
+    font-size:clamp(2.8rem,6.8vw,5.8rem); line-height:0.9; text-shadow:0 5px 30px rgba(40,20,10,0.6); }
+h1 em { font-style:normal; color:#FFD98A; }
+.sub { margin-top:1rem; max-width:560px; font-size:clamp(0.95rem,1.35vw,1.15rem); line-height:1.6;
+    color:rgba(255,255,255,0.92); text-shadow:0 2px 12px rgba(40,20,10,0.7); }
+.sub b { color:#fff; }
+.ctas { display:flex; gap:0.9rem; margin-top:1.6rem; flex-wrap:wrap; }
+.btn { font-size:0.85rem; font-weight:600; padding:0.9rem 2.2rem; border-radius:999px; text-decoration:none; transition:all 0.25s; }
+.btn-solid { background:var(--olive); color:#fff; box-shadow:0 12px 30px rgba(20,12,6,0.45); }
+.btn-solid:hover { background:var(--olive-lt); transform:translateY(-2px); }
+.btn-ghost { color:#fff; border:1px solid rgba(255,255,255,0.55); backdrop-filter:blur(5px); }
+.btn-ghost:hover { background:rgba(255,255,255,0.12); }
+/* transfer HUD */
+.xferhud { position:absolute; z-index:8; right:clamp(20px,3.2vw,50px); bottom:5vh;
+    background:rgba(20,14,9,0.82); border:1px solid rgba(240,168,48,0.4); border-radius:14px; padding:15px 20px;
+    font-family:'IBM Plex Mono',monospace; }
+.xferhud .k { font-size:9px; letter-spacing:0.24em; text-transform:uppercase; color:rgba(240,168,48,0.75); }
+.xferhud .v { font-family:'Barlow Condensed',sans-serif; font-size:1.75rem; font-weight:700; color:#fff; line-height:1.2; }
+.xferhud .s { font-size:9.5px; letter-spacing:0.16em; color:rgba(255,255,255,0.5); text-transform:uppercase; }
+.strap { position:absolute; z-index:8; bottom:2.8vh; left:50%; transform:translateX(-50%);
+    font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.24em; text-transform:uppercase;
+    color:rgba(255,224,176,0.7); white-space:nowrap; }
+.strap b { color:#FFD98A; }
+@media (max-width:760px){ .xferhud{ display:none; } .strap{ white-space:normal; width:92vw; text-align:center; } }
+</style>
+</head>
+<body>
+
+<div class="sun"></div>
+<div class="bird" id="b1"><svg viewBox="0 0 26 12"><path d="M1 8 Q 7 1 13 8 Q 19 1 25 8"/></svg></div>
+<div class="bird" id="b2"><svg viewBox="0 0 26 12"><path d="M1 8 Q 7 1 13 8 Q 19 1 25 8"/></svg></div>
+
+<div class="scene">
+<svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <!-- manifold header along the ground -->
+    <path class="manifold" d="M 120 812 H 1520"/>
+    <path class="mani-flow" id="xflow" d="M 480 812 H 1060"/>
+
+    <!-- microwave tower -->
+    <g transform="translate(1440,700)">
+        <path class="tower" d="M -30 4 L 0 -190 L 30 4 M -20 -60 L 20 -60 M -12 -125 L 12 -125"/>
+        <circle class="blink" cx="0" cy="-198" r="5"/>
+        <circle class="tower-ring" id="tr1" cx="0" cy="-198" r="10"/>
+        <circle class="tower-ring" id="tr2" cx="0" cy="-198" r="10"/>
+        <text class="xfer-lbl" x="-52" y="34">SCADA UPLINK</text>
+    </g>
+
+    <!-- tanks: 042A drains, 042B fills, others idle -->
+    <!-- big tank A (draining) -->
+    <g transform="translate(320,700)">
+        <rect class="tank" x="-130" y="-160" width="260" height="272" rx="6"/>
+        <ellipse class="tank-top" cx="0" cy="-160" rx="130" ry="24"/>
+        <path class="stair" d="M -130 100 L -172 -140 M -172 -140 L -130 -150"/>
+        <rect class="lvl-glass" x="104" y="-140" width="16" height="236" rx="4"/>
+        <rect class="lvl-liq" id="lvlA" x="106" y="-46" width="12" height="140"/>
+        <text class="lvl-txt" y="-190" id="lvlA-txt">TK-042A · 14.1 FT ▼</text>
+        <text class="lvl-sub" y="-174">DELIVERING</text>
+    </g>
+    <!-- big tank B (filling) -->
+    <g transform="translate(880,700)">
+        <rect class="tank" x="-130" y="-160" width="260" height="272" rx="6"/>
+        <ellipse class="tank-top" cx="0" cy="-160" rx="130" ry="24"/>
+        <path class="stair" d="M 130 100 L 172 -140 M 172 -140 L 130 -150"/>
+        <rect class="lvl-glass" x="-120" y="-140" width="16" height="236" rx="4"/>
+        <rect class="lvl-liq" id="lvlB" x="-118" y="30" width="12" height="64"/>
+        <text class="lvl-txt" y="-190" id="lvlB-txt">TK-042B · 6.2 FT ▲</text>
+        <text class="lvl-sub" y="-174">RECEIVING</text>
+    </g>
+    <!-- background tanks -->
+    <g transform="translate(1180,740)" opacity="0.8">
+        <rect class="tank" x="-88" y="-104" width="176" height="176" rx="5"/>
+        <ellipse class="tank-top" cx="0" cy="-104" rx="88" ry="16"/>
+        <text class="lvl-txt" y="-128" style="font-size:10px;">TK-042C</text>
+    </g>
+    <g transform="translate(80,760)" opacity="0.65">
+        <rect class="tank" x="-64" y="-80" width="128" height="132" rx="5"/>
+        <ellipse class="tank-top" cx="0" cy="-80" rx="64" ry="12"/>
+    </g>
+
+    <!-- transfer direction label -->
+    <text class="xfer-lbl" x="612" y="790" id="xfer-note">TRANSFER IN PROGRESS →</text>
+</svg>
+</div>
+
+<div class="head">
+    <div class="logo-chip" data-in><img src="../images/logo.png" alt="Optimal Pipeline Solutions"></div>
+    <div class="svc" data-in>Automation | Remote Monitoring | Compliance</div>
+    <h1 data-in>Driving efficiency.<br><em>Ensuring compliance.</em></h1>
+    <p class="sub" data-in><b>Your dedicated pipeline operations and automation engineering partner.</b>
+        A tank-to-tank transfer at sunset, gauged to the tenth of a foot — controllers and automation
+        engineers who keep your pipeline running and compliant.</p>
+    <div class="ctas" data-in>
+        <a href="#services" class="btn btn-solid">Explore Our Services</a>
+        <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+    </div>
+</div>
+
+<div class="xferhud" data-in>
+    <div class="k">Transfer — TK-042A → TK-042B</div>
+    <div class="v" id="hud-rate">312 BPH</div>
+    <div class="s" id="hud-left">EST. COMPLETE 21:40 · GAUGED LIVE</div>
+</div>
+
+<div class="strap">Golden hour on the gauges — <b>every tenth of a foot on the record</b></div>
+
+<script>
+/* the transfer: A drains while B fills, then swaps back — endless custody ballet */
+(function(){
+    var aTxt = document.getElementById('lvlA-txt'), bTxt = document.getElementById('lvlB-txt');
+    // A liquid: y -46 h 140 (full-ish) -> y 40 h 54 (low). B liquid: y 30 h 64 -> y -60 h 154.
+    function cycle(){
+        var o = { t:0 };
+        gsap.to(o, { t:1, duration:26, ease:'none', onUpdate:function(){
+            var t = o.t;
+            var ay = -46 + t*86, ah = 140 - t*86;
+            var by = 30 - t*90, bh = 64 + t*90;
+            gsap.set('#lvlA', { attr:{ y:ay, height:ah } });
+            gsap.set('#lvlB', { attr:{ y:by, height:bh } });
+            aTxt.textContent = 'TK-042A · ' + (14.1 - t*8.6).toFixed(1) + ' FT ▼';
+            bTxt.textContent = 'TK-042B · ' + (6.2 + t*9.0).toFixed(1) + ' FT ▲';
+        }, onComplete:function(){
+            // brief line pack pause, then reverse roles (product ships out of B)
+            document.getElementById('xfer-note').textContent = 'LINEUP SWAP — VALVES CONFIRMED REMOTELY';
+            setTimeout(function(){
+                gsap.set('#lvlA', { attr:{ y:-46, height:140 } });
+                gsap.set('#lvlB', { attr:{ y:30, height:64 } });
+                document.getElementById('xfer-note').textContent = 'TRANSFER IN PROGRESS →';
+                cycle();
+            }, 3200);
+        }});
+    }
+    cycle();
+})();
+
+/* rate jitter */
+setInterval(function(){
+    document.getElementById('hud-rate').textContent = Math.round(306 + Math.random()*14) + ' BPH';
+}, 2300);
+
+/* tower rings */
+['#tr1','#tr2'].forEach(function(s,i){
+    gsap.fromTo(s, { attr:{r:10}, opacity:0.8 }, { attr:{r:44}, opacity:0, duration:2.0, repeat:-1, delay:i*1.0, ease:'power1.out' });
+});
+
+/* birds drift across the dusk */
+[['#b1', 0.18, 70], ['#b2', 0.24, 95]].forEach(function(b){
+    gsap.set(b[0], { top: (b[1]*100)+'%' });
+    gsap.fromTo(b[0], { left:'-4%' }, { left:'108%', duration:b[2], repeat:-1, ease:'none', delay:Math.random()*20 });
+    gsap.to(b[0], { y:'+=14', duration:2.4, yoyo:true, repeat:-1, ease:'sine.inOut' });
+});
+
+/* sun slowly sinking, glow breathing */
+gsap.to('.sun', { y:40, duration:60, ease:'none' });
+gsap.to('.sun', { opacity:0.85, duration:5, yoyo:true, repeat:-1, ease:'sine.inOut' });
+
+gsap.from('[data-in]', { opacity:0, y:24, duration:0.95, ease:'power3.out', stagger:0.12, delay:0.25 });
+gsap.from('.strap', { opacity:0, duration:1, delay:1.4 });
+</script>
+</body>
+</html>

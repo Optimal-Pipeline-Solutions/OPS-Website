@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 19 — The Instrument Wall (Analog Panel)</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+:root { --panel:#D8D9D2; --panel-dk:#C2C3BA; --plate:#EFEFEA; --ink:#26261F; --olive:#5C7030;
+        --amber:#D9820A; --red:#BE4934; --teal:#2E7D74; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; }
+body { font-family:'Inter',sans-serif; overflow:hidden; color:var(--ink);
+    background:
+      repeating-linear-gradient(90deg, rgba(0,0,0,0.02) 0 2px, transparent 2px 5px),
+      linear-gradient(to bottom, var(--panel), var(--panel-dk)); }
+
+.wall { height:100%; display:grid; gap:clamp(10px,1.4vw,20px); padding:clamp(12px,2vw,28px);
+    grid-template-columns:repeat(12,1fr); grid-template-rows:repeat(8,1fr); }
+.inst { background:var(--plate); border-radius:10px; border:1px solid #ABAC9F;
+    box-shadow:inset 0 1px 0 #fff, 0 3px 10px rgba(38,38,31,0.18); padding:14px; position:relative; overflow:hidden; }
+.inst::before, .inst::after { content:''; position:absolute; width:8px; height:8px; border-radius:50%;
+    background:radial-gradient(circle at 35% 35%, #fff, #9A9B8E); top:7px; }
+.inst::before { left:7px; } .inst::after { right:7px; }
+.tag { font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.2em; text-transform:uppercase;
+    color:#7D7E6E; text-align:center; margin-bottom:4px; }
+
+/* analog gauges */
+.g-inst svg { width:100%; height:calc(100% - 18px); }
+.dial { fill:#FBFBF8; stroke:#B9BAAD; stroke-width:2; }
+.tick { stroke:#55564A; stroke-width:1.6; }
+.tick-red { stroke:var(--red); stroke-width:3; }
+.needle { stroke:var(--red); stroke-width:3; stroke-linecap:round; }
+.needle-hub { fill:var(--ink); }
+.dial-val { font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; fill:var(--ink); text-anchor:middle; }
+
+/* strip chart recorder */
+.chart-inst canvas { width:100%; height:calc(100% - 18px); display:block; background:#FBFBF8;
+    border:1px solid #C6C7BA; border-radius:6px; }
+
+/* LED counter */
+.led-inst .led { height:calc(100% - 18px); background:#1A1C16; border-radius:6px; display:flex;
+    align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace; font-weight:600;
+    color:#8FE08A; font-size:clamp(1.2rem,2.6vw,2.2rem); letter-spacing:0.08em;
+    text-shadow:0 0 12px rgba(120,220,110,0.7); }
+.led-inst .led small { font-size:0.45em; color:#4E8C4A; margin-left:8px; }
+
+/* indicator lamps */
+.lamp-inst .lamps { height:calc(100% - 18px); display:grid; grid-template-columns:1fr 1fr; gap:8px; align-content:center; }
+.lamp { display:flex; align-items:center; gap:8px; font-family:'IBM Plex Mono',monospace; font-size:8.5px;
+    letter-spacing:0.12em; text-transform:uppercase; color:#6E6F60; }
+.lamp i { width:16px; height:16px; border-radius:50%; border:2px solid #9A9B8E; flex-shrink:0;
+    background:radial-gradient(circle at 35% 35%, #fff 8%, #C9CABF 60%); }
+.lamp.on-green i { background:radial-gradient(circle at 40% 40%, #D7FFC9 10%, #3B8A4E 65%); box-shadow:0 0 10px rgba(59,138,78,0.7); }
+.lamp.on-amber i { background:radial-gradient(circle at 40% 40%, #FFF0C2 10%, #D9820A 65%); box-shadow:0 0 10px rgba(217,130,10,0.7); }
+
+/* center nameplate */
+.plate { grid-column:4/10; grid-row:2/7; background:linear-gradient(to bottom,#FDFDFB,#EDEEE7);
+    border-radius:14px; border:1px solid #ABAC9F; box-shadow:inset 0 1px 0 #fff, 0 14px 40px rgba(38,38,31,0.25);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;
+    padding:clamp(16px,3vh,36px); position:relative; }
+.plate::before, .plate::after { content:''; position:absolute; width:11px; height:11px; border-radius:50%;
+    background:radial-gradient(circle at 35% 35%, #fff, #8E8F82); top:10px; }
+.plate::before{ left:10px; } .plate::after{ right:10px; }
+.logo-chip { background:#fff; border:1px solid #C6C7BA; border-radius:9px; padding:9px 20px; margin-bottom:1.1rem;
+    box-shadow:0 4px 12px rgba(38,38,31,0.12); }
+.logo-chip img { height:44px; display:block; }
+.svc { font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.3em; text-transform:uppercase;
+    color:var(--olive); margin-bottom:1rem; font-weight:600; }
+h1 { font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase;
+    font-size:clamp(2.2rem,4.8vw,4.2rem); line-height:0.94; }
+h1 em { font-style:normal; color:var(--olive); }
+.sub { margin-top:0.9rem; max-width:520px; font-size:clamp(0.88rem,1.2vw,1.02rem); line-height:1.55; color:#4E4F42; }
+.sub b { color:var(--ink); }
+.ctas { display:flex; gap:0.8rem; margin-top:1.5rem; flex-wrap:wrap; justify-content:center; }
+.btn { font-size:0.8rem; font-weight:600; padding:0.8rem 1.9rem; border-radius:8px; text-decoration:none;
+    border:1px solid #ABAC9F; transition:all 0.2s; box-shadow:0 3px 0 #ABAC9F; }
+.btn:active { transform:translateY(2px); box-shadow:0 1px 0 #ABAC9F; }
+.btn-solid { background:var(--olive); border-color:#485924; box-shadow:0 3px 0 #485924; color:#fff; }
+.btn-solid:hover { background:#6D8239; }
+.btn-ghost { background:#FBFBF8; color:var(--ink); }
+.btn-ghost:hover { background:#fff; }
+.etch { margin-top:1.4rem; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.26em;
+    text-transform:uppercase; color:#8D8E7E; }
+
+/* placement */
+.i-g1 { grid-column:1/4; grid-row:1/4; } .i-g2 { grid-column:10/13; grid-row:1/4; }
+.i-ch { grid-column:1/4; grid-row:4/7; } .i-led { grid-column:10/13; grid-row:4/6; }
+.i-lp { grid-column:10/13; grid-row:6/9; } .i-g3 { grid-column:1/4; grid-row:7/9; }
+.i-top { grid-column:4/10; grid-row:1/2; } .i-bot { grid-column:4/10; grid-row:7/9; }
+.i-top, .i-bot { display:flex; align-items:center; justify-content:center; }
+.mline { width:92%; height:26px; overflow:hidden; position:relative; }
+.mline div { position:absolute; white-space:nowrap; font-family:'IBM Plex Mono',monospace; font-size:11px;
+    letter-spacing:0.22em; text-transform:uppercase; color:#6E6F60; animation:ml 18s linear infinite; }
+@keyframes ml { from{transform:translateX(100%);} to{transform:translateX(-100%);} }
+.i-bot .bigstat { display:flex; gap:clamp(18px,4vw,64px); }
+.bigstat div { text-align:center; }
+.bigstat .n { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:clamp(1.5rem,3.2vh,2.4rem); color:var(--ink); }
+.bigstat .n em { font-style:normal; color:var(--olive); }
+.bigstat .l { font-family:'IBM Plex Mono',monospace; font-size:8.5px; letter-spacing:0.18em; text-transform:uppercase; color:#8D8E7E; margin-top:3px; }
+@media (max-width:900px){
+    .wall { grid-template-columns:1fr; grid-template-rows:none; overflow-y:auto; }
+    .wall > * { grid-column:1 !important; grid-row:auto !important; min-height:150px; }
+    body { overflow:auto; }
+}
+@media (prefers-reduced-motion: reduce){ .mline div{ animation:none; } }
+</style>
+</head>
+<body>
+
+<div class="wall">
+    <!-- gauge 1: line pressure -->
+    <div class="inst g-inst i-g1" data-in>
+        <div class="tag">PI-1042 · Line Pressure · PSIG</div>
+        <svg viewBox="0 0 200 150">
+            <circle class="dial" cx="100" cy="80" r="64"/>
+            <g id="ticks1"></g>
+            <line class="needle" id="n1" x1="100" y1="80" x2="100" y2="26" transform="rotate(-60 100 80)"/>
+            <circle class="needle-hub" cx="100" cy="80" r="7"/>
+            <text class="dial-val" x="100" y="122" id="v1">612</text>
+        </svg>
+    </div>
+
+    <!-- gauge 2: flow -->
+    <div class="inst g-inst i-g2" data-in>
+        <div class="tag">FI-1051 · Mainline Flow · BPH</div>
+        <svg viewBox="0 0 200 150">
+            <circle class="dial" cx="100" cy="80" r="64"/>
+            <g id="ticks2"></g>
+            <line class="needle" id="n2" x1="100" y1="80" x2="100" y2="26" transform="rotate(20 100 80)"/>
+            <circle class="needle-hub" cx="100" cy="80" r="7"/>
+            <text class="dial-val" x="100" y="122" id="v2">1847</text>
+        </svg>
+    </div>
+
+    <!-- strip chart -->
+    <div class="inst chart-inst i-ch" data-in>
+        <div class="tag">TR-2210 · Discharge Temp · Strip Chart</div>
+        <canvas id="strip"></canvas>
+    </div>
+
+    <!-- LED alarm counter -->
+    <div class="inst led-inst i-led" data-in>
+        <div class="tag">Alarm Annunciator</div>
+        <div class="led"><span id="ledv">0</span><small>STANDING ALARMS</small></div>
+    </div>
+
+    <!-- indicator lamps -->
+    <div class="inst lamp-inst i-lp" data-in>
+        <div class="tag">Station Status Board</div>
+        <div class="lamps">
+            <div class="lamp on-green" id="l1"><i></i>Comms</div>
+            <div class="lamp on-green" id="l2"><i></i>Polling</div>
+            <div class="lamp on-green" id="l3"><i></i>P-201 Run</div>
+            <div class="lamp on-amber" id="l4"><i></i>Maint Due</div>
+            <div class="lamp on-green" id="l5"><i></i>CRMP OK</div>
+            <div class="lamp on-green" id="l6"><i></i>Console</div>
+        </div>
+    </div>
+
+    <!-- gauge 3: tank level -->
+    <div class="inst g-inst i-g3" data-in>
+        <div class="tag">LI-101 · Tank Level · FT</div>
+        <svg viewBox="0 0 200 130">
+            <circle class="dial" cx="100" cy="72" r="52"/>
+            <g id="ticks3"></g>
+            <line class="needle" id="n3" x1="100" y1="72" x2="100" y2="28" transform="rotate(-30 100 72)"/>
+            <circle class="needle-hub" cx="100" cy="72" r="6"/>
+            <text class="dial-val" x="100" y="108" id="v3">18.2</text>
+        </svg>
+    </div>
+
+    <!-- marquee strip above the plate -->
+    <div class="inst i-top" data-in>
+        <div class="mline"><div>All instruments answered by a human being — 24 hours a day, 365 days a year — 49 CFR 195.446 · ISA-18.2 · API RP 1168</div></div>
+    </div>
+
+    <!-- center nameplate -->
+    <div class="plate" data-in>
+        <div class="logo-chip"><img src="../images/logo.png" alt="Optimal Pipeline Solutions"></div>
+        <div class="svc">Automation | Remote Monitoring | Compliance</div>
+        <h1>Driving efficiency.<br><em>Ensuring compliance.</em></h1>
+        <p class="sub"><b>Your dedicated pipeline operations and automation engineering partner.</b>
+            Controllers and automation engineers who keep your pipeline running and compliant —
+            we grew up on panels like this one, and we run the modern version of it for you.</p>
+        <div class="ctas">
+            <a href="#services" class="btn btn-solid">Explore Our Services</a>
+            <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+        </div>
+        <div class="etch">EST. FOUR DECADES OF SCADA — STILLWATER, OK · KANSAS CITY, MO</div>
+    </div>
+
+    <!-- bottom stats -->
+    <div class="inst i-bot" data-in>
+        <div class="bigstat">
+            <div><div class="n" id="bs1">0</div><div class="l">Sites Monitored</div></div>
+            <div><div class="n" id="bs2">0</div><div class="l">Alarms Rationalized</div></div>
+            <div><div class="n">24<em>/7</em></div><div class="l">Coverage</div></div>
+        </div>
+    </div>
+</div>
+
+<script>
+/* dial ticks */
+function ticks(id, cx, cy, r){
+    var g = document.getElementById(id), s = '';
+    for (var a=-120; a<=120; a+=24){
+        var rad = a*Math.PI/180, cls = a >= 96 ? 'tick-red' : 'tick';
+        s += '<line class="'+cls+'" x1="'+(cx+Math.sin(rad)*(r-2))+'" y1="'+(cy-Math.cos(rad)*(r-2))+
+             '" x2="'+(cx+Math.sin(rad)*(r-12))+'" y2="'+(cy-Math.cos(rad)*(r-12))+'"/>';
+    }
+    g.innerHTML = s;
+}
+ticks('ticks1',100,80,64); ticks('ticks2',100,80,64); ticks('ticks3',100,72,52);
+
+/* needles chase drifting values */
+function gauge(nid, vid, cx, cy, base, spread, min, max, dec){
+    var v = base;
+    setInterval(function(){
+        v = Math.max(min, Math.min(max, v + (Math.random()-0.5)*spread));
+        var deg = -120 + (v-min)/(max-min)*240;
+        gsap.to('#'+nid, { attr:{ transform:'rotate('+deg.toFixed(1)+' '+cx+' '+cy+')' },
+            duration:1.2, ease:'elastic.out(1,0.5)' });
+        document.getElementById(vid).textContent = dec ? v.toFixed(dec) : Math.round(v).toLocaleString('en-US');
+    }, 1700);
+}
+gauge('n1','v1',100,80, 612, 22, 480, 720, 0);
+gauge('n2','v2',100,80, 1847, 60, 1500, 2200, 0);
+gauge('n3','v3',100,72, 18.2, 0.8, 12, 24, 1);
+
+/* strip chart recorder */
+(function(){
+    var cv = document.getElementById('strip'), ctx = cv.getContext('2d');
+    function size(){ cv.width = cv.clientWidth*2; cv.height = cv.clientHeight*2; }
+    size(); addEventListener('resize', size);
+    var data = [], y = 0.5;
+    (function frame(){
+        y = Math.max(0.12, Math.min(0.88, y + (Math.random()-0.5)*0.05));
+        data.push(y); if (data.length > 220) data.shift();
+        var W = cv.width, H = cv.height;
+        ctx.clearRect(0,0,W,H);
+        ctx.strokeStyle = 'rgba(94,95,80,0.18)'; ctx.lineWidth = 1;
+        for (var gy=0.2; gy<1; gy+=0.2){ ctx.beginPath(); ctx.moveTo(0,gy*H); ctx.lineTo(W,gy*H); ctx.stroke(); }
+        ctx.strokeStyle = '#2E7D74'; ctx.lineWidth = 3; ctx.beginPath();
+        for (var i=0;i<data.length;i++){
+            var x = W - (data.length-1-i)*(W/220);
+            i ? ctx.lineTo(x, data[i]*H) : ctx.moveTo(x, data[i]*H);
+        }
+        ctx.stroke();
+        setTimeout(function(){ requestAnimationFrame(frame); }, 90);
+    })();
+})();
+
+/* annunciator: occasionally counts 1, then clears */
+(function(){
+    var led = document.getElementById('ledv'), l3 = document.getElementById('l3');
+    setInterval(function(){
+        led.textContent = '1'; led.style.color = '#FFD98A';
+        l3.classList.remove('on-green'); l3.classList.add('on-amber');
+        setTimeout(function(){
+            led.textContent = '0'; led.style.color = '';
+            l3.classList.add('on-green'); l3.classList.remove('on-amber');
+        }, 3400);
+    }, 13000);
+})();
+
+/* counters */
+[['bs1',149],['bs2',15485]].forEach(function(c,i){
+    var el = document.getElementById(c[0]), o = { v:0 };
+    gsap.to(o, { v:c[1], duration:2.2, delay:0.9+i*0.2, ease:'power2.out',
+        onUpdate:function(){ el.textContent = Math.round(o.v).toLocaleString('en-US'); } });
+});
+
+gsap.from('[data-in]', { opacity:0, y:24, duration:0.8, ease:'power3.out', stagger:0.08, delay:0.15 });
+</script>
+</body>
+</html>

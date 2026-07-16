@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 27 — The Hydraulic Profile (Engineering Graph)</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+:root { --olive:#5C7030; --olive-lt:#7E9448; --ink:#22281E; --paper:#FBFAF4; --grid:#E4E2D2;
+        --terrain:#8A9B55; --hgl:#2E6FAE; --amber:#D9820A; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; }
+body { font-family:'Inter',sans-serif; overflow:hidden; color:var(--ink); background:var(--paper); }
+/* graph paper */
+body::before { content:''; position:fixed; inset:0; pointer-events:none;
+    background-image:linear-gradient(var(--grid) 1px, transparent 1px),
+                     linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+                     linear-gradient(rgba(190,187,165,0.5) 1px, transparent 1px),
+                     linear-gradient(90deg, rgba(190,187,165,0.5) 1px, transparent 1px);
+    background-size:28px 28px, 28px 28px, 140px 140px, 140px 140px; }
+
+.head { position:absolute; z-index:8; top:5vh; left:clamp(22px,4vw,64px); max-width:700px; }
+.logo-row { display:flex; align-items:center; gap:16px; margin-bottom:1rem; }
+.logo-chip { background:#fff; border:1.5px solid #D8D5C2; border-radius:10px; padding:9px 20px; }
+.logo-chip img { height:44px; display:block; }
+.svc { font-family:'IBM Plex Mono',monospace; font-size:0.64rem; letter-spacing:0.26em; text-transform:uppercase; color:var(--olive); font-weight:600; }
+h1 { font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase;
+    font-size:clamp(2.6rem,6vw,5rem); line-height:0.92; }
+h1 em { font-style:normal; color:var(--olive); }
+.sub { margin-top:0.9rem; max-width:600px; font-size:clamp(0.94rem,1.3vw,1.1rem); line-height:1.6; color:#4E5442; }
+.sub b { color:var(--ink); }
+.ctas { display:flex; gap:0.9rem; margin-top:1.5rem; flex-wrap:wrap; }
+.btn { font-size:0.84rem; font-weight:600; padding:0.85rem 2.1rem; border-radius:999px; text-decoration:none; transition:all 0.22s; }
+.btn-solid { background:var(--olive); color:#fff; }
+.btn-solid:hover { background:var(--olive-lt); transform:translateY(-2px); }
+.btn-ghost { color:var(--ink); border:1.5px solid rgba(34,40,30,0.3); background:#fff; }
+.btn-ghost:hover { border-color:var(--ink); }
+
+/* the chart */
+.chart { position:absolute; left:0; right:0; bottom:0; height:58vh; z-index:4; }
+.chart svg { width:100%; height:100%; }
+.axis { stroke:#9B9880; stroke-width:1.5; }
+.axis-lbl { font-family:'IBM Plex Mono',monospace; font-size:11px; fill:#8A876E; letter-spacing:0.1em; }
+.terrain-line { fill:none; stroke:var(--terrain); stroke-width:3; }
+.terrain-fill { fill:rgba(138,155,85,0.16); }
+.pipe-on-terrain { fill:none; stroke:#4E5C29; stroke-width:2; stroke-dasharray:1 7; stroke-linecap:round; }
+.hgl-line { fill:none; stroke:var(--hgl); stroke-width:3.5; }
+.hgl-glow { fill:none; stroke:rgba(46,111,174,0.25); stroke-width:10; }
+.stn { fill:#fff; stroke:var(--ink); stroke-width:2; }
+.stn-lbl { font-family:'IBM Plex Mono',monospace; font-size:10.5px; fill:var(--ink); text-anchor:middle; font-weight:600; }
+.stn-boost { stroke:var(--amber); stroke-width:3.5; opacity:0.9; }
+.batch { filter:drop-shadow(0 2px 6px rgba(217,130,10,0.6)); }
+.readout { fill:#fff; stroke:#C9C6B0; stroke-width:1.5; }
+.ro-t { font-family:'IBM Plex Mono',monospace; font-size:9.5px; fill:#8A876E; letter-spacing:0.1em; }
+.ro-v { font-family:'IBM Plex Mono',monospace; font-size:15px; font-weight:600; fill:var(--ink); }
+.legend { position:absolute; z-index:8; right:clamp(20px,3vw,48px); top:5vh; background:#fff;
+    border:1.5px solid #D8D5C2; border-radius:12px; padding:14px 18px; font-family:'IBM Plex Mono',monospace; font-size:10px;
+    letter-spacing:0.12em; text-transform:uppercase; color:#6E6B55; line-height:2.1; }
+.legend i { display:inline-block; width:22px; height:3px; vertical-align:middle; margin-right:9px; }
+@media (max-width:760px){ .legend{ display:none; } }
+</style>
+</head>
+<body>
+
+<div class="head">
+    <div class="logo-row" data-in>
+        <div class="logo-chip"><img src="../images/logo.png" alt="Optimal Pipeline Solutions"></div>
+        <div class="svc">Automation |<br>Remote Monitoring |<br>Compliance</div>
+    </div>
+    <h1 data-in>Driving efficiency.<br><em>Ensuring compliance.</em></h1>
+    <p class="sub" data-in><b>Your dedicated pipeline operations and automation engineering partner.</b>
+        This is your pipeline the way a hydraulics engineer sees it — 120 miles of terrain, three boosts,
+        one batch moving. Controllers and automation engineers who keep it running and compliant.</p>
+    <div class="ctas" data-in>
+        <a href="#services" class="btn btn-solid">Explore Our Services</a>
+        <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+    </div>
+</div>
+
+<div class="legend" data-in>
+    <div><i style="background:var(--terrain)"></i>Ground Elevation</div>
+    <div><i style="background:var(--hgl)"></i>Hydraulic Gradient</div>
+    <div><i style="background:var(--amber)"></i>Your Batch — Live</div>
+</div>
+
+<div class="chart" data-in>
+<svg viewBox="0 0 1600 620" preserveAspectRatio="none" aria-hidden="true">
+    <!-- axes -->
+    <line class="axis" x1="70" y1="20" x2="70" y2="560"/>
+    <line class="axis" x1="70" y1="560" x2="1570" y2="560"/>
+    <text class="axis-lbl" x="80" y="40">ELEV / HEAD (FT)</text>
+    <text class="axis-lbl" x="1440" y="590">MILEPOST</text>
+    <text class="axis-lbl" x="66" y="590" text-anchor="end">MP 0</text>
+    <text class="axis-lbl" x="450" y="590" text-anchor="middle">MP 30</text>
+    <text class="axis-lbl" x="830" y="590" text-anchor="middle">MP 60</text>
+    <text class="axis-lbl" x="1210" y="590" text-anchor="middle">MP 90</text>
+
+    <!-- terrain profile -->
+    <path class="terrain-fill" id="terraF" d=""/>
+    <path class="terrain-line" id="terra" d=""/>
+    <path class="pipe-on-terrain" id="pipeline" d=""/>
+
+    <!-- hydraulic gradient line (sags between stations, jumps at pumps) -->
+    <path class="hgl-glow" id="hglG" d=""/>
+    <path class="hgl-line" id="hgl" d=""/>
+
+    <!-- pump stations -->
+    <g id="stations"></g>
+
+    <!-- the batch traveling the pipe -->
+    <g class="batch" id="batch">
+        <circle r="9" fill="var(--amber)"/>
+        <circle r="16" fill="none" stroke="rgba(217,130,10,0.5)" stroke-width="2.5"/>
+    </g>
+
+    <!-- live readout that follows the batch -->
+    <g id="ro" transform="translate(0,0)">
+        <rect class="readout" x="-64" y="-64" width="128" height="46" rx="6"/>
+        <text class="ro-t" x="-52" y="-46">HEAD AT BATCH</text>
+        <text class="ro-v" x="-52" y="-27" id="ro-v">1,420 FT</text>
+    </g>
+</svg>
+</div>
+
+<script>
+/* build terrain + HGL from control points */
+var TERRA = [[70,430],[180,400],[300,455],[430,380],[560,430],[700,340],[830,395],[960,300],[1100,370],[1240,330],[1390,410],[1570,380]];
+var STATIONS = [[70,'ORIGIN PUMP'],[560,'STATION 12'],[1100,'STATION 18']];
+var BOOST = 130, DROP_PER_PX = 0.145;
+
+function pathFrom(pts){ return 'M' + pts.map(function(p){ return p[0]+','+p[1]; }).join(' L'); }
+document.getElementById('terra').setAttribute('d', pathFrom(TERRA));
+document.getElementById('terraF').setAttribute('d', pathFrom(TERRA) + ' L1570,560 L70,560 Z');
+/* pipe hugs terrain, 6px below */
+document.getElementById('pipeline').setAttribute('d', pathFrom(TERRA.map(function(p){ return [p[0], p[1]+7]; })));
+
+/* HGL: at each station jump up BOOST above terrain, then decline linearly to next station */
+function terrainY(x){
+    for (var i=0;i<TERRA.length-1;i++){
+        var a=TERRA[i], b=TERRA[i+1];
+        if (x>=a[0] && x<=b[0]){ var t=(x-a[0])/(b[0]-a[0]); return a[1]+(b[1]-a[1])*t; }
+    }
+    return TERRA[TERRA.length-1][1];
+}
+var hglPts = [];
+for (var s=0; s<STATIONS.length; s++){
+    var x0 = STATIONS[s][0], x1 = (s<STATIONS.length-1) ? STATIONS[s+1][0] : 1570;
+    var startY = terrainY(x0) - BOOST;
+    for (var x=x0; x<=x1; x+=14){
+        hglPts.push([x, startY + (x-x0)*DROP_PER_PX]);
+    }
+}
+document.getElementById('hgl').setAttribute('d', pathFrom(hglPts));
+document.getElementById('hglG').setAttribute('d', pathFrom(hglPts));
+
+/* stations markers + boost arrows */
+(function(){
+    var g = document.getElementById('stations'), s = '';
+    STATIONS.forEach(function(st){
+        var y = terrainY(st[0]);
+        s += '<g transform="translate('+st[0]+','+y+')">' +
+             '<path class="stn" d="M -14 0 L 0 -24 L 14 0 Z"/>' +
+             '<line class="stn-boost boost-arrow" x1="0" y1="-28" x2="0" y2="-'+(BOOST-8)+'" marker-end="none"/>' +
+             '<path class="stn-boost boost-arrow" d="M -7 -'+(BOOST-16)+' L 0 -'+(BOOST-6)+' L 7 -'+(BOOST-16)+'" fill="none"/>' +
+             '<text class="stn-lbl" y="22">'+st[1]+'</text></g>';
+    });
+    g.innerHTML = s;
+})();
+
+/* draw-in animations */
+['terra','hgl','hglG','pipeline'].forEach(function(id, i){
+    var p = document.getElementById(id), len = p.getTotalLength();
+    p.style.strokeDasharray = (id==='pipeline') ? '1 7' : len;
+    if (id!=='pipeline'){ p.style.strokeDashoffset = len;
+        gsap.to(p, { strokeDashoffset:0, duration:2.2, delay:0.5+i*0.3, ease:'power2.inOut' }); }
+});
+gsap.from('#terraF', { opacity:0, duration:1.6, delay:1.2 });
+gsap.from('.stn, .stn-lbl', { opacity:0, y:-10, duration:0.6, delay:2.4, stagger:0.2 });
+
+/* boost arrows pulse forever */
+gsap.fromTo('.boost-arrow', { opacity:0.25 }, { opacity:1, duration:0.9, yoyo:true, repeat:-1, ease:'sine.inOut', stagger:0.3, delay:3 });
+
+/* the batch rides the pipeline profile forever; readout follows */
+(function(){
+    var pipe = document.getElementById('pipeline'), len = pipe.getTotalLength();
+    var batch = document.getElementById('batch'), ro = document.getElementById('ro'),
+        rov = document.getElementById('ro-v');
+    var o = { t: 0 };
+    gsap.to(o, { t:1, duration:22, ease:'none', repeat:-1, delay:3, onUpdate:function(){
+        var p = pipe.getPointAtLength(o.t*len);
+        batch.setAttribute('transform', 'translate('+p.x+','+p.y+')');
+        ro.setAttribute('transform', 'translate('+Math.min(Math.max(p.x,140),1460)+','+(p.y)+')');
+        // head = distance from HGL to pipe, faked from geometry
+        var head = Math.round((560 - p.y) * 4.2 + 380);
+        rov.textContent = head.toLocaleString('en-US') + ' FT';
+    }});
+})();
+
+gsap.from('[data-in]', { opacity:0, y:22, duration:0.95, ease:'power3.out', stagger:0.13, delay:0.15 });
+</script>
+</body>
+</html>

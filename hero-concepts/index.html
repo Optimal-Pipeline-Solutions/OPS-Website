@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OPS Hero Concepts — Gallery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root { --olive:#6B7B3A; --olive-lt:#8A9B55; --olive-pale:#B8C97A; --ink:#0D0F0A; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--ink); color:#fff; font-family:'Inter',sans-serif; }
+header { padding:40px clamp(20px,4vw,60px) 8px; }
+h1 { font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase; font-size:clamp(2rem,4.5vw,3.4rem); }
+h1 em { font-style:normal; color:var(--olive-pale); }
+.note { font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.16em; text-transform:uppercase;
+    color:rgba(138,155,85,0.7); margin-top:8px; }
+h2.round { font-family:'Barlow Condensed',sans-serif; font-weight:600; text-transform:uppercase;
+    font-size:1.5rem; padding:34px clamp(20px,4vw,60px) 0; color:var(--olive-pale); display:flex; align-items:center; gap:16px; }
+h2.round::after { content:''; flex:1; height:1px; background:rgba(138,155,85,0.3); }
+h2.round small { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.18em; color:rgba(255,255,255,0.4); }
+.grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(420px,1fr)); gap:22px;
+    padding:22px clamp(20px,4vw,60px) 30px; }
+@media (max-width:520px){ .grid { grid-template-columns:1fr; } }
+.card { display:block; background:#14170F; border:1px solid rgba(138,155,85,0.18); border-radius:14px;
+    overflow:hidden; text-decoration:none; color:#fff; transition:border-color 0.25s, transform 0.25s; }
+.card:hover { border-color:rgba(184,201,122,0.55); transform:translateY(-3px); }
+.thumb { position:relative; aspect-ratio:16/9; overflow:hidden; background:#000; }
+.thumb iframe { width:200%; height:200%; transform:scale(0.5); transform-origin:top left; border:0; pointer-events:none; }
+.meta { padding:16px 18px 18px; }
+.meta .no { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.2em; color:#C4633A; }
+.meta h3 { font-family:'Barlow Condensed',sans-serif; font-weight:600; text-transform:uppercase;
+    font-size:1.4rem; margin:4px 0 6px; }
+.meta p { font-size:0.85rem; line-height:1.55; color:rgba(255,255,255,0.55); }
+</style>
+</head>
+<body>
+<header>
+    <h1>OPS Hero <em>Concepts</em></h1>
+    <div class="note">Click any card to open it full screen. Previews are the live pages scaled down.</div>
+</header>
+
+<h2 class="round">Round 4 — Instant Impact <small>brief: catchy, flashy, zero patience required — the payoff hits in the first second</small></h2>
+<div class="grid" id="grid4"></div>
+
+<h2 class="round">Round 3 — The Real Pipeline <small>brief: show what a real pipeline looks like — crude site to control room</small></h2>
+<div class="grid" id="grid3"></div>
+
+<h2 class="round">Round 2 — All Different, All Moving <small>brief: vary the themes, more animation, show the scope</small></h2>
+<div class="grid" id="grid2"></div>
+
+<h2 class="round">Round 1 — Dark Concepts <small>kept for reference</small></h2>
+<div class="grid" id="grid1"></div>
+
+<script>
+var round4 = [
+    ['hero-32-jackpot.html','Jackpot — Numbers That Slam','Casino energy: chasing marquee bulbs around the screen edge and four slot reels that whip through decoys and SLAM onto 149 / 15,485 / 24-7 / 0 with shake and spark bursts. Re-slams every few seconds.'],
+    ['hero-33-hype-reel.html','The Hype Reel — Word Strobe','Movie-trailer hard cuts: full-screen words flash to a beat — YOUR PIPELINE. WATCHED. 3:00 AM? WATCHED. ALARM? ANSWERED. 41 SEC. — with color inversions and screen punch. The whole pitch in six seconds.'],
+    ['hero-34-thermal-torch.html','The Torch — Your Cursor Sees What We See','The page is dark; your cursor is a thermal lens revealing a hidden glowing SCADA world underneath — live tags, flowing lines. Blooms wide on load, roams by itself when idle.'],
+    ['hero-35-mega-gauge.html','The Mega Gauge','One colossal pressure gauge fills the screen. On load the needle whips into the red, the screen shakes, and it elastic-snaps back to green — then lives forever, occasionally flirting with the red line and getting caught.'],
+    ['hero-36-alarm-zapper.html','The Zapper — Arcade Mode','Alarms fly in from every edge and get lasered by the OPS core before they arrive — beam, particle burst, "ACK ✓" floater, score climbing. Missed: zero. Constant action from second one.'],
+    ['hero-37-glitch-slam.html','Signal Lock — Glitch Slam','The headline scramble-resolves from cipher noise in under a second with RGB-split glitch bursts, over a rain of falling instrument tags and a status ticker. Edgy and fast.'],
+    ['hero-38-story-cuts.html','Hard Cuts — Story Mode','Instagram-story pacing: six full-screen slides with hard diagonal wipes every two seconds — photo, flat color, giant claim — with story progress bars. Click anywhere to skip ahead.'],
+    ['hero-39-particle-morph.html','Iron Filings — Particle Morph','Two thousand particles snap instantly into OPS, explode, and reform as 24/7, 149 SITES, 0 MISSED, WATCHING — and your cursor blasts holes in the swarm.'],
+    ['hero-40-big-red-button.html','The Big Red Button','A giant candy-red ALARM button begging to be pressed. Press it (or let it press itself): klaxon, shake — then "ANSWERED ✓ — 41 seconds" stamps down instantly. The pitch is the punchline.'],
+    ['hero-41-split-flap.html','The Departure Board — Split-Flap','An airport Solari board clatters to life instantly, every character fluttering into place: sites, tanks, stations — all landing green. One row lands UNACK and flips to ANSWERED ✓ two seconds later.']
+];
+var round3 = [
+    ['hero-22-signals-journey.html','The Signal\'s Journey','The camera rides one pressure reading home: wellhead → RTU → microwave repeater → pump station → Console 1, with a caption card narrating each leg and an elapsed clock landing on 1.8 seconds.'],
+    ['hero-23-buried-cutaway.html','Six Feet Under — The Buried Cutaway','Earth cross-section: grass and marker posts above, the pipe cutaway below with crude flowing, a smart pig running the line past girth welds, a remote block-valve vault, and cathodic protection pulsing.'],
+    ['hero-24-photo-to-pid.html','How We See Your Site (Photo ⇄ P&ID)','A real site photo morphs into blueprint tones while an engineering trace draws itself over the actual equipment — tags, loops, flow arrows — then melts back to the photo. Forever.'],
+    ['hero-25-lact-skid.html','The LACT Unit — Custody Transfer, Live','A working LACT schematic: sampler grabbing, charge pump spinning, Coriolis totalizer rolling, a BS&W excursion that diverts and clears, and a run ticket that prints and files itself.'],
+    ['hero-26-pig-pov.html','Inside the Line — Pig\'s-Eye View','First-person ride through the bore: pipe joints rushing past, amber girth welds, camera sway, an ILI-tool HUD logging chainage and features. The view nobody else shows.'],
+    ['hero-27-hydraulic-profile.html','The Hydraulic Profile','Graph-paper engineering: 120 miles of terrain elevation, the hydraulic gradient sagging between three pump stations, boost arrows pulsing, and a live batch riding the profile with a head readout.'],
+    ['hero-28-console-pov.html','Console One — A Controller\'s POV','Sitting at the desk: three monitors with live trends, SCADA overview, and event journal; an alarm drops in, the cursor flies to ACK, the phone rings, the callout goes out. Coffee steaming.'],
+    ['hero-29-zoom-dive.html','The Dive — 120 Miles to 4-20 mA','An infinite-zoom plunge: system map → right-of-way → facility pad → inside the transmitter face, where the 4-20 mA pulse leaves for the console. Altitude HUD rides along.'],
+    ['hero-30-tankfarm-dusk.html','Tank Farm at Golden Hour','Sunset silhouette tank farm running a live tank-to-tank transfer — sight-glass levels moving in opposite directions, gauges ticking by tenths, SCADA uplink pinging, birds crossing the sun.'],
+    ['hero-31-relay-race.html','The Relay — Four Panels, Seven Minutes','A graphic-novel strip that replays a real night: 03:12 the sensor trips → 03:12:04 the console catches it → 03:12:45 the callout → 03:19 RESOLVED, stamped audit-ready.']
+];
+var round2 = [
+    ['hero-12-daybreak-cycle.html','Daybreak — A Full Day on Watch','The sky lives a whole day on loop — night, sunrise, noon, dusk — sun and moon orbiting, stars fading, clouds drifting, pump station running. The shift label hands over as the light changes.'],
+    ['hero-13-clean-flow.html','Clean Flow — Light Minimal','Bright gallery-white page. One bold pipeline ribbon curves through it carrying crude, gas, and produced water as colored flowing dots; valves spin, the headline fills like a line being packed.'],
+    ['hero-14-iso-facility.html','The Living Facility — Isometric Illustration','Warm cream flat-illustration style: a colorful iso pad where tank levels breathe, the pump spins, the flare flickers, a haul truck loops through, and status bubbles pop in.'],
+    ['hero-15-pipeline-journey.html','The Journey — Scrolling Daylight Diorama','A sunny landscape rolls past forever — wellhead, gathering, pump station, terminal — flow pulses running the pipe the whole way. The scenery changes; the watch doesn’t.'],
+    ['hero-16-daylight-ops.html','Daylight Ops — Light Glass Dashboard','Bright aerial photo with floating glass cards: a live flow trend drawing itself, an alarm card that trips, shakes, and gets acknowledged, compliance checkmarks stamping in.'],
+    ['hero-17-safety-bold.html','Safety Bold — Yellow / Black Signage','Loud industrial signage: moving hazard stripes, stamped rotating payoff word, a working pressure gauge with an elastic needle, and a marquee. Zero photographs, maximum energy.'],
+    ['hero-18-ops-map.html','The Operations Map — Cartographic','Paper-toned survey map: routes ink themselves in, site pins drop, telemetry packets ride the lines home to the Stillwater control hub. Compass rose, scale bar, legend card.'],
+    ['hero-19-instrument-wall.html','The Instrument Wall — Analog Panel','A wall of working instruments: three analog gauges with chasing needles, a strip-chart recorder drawing live, an annunciator that trips and clears, indicator lamps — headline on the nameplate.'],
+    ['hero-20-chaos-to-calm.html','Chaos to Calm — Draggable Before/After','An alarm flood rages on one side; the rationalized, audit-ready board sits calm on the other. The divider oscillates on its own — and the visitor can grab it. The pitch is the interaction.'],
+    ['hero-21-all-conditions.html','All Conditions — Weather Cycle','Same pipeline, changing world: clear skies, a lightning storm with rain, a whiteout, a heat wave — cycling every few seconds while the flow dashes never stop. "Through the storm."']
+];
+var round1 = [
+    ['hero-01-living-scada.html','The Living SCADA Wall','A running HMI — animated P&ID, spinning pumps, drifting live values, an alarm that trips and gets acknowledged.'],
+    ['hero-02-boot-sequence.html','Control Room Boot Sequence','A gateway boot log types itself out, then the CRT flashes and resolves into the headline.'],
+    ['hero-03-field-vs-control.html','Field / Control Room Split','Diagonal split-screen with telemetry pulses crossing the glowing seam toward your cursor.'],
+    ['hero-04-kinetic-type.html','Kinetic Typography','Massive wordmarks with product flowing through the letterforms and a standards ticker.'],
+    ['hero-05-constellation.html','Pipeline Constellation','A living node network that bends toward your cursor, glass command card at center.'],
+    ['hero-06-midnight-aurora.html','Midnight Aurora','Premium-minimal: slow olive/copper aurora, fine grid, magnetic buttons, proof counters.'],
+    ['hero-07-blueprint.html','The Blueprint That Builds Itself','An isometric station draws itself stroke-by-stroke, then goes live with telemetry callouts.'],
+    ['hero-08-mission-control.html','Bento Mission Control','Bento board of live tiles — event feed, audit gauge, console clock, uptime sparkline.'],
+    ['hero-09-night-watch.html','The Night Watch','Stars, ridgeline pipeline, site beacons pulsing, every signal arcing home to one lit control room.'],
+    ['hero-10-industrial-editorial.html','Industrial Editorial','Magazine-cover brutalism — masked type reveals, rotating payoff word, photo column, grain.'],
+    ['hero-11-night-split.html','Night Watch Split (03 + 09)','The diagonal split at 3AM — beacons on one side, the lit console on the other, live clock in the headline.']
+];
+function fill(gridId, list, offset){
+    var g = document.getElementById(gridId);
+    list.forEach(function(c, i){
+        var a = document.createElement('a');
+        a.className = 'card'; a.href = c[0];
+        a.innerHTML = '<div class="thumb"><iframe src="'+c[0]+'" loading="lazy" tabindex="-1" title="'+c[1]+'"></iframe></div>' +
+            '<div class="meta"><div class="no">CONCEPT '+String(offset+i+1).padStart(2,'0')+'</div><h3>'+c[1]+'</h3><p>'+c[2]+'</p></div>';
+        g.appendChild(a);
+    });
+}
+fill('grid4', round4, 31);
+fill('grid3', round3, 21);
+fill('grid2', round2, 11);
+fill('grid1', round1, 0);
+</script>
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 22 — The Signal's Journey (Wellhead to Console)</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+:root { --olive:#6B7B3A; --olive-lt:#8A9B55; --amber:#F0A830; --dusk1:#1B2B3A; --dusk2:#2E4A5C; --ground:#152018; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; }
+body { font-family:'Inter',sans-serif; overflow:hidden; color:#fff;
+    background:linear-gradient(to bottom, var(--dusk1) 0%, var(--dusk2) 55%, #3E5E6E 74%, var(--dusk1) 100%); }
+
+/* ── the traveling world: one 4800-wide scene, camera pans it ── */
+.viewportbox { position:absolute; inset:0; overflow:hidden; }
+#world { position:absolute; bottom:0; left:0; width:4800px; height:100vh; will-change:transform; }
+#world svg { width:100%; height:100%; }
+
+.gnd { fill:var(--ground); }
+.gnd2 { fill:#0F1812; }
+.struct { fill:#0C1410; stroke:rgba(138,155,85,0.5); stroke-width:1.6; }
+.slabel { font-family:'IBM Plex Mono',monospace; font-size:15px; letter-spacing:3px; fill:rgba(184,201,122,0.75); text-anchor:middle; }
+.pipe { stroke:#0A0F0C; stroke-width:9; fill:none; stroke-linecap:round; }
+.pipe-hi { stroke:rgba(138,155,85,0.5); stroke-width:1.6; fill:none; }
+.pipe-flow { stroke:var(--amber); stroke-width:2.8; fill:none; stroke-dasharray:7 24; animation:flow 1.5s linear infinite; }
+@keyframes flow { to { stroke-dashoffset:-31; } }
+.beacon { fill:var(--amber); animation:bl 2s ease-in-out infinite; }
+@keyframes bl { 50%{ opacity:0.25; } }
+/* radio waves */
+.wave { fill:none; stroke:rgba(240,168,48,0.7); stroke-width:2; opacity:0; }
+/* the signal itself */
+#signal { filter:drop-shadow(0 0 8px rgba(240,168,48,0.9)); }
+
+/* fixed headline block */
+.head { position:absolute; z-index:10; top:5.5vh; left:clamp(22px,4.5vw,66px); max-width:640px; }
+.logo-chip { display:inline-flex; background:rgba(255,255,255,0.95); border-radius:9px; padding:9px 20px; margin-bottom:1rem; }
+.logo-chip img { height:44px; display:block; }
+.svc { font-family:'IBM Plex Mono',monospace; font-size:0.66rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--olive-lt); margin-bottom:0.9rem; }
+h1 { font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase;
+    font-size:clamp(2.6rem,6vw,4.8rem); line-height:0.92; text-shadow:0 4px 26px rgba(0,0,0,0.6); }
+h1 em { font-style:normal; color:var(--olive-lt); }
+.sub { margin-top:0.8rem; font-size:clamp(0.92rem,1.3vw,1.1rem); color:rgba(255,255,255,0.85); max-width:520px; }
+.sub b { color:#fff; }
+.ctas { display:flex; gap:0.9rem; margin-top:1.4rem; flex-wrap:wrap; }
+.btn { font-size:0.84rem; font-weight:600; padding:0.85rem 2.1rem; border-radius:999px; text-decoration:none; transition:all 0.25s; }
+.btn-solid { background:var(--olive); color:#fff; }
+.btn-solid:hover { background:var(--olive-lt); }
+.btn-ghost { color:#fff; border:1px solid rgba(255,255,255,0.4); }
+.btn-ghost:hover { background:rgba(255,255,255,0.1); }
+
+/* journey caption card */
+.caption { position:absolute; z-index:10; right:clamp(20px,3.5vw,54px); bottom:6vh; width:min(400px,86vw);
+    background:rgba(10,16,12,0.82); backdrop-filter:blur(8px); border:1px solid rgba(138,155,85,0.35);
+    border-radius:14px; padding:16px 20px; }
+.caption .k { font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:0.22em; text-transform:uppercase; color:var(--amber); }
+.caption .t { font-family:'Barlow Condensed',sans-serif; font-weight:600; text-transform:uppercase; font-size:1.35rem; margin:4px 0 4px; }
+.caption .d { font-size:0.82rem; line-height:1.55; color:rgba(255,255,255,0.65); }
+.hops { display:flex; gap:7px; margin-top:12px; }
+.hop { flex:1; height:3px; border-radius:2px; background:rgba(255,255,255,0.15); overflow:hidden; }
+.hop i { display:block; height:100%; width:0%; background:var(--amber); }
+.elapsed { position:absolute; z-index:10; left:clamp(22px,4.5vw,66px); bottom:6vh;
+    font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:rgba(184,201,122,0.7); text-transform:uppercase; }
+.elapsed b { color:var(--amber); font-size:19px; letter-spacing:0.1em; }
+@media (max-width:700px){ .elapsed{ display:none; } .caption{ left:50%; transform:translateX(-50%); right:auto; } }
+</style>
+</head>
+<body>
+
+<div class="viewportbox">
+<div id="world">
+<svg viewBox="0 0 4800 1000" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <!-- ground -->
+    <path class="gnd" d="M0 760 L400 740 L900 770 L1500 745 L2100 775 L2800 748 L3500 778 L4200 750 L4800 772 L4800 1000 L0 1000 Z"/>
+    <path class="gnd2" d="M0 860 L600 840 L1300 868 L2000 842 L2700 870 L3400 845 L4100 872 L4800 848 L4800 1000 L0 1000 Z"/>
+
+    <!-- the gathering pipeline running the whole world -->
+    <path class="pipe"    d="M 260 800 L 1180 796 L 2050 802 L 2920 798 L 3560 803"/>
+    <path class="pipe-hi" d="M 260 795 L 1180 791 L 2050 797 L 2920 793 L 3560 798"/>
+    <path class="pipe-flow" d="M 260 800 L 1180 796 L 2050 802 L 2920 798 L 3560 803"/>
+
+    <!-- STOP 1: wellhead + transmitter -->
+    <g transform="translate(260,760)">
+        <path class="struct" d="M -40 40 L 0 -110 L 40 40 Z M -20 -20 L 20 -20 M -30 10 L 30 10" fill="none"/>
+        <circle class="beacon" cx="0" cy="-122" r="6"/>
+        <g id="xmtr" transform="translate(64,6)">
+            <rect class="struct" x="-16" y="-30" width="32" height="42" rx="3"/>
+            <circle cx="0" cy="-9" r="8" fill="none" stroke="#F0A830" stroke-width="2"/>
+            <line x1="0" y1="-9" x2="5" y2="-14" stroke="#F0A830" stroke-width="2"/>
+        </g>
+        <text class="slabel" y="86">WELLHEAD · PT-1042</text>
+    </g>
+
+    <!-- STOP 2: RTU cabinet + antenna -->
+    <g transform="translate(1180,760)">
+        <rect class="struct" x="-52" y="-84" width="104" height="118" rx="5"/>
+        <line x1="-52" y1="-46" x2="52" y2="-46" stroke="rgba(138,155,85,0.5)" stroke-width="1.6"/>
+        <circle class="beacon" cx="34" cy="-66" r="4.5" style="animation-delay:0.6s"/>
+        <line x1="0" y1="-84" x2="0" y2="-190" stroke="rgba(138,155,85,0.7)" stroke-width="3"/>
+        <path d="M -14 -190 L 14 -190 L 0 -164 Z" fill="none" stroke="rgba(138,155,85,0.7)" stroke-width="2.5"/>
+        <path class="wave" id="w1a" d="M 20 -196 A 26 26 0 0 1 20 -156"/>
+        <path class="wave" id="w1b" d="M 34 -206 A 44 44 0 0 1 34 -146"/>
+        <text class="slabel" y="86">SITE RTU · POLLED 24/7</text>
+    </g>
+
+    <!-- STOP 3: repeater tower on a hill -->
+    <g transform="translate(2050,750)">
+        <path class="gnd" d="M -200 50 Q 0 -50 200 50 Z"/>
+        <path d="M -46 30 L 0 -240 L 46 30 M -32 -50 L 32 -50 M -22 -130 L 22 -130 M -38 -8 L 38 -8"
+              fill="none" stroke="rgba(184,201,122,0.65)" stroke-width="3.2"/>
+        <circle class="beacon" cx="0" cy="-252" r="6" style="animation-delay:1.1s"/>
+        <path class="wave" id="w2a" d="M 22 -258 A 30 30 0 0 1 22 -212"/>
+        <path class="wave" id="w2b" d="M 40 -272 A 52 52 0 0 1 40 -198"/>
+        <text class="slabel" y="96">MICROWAVE REPEATER · MP 46</text>
+    </g>
+
+    <!-- STOP 4: pump station -->
+    <g transform="translate(2920,760)">
+        <rect class="struct" x="-120" y="-96" width="240" height="130" rx="6"/>
+        <rect class="struct" x="-120" y="-96" width="240" height="26" rx="6"/>
+        <circle cx="-64" cy="0" r="30" fill="none" stroke="rgba(138,155,85,0.6)" stroke-width="2.5"/>
+        <g style="transform-box:fill-box;transform-origin:center;animation:spin 2.6s linear infinite;">
+            <line x1="-84" y1="0" x2="-44" y2="0" stroke="#8A9B55" stroke-width="3"/>
+            <line x1="-64" y1="-20" x2="-64" y2="20" stroke="#8A9B55" stroke-width="3"/>
+        </g>
+        <circle class="beacon" cx="102" cy="-108" r="5" style="animation-delay:0.3s"/>
+        <text class="slabel" y="86">PUMP STATION 12 · BOOSTING</text>
+    </g>
+
+    <!-- STOP 5: the OPS control center -->
+    <g transform="translate(4180,760)">
+        <rect class="struct" x="-190" y="-150" width="380" height="184" rx="8"/>
+        <rect x="-160" y="-118" width="88" height="56" rx="4" fill="rgba(138,155,85,0.35)">
+            <animate attributeName="opacity" values="0.7;1;0.7" dur="3.4s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="-44" y="-118" width="88" height="56" rx="4" fill="rgba(138,155,85,0.3)">
+            <animate attributeName="opacity" values="1;0.6;1" dur="4.1s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="72" y="-118" width="88" height="56" rx="4" fill="rgba(240,168,48,0.3)">
+            <animate attributeName="opacity" values="0.8;1;0.8" dur="2.7s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="-160" y="-40" width="204" height="48" rx="4" fill="rgba(138,155,85,0.22)"/>
+        <!-- the readout that receives the value -->
+        <g id="console-readout" opacity="0">
+            <rect x="60" y="-44" width="122" height="56" rx="5" fill="#0A0F0C" stroke="#F0A830" stroke-width="1.6"/>
+            <text x="72" y="-24" font-family="'IBM Plex Mono',monospace" font-size="11" fill="rgba(240,168,48,0.7)" letter-spacing="1">PT-1042</text>
+            <text id="console-val" x="72" y="-1" font-family="'IBM Plex Mono',monospace" font-size="20" font-weight="600" fill="#F0A830">612.4</text>
+        </g>
+        <text class="slabel" y="86">OPS CONTROL ROOM · STILLWATER, OK</text>
+    </g>
+
+    <!-- the SIGNAL: one pressure reading making the trip -->
+    <g id="signal" opacity="0">
+        <circle r="9" fill="#F0A830"/>
+        <circle r="16" fill="none" stroke="rgba(240,168,48,0.5)" stroke-width="2"/>
+    </g>
+</svg>
+</div>
+</div>
+
+<div class="head">
+    <div class="logo-chip"><img src="../images/logo.png" alt="Optimal Pipeline Solutions"></div>
+    <div class="svc">Automation | Remote Monitoring | Compliance</div>
+    <h1>Driving efficiency.<br><em>Ensuring compliance.</em></h1>
+    <p class="sub"><b>Your dedicated pipeline operations and automation engineering partner.</b>
+        Follow one pressure reading home — controllers and automation engineers who keep your pipeline running and compliant.</p>
+    <div class="ctas">
+        <a href="#services" class="btn btn-solid">Explore Our Services</a>
+        <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+    </div>
+</div>
+
+<div class="caption">
+    <div class="k">The signal's journey — <span id="cap-step">LEG 1 OF 5</span></div>
+    <div class="t" id="cap-title">A transmitter wakes up</div>
+    <div class="d" id="cap-desc">PT-1042 samples line pressure at the wellhead: 612.4 PSIG. We designed, calibrated, and commissioned it.</div>
+    <div class="hops"><div class="hop"><i></i></div><div class="hop"><i></i></div><div class="hop"><i></i></div><div class="hop"><i></i></div><div class="hop"><i></i></div></div>
+</div>
+
+<div class="elapsed">Elapsed: <b id="clockms">0.00 s</b> — field to console</div>
+
+<style>@keyframes spin { to { transform:rotate(360deg); } }</style>
+
+<script>
+var CAPS = [
+    ['LEG 1 OF 5','A transmitter wakes up','PT-1042 samples line pressure at the wellhead: 612.4 PSIG. We designed, calibrated, and commissioned it.'],
+    ['LEG 2 OF 5','The RTU answers the poll','The site RTU packages the reading — Modbus over licensed radio. Our automation team built this panel.'],
+    ['LEG 3 OF 5','Across the repeater','46 miles from the nearest town, the signal hops the microwave path we engineered for exactly this terrain.'],
+    ['LEG 4 OF 5','Past the pump station','Station 12 boosts the product; the SCADA network rides along. One integrated system, not five vendors.'],
+    ['LEG 5 OF 5','A human being sees it','612.4 PSIG lands on Console 1 — 1.8 seconds after the sensor felt it. A controller is watching. Always.']
+];
+
+/* camera pans the world; the signal dot travels in sync */
+var world = document.getElementById('world');
+var vw = innerWidth;
+function camX(sceneX, zoom){ return -(sceneX * (zoom||1) - vw*0.52); }
+
+/* world is 4800 wide at height 100vh — svg scales with height; compute px scale */
+function sceneScale(){ return document.getElementById('world').getBoundingClientRect().height / 1000 * (4800/4800); }
+
+var caption = { step:document.getElementById('cap-step'), title:document.getElementById('cap-title'), desc:document.getElementById('cap-desc') };
+var hops = document.querySelectorAll('.hop i');
+function setCap(i){
+    caption.step.textContent = CAPS[i][0];
+    caption.title.textContent = CAPS[i][1];
+    caption.desc.textContent = CAPS[i][2];
+    gsap.fromTo('.caption', { y:8, opacity:0.6 }, { y:0, opacity:1, duration:0.5 });
+    hops.forEach(function(h,k){ h.style.width = k < i ? '100%' : '0%'; });
+    gsap.to(hops[i], { width:'100%', duration:LEG, ease:'none' });
+}
+
+var LEG = 4.6, STOPS = [260, 1180, 2050, 2920, 4180];
+var clockEl = document.getElementById('clockms');
+
+function runJourney(){
+    var S = world.getBoundingClientRect().width / 4800; // px per unit
+    var sig = document.getElementById('signal');
+    var tl = gsap.timeline({ onComplete:function(){ setTimeout(runJourney, 3800); } });
+
+    // reset (all positions absolute on the timeline)
+    tl.set(world, { x: camX(STOPS[0]*S) }, 0)
+      .set(sig, { opacity:0, x:STOPS[0], y:766 }, 0)
+      .set('#console-readout', { opacity:0 }, 0)
+      .call(function(){ setCap(0); gsap.fromTo(sig,{opacity:0},{opacity:1,duration:0.5}); pulse('#xmtr'); startClock(); }, null, 0.05);
+
+    for (var i=1;i<STOPS.length;i++){
+        (function(i){
+            var start = 0.6 + (i-1)*LEG;
+            tl.to(sig, { x:STOPS[i], y: i===2 ? 700 : 766, duration:LEG, ease:'power1.inOut' }, start)
+              .to(world, { x: camX(STOPS[i]*S), duration:LEG, ease:'power1.inOut' }, start)
+              .call(function(){
+                  setCap(i);
+                  if (i===1) waves(['#w1a','#w1b']);
+                  if (i===2) waves(['#w2a','#w2b']);
+                  if (i===4){ gsap.to('#console-readout', { opacity:1, duration:0.5 }); stopClock();
+                      gsap.fromTo('#console-val',{opacity:0},{opacity:1,duration:0.15,repeat:5,yoyo:true}); }
+              }, null, start + LEG);
+        })(i);
+    }
+    tl.to(sig, { opacity:0, duration:0.6 }, 0.6 + 4*LEG + 2.4);
+}
+
+function waves(sels){
+    sels.forEach(function(s,k){
+        gsap.fromTo(s, { opacity:0.9, scale:0.6, transformOrigin:'left center' },
+            { opacity:0, scale:1.5, duration:1.2, delay:k*0.25, repeat:2, ease:'power1.out' });
+    });
+}
+function pulse(sel){
+    gsap.fromTo(sel, { scale:1, transformOrigin:'center' }, { scale:1.15, duration:0.3, yoyo:true, repeat:3 });
+}
+
+/* the elapsed clock — dramatizes "1.8 seconds" but runs the real animation length scaled */
+var clockTween;
+function startClock(){
+    var o = { v:0 };
+    clockTween = gsap.to(o, { v:1.8, duration:LEG*4, ease:'none',
+        onUpdate:function(){ clockEl.textContent = o.v.toFixed(2) + ' s'; } });
+}
+function stopClock(){ if (clockTween) clockTween.kill(); clockEl.textContent = '1.80 s'; }
+
+addEventListener('resize', function(){}); // camera recalcs each loop
+gsap.from('.head > *', { opacity:0, y:22, duration:0.9, ease:'power3.out', stagger:0.11, delay:0.2 });
+runJourney();
+</script>
+</body>
+</html>

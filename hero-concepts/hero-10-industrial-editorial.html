@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 10 — Industrial Editorial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+:root { --olive:#6B7B3A; --olive-lt:#8A9B55; --olive-pale:#B8C97A; --copper:#C4633A; --paper:#EDEDE8; --ink:#141511; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; }
+body { background:var(--ink); color:var(--paper); font-family:'Inter',sans-serif; overflow:hidden;
+    display:flex; flex-direction:column; }
+
+/* grain */
+body::after { content:''; position:fixed; inset:0; z-index:40; pointer-events:none; opacity:0.055;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+/* masthead */
+.masthead { display:flex; align-items:center; justify-content:space-between; gap:18px;
+    padding:18px clamp(18px,3.5vw,48px); border-bottom:2px solid var(--paper); }
+.logo-chip { background:#fff; padding:7px 16px; border:2px solid var(--ink); }
+.logo-chip img { height:38px; display:block; }
+.mast-mid { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.3em; text-transform:uppercase; color:rgba(237,237,232,0.6); }
+.issue { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--olive-pale); border:1px solid rgba(184,201,122,0.4); padding:6px 12px; }
+@media (max-width:760px){ .mast-mid { display:none; } }
+
+/* main spread */
+.spread { flex:1; display:grid; grid-template-columns:minmax(0,1.55fr) minmax(0,1fr); min-height:0; }
+@media (max-width:900px){ .spread { grid-template-columns:1fr; } .col-right { display:none; } }
+
+.col-left { padding:clamp(18px,4vh,44px) clamp(18px,3.5vw,48px); display:flex; flex-direction:column; justify-content:center; min-width:0; }
+.kicker { font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.3em; text-transform:uppercase;
+    color:var(--copper); display:flex; align-items:center; gap:14px; margin-bottom:2vh; }
+.kicker::after { content:''; flex:1; height:1px; background:rgba(196,99,58,0.4); }
+
+h1 { font-family:'Barlow Condensed',sans-serif; font-weight:800; text-transform:uppercase;
+    font-size:clamp(3.2rem,8.6vh,8rem); line-height:0.86; letter-spacing:0.005em; }
+h1 .row { display:block; overflow:hidden; }
+h1 .row span { display:inline-block; }
+h1 .outline { color:transparent; -webkit-text-stroke:2.5px var(--paper); }
+h1 .olive { color:var(--olive-lt); }
+/* rotating word */
+.rot-wrap { display:inline-block; position:relative; vertical-align:baseline; color:var(--copper); min-width:5.2ch; }
+.rot-wrap span { position:absolute; left:0; top:0; opacity:0; white-space:nowrap; }
+.rot-wrap span.on { position:relative; opacity:1; }
+
+.deck { margin-top:3vh; display:flex; gap:22px; align-items:flex-start; max-width:680px; }
+.deck-rule { width:64px; height:4px; background:var(--olive-lt); flex-shrink:0; margin-top:9px; }
+.deck p { font-size:clamp(0.98rem,1.5vw,1.2rem); line-height:1.6; color:rgba(237,237,232,0.85); }
+.deck p b { color:#fff; }
+.deck p small { display:block; margin-top:0.5rem; font-size:0.85rem; color:rgba(237,237,232,0.5); }
+
+.ctas { display:flex; gap:0; margin-top:3.4vh; flex-wrap:wrap; }
+.btn { font-family:'IBM Plex Mono',monospace; font-size:0.8rem; letter-spacing:0.16em; text-transform:uppercase;
+    padding:1.05rem 2.4rem; text-decoration:none; border:2px solid var(--paper); transition:all 0.2s; }
+.btn-solid { background:var(--paper); color:var(--ink); font-weight:600; }
+.btn-solid:hover { background:var(--olive-lt); border-color:var(--olive-lt); color:#fff; }
+.btn-ghost { color:var(--paper); border-left:none; }
+.btn-ghost:hover { background:rgba(237,237,232,0.08); }
+
+/* right column: photo + index card */
+.col-right { position:relative; border-left:2px solid var(--paper); display:flex; flex-direction:column; min-width:0; }
+.photo { flex:1; background:url('../images/pipeline-aerial.jpg') center/cover; filter:grayscale(0.35) contrast(1.06);
+    position:relative; }
+.photo::after { content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(20,21,17,0.65), transparent 55%); }
+.photo-cap { position:absolute; bottom:14px; left:16px; right:16px; font-family:'IBM Plex Mono',monospace;
+    font-size:9.5px; letter-spacing:0.16em; text-transform:uppercase; color:rgba(237,237,232,0.75); }
+.index { border-top:2px solid var(--paper); }
+.index a { display:grid; grid-template-columns:56px 1fr auto; align-items:center; gap:14px;
+    padding:13px clamp(14px,1.8vw,26px); text-decoration:none; color:var(--paper);
+    border-bottom:1px solid rgba(237,237,232,0.16); transition:background 0.2s, padding-left 0.25s; }
+.index a:last-child { border-bottom:none; }
+.index a:hover { background:rgba(138,155,85,0.12); padding-left:calc(clamp(14px,1.8vw,26px) + 8px); }
+.index .no { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--copper); letter-spacing:0.14em; }
+.index .nm { font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:1.15rem; text-transform:uppercase; letter-spacing:0.03em; }
+.index .ar { font-family:'IBM Plex Mono',monospace; color:var(--olive-pale); }
+
+/* footer ticker */
+.foot { border-top:2px solid var(--paper); overflow:hidden; padding:13px 0; }
+.foot-track { display:flex; gap:52px; white-space:nowrap; width:max-content; animation:mq 32s linear infinite; }
+.foot-track span { font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.26em;
+    text-transform:uppercase; color:rgba(237,237,232,0.5); display:flex; align-items:center; gap:52px; }
+.foot-track span::after { content:'/'; color:var(--copper); }
+@keyframes mq { to { transform:translateX(-50%); } }
+@media (prefers-reduced-motion:reduce){ .foot-track { animation:none; } .rot-wrap span { transition:none; } }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+    <div class="logo-chip"><img src="../images/logo.png" alt="Optimal Pipeline Solutions"></div>
+    <div class="mast-mid">Automation &nbsp;/&nbsp; Remote Monitoring &nbsp;/&nbsp; Compliance</div>
+    <div class="issue">Stillwater, OK — Console 1 — On Watch</div>
+</header>
+
+<main class="spread">
+    <div class="col-left">
+        <div class="kicker">Field Report — Pipeline Operations</div>
+        <h1>
+            <span class="row"><span id="r1">Driving</span></span>
+            <span class="row"><span id="r2" class="outline">efficiency.</span></span>
+            <span class="row"><span id="r3"><span class="olive">Ensuring</span></span></span>
+            <span class="row"><span id="r4">compli&shy;ance,
+                <span class="rot-wrap" id="rot"><span class="on">daily.</span><span>at 3AM.</span><span>audited.</span><span>signed.</span></span>
+            </span></span>
+        </h1>
+        <div class="deck">
+            <div class="deck-rule"></div>
+            <p><b>Your dedicated pipeline operations and automation engineering partner.</b>
+                Controllers and automation engineers who keep your pipeline running and compliant.
+                <small>No layers. No ticket queues. The people who built your SCADA answer the phone on nights and weekends.</small></p>
+        </div>
+        <div class="ctas">
+            <a href="#services" class="btn btn-solid">Explore Our Services</a>
+            <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+        </div>
+    </div>
+
+    <aside class="col-right">
+        <div class="photo">
+            <div class="photo-cap">Fig. 01 — Gathering system, multi-state operation. Monitored from Console 1.</div>
+        </div>
+        <nav class="index">
+            <a href="#control-room"><span class="no">01</span><span class="nm">Control Room Operations</span><span class="ar">&rarr;</span></a>
+            <a href="#engineering"><span class="no">02</span><span class="nm">Automation Engineering</span><span class="ar">&rarr;</span></a>
+            <a href="#compliance"><span class="no">03</span><span class="nm">CRM Compliance — 49 CFR</span><span class="ar">&rarr;</span></a>
+        </nav>
+    </aside>
+</main>
+
+<footer class="foot">
+    <div class="foot-track" id="ft">
+        <span>149 Sites Monitored</span><span>15,485 Alarms Rationalized</span><span>24/7/365 Coverage</span>
+        <span>49 CFR 195.446</span><span>ISA-18.2</span><span>API RP 1168</span><span>Est. Four Decades of SCADA</span>
+    </div>
+</footer>
+
+<script>
+// duplicate ticker
+var ft = document.getElementById('ft'); ft.innerHTML += ft.innerHTML;
+
+// editorial rows reveal from under their overflow masks
+gsap.timeline({defaults:{ease:'power4.out'}})
+    .from('.masthead', { yPercent:-110, duration:0.8 }, 0)
+    .from('#r1', { yPercent:110, duration:0.9 }, 0.25)
+    .from('#r2', { yPercent:110, duration:0.9 }, 0.38)
+    .from('#r3', { yPercent:110, duration:0.9 }, 0.51)
+    .from('#r4', { yPercent:110, duration:0.9 }, 0.64)
+    .from('.kicker', { opacity:0, duration:0.6 }, 0.5)
+    .from('.deck', { opacity:0, y:24, duration:0.8 }, 1.0)
+    .from('.ctas', { opacity:0, y:18, duration:0.7 }, 1.2)
+    .from('.col-right', { xPercent:8, opacity:0, duration:1.0 }, 0.5)
+    .from('.foot', { opacity:0, duration:0.8 }, 1.4);
+
+// rotating word
+(function(){
+    var words = document.querySelectorAll('#rot span'), i = 0;
+    setInterval(function(){
+        var cur = words[i], nxt = words[(i+1) % words.length];
+        gsap.to(cur, { yPercent:-70, opacity:0, duration:0.45, ease:'power3.in', onComplete:function(){
+            cur.classList.remove('on'); cur.style.position='absolute'; gsap.set(cur,{yPercent:0});
+            nxt.classList.add('on'); nxt.style.position='relative';
+            gsap.fromTo(nxt, { yPercent:70, opacity:0 }, { yPercent:0, opacity:1, duration:0.5, ease:'power3.out' });
+        }});
+        i = (i+1) % words.length;
+    }, 2600);
+})();
+</script>
+</body>
+</html>

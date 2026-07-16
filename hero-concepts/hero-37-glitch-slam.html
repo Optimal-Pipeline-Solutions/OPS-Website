@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 37 — Signal Lock (Glitch Slam)</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+:root { --olive:#6B7B3A; --olive-lt:#8A9B55; --amber:#F0A830; --ink:#08090B; --cyan:#37D4E0; --mag:#E840A8; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; }
+body { font-family:'Inter',sans-serif; overflow:hidden; background:var(--ink); color:#fff; }
+
+/* tag rain */
+#rain { position:absolute; inset:0; z-index:1; opacity:0.5; }
+
+/* scanlines */
+.scan { position:absolute; inset:0; z-index:8; pointer-events:none; opacity:0.35;
+    background:repeating-linear-gradient(0deg, rgba(0,0,0,0.35) 0 1px, transparent 1px 3px); }
+
+.wrap { position:absolute; inset:0; z-index:5; display:flex; flex-direction:column; align-items:center;
+    justify-content:center; text-align:center; padding:0 20px; }
+.logo-chip { background:rgba(255,255,255,0.96); border-radius:9px; padding:9px 22px; margin-bottom:1.2rem; }
+.logo-chip img { height:44px; display:block; }
+.svc { font-family:'IBM Plex Mono',monospace; font-size:0.66rem; letter-spacing:0.32em; text-transform:uppercase;
+    color:var(--olive-lt); margin-bottom:1.2rem; }
+
+/* the glitch headline */
+.glitch { position:relative; font-family:'Barlow Condensed',sans-serif; font-weight:800; text-transform:uppercase;
+    font-size:clamp(3.2rem,9.4vw,8.4rem); line-height:0.9; }
+.glitch em { font-style:normal; color:var(--olive-lt); }
+.glitch .ghost { position:absolute; inset:0; opacity:0; pointer-events:none; }
+.glitch .g-c { color:var(--cyan); } .glitch .g-m { color:var(--mag); }
+
+.lock { margin-top:1.2rem; font-family:'IBM Plex Mono',monospace; font-size:clamp(0.7rem,1vw,0.85rem);
+    letter-spacing:0.24em; text-transform:uppercase; color:rgba(255,255,255,0.55); }
+.lock b { color:var(--olive-lt); }
+.sub { margin-top:0.9rem; max-width:620px; font-size:clamp(0.9rem,1.25vw,1.08rem); color:rgba(255,255,255,0.72); }
+.sub b { color:#fff; }
+.ctas { display:flex; gap:1rem; margin-top:1.8rem; flex-wrap:wrap; justify-content:center; }
+.btn { font-size:0.85rem; font-weight:600; padding:0.9rem 2.2rem; border-radius:4px; text-decoration:none;
+    transition:all 0.15s; font-family:'IBM Plex Mono',monospace; letter-spacing:0.1em; text-transform:uppercase; }
+.btn-solid { background:var(--olive); color:#fff; }
+.btn-solid:hover { background:var(--olive-lt); box-shadow:0 0 24px rgba(138,155,85,0.5); }
+.btn-ghost { color:#fff; border:1px solid rgba(255,255,255,0.4); }
+.btn-ghost:hover { border-color:var(--cyan); color:var(--cyan); }
+/* status ticker top */
+.tick { position:absolute; z-index:7; top:0; left:0; right:0; padding:12px 0; overflow:hidden;
+    border-bottom:1px solid rgba(255,255,255,0.12); background:rgba(8,9,11,0.7); }
+.tick-track { display:flex; gap:48px; white-space:nowrap; width:max-content; animation:mq 22s linear infinite; }
+.tick-track span { font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.2em;
+    text-transform:uppercase; color:rgba(255,255,255,0.5); display:flex; gap:48px; }
+.tick-track span::after { content:'//'; color:var(--olive-lt); }
+@keyframes mq { to { transform:translateX(-50%); } }
+@media (prefers-reduced-motion: reduce){ .tick-track{ animation:none; } .scan{ display:none; } }
+</style>
+</head>
+<body>
+
+<canvas id="rain"></canvas>
+<div class="scan"></div>
+
+<div class="tick"><div class="tick-track" id="tk">
+    <span>SIGNAL LOCK ACQUIRED</span><span>149 SITES POLLING</span><span>0 UNANSWERED ALARMS</span>
+    <span>49 CFR 195.446 READY</span><span>ISA-18.2 RATIONALIZED</span><span>CONSOLE 1 STAFFED</span>
+</div></div>
+
+<div class="wrap">
+    <div class="logo-chip" data-in><img src="../images/logo.png" alt="Optimal Pipeline Solutions"></div>
+    <div class="svc" data-in>Automation | Remote Monitoring | Compliance</div>
+
+    <div class="glitch" id="gl">
+        <div class="live" id="gl-live">DRIVING EFFICIENCY.<br><em>ENSURING COMPLIANCE.</em></div>
+        <div class="ghost g-c" id="gl-c" aria-hidden="true">DRIVING EFFICIENCY.<br>ENSURING COMPLIANCE.</div>
+        <div class="ghost g-m" id="gl-m" aria-hidden="true">DRIVING EFFICIENCY.<br>ENSURING COMPLIANCE.</div>
+    </div>
+
+    <div class="lock" data-in>SIGNAL <b>LOCKED</b> · NOISE <b>REJECTED</b> · EVERY TAG <b>ACCOUNTED FOR</b></div>
+    <p class="sub" data-in><b>Your dedicated pipeline operations and automation engineering partner.</b>
+        Controllers and automation engineers who keep your pipeline running and compliant.</p>
+    <div class="ctas" data-in>
+        <a href="#services" class="btn btn-solid">Explore Our Services</a>
+        <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+    </div>
+</div>
+
+<script>
+var tk = document.getElementById('tk'); tk.innerHTML += tk.innerHTML;
+
+/* tag rain — columns of falling instrument tags */
+(function(){
+    var cv = document.getElementById('rain'), ctx = cv.getContext('2d');
+    var W,H,DPR = Math.min(devicePixelRatio||1,2), cols = [];
+    var GLYPH = ['PT','FT','TT','LI','XV','PSH','LSH','042','101','1042','612','18.2','◦','·'];
+    function rs(){ W=cv.width=innerWidth*DPR; H=cv.height=innerHeight*DPR;
+        cv.style.width=innerWidth+'px'; cv.style.height=innerHeight+'px';
+        cols = [];
+        for (var x=0; x<W; x+=64*DPR) cols.push({ x:x, y:Math.random()*H, v:(40+Math.random()*120)*DPR });
+    }
+    rs(); addEventListener('resize', rs);
+    var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setInterval(function(){
+        ctx.fillStyle = 'rgba(8,9,11,0.22)'; ctx.fillRect(0,0,W,H);
+        ctx.font = (11*DPR)+'px "IBM Plex Mono", monospace';
+        for (var i=0;i<cols.length;i++){
+            var c = cols[i];
+            ctx.fillStyle = Math.random()<0.06 ? 'rgba(184,201,122,0.9)' : 'rgba(120,135,90,0.42)';
+            ctx.fillText(GLYPH[Math.floor(Math.random()*GLYPH.length)], c.x, c.y);
+            if (!reduced) c.y += c.v*0.06;
+            if (c.y > H + 20) c.y = -20;
+        }
+    }, 60);
+})();
+
+/* SLAM: headline scramble-resolves in under a second */
+(function(){
+    var live = document.getElementById('gl-live');
+    var FINAL1 = 'DRIVING EFFICIENCY.', FINAL2 = 'ENSURING COMPLIANCE.';
+    var CH = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#$%&/=+*';
+    var steps = 0, MAX = 14;
+    var iv = setInterval(function(){
+        steps++;
+        function scr(fin){
+            var keep = Math.floor(fin.length * (steps/MAX));
+            var out = fin.slice(0, keep);
+            for (var i=keep;i<fin.length;i++) out += fin[i]===' ' ? ' ' : CH[Math.floor(Math.random()*CH.length)];
+            return out;
+        }
+        live.innerHTML = scr(FINAL1) + '<br><em>' + scr(FINAL2) + '</em>';
+        if (steps >= MAX){
+            clearInterval(iv);
+            live.innerHTML = FINAL1 + '<br><em>' + FINAL2 + '</em>';
+            gsap.fromTo('#gl', { scale:1.06 }, { scale:1, duration:0.35, ease:'back.out(2.5)' });
+            burst();
+        }
+    }, 55);
+
+    /* recurring micro-glitch bursts keep it alive without re-scrambling the message */
+    function burst(){
+        var tl = gsap.timeline();
+        tl.set(['#gl-c','#gl-m'], { opacity:0.85 })
+          .to('#gl-c', { x:-7, y:3, duration:0.05, repeat:3, yoyo:true, ease:'none' }, 0)
+          .to('#gl-m', { x:7, y:-3, duration:0.05, repeat:3, yoyo:true, ease:'none' }, 0)
+          .to('#gl-live', { x:2, duration:0.05, repeat:3, yoyo:true, ease:'none', clearProps:'x' }, 0)
+          .set(['#gl-c','#gl-m'], { opacity:0, x:0, y:0 }, 0.3);
+        setTimeout(burst, 2600 + Math.random()*2200);
+    }
+})();
+
+gsap.from('[data-in]', { opacity:0, y:18, duration:0.6, ease:'power3.out', stagger:0.08 });
+</script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 41 — The Departure Board (Split-Flap)</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+:root { --olive:#6B7B3A; --olive-lt:#8A9B55; --amber:#F0A830; --ink:#111210; --green:#5FBF77; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; }
+body { font-family:'Inter',sans-serif; overflow:hidden; color:#fff;
+    background:linear-gradient(to bottom, #1A1B17 0%, var(--ink) 60%); display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:2.2vh; padding:0 14px; }
+
+.logo-row { display:flex; align-items:center; gap:16px; }
+.logo-chip { background:rgba(255,255,255,0.96); border-radius:9px; padding:8px 18px; }
+.logo-chip img { height:40px; display:block; }
+.svc { font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--olive-lt); }
+h1 { font-family:'Barlow Condensed',sans-serif; font-weight:800; text-transform:uppercase; text-align:center;
+    font-size:clamp(2rem,4.8vw,3.8rem); line-height:0.94; }
+h1 em { font-style:normal; color:var(--olive-lt); }
+
+/* the board */
+.board { background:#0A0B09; border:3px solid #2A2C26; border-radius:14px; padding:clamp(12px,2vh,22px);
+    box-shadow:0 30px 80px rgba(0,0,0,0.6), inset 0 2px 0 rgba(255,255,255,0.05); width:min(1080px,96vw); }
+.board-head { display:flex; justify-content:space-between; padding:0 6px 10px;
+    font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:0.26em; text-transform:uppercase; color:#6E7263; }
+.rows { display:flex; flex-direction:column; gap:7px; }
+.row { display:flex; gap:7px; }
+.cellgroup { display:flex; gap:3px; flex:1; }
+.cellgroup.status { flex:0 0 clamp(120px,15vw,190px); }
+.flap { flex:1; height:clamp(30px,4.6vh,46px); background:linear-gradient(to bottom, #23251F 0%, #191B15 48%, #101109 52%, #16180F 100%);
+    border-radius:5px; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative;
+    font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:clamp(13px,2vh,20px); color:#E8EAD8;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,0.07), inset 0 -1px 0 rgba(0,0,0,0.6); }
+.flap::after { content:''; position:absolute; left:0; right:0; top:50%; height:1.5px; background:rgba(0,0,0,0.75); }
+.flap.ok { color:var(--green); }
+.flap.warn { color:var(--amber); }
+.flap.flip span { animation:flip 0.09s linear; display:block; }
+@keyframes flip { 0%{ transform:scaleY(1); } 50%{ transform:scaleY(0.08); } 100%{ transform:scaleY(1); } }
+
+.sub { max-width:640px; text-align:center; font-size:clamp(0.86rem,1.15vw,1rem); color:rgba(255,255,255,0.65); }
+.sub b { color:#fff; }
+.ctas { display:flex; gap:0.9rem; flex-wrap:wrap; justify-content:center; }
+.btn { font-size:0.84rem; font-weight:600; padding:0.9rem 2.1rem; border-radius:999px; text-decoration:none; transition:all 0.2s; }
+.btn-solid { background:var(--olive); color:#fff; }
+.btn-solid:hover { background:var(--olive-lt); transform:scale(1.04); }
+.btn-ghost { color:#fff; border:1px solid rgba(255,255,255,0.35); }
+.btn-ghost:hover { background:rgba(255,255,255,0.08); }
+</style>
+</head>
+<body>
+
+<div class="logo-row">
+    <div class="logo-chip"><img src="../images/logo.png" alt="Optimal Pipeline Solutions"></div>
+    <div class="svc">Automation |<br>Remote Monitoring |<br>Compliance</div>
+</div>
+<h1>Driving efficiency. <em>Ensuring compliance.</em></h1>
+
+<div class="board">
+    <div class="board-head"><span>OPS Control — Live Board</span><span id="bh-clock">--:--:-- CST</span></div>
+    <div class="rows" id="rows"></div>
+</div>
+
+<p class="sub"><b>Your dedicated pipeline operations and automation engineering partner.</b>
+    Controllers and automation engineers who keep your pipeline running and compliant —
+    every row lands on green, all day, all night.</p>
+<div class="ctas">
+    <a href="#services" class="btn btn-solid">Explore Our Services</a>
+    <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+</div>
+
+<script>
+/* split-flap engine: every character flutters through glyphs before landing */
+var GLY = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 .-/✓';
+var LINES = [
+    ['SITE 042 · GATHERING',   'NORMAL ✓',    'ok'],
+    ['STATION 12 · MAINLINE',  'PUMPING ✓',   'ok'],
+    ['TK-101 · 18.2 FT',       'IN RANGE ✓',  'ok'],
+    ['PT-1042 · HI PRESS',     'ANSWERED ✓',  'warn2ok'],
+    ['49 CFR 195.446',         'AUDIT READY', 'ok'],
+    ['CONSOLE 1 · SHIFT',      'STAFFED ✓',   'ok']
+];
+var COLS_TEXT = 22, COLS_STATUS = 12;
+
+var rowsHost = document.getElementById('rows'), rowEls = [];
+LINES.forEach(function(){
+    var row = document.createElement('div'); row.className = 'row';
+    var g1 = document.createElement('div'); g1.className = 'cellgroup';
+    for (var i=0;i<COLS_TEXT;i++){ var f = document.createElement('div'); f.className='flap'; f.innerHTML='<span> </span>'; g1.appendChild(f); }
+    var g2 = document.createElement('div'); g2.className = 'cellgroup status';
+    for (var i=0;i<COLS_STATUS;i++){ var f2 = document.createElement('div'); f2.className='flap'; f2.innerHTML='<span> </span>'; g2.appendChild(f2); }
+    row.appendChild(g1); row.appendChild(g2);
+    rowsHost.appendChild(row);
+    rowEls.push([g1.children, g2.children]);
+});
+
+function setFlap(cell, ch, cls, flutters){
+    var span = cell.firstElementChild, n = 0;
+    cell.className = 'flap' + (cls ? ' '+cls : '');
+    (function step(){
+        cell.classList.add('flip');
+        span.textContent = n < flutters ? GLY[Math.floor(Math.random()*GLY.length)] : ch;
+        setTimeout(function(){ cell.classList.remove('flip'); }, 85);
+        if (n++ < flutters) setTimeout(step, 55 + Math.random()*35);
+    })();
+}
+function setRow(idx, text, status, statusCls, stagger){
+    var cells = rowEls[idx];
+    for (var i=0;i<COLS_TEXT;i++){
+        (function(i){ setTimeout(function(){
+            setFlap(cells[0][i], (text[i]||' ').toUpperCase(), '', 2+Math.floor(Math.random()*4));
+        }, i*28 + (stagger||0)); })(i);
+    }
+    for (var i=0;i<COLS_STATUS;i++){
+        (function(i){ setTimeout(function(){
+            setFlap(cells[1][i], (status[i]||' ').toUpperCase(), statusCls, 3+Math.floor(Math.random()*4));
+        }, 260 + i*30 + (stagger||0)); })(i);
+    }
+}
+
+/* boot the whole board immediately — cascading rows, very satisfying */
+LINES.forEach(function(L, k){
+    var cls = L[2]==='warn2ok' ? 'warn' : 'ok';
+    var status = L[2]==='warn2ok' ? 'UNACK !' : L[1];
+    setRow(k, L[0], status, L[2]==='warn2ok' ? 'warn' : 'ok', k*160);
+});
+/* the one warning row resolves to green 2.4s in — the story in one flip */
+setTimeout(function(){ setRow(3, LINES[3][0], LINES[3][1], 'ok'); }, 2600);
+
+/* forever: random row refreshes so the board never sits still */
+var alt = [
+    ['SITE 117 · TERMINAL',   'NORMAL ✓',  'ok'],
+    ['FT-1051 · 1,847 BPH',   'IN SPEC ✓', 'ok'],
+    ['MOC-2261 · P2P CHECK',  'VERIFIED ✓','ok'],
+    ['SHIFT LOG · 06:00',     'FILED ✓',   'ok'],
+    ['TK-042B · RECEIVING',   'GAUGED ✓',  'ok'],
+    ['PT-1042 · HI PRESS',    'ANSWERED ✓','ok']
+];
+setInterval(function(){
+    var r = Math.floor(Math.random()*LINES.length);
+    var L = alt[Math.floor(Math.random()*alt.length)];
+    setRow(r, L[0], L[1], L[2]);
+}, 2400);
+
+/* clock */
+setInterval(function(){
+    document.getElementById('bh-clock').textContent =
+        new Date().toLocaleTimeString('en-US',{hour12:false,timeZone:'America/Chicago'}) + ' CST';
+}, 1000);
+
+gsap.from('body > *', { opacity:0, y:16, duration:0.6, ease:'power3.out', stagger:0.07 });
+</script>
+</body>
+</html>

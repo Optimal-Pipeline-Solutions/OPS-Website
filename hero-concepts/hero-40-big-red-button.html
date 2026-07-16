@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 40 — The Big Red Button</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+:root { --olive:#6B7B3A; --olive-lt:#8A9B55; --amber:#F0A830; --red:#D9382A; --red-dk:#8E1F14;
+        --paper:#EDEAE0; --ink:#1B1A15; --green:#2E7D4F; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; }
+body { font-family:'Inter',sans-serif; overflow:hidden; background:var(--paper); color:var(--ink);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2.4vh; text-align:center; }
+
+/* klaxon overlay when pressed */
+#klaxon { position:fixed; inset:0; z-index:2; pointer-events:none; opacity:0;
+    background:radial-gradient(circle at 50% 50%, rgba(217,56,42,0.0) 30%, rgba(217,56,42,0.45) 100%); }
+body.alarming { animation:bgpulse 0.5s step-end infinite alternate; }
+@keyframes bgpulse { 50%{ background:#F5DCD6; } }
+
+.logo-chip { background:#fff; border:2.5px solid var(--ink); border-radius:12px; padding:9px 22px;
+    box-shadow:4px 4px 0 var(--ink); z-index:5; }
+.logo-chip img { height:44px; display:block; }
+.svc { font-family:'IBM Plex Mono',monospace; font-size:0.66rem; letter-spacing:0.3em; text-transform:uppercase;
+    color:#6E6A56; z-index:5; }
+h1 { font-family:'Barlow Condensed',sans-serif; font-weight:800; text-transform:uppercase; z-index:5;
+    font-size:clamp(2.2rem,5.2vw,4.2rem); line-height:0.92; }
+h1 em { font-style:normal; color:var(--olive); }
+
+/* the button */
+.button-zone { position:relative; z-index:5; display:flex; flex-direction:column; align-items:center; gap:1.6vh; }
+.prompt { font-family:'IBM Plex Mono',monospace; font-size:clamp(0.72rem,1vw,0.88rem); letter-spacing:0.24em;
+    text-transform:uppercase; color:#8E1F14; font-weight:600; }
+.prompt.calm { color:var(--green); }
+#btn-wrap { position:relative; width:clamp(170px,21vh,240px); height:clamp(170px,21vh,240px); cursor:pointer; }
+.plate { position:absolute; inset:-9%; border-radius:50%; background:#C9C4B4;
+    box-shadow:inset 0 4px 10px rgba(0,0,0,0.25), 0 10px 30px rgba(27,26,21,0.3); }
+.plate::after { content:''; position:absolute; inset:8%; border-radius:50%;
+    border:3px dashed rgba(27,26,21,0.25); }
+#bigbtn { position:absolute; inset:6%; border-radius:50%;
+    background:radial-gradient(circle at 36% 28%, #F27A6C 0%, var(--red) 44%, var(--red-dk) 100%);
+    box-shadow:0 14px 0 #7A1B11, 0 22px 40px rgba(142,31,20,0.5), inset 0 -8px 22px rgba(0,0,0,0.3);
+    display:flex; align-items:center; justify-content:center; }
+#bigbtn span { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:clamp(1.3rem,2.8vh,1.9rem);
+    letter-spacing:0.08em; color:#fff; text-shadow:0 2px 6px rgba(0,0,0,0.5); }
+#btn-wrap.down #bigbtn { transform:translateY(10px); box-shadow:0 4px 0 #7A1B11, 0 8px 20px rgba(142,31,20,0.5), inset 0 -6px 18px rgba(0,0,0,0.35); }
+/* pulse ring inviting the press */
+.invite { position:absolute; inset:-4%; border-radius:50%; border:3px solid rgba(217,56,42,0.6); opacity:0; }
+
+/* the answer stamp */
+#stamp { position:fixed; z-index:8; left:50%; top:44%; transform:translate(-50%,-50%) rotate(-8deg);
+    background:#fff; border:5px solid var(--green); border-radius:12px; padding:20px 34px; opacity:0;
+    box-shadow:0 24px 70px rgba(27,26,21,0.35); pointer-events:none; }
+#stamp .t1 { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:clamp(1.8rem,4.4vh,3rem);
+    color:var(--green); text-transform:uppercase; line-height:1; }
+#stamp .t2 { font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.16em; color:#57534A;
+    margin-top:6px; text-transform:uppercase; }
+/* counter of presses */
+.tally { font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.2em; text-transform:uppercase;
+    color:#8A8672; z-index:5; }
+.tally b { color:var(--green); }
+.sub { max-width:620px; font-size:clamp(0.88rem,1.2vw,1.02rem); color:#4E4B3E; z-index:5; padding:0 18px; }
+.sub b { color:var(--ink); }
+.ctas { display:flex; gap:0.9rem; flex-wrap:wrap; justify-content:center; z-index:5; }
+.btn { font-size:0.84rem; font-weight:700; padding:0.9rem 2.1rem; border-radius:999px; text-decoration:none;
+    border:2.5px solid var(--ink); transition:all 0.15s; }
+.btn-solid { background:var(--ink); color:var(--paper); box-shadow:4px 4px 0 rgba(27,26,21,0.25); }
+.btn-solid:hover { background:var(--olive); border-color:var(--olive); transform:translate(-2px,-2px); }
+.btn-ghost { background:#fff; color:var(--ink); box-shadow:4px 4px 0 rgba(27,26,21,0.12); }
+.btn-ghost:hover { transform:translate(-2px,-2px); }
+</style>
+</head>
+<body>
+
+<div id="klaxon"></div>
+
+<div class="logo-chip"><img src="../images/logo.png" alt="Optimal Pipeline Solutions"></div>
+<div class="svc">Automation | Remote Monitoring | Compliance</div>
+<h1>Driving efficiency. <em>Ensuring compliance.</em></h1>
+
+<div class="button-zone">
+    <div class="prompt" id="prompt">⚠ Something just went wrong at MP 46 — press it</div>
+    <div id="btn-wrap" role="button" aria-label="Trigger a simulated pipeline alarm" tabindex="0">
+        <div class="plate"></div>
+        <div class="invite" id="invite"></div>
+        <div id="bigbtn"><span>ALARM</span></div>
+    </div>
+    <div class="tally">Pressed <b id="tally">0</b> times — answered <b id="tally2">0</b> times · <b>never missed</b></div>
+</div>
+
+<div id="stamp"><div class="t1">Answered ✓</div><div class="t2" id="stamp-sub">OPS Controller — 41 seconds</div></div>
+
+<p class="sub"><b>Your dedicated pipeline operations and automation engineering partner.</b>
+    Controllers and automation engineers who keep your pipeline running and compliant —
+    go ahead, try to catch us off guard.</p>
+<div class="ctas">
+    <a href="#services" class="btn btn-solid">Explore Our Services</a>
+    <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+</div>
+
+<script>
+var pressed = 0, busy = false;
+var wrap = document.getElementById('btn-wrap'), prompt = document.getElementById('prompt');
+var RESPONSES = ['OPS Controller — 41 seconds','Console 1 — acknowledged','Field callout — rolling',
+                 'Logged & audit-ready','Handled. Back to normal.'];
+
+/* invite pulse so it's alive immediately */
+gsap.fromTo('#invite', { opacity:0.9, scale:1 }, { opacity:0, scale:1.28, duration:1.1, repeat:-1, ease:'power1.out' });
+
+function press(){
+    if (busy) return; busy = true;
+    pressed++;
+    document.getElementById('tally').textContent = pressed;
+    wrap.classList.add('down');
+    document.body.classList.add('alarming');
+    gsap.to('#klaxon', { opacity:1, duration:0.15 });
+    gsap.fromTo('body', { x:-7 }, { x:7, duration:0.05, repeat:7, yoyo:true, clearProps:'x' });
+    prompt.textContent = '⚠ HIGH PRESSURE — STATION 12 — UNACK';
+    prompt.classList.remove('calm');
+
+    /* OPS answers fast — that's the whole joke */
+    setTimeout(function(){ wrap.classList.remove('down'); }, 220);
+    setTimeout(function(){
+        document.body.classList.remove('alarming');
+        gsap.to('#klaxon', { opacity:0, duration:0.3 });
+        document.getElementById('stamp-sub').textContent = RESPONSES[pressed % RESPONSES.length];
+        gsap.fromTo('#stamp', { opacity:0, scale:2.4, rotate:-8 },
+            { opacity:1, scale:1, rotate:-8, duration:0.28, ease:'power3.in' });
+        gsap.fromTo('body', { x:-4 }, { x:4, duration:0.04, repeat:3, yoyo:true, clearProps:'x' });
+        document.getElementById('tally2').textContent = pressed;
+        prompt.textContent = '✓ Answered. Press it again — we don\'t miss.';
+        prompt.classList.add('calm');
+        setTimeout(function(){
+            gsap.to('#stamp', { opacity:0, y:-24, duration:0.4, onComplete:function(){ gsap.set('#stamp',{y:0}); } });
+            busy = false;
+        }, 1500);
+    }, 1050);
+}
+wrap.addEventListener('pointerdown', press);
+wrap.addEventListener('keydown', function(e){ if (e.key===' '||e.key==='Enter') press(); });
+
+/* auto-demo immediately and whenever idle — the page presses itself */
+var lastPress = 0;
+function autodemo(){
+    if (!busy){ press(); }
+    setTimeout(autodemo, 5200);
+}
+setTimeout(autodemo, 900);
+
+gsap.from('body > *:not(#klaxon):not(#stamp)', { opacity:0, y:16, duration:0.6, ease:'power3.out', stagger:0.06 });
+</script>
+</body>
+</html>

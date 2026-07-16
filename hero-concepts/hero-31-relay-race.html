@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 31 — The Relay (Four Panels, Seven Minutes)</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+:root { --olive:#6B7B3A; --olive-lt:#8A9B55; --amber:#F0A830; --ink:#17140F; --paper:#F4EFE2;
+        --red:#C0392B; --teal:#2E7D74; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; }
+body { background:var(--ink); color:var(--paper); font-family:'Inter',sans-serif; overflow:hidden;
+    display:flex; flex-direction:column; }
+/* halftone dots */
+body::after { content:''; position:fixed; inset:0; pointer-events:none; opacity:0.14; z-index:50;
+    background-image:radial-gradient(rgba(244,239,226,0.5) 1px, transparent 1.4px); background-size:7px 7px; }
+
+/* masthead */
+.mast { display:flex; align-items:center; justify-content:space-between; gap:16px;
+    padding:16px clamp(18px,3.4vw,46px); border-bottom:4px solid var(--paper); }
+.logo-chip { background:#fff; border:3px solid var(--ink); padding:6px 15px; transform:rotate(-1deg); }
+.logo-chip img { height:36px; display:block; }
+.mast h1 { font-family:'Barlow Condensed',sans-serif; font-weight:800; text-transform:uppercase;
+    font-size:clamp(1.4rem,3.2vw,2.6rem); line-height:0.95; text-align:center; letter-spacing:0.01em; }
+.mast h1 em { font-style:normal; color:var(--olive-lt); }
+.issue { font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:0.18em; text-transform:uppercase;
+    border:2px solid var(--paper); padding:6px 12px; color:var(--paper); transform:rotate(1.2deg); }
+@media (max-width:760px){ .issue{ display:none; } }
+
+/* the strip */
+.strip { flex:1; display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(10px,1.4vw,20px);
+    padding:clamp(12px,2vh,26px) clamp(18px,3.4vw,46px); min-height:0; }
+@media (max-width:860px){ .strip{ grid-template-columns:repeat(2,1fr); grid-template-rows:1fr 1fr; } }
+.panel { position:relative; background:#211D15; border:3.5px solid var(--paper); border-radius:6px;
+    overflow:hidden; display:flex; flex-direction:column; opacity:0; transform:translateY(20px) rotate(-0.4deg); }
+.panel:nth-child(2){ transform:translateY(20px) rotate(0.5deg); }
+.panel:nth-child(4){ transform:translateY(20px) rotate(0.6deg); }
+.panel.live { box-shadow:0 0 0 4px var(--amber), 0 18px 50px rgba(0,0,0,0.5); }
+.ts { position:absolute; top:10px; left:10px; z-index:5; font-family:'IBM Plex Mono',monospace; font-size:clamp(10px,1vw,13px);
+    font-weight:600; background:var(--paper); color:var(--ink); padding:4px 10px; letter-spacing:0.1em; }
+.pn { position:absolute; top:10px; right:10px; z-index:5; font-family:'Barlow Condensed',sans-serif; font-weight:800;
+    font-size:1.3rem; color:rgba(244,239,226,0.4); }
+.art { flex:1; position:relative; min-height:0; }
+.art svg { position:absolute; inset:0; width:100%; height:100%; }
+.cap { border-top:3px solid var(--paper); padding:10px 14px; font-family:'IBM Plex Mono',monospace;
+    font-size:clamp(9px,0.85vw,11.5px); letter-spacing:0.1em; text-transform:uppercase; line-height:1.7; color:rgba(244,239,226,0.85); }
+.cap b { color:var(--amber); }
+
+/* shared art styles */
+.sk { stroke:var(--paper); stroke-width:3; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+.sk-thin { stroke:rgba(244,239,226,0.55); stroke-width:2; fill:none; }
+.fill-amber { fill:var(--amber); } .fill-red { fill:var(--red); } .fill-teal { fill:var(--teal); }
+.spark { fill:var(--red); }
+.bubble { fill:var(--paper); }
+.bubble-txt { font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; fill:var(--ink); }
+
+/* footer bar */
+.foot { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+    padding:14px clamp(18px,3.4vw,46px) 20px; border-top:4px solid var(--paper); }
+.sub { max-width:680px; font-size:clamp(0.86rem,1.15vw,1rem); line-height:1.55; color:rgba(244,239,226,0.8); }
+.sub b { color:#fff; }
+.ctas { display:flex; }
+.btn { font-family:'IBM Plex Mono',monospace; font-size:0.78rem; font-weight:600; letter-spacing:0.14em;
+    text-transform:uppercase; padding:0.95rem 2.1rem; text-decoration:none; border:3px solid var(--paper); transition:all 0.15s; }
+.btn-solid { background:var(--paper); color:var(--ink); }
+.btn-solid:hover { background:var(--olive-lt); border-color:var(--olive-lt); color:#fff; }
+.btn-ghost { color:var(--paper); border-left:none; }
+.btn-ghost:hover { background:rgba(244,239,226,0.1); }
+</style>
+</head>
+<body>
+
+<header class="mast">
+    <div class="logo-chip"><img src="../images/logo.png" alt="Optimal Pipeline Solutions"></div>
+    <h1>Driving efficiency. <em>Ensuring compliance.</em> — in four panels</h1>
+    <div class="issue">Automation | Remote Monitoring | Compliance</div>
+</header>
+
+<main class="strip">
+    <!-- PANEL 1: the sensor trips -->
+    <section class="panel" id="p1">
+        <div class="ts">03:12:00</div><div class="pn">01</div>
+        <div class="art">
+        <svg viewBox="0 0 400 300">
+            <path class="sk" d="M 40 250 H 360"/>
+            <path class="sk" d="M 120 250 V 190 M 100 190 H 140"/>
+            <circle class="sk" cx="120" cy="165" r="24"/>
+            <text x="120" y="171" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="14" font-weight="700" fill="var(--paper)">PT</text>
+            <!-- shock sparks -->
+            <g id="sparks">
+                <path class="spark" d="M 152 132 l 14 -10 l -6 12 l 14 -4 l -12 12 Z"/>
+                <path class="spark" d="M 88 132 l -14 -10 l 6 12 l -14 -4 l 12 12 Z"/>
+            </g>
+            <text id="p1-val" x="240" y="150" font-family="'Barlow Condensed',sans-serif" font-size="52" font-weight="800" fill="var(--red)">618.9</text>
+            <text x="240" y="176" font-family="'IBM Plex Mono',monospace" font-size="12" fill="rgba(244,239,226,0.6)">PSIG — HI LIMIT 615</text>
+        </svg>
+        </div>
+        <div class="cap"><b>MP 46, nowhere.</b> A transmitter feels the line pack. Nobody lives within 30 miles.</div>
+    </section>
+
+    <!-- PANEL 2: the console catches it -->
+    <section class="panel" id="p2">
+        <div class="ts">03:12:04</div><div class="pn">02</div>
+        <div class="art">
+        <svg viewBox="0 0 400 300">
+            <rect class="sk" x="70" y="60" width="260" height="150" rx="8"/>
+            <rect class="sk" x="160" y="210" width="80" height="16"/>
+            <rect id="p2-flash" x="76" y="66" width="248" height="138" rx="5" fill="var(--red)" opacity="0.85"/>
+            <text x="200" y="125" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="17" font-weight="700" fill="#fff">⚠ PT-1042 HI PRESS</text>
+            <text x="200" y="152" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="12" fill="rgba(255,255,255,0.85)">STATION 12 — UNACK</text>
+            <circle id="p2-ack" cx="200" cy="182" r="14" fill="#fff" opacity="0"/>
+            <text id="p2-ackt" x="200" y="187" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="11" font-weight="700" fill="var(--ink)" opacity="0">ACK</text>
+        </svg>
+        </div>
+        <div class="cap"><b>Console 1, Stillwater.</b> Four seconds later it's on our board — and acknowledged in 41.</div>
+    </section>
+
+    <!-- PANEL 3: the phone call -->
+    <section class="panel" id="p3">
+        <div class="ts">03:12:45</div><div class="pn">03</div>
+        <div class="art">
+        <svg viewBox="0 0 400 300">
+            <g id="p3-phone" transform="translate(130,170)">
+                <rect class="sk" x="-34" y="-60" width="68" height="120" rx="12"/>
+                <circle class="sk-thin" cx="0" cy="38" r="9"/>
+                <path class="sk-thin" d="M -18 -38 H 18"/>
+            </g>
+            <g id="p3-waves">
+                <path class="sk-thin" d="M 180 96 a 30 30 0 0 1 0 44" style="stroke:var(--amber); stroke-width:3;"/>
+                <path class="sk-thin" d="M 196 82 a 52 52 0 0 1 0 72" style="stroke:var(--amber); stroke-width:3;"/>
+            </g>
+            <g class="bubble-g" id="p3-bub" opacity="0">
+                <rect class="bubble" x="212" y="90" width="164" height="74" rx="10"/>
+                <path class="bubble" d="M 224 164 l -12 18 l 26 -12 Z"/>
+                <text class="bubble-txt" x="226" y="116">"Station 12, this is</text>
+                <text class="bubble-txt" x="226" y="134">OPS Control. Verify</text>
+                <text class="bubble-txt" x="226" y="152">discharge pressure."</text>
+            </g>
+        </svg>
+        </div>
+        <div class="cap"><b>The callout.</b> A human voice on the line — field tech confirmed rolling at 03:14.</div>
+    </section>
+
+    <!-- PANEL 4: resolved + logged -->
+    <section class="panel" id="p4">
+        <div class="ts">03:19:22</div><div class="pn">04</div>
+        <div class="art">
+        <svg viewBox="0 0 400 300">
+            <path class="sk" d="M 40 250 H 360"/>
+            <!-- trend settling -->
+            <path class="sk-thin" id="p4-trend" d="M 50 100 L 110 92 L 150 120 L 190 150 L 240 172 L 300 180 L 350 182" style="stroke:var(--teal); stroke-width:3.5;"/>
+            <circle id="p4-dot" r="6" class="fill-teal" opacity="0"/>
+            <!-- the stamp -->
+            <g id="p4-stamp" opacity="0" transform="translate(200,120) rotate(-9)">
+                <rect x="-102" y="-34" width="204" height="68" rx="8" fill="none" stroke="var(--teal)" stroke-width="5"/>
+                <text x="0" y="-2" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="30" font-weight="800" fill="var(--teal)">RESOLVED</text>
+                <text x="0" y="22" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10.5" fill="var(--teal)">LOGGED · AUDIT READY · 49 CFR 195.446</text>
+            </g>
+        </svg>
+        </div>
+        <div class="cap"><b>Seven minutes, start to filed.</b> The regulator will read this exact timeline someday. Good.</div>
+    </section>
+</main>
+
+<footer class="foot">
+    <p class="sub"><b>Your dedicated pipeline operations and automation engineering partner.</b>
+        Controllers and automation engineers who keep your pipeline running and compliant —
+        this strip replays every night, somewhere on the system.</p>
+    <div class="ctas">
+        <a href="#services" class="btn btn-solid">Explore Our Services</a>
+        <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+    </div>
+</footer>
+
+<script>
+/* panels deal in like comic frames */
+gsap.to('.panel', { opacity:1, y:0, duration:0.7, ease:'back.out(1.3)', stagger:0.22, delay:0.3 });
+gsap.from(['.mast','.foot'], { opacity:0, y:-14, duration:0.8, delay:0.1 });
+
+/* the relay: highlight each panel in order, with its own micro-animation, forever */
+(function(){
+    var panels = ['#p1','#p2','#p3','#p4'];
+    function beat(i){
+        panels.forEach(function(p){ document.querySelector(p).classList.remove('live'); });
+        document.querySelector(panels[i]).classList.add('live');
+
+        if (i===0){
+            gsap.fromTo('#p1-val', { scale:0.7, transformOrigin:'center' }, { scale:1.15, duration:0.3, yoyo:true, repeat:1 });
+            gsap.fromTo('#sparks path', { opacity:0, scale:0.4, transformOrigin:'center' },
+                { opacity:1, scale:1, duration:0.25, stagger:0.1, yoyo:true, repeat:3 });
+        }
+        if (i===1){
+            gsap.fromTo('#p2-flash', { opacity:0.85 }, { opacity:0.25, duration:0.3, repeat:5, yoyo:true });
+            gsap.to(['#p2-ack','#p2-ackt'], { opacity:1, duration:0.4, delay:1.6 });
+            gsap.fromTo('#p2-ack', { scale:1.6, transformOrigin:'center' }, { scale:1, duration:0.5, delay:1.6, ease:'back.out(2)' });
+            gsap.to('#p2-flash', { opacity:0.12, duration:0.5, delay:2.2 });
+        }
+        if (i===2){
+            gsap.fromTo('#p3-phone', { rotate:-3, transformOrigin:'center' }, { rotate:3, duration:0.09, repeat:9, yoyo:true, clearProps:'rotate' });
+            gsap.fromTo('#p3-waves path', { opacity:0 }, { opacity:1, duration:0.3, stagger:0.2, yoyo:true, repeat:3 });
+            gsap.to('#p3-bub', { opacity:1, duration:0.5, delay:1.2 });
+        }
+        if (i===3){
+            var tr = document.getElementById('p4-trend'), len = tr.getTotalLength();
+            tr.style.strokeDasharray = len; tr.style.strokeDashoffset = len;
+            gsap.to(tr, { strokeDashoffset:0, duration:1.6, ease:'power2.out' });
+            var o = { t:0 }, dot = document.getElementById('p4-dot');
+            gsap.set(dot, { opacity:1 });
+            gsap.to(o, { t:1, duration:1.6, ease:'power2.out', onUpdate:function(){
+                var p = tr.getPointAtLength(o.t*len);
+                dot.setAttribute('cx', p.x); dot.setAttribute('cy', p.y);
+            }});
+            gsap.fromTo('#p4-stamp', { opacity:0, scale:2.2, transformOrigin:'center' },
+                { opacity:1, scale:1, duration:0.45, delay:1.7, ease:'power3.in' });
+        }
+        // clean up transient states before next loop
+        if (i===3){
+            setTimeout(function(){
+                gsap.to(['#p3-bub','#p2-ack','#p2-ackt','#p4-stamp'], { opacity:0, duration:0.5 });
+                gsap.to('#p2-flash', { opacity:0.85, duration:0.5 });
+                gsap.set('#p4-dot', { opacity:0 });
+            }, 3600);
+        }
+        setTimeout(function(){ beat((i+1)%4); }, i===3 ? 5200 : 3800);
+    }
+    setTimeout(function(){ beat(0); }, 1400);
+})();
+</script>
+</body>
+</html>

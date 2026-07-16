@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 15 — The Journey (Scrolling Daylight Diorama)</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+:root { --olive:#6B7B3A; --olive-lt:#8A9B55; --sky1:#BFE3F2; --sky2:#E8F5FB; --field:#A8C686;
+        --field-dk:#7FA35C; --ink:#243021; --amber:#E8940A; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; }
+body { font-family:'Inter',sans-serif; overflow:hidden; color:var(--ink);
+    background:linear-gradient(to bottom, var(--sky1) 0%, var(--sky2) 58%, var(--field) 58.2%, var(--field-dk) 100%); }
+
+/* clouds parallax */
+.cloudbank { position:absolute; inset:0; z-index:1; pointer-events:none; }
+.cl { position:absolute; background:#fff; border-radius:999px; opacity:0.9; filter:blur(2px); }
+.cl::before, .cl::after { content:''; position:absolute; background:#fff; border-radius:50%; }
+.cl::before { width:55%; height:170%; left:12%; top:-80%; }
+.cl::after { width:42%; height:130%; right:14%; top:-50%; }
+
+/* the endless scrolling scene */
+.diorama { position:absolute; left:0; right:0; bottom:0; height:62vh; z-index:2; overflow:hidden; }
+.scene-track { position:absolute; bottom:0; height:100%; width:200%; display:flex; }
+.scene-track svg { width:50%; height:100%; flex-shrink:0; }
+.gr1 { fill:#8FB56A; } .gr2 { fill:#7FA35C; }
+.struct { fill:#41502F; } .struct-lt { fill:#5A6C42; }
+.pipe-main { stroke:#41502F; stroke-width:8; fill:none; }
+.pipe-glow { stroke:var(--amber); stroke-width:3; fill:none; stroke-dasharray:8 26; animation:flow 1.3s linear infinite; }
+@keyframes flow { to { stroke-dashoffset:-34; } }
+.derr { stroke:#41502F; stroke-width:4; fill:none; }
+.tanky { fill:#E7EDDA; stroke:#41502F; stroke-width:3; }
+.marker-lbl { font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:2px; fill:#41502F; font-weight:600; }
+.beam { fill:var(--amber); opacity:0.85; animation:blink 2s ease-in-out infinite; }
+@keyframes blink { 50%{opacity:0.2;} }
+
+/* content panel floats over the sky */
+.content { position:absolute; z-index:6; top:4.5vh; left:0; right:0; display:flex; align-items:flex-start; }
+.panel { margin-left:clamp(22px,5vw,80px); max-width:760px; }
+.logo-row { display:flex; align-items:center; gap:16px; margin-bottom:1.2rem; }
+.logo-chip { background:#fff; border-radius:10px; padding:8px 18px; box-shadow:0 10px 30px rgba(36,48,33,0.18); }
+.logo-chip img { height:44px; display:block; }
+.svc { font-family:'IBM Plex Mono',monospace; font-size:0.66rem; letter-spacing:0.28em; text-transform:uppercase; color:#4E6237; font-weight:600; }
+h1 { font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase;
+    font-size:clamp(2.7rem,6.4vw,5.6rem); line-height:0.92; color:var(--ink); }
+h1 em { font-style:normal; color:#4E6E22; }
+.sub { margin-top:1rem; max-width:620px; font-size:clamp(0.96rem,1.35vw,1.15rem); line-height:1.6; color:#3D4C33; }
+.sub b { color:var(--ink); }
+.ctas { display:flex; gap:0.9rem; margin-top:1.6rem; flex-wrap:wrap; }
+.btn { font-size:0.86rem; font-weight:700; padding:0.9rem 2.1rem; border-radius:999px; text-decoration:none; transition:all 0.22s; }
+.btn-solid { background:var(--olive); color:#fff; box-shadow:0 12px 30px rgba(107,123,58,0.35); }
+.btn-solid:hover { background:var(--olive-lt); transform:translateY(-2px); }
+.btn-ghost { background:rgba(255,255,255,0.75); color:var(--ink); border:1.5px solid rgba(36,48,33,0.25); }
+.btn-ghost:hover { background:#fff; }
+
+/* mile marker HUD bottom-left */
+.mile { position:absolute; left:clamp(20px,4vw,60px); bottom:3.4vh; z-index:7; font-family:'IBM Plex Mono',monospace;
+    background:rgba(255,255,255,0.9); border:1.5px solid rgba(65,80,47,0.35); border-radius:12px; padding:12px 18px;
+    box-shadow:0 12px 30px rgba(36,48,33,0.15); }
+.mile .k { font-size:9px; letter-spacing:0.22em; text-transform:uppercase; color:#78865F; }
+.mile .v { font-family:'Barlow Condensed',sans-serif; font-size:1.9rem; font-weight:700; color:var(--ink); line-height:1.1; }
+.mile .v small { font-size:0.5em; color:#4E6E22; }
+.strap { position:absolute; right:clamp(20px,4vw,60px); bottom:4vh; z-index:7; font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px; letter-spacing:0.22em; text-transform:uppercase; color:rgba(36,48,33,0.65); text-align:right; }
+.strap b { color:#B06D00; }
+@media (max-width:700px){ .strap{ display:none; } }
+@media (prefers-reduced-motion: reduce){ .scene-track{ animation:none !important; } .pipe-glow,.beam{ animation:none; } }
+</style>
+</head>
+<body>
+
+<div class="cloudbank">
+    <div class="cl" style="width:150px;height:34px;top:9%;"  id="cd1"></div>
+    <div class="cl" style="width:110px;height:26px;top:18%;" id="cd2"></div>
+    <div class="cl" style="width:190px;height:40px;top:5%;"  id="cd3"></div>
+</div>
+
+<!-- the moving landscape: wellhead -> gathering -> pump station -> terminal, on loop -->
+<div class="diorama">
+    <div class="scene-track" id="track">
+        <svg viewBox="0 0 1600 560" preserveAspectRatio="none" id="scene-a"></svg>
+        <svg viewBox="0 0 1600 560" preserveAspectRatio="none" id="scene-b"></svg>
+    </div>
+</div>
+
+<div class="content">
+    <div class="panel">
+        <div class="logo-row" data-in>
+            <div class="logo-chip"><img src="../images/logo.png" alt="Optimal Pipeline Solutions"></div>
+            <div class="svc">Automation | Remote Monitoring | Compliance</div>
+        </div>
+        <h1 data-in>Driving efficiency. <em>Ensuring compliance.</em></h1>
+        <p class="sub" data-in><b>Your dedicated pipeline operations and automation engineering partner</b> —
+            from the wellhead to the terminal gate. Controllers and automation engineers who keep your
+            pipeline running and compliant, across every mile that rolls past.</p>
+        <div class="ctas" data-in>
+            <a href="#services" class="btn btn-solid">Explore Our Services</a>
+            <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+        </div>
+    </div>
+</div>
+
+<div class="mile" data-in>
+    <div class="k">Pipeline Under Watch</div>
+    <div class="v"><span id="miles">0</span> <small>MILES &amp; COUNTING</small></div>
+</div>
+<div class="strap">The scenery changes — <b>the watch doesn't</b></div>
+
+<script>
+/* build one scene segment (used twice for a seamless loop) */
+function buildScene(svg){
+    svg.innerHTML =
+      // rolling ground
+      '<path class="gr1" d="M0 210 Q 200 175 400 205 T 800 200 T 1200 208 T 1600 198 L 1600 560 L 0 560 Z"/>' +
+      '<path class="gr2" d="M0 330 Q 260 295 520 325 T 1040 320 T 1600 318 L 1600 560 L 0 560 Z"/>' +
+      // the pipeline running the full segment
+      '<path class="pipe-main" d="M -10 350 L 1610 350"/>' +
+      '<path class="pipe-glow" d="M -10 350 L 1610 350"/>' +
+      // wellhead (pumpjack-ish derrick)
+      '<g transform="translate(170,350)">' +
+        '<path class="derr" d="M -26 0 L 0 -78 L 26 0 Z M -13 -39 L 13 -39"/>' +
+        '<circle class="beam" cx="0" cy="-86" r="5"/>' +
+        '<text class="marker-lbl" x="-42" y="34">WELLHEAD</text></g>' +
+      // gathering tank battery
+      '<g transform="translate(560,350)">' +
+        '<rect class="tanky" x="-58" y="-64" width="52" height="64" rx="8"/>' +
+        '<rect class="tanky" x="4" y="-52" width="46" height="52" rx="8"/>' +
+        '<text class="marker-lbl" x="-58" y="34">GATHERING</text></g>' +
+      // pump station
+      '<g transform="translate(980,350)">' +
+        '<rect class="struct" x="-64" y="-56" width="128" height="56" rx="6"/>' +
+        '<rect class="struct-lt" x="-64" y="-56" width="128" height="14" rx="6"/>' +
+        '<circle class="beam" cx="52" cy="-66" r="5"/>' +
+        '<text class="marker-lbl" x="-64" y="34">PUMP STATION</text></g>' +
+      // terminal
+      '<g transform="translate(1380,350)">' +
+        '<rect class="tanky" x="-72" y="-74" width="64" height="74" rx="10"/>' +
+        '<rect class="tanky" x="2" y="-60" width="56" height="60" rx="10"/>' +
+        '<rect class="struct" x="66" y="-40" width="26" height="40" rx="4"/>' +
+        '<text class="marker-lbl" x="-72" y="34">TERMINAL</text></g>';
+}
+buildScene(document.getElementById('scene-a'));
+buildScene(document.getElementById('scene-b'));
+
+/* endless scroll — the world moves past the fixed watchpoint */
+gsap.to('#track', { xPercent:-50, duration:26, ease:'none', repeat:-1 });
+
+/* cloud parallax, slower than the ground */
+[['#cd1',120],['#cd2',160],['#cd3',95]].forEach(function(c){
+    gsap.fromTo(c[0], { left:'105%' }, { left:'-16%', duration:c[1], ease:'none', repeat:-1 });
+});
+
+/* odometer ties the loop to the message */
+(function(){
+    var el = document.getElementById('miles'), v = 0;
+    var o = { v:0 };
+    gsap.to(o, { v:640, duration:2.4, delay:0.7, ease:'power2.out',
+        onUpdate:function(){ el.textContent = Math.round(o.v).toLocaleString('en-US'); } });
+    setInterval(function(){ v = 640 + Math.floor((performance.now()/26000) % 1 * 4);
+        el.textContent = v.toLocaleString('en-US'); }, 3200);
+})();
+
+gsap.from('[data-in]', { opacity:0, y:24, duration:0.95, ease:'power3.out', stagger:0.12, delay:0.25 });
+</script>
+</body>
+</html>

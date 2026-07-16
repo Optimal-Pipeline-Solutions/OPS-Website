@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 03 — Field / Control Room Split</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+:root { --olive:#6B7B3A; --olive-lt:#8A9B55; --olive-pale:#B8C97A; --amber:#F0A830; --ink:#0B0D09; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; }
+body { background:var(--ink); color:#fff; font-family:'Inter',sans-serif; overflow:hidden; }
+
+/* split panes with diagonal seam */
+.pane { position:absolute; top:0; bottom:0; overflow:hidden; }
+.pane-field   { left:0; width:100%; clip-path:polygon(0 0, 58% 0, 42% 100%, 0 100%); }
+.pane-control { left:0; width:100%; clip-path:polygon(58% 0, 100% 0, 100% 100%, 42% 100%); }
+.pane .img { position:absolute; inset:-4%; background-size:cover; background-position:center; transition:transform 6s ease; }
+.pane-field .img { background-image:url('../images/hero-bg.jpg'); filter:saturate(1.05); }
+.pane-control .img { background-image:url('../images/controlroom1.jpeg'); filter:saturate(0.75) brightness(0.8); }
+.pane-field::after   { content:''; position:absolute; inset:0; background:linear-gradient(105deg, rgba(11,13,9,0.72) 0%, rgba(11,13,9,0.25) 60%, rgba(11,13,9,0.55) 100%); }
+.pane-control::after { content:''; position:absolute; inset:0; background:linear-gradient(255deg, rgba(11,13,9,0.78) 0%, rgba(11,13,9,0.3) 55%, rgba(11,13,9,0.6) 100%); }
+
+/* glowing seam */
+.seam { position:absolute; top:-6%; bottom:-6%; left:50%; width:3px; z-index:4;
+    background:linear-gradient(to bottom, transparent, var(--olive-lt) 18%, var(--olive-pale) 50%, var(--olive-lt) 82%, transparent);
+    transform:translateX(-50%) rotate(9.1deg); transform-origin:center;
+    box-shadow:0 0 24px rgba(138,155,85,0.7), 0 0 80px rgba(138,155,85,0.35); }
+
+/* data threads crossing the seam */
+.threads { position:absolute; inset:0; z-index:3; pointer-events:none; }
+.threads svg { width:100%; height:100%; }
+.thread { stroke:rgba(240,168,48,0.4); stroke-width:1.5; fill:none; }
+.pulse { fill:var(--amber); }
+
+/* pane labels */
+.pane-label { position:absolute; z-index:5; font-family:'IBM Plex Mono',monospace; font-size:11px;
+    letter-spacing:0.3em; text-transform:uppercase; color:rgba(255,255,255,0.55);
+    display:flex; align-items:center; gap:10px; }
+.pane-label::before { content:''; width:34px; height:1px; background:rgba(255,255,255,0.35); }
+.lbl-field { left:4vw; top:12vh; }
+.lbl-control { right:4vw; bottom:12vh; flex-direction:row-reverse; }
+.lbl-control::before { order:2; }
+
+/* center content -->*/
+.content { position:absolute; inset:0; z-index:6; display:flex; flex-direction:column; align-items:center;
+    justify-content:center; text-align:center; padding:0 20px; }
+.logo-chip { background:rgba(255,255,255,0.95); border-radius:10px; padding:13px 28px; margin-bottom:1.5rem;
+    box-shadow:0 10px 50px rgba(0,0,0,0.55); opacity:0; }
+.logo-chip img { height:58px; display:block; }
+.svc { font-family:'IBM Plex Mono',monospace; font-size:0.7rem; letter-spacing:0.36em; text-transform:uppercase;
+    color:var(--olive-pale); margin-bottom:1.4rem; opacity:0; text-shadow:0 2px 12px rgba(0,0,0,0.8); }
+h1 { font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase;
+    font-size:clamp(3.4rem,9.5vw,8.5rem); line-height:0.9; text-shadow:0 6px 40px rgba(0,0,0,0.7); opacity:0; }
+h1 em { font-style:normal; color:var(--olive-pale); }
+.bridge { margin-top:1.6rem; font-size:clamp(1rem,1.6vw,1.3rem); font-weight:500; color:rgba(255,255,255,0.9);
+    max-width:760px; text-shadow:0 2px 16px rgba(0,0,0,0.8); opacity:0; }
+.bridge small { display:block; margin-top:0.5rem; font-weight:400; font-size:0.88rem; color:rgba(255,255,255,0.55); }
+.ctas { display:flex; gap:1rem; margin-top:2.4rem; flex-wrap:wrap; justify-content:center; opacity:0; }
+.btn { font-size:0.85rem; font-weight:600; letter-spacing:0.06em; padding:0.95rem 2.3rem; border-radius:999px;
+    text-decoration:none; transition:all 0.25s; }
+.btn-solid { background:var(--olive); color:#fff; }
+.btn-solid:hover { background:var(--olive-lt); transform:translateY(-2px); box-shadow:0 12px 34px rgba(107,123,58,0.45); }
+.btn-ghost { color:#fff; border:1px solid rgba(255,255,255,0.35); backdrop-filter:blur(6px); }
+.btn-ghost:hover { border-color:#fff; background:rgba(255,255,255,0.08); }
+
+/* the one-line promise across the seam */
+.promise { position:absolute; bottom:5.5vh; left:50%; transform:translateX(-50%); z-index:6;
+    font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.26em; text-transform:uppercase;
+    color:rgba(255,255,255,0.5); white-space:nowrap; opacity:0; }
+.promise b { color:var(--olive-pale); font-weight:500; }
+@media (max-width:700px){
+    .pane-field { clip-path:polygon(0 0, 100% 0, 100% 42%, 0 58%); }
+    .pane-control { clip-path:polygon(0 58%, 100% 42%, 100% 100%, 0 100%); }
+    .seam { top:50%; bottom:auto; left:-6%; right:-6%; width:auto; height:3px;
+        background:linear-gradient(to right, transparent, var(--olive-pale), transparent);
+        transform:rotate(-9.1deg); }
+    .lbl-field { top:7vh; } .lbl-control { bottom:7vh; }
+    .promise { white-space:normal; text-align:center; width:90vw; }
+}
+</style>
+</head>
+<body>
+
+<div class="pane pane-field"><div class="img"></div></div>
+<div class="pane pane-control"><div class="img"></div></div>
+<div class="seam"></div>
+
+<!-- telemetry threads crossing from field to control -->
+<div class="threads">
+<svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <path class="thread" id="t1" d="M 180 260 C 560 180, 1020 240, 1430 190"/>
+    <path class="thread" id="t2" d="M 140 620 C 520 700, 980 620, 1460 700"/>
+    <path class="thread" id="t3" d="M 240 450 C 640 420, 960 500, 1380 450"/>
+    <circle class="pulse" r="4"><animateMotion dur="4.2s" repeatCount="indefinite"><mpath href="#t1"/></animateMotion></circle>
+    <circle class="pulse" r="3.4"><animateMotion dur="5.4s" begin="1.2s" repeatCount="indefinite"><mpath href="#t2"/></animateMotion></circle>
+    <circle class="pulse" r="3.8"><animateMotion dur="4.8s" begin="2.1s" repeatCount="indefinite"><mpath href="#t3"/></animateMotion></circle>
+</svg>
+</div>
+
+<div class="pane-label lbl-field">Your Field Assets</div>
+<div class="pane-label lbl-control">Our Control Room</div>
+
+<div class="content">
+    <div class="logo-chip"><img src="../images/logo.png" alt="Optimal Pipeline Solutions"></div>
+    <p class="svc">Automation | Remote Monitoring | Compliance</p>
+    <h1>Driving efficiency.<br><em>Ensuring compliance.</em></h1>
+    <p class="bridge">Your dedicated pipeline operations and automation engineering partner —
+        one team connecting your field to a control room that never blinks.
+        <small>Controllers and automation engineers who keep your pipeline running and compliant.</small>
+    </p>
+    <div class="ctas">
+        <a href="#services" class="btn btn-solid">Explore Our Services</a>
+        <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+    </div>
+</div>
+
+<div class="promise">Every signal out there <b>&mdash; answered here &mdash;</b> 24 hours a day</div>
+
+<script>
+gsap.timeline({defaults:{ease:'power3.out'}})
+    .from('.pane-field .img',   { xPercent:-6, opacity:0, duration:1.2 }, 0)
+    .from('.pane-control .img', { xPercent:6, opacity:0, duration:1.2 }, 0)
+    .from('.seam', { scaleY:0, duration:0.9, ease:'power2.inOut' }, 0.4)
+    .to('.logo-chip', { opacity:1, y:0, startAt:{y:22}, duration:0.8 }, 0.8)
+    .to('.svc',   { opacity:1, duration:0.6 }, 1.05)
+    .to('h1',     { opacity:1, y:0, startAt:{y:34}, duration:1 }, 1.15)
+    .to('.bridge',{ opacity:1, y:0, startAt:{y:22}, duration:0.8 }, 1.45)
+    .to('.ctas',  { opacity:1, y:0, startAt:{y:16}, duration:0.8 }, 1.65)
+    .to('.promise',{ opacity:1, duration:1 }, 2.0)
+    .from('.pane-label', { opacity:0, duration:0.8, stagger:0.15 }, 1.3);
+
+// slow parallax breathing on the two photographs
+gsap.to('.pane-field .img',   { scale:1.06, duration:18, yoyo:true, repeat:-1, ease:'sine.inOut' });
+gsap.to('.pane-control .img', { scale:1.05, duration:22, yoyo:true, repeat:-1, ease:'sine.inOut', delay:3 });
+
+// pointer parallax — the seam leans slightly toward the cursor
+document.addEventListener('mousemove', function(e){
+    var nx = (e.clientX / window.innerWidth) - 0.5;
+    gsap.to('.seam', { rotate: 9.1 + nx * 2.4, duration:0.9, overwrite:'auto' });
+    gsap.to('.pane-field .img',   { xPercent: nx * -1.6, duration:1.1, overwrite:'auto' });
+    gsap.to('.pane-control .img', { xPercent: nx * 1.6,  duration:1.1, overwrite:'auto' });
+});
+</script>
+</body>
+</html>

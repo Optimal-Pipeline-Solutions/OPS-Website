@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 29 — The Dive (120 Miles to 4-20 mA)</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+:root { --olive:#6B7B3A; --olive-lt:#8A9B55; --amber:#F0A830; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; }
+body { font-family:'Inter',sans-serif; overflow:hidden; color:#fff; background:#101613; }
+
+/* zoom levels stack — each fills the screen, we scale into them */
+.level { position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    will-change:transform, opacity; opacity:0; transform:scale(0.16); }
+.level svg { width:min(92vw, 165vh); height:auto; }
+.level.on { opacity:1; }
+
+/* L1 satellite */
+.l1-land { fill:#22301F; } .l1-land2 { fill:#2B3B27; }
+.l1-route { stroke:#F0A830; stroke-width:3.5; fill:none; stroke-linecap:round; }
+.l1-lbl { font-family:'IBM Plex Mono',monospace; font-size:13px; fill:rgba(255,255,255,0.6); letter-spacing:0.14em; }
+/* L2 corridor */
+.l2-field { fill:#31421F; } .l2-field2 { fill:#3C5026; } .l2-row { fill:#57411F; }
+/* L3 site */
+.l3-pad { fill:#4A4438; } .l3-unit { fill:#2A2E26; stroke:#8A9B55; stroke-width:2; }
+/* L4 transmitter */
+.l4-body { fill:#3E444C; stroke:#8C949E; stroke-width:3; }
+/* common */
+.zoom-ring { fill:none; stroke:rgba(240,168,48,0.85); stroke-width:2.5; stroke-dasharray:8 8; }
+.tag { font-family:'IBM Plex Mono',monospace; fill:#F0A830; letter-spacing:0.12em; }
+
+/* HUD -->*/
+.alt { position:absolute; z-index:9; right:clamp(20px,3vw,46px); top:50%; transform:translateY(-50%);
+    text-align:right; font-family:'IBM Plex Mono',monospace; }
+.alt .k { font-size:9px; letter-spacing:0.26em; color:rgba(255,255,255,0.4); text-transform:uppercase; }
+.alt .v { font-family:'Barlow Condensed',sans-serif; font-size:clamp(1.6rem,3.2vw,2.8rem); font-weight:700; color:var(--amber); line-height:1.05; }
+.alt .scale-track { width:3px; height:28vh; background:rgba(255,255,255,0.15); margin:14px 0 14px auto; border-radius:2px; position:relative; }
+.alt .scale-dot { position:absolute; right:-4px; width:11px; height:11px; border-radius:50%; background:var(--amber); }
+.crumbs { position:absolute; z-index:9; left:clamp(20px,3.4vw,52px); bottom:4.5vh;
+    font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.5); }
+.crumbs b { color:var(--olive-lt); }
+
+/* headline */
+.head { position:absolute; z-index:8; top:5.5vh; left:0; right:0; text-align:center; padding:0 20px; pointer-events:none; }
+.head > * { pointer-events:auto; }
+.logo-chip { display:inline-flex; background:rgba(255,255,255,0.95); border-radius:9px; padding:9px 20px; margin-bottom:0.9rem; }
+.logo-chip img { height:42px; display:block; }
+.svc { font-family:'IBM Plex Mono',monospace; font-size:0.64rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--olive-lt); margin-bottom:0.8rem; }
+h1 { font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase;
+    font-size:clamp(2.3rem,5.4vw,4.4rem); line-height:0.92; text-shadow:0 4px 30px rgba(0,0,0,0.8); }
+h1 em { font-style:normal; color:var(--olive-lt); }
+.sub { margin:0.7rem auto 0; max-width:560px; font-size:clamp(0.9rem,1.2vw,1.05rem); color:rgba(255,255,255,0.8); text-shadow:0 2px 12px rgba(0,0,0,0.8); }
+.ctas { display:flex; gap:0.9rem; margin-top:1.2rem; flex-wrap:wrap; justify-content:center; }
+.btn { font-size:0.82rem; font-weight:600; padding:0.8rem 2rem; border-radius:999px; text-decoration:none; transition:all 0.22s; }
+.btn-solid { background:var(--olive); color:#fff; }
+.btn-solid:hover { background:var(--olive-lt); }
+.btn-ghost { color:#fff; border:1px solid rgba(255,255,255,0.4); backdrop-filter:blur(4px); }
+.btn-ghost:hover { background:rgba(255,255,255,0.1); }
+</style>
+</head>
+<body>
+
+<!-- L1: the system from satellite height -->
+<div class="level" id="lv1">
+<svg viewBox="0 0 900 560">
+    <rect width="900" height="560" fill="#1A241A"/>
+    <path class="l1-land" d="M0 90 Q 220 40 430 110 T 900 80 L 900 560 L 0 560 Z"/>
+    <path class="l1-land2" d="M0 300 Q 260 250 520 320 T 900 290 L 900 560 L 0 560 Z"/>
+    <path class="l1-route" d="M 60 470 C 260 380, 420 400, 560 300 S 780 160, 850 110"/>
+    <circle cx="60" cy="470" r="7" fill="#8A9B55"/><text class="l1-lbl" x="76" y="478">STILLWATER HUB</text>
+    <circle cx="560" cy="300" r="6" fill="#F0A830"/>
+    <circle cx="850" cy="110" r="6" fill="#8A9B55"/><text class="l1-lbl" x="700" y="96">TERMINAL</text>
+    <circle class="zoom-ring" cx="560" cy="300" r="34"/>
+    <text class="tag" x="600" y="286" font-size="13">SITE 042 ▶</text>
+</svg>
+</div>
+
+<!-- L2: the ROW corridor -->
+<div class="level" id="lv2">
+<svg viewBox="0 0 900 560">
+    <rect width="900" height="560" fill="#2A3A1C"/>
+    <path class="l2-field" d="M0 0 H900 V560 H0 Z"/>
+    <path class="l2-field2" d="M0 0 H450 V560 H0 Z" opacity="0.7"/>
+    <g opacity="0.35" stroke="#22301A" stroke-width="3">
+        <path d="M 40 0 V 560 M 130 0 V 560 M 220 0 V 560 M 310 0 V 560 M 540 0 V 560 M 640 0 V 560 M 740 0 V 560 M 840 0 V 560" fill="none"/>
+    </g>
+    <!-- the mowed right-of-way cutting diagonally -->
+    <path class="l2-row" d="M -20 420 L 900 120 L 900 190 L -20 500 Z"/>
+    <path d="M -20 460 L 900 155" stroke="#F0A830" stroke-width="3" stroke-dasharray="14 10" fill="none"/>
+    <g transform="translate(470,300)">
+        <rect x="-26" y="-20" width="52" height="40" fill="#4A4438" stroke="#8A9B55" stroke-width="2"/>
+        <circle class="zoom-ring" r="44"/>
+        <text class="tag" x="54" y="-30" font-size="14">FACILITY PAD ▶</text>
+    </g>
+    <text class="l1-lbl" x="30" y="58">PIPELINE RIGHT-OF-WAY — MP 46</text>
+</svg>
+</div>
+
+<!-- L3: the site pad -->
+<div class="level" id="lv3">
+<svg viewBox="0 0 900 560">
+    <rect width="900" height="560" fill="#3A4A24"/>
+    <rect class="l3-pad" x="90" y="80" width="720" height="400" rx="14"/>
+    <g transform="translate(280,240)">
+        <ellipse cx="0" cy="0" rx="86" ry="34" fill="#2A2E26" stroke="#8A9B55" stroke-width="2"/>
+        <ellipse cx="0" cy="-14" rx="86" ry="34" fill="#39412F" stroke="#8A9B55" stroke-width="2"/>
+        <text class="l1-lbl" x="-38" y="66">TK-101</text>
+    </g>
+    <g transform="translate(600,300)">
+        <rect class="l3-unit" x="-90" y="-46" width="180" height="92" rx="8"/>
+        <rect class="l3-unit" x="-70" y="-30" width="56" height="60" rx="5"/>
+        <circle class="zoom-ring" cx="46" cy="0" r="36"/>
+        <circle cx="46" cy="0" r="9" fill="#F0A830"/>
+        <text class="tag" x="94" y="-38" font-size="14">PT-1042 ▶</text>
+        <text class="l1-lbl" x="-88" y="78">LACT / METER SKID</text>
+    </g>
+    <path d="M 90 480 L 810 480" stroke="#F0A830" stroke-width="4" stroke-dasharray="10 16" fill="none"/>
+</svg>
+</div>
+
+<!-- L4: the transmitter itself -->
+<div class="level" id="lv4">
+<svg viewBox="0 0 900 560">
+    <rect width="900" height="560" fill="#20262C"/>
+    <g transform="translate(450,290)">
+        <rect x="-30" y="90" width="60" height="120" fill="#3E444C" stroke="#8C949E" stroke-width="3"/>
+        <circle class="l4-body" r="110"/>
+        <circle r="86" fill="#12161A" stroke="#8C949E" stroke-width="2"/>
+        <text x="0" y="-18" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="16" fill="rgba(240,168,48,0.75)" letter-spacing="2">PT-1042</text>
+        <text id="l4-val" x="0" y="26" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="40" font-weight="700" fill="#F0A830">612.4</text>
+        <text x="0" y="54" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="13" fill="rgba(255,255,255,0.5)">PSIG</text>
+        <!-- 4-20mA pulse leaving on the signal wire -->
+        <path id="wire" d="M 110 40 C 240 60, 320 -60, 460 -40" stroke="#8C949E" stroke-width="3" fill="none"/>
+        <circle id="mA" r="6" fill="#F0A830" opacity="0"/>
+        <text class="tag" x="250" y="-64" font-size="14">4–20 mA → RTU → CONSOLE 1</text>
+    </g>
+</svg>
+</div>
+
+<div class="head">
+    <div class="logo-chip" data-in><img src="../images/logo.png" alt="Optimal Pipeline Solutions"></div>
+    <div class="svc" data-in>Automation | Remote Monitoring | Compliance</div>
+    <h1 data-in>Driving efficiency. <em>Ensuring compliance.</em></h1>
+    <p class="sub" data-in><b>Your dedicated pipeline operations and automation engineering partner</b> —
+        from 120 miles of system down to a single 4-20 mA loop. Controllers and automation engineers
+        who keep your pipeline running and compliant at every altitude.</p>
+    <div class="ctas" data-in>
+        <a href="#services" class="btn btn-solid">Explore Our Services</a>
+        <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+    </div>
+</div>
+
+<div class="alt" data-in>
+    <div class="k">Altitude</div>
+    <div class="v" id="alt-v">120 MI</div>
+    <div class="scale-track"><div class="scale-dot" id="scale-dot" style="top:0%"></div></div>
+    <div class="k" id="alt-k">System View</div>
+</div>
+
+<div class="crumbs" data-in>You are diving: <b id="crumb">SYSTEM → SITE 042</b></div>
+
+<script>
+var LEVELS = ['#lv1','#lv2','#lv3','#lv4'];
+var META = [
+    ['120 MI','System View','SYSTEM → SITE 042', 0],
+    ['2,000 FT','Right-of-Way','ROW MP 46 → FACILITY PAD', 33],
+    ['60 FT','Facility Pad','PAD → METER SKID → PT-1042', 66],
+    ['4–20 mA','Inside the Loop','PT-1042 → RTU → CONSOLE 1', 100]
+];
+var HOLD = 3.4, DIVE = 1.6;
+
+gsap.set('#lv1', { opacity:1, scale:1 });
+gsap.set(['#lv2','#lv3','#lv4'], { opacity:0, scale:0.16 });
+
+var altV = document.getElementById('alt-v'), altK = document.getElementById('alt-k'),
+    crumb = document.getElementById('crumb'), dot = document.getElementById('scale-dot');
+
+function setMeta(i){
+    altV.textContent = META[i][0]; altK.textContent = META[i][1]; crumb.textContent = META[i][2];
+    gsap.to(dot, { top: META[i][3] + '%', duration:0.8, ease:'power2.out' });
+    gsap.fromTo([altV,altK], { opacity:0.3 }, { opacity:1, duration:0.6 });
+}
+
+function dive(){
+    var tl = gsap.timeline({ onComplete:function(){ setTimeout(reset, 2600); } });
+    for (var i=0;i<3;i++){
+        (function(i){
+            var start = HOLD + i*(HOLD+DIVE);   // hold, transition, hold, transition ...
+            tl.to(LEVELS[i],   { scale:6, opacity:0, duration:DIVE, ease:'power2.in' }, start)
+              .to(LEVELS[i+1], { scale:1, opacity:1, duration:DIVE, ease:'power2.out' }, start+0.12)
+              .call(function(){ setMeta(i+1); if (i===2) mAloop(); }, null, start+DIVE*0.6);
+        })(i);
+    }
+    tl.to({}, { duration:0.01 }, HOLD + 2*(HOLD+DIVE) + DIVE + HOLD); // final hold on level 4
+}
+function reset(){
+    var tl = gsap.timeline({ onComplete:function(){ setMeta(0); setTimeout(dive, 1200); } });
+    tl.to('#lv4', { opacity:0, scale:0.6, duration:0.9, ease:'power2.inOut' })
+      .fromTo('#lv1', { scale:2.4, opacity:0 }, { scale:1, opacity:1, duration:1.1, ease:'power2.out' }, '<0.2')
+      .set(['#lv2','#lv3','#lv4'], { scale:0.16, opacity:0 });
+}
+setMeta(0); setTimeout(dive, 2200);
+
+/* the 4-20mA pulse rides the wire while we're at level 4 */
+function mAloop(){
+    var wire = document.getElementById('wire'), mA = document.getElementById('mA'), len = wire.getTotalLength();
+    var o = { t:0 };
+    gsap.set(mA, { opacity:1 });
+    gsap.to(o, { t:1, duration:1.1, repeat:3, ease:'power1.inOut', onUpdate:function(){
+        var p = wire.getPointAtLength(o.t*len);
+        mA.setAttribute('cx', p.x); mA.setAttribute('cy', p.y);
+    }, onComplete:function(){ gsap.to(mA, { opacity:0, duration:0.4 }); } });
+    // value flickers as fresh samples land
+    var v = document.getElementById('l4-val');
+    var iv = setInterval(function(){ v.textContent = (611 + Math.random()*2.6).toFixed(1); }, 700);
+    setTimeout(function(){ clearInterval(iv); }, 4200);
+}
+
+/* zoom rings breathe */
+gsap.utils.toArray('.zoom-ring').forEach(function(r){
+    gsap.fromTo(r, { attr:{ 'stroke-dashoffset':0 } }, { attr:{ 'stroke-dashoffset':-32 }, duration:2.2, repeat:-1, ease:'none' });
+});
+
+gsap.from('[data-in]', { opacity:0, y:22, duration:0.95, ease:'power3.out', stagger:0.11, delay:0.2 });
+</script>
+</body>
+</html>

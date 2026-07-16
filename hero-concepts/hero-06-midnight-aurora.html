@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 06 — Midnight Aurora (Premium Minimal)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+:root { --olive:#6B7B3A; --olive-lt:#8A9B55; --olive-pale:#B8C97A; --copper:#C4633A; --amber:#F0A830; --ink:#0A0C08; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; }
+body { background:var(--ink); color:#fff; font-family:'Inter',sans-serif; overflow:hidden; }
+
+/* aurora blobs */
+.aurora { position:absolute; inset:0; z-index:1; filter:blur(90px) saturate(1.2); opacity:0.55; }
+.blob { position:absolute; border-radius:50%; will-change:transform; }
+.b1 { width:52vw; height:52vw; left:-12vw; top:-18vw; background:radial-gradient(circle, rgba(107,123,58,0.75), transparent 65%); }
+.b2 { width:44vw; height:44vw; right:-10vw; top:-8vw; background:radial-gradient(circle, rgba(196,99,58,0.45), transparent 65%); }
+.b3 { width:60vw; height:60vw; left:18vw; bottom:-30vw; background:radial-gradient(circle, rgba(138,155,85,0.5), transparent 65%); }
+
+/* fine grid + noise */
+.grid { position:absolute; inset:0; z-index:2; opacity:0.5;
+    background-image:linear-gradient(rgba(255,255,255,0.028) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.028) 1px,transparent 1px);
+    background-size:72px 72px;
+    -webkit-mask-image:radial-gradient(ellipse 90% 80% at 50% 40%, black 30%, transparent 100%);
+            mask-image:radial-gradient(ellipse 90% 80% at 50% 40%, black 30%, transparent 100%); }
+.noise { position:absolute; inset:0; z-index:3; opacity:0.05; pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E"); }
+
+/* content */
+.wrap { position:relative; z-index:5; height:100%; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; text-align:center; padding:0 22px; }
+.logo-chip { background:rgba(255,255,255,0.95); border-radius:11px; padding:12px 26px; margin-bottom:2rem;
+    box-shadow:0 20px 60px rgba(0,0,0,0.4); }
+.logo-chip img { height:54px; display:block; }
+.pill { display:inline-flex; align-items:center; gap:9px; padding:0.45rem 1.1rem; margin-bottom:1.7rem;
+    border-radius:999px; border:1px solid rgba(184,201,122,0.25); background:rgba(138,155,85,0.07);
+    font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.26em; text-transform:uppercase; color:var(--olive-pale); }
+.pill .dot { width:7px; height:7px; border-radius:50%; background:#5fbf77; box-shadow:0 0 10px #5fbf77; animation:pdot 2.4s ease-in-out infinite; }
+@keyframes pdot { 50% { opacity:0.35; } }
+h1 { font-weight:800; letter-spacing:-0.035em; line-height:1.02; font-size:clamp(2.9rem,6.8vw,6.2rem); max-width:1080px; }
+h1 .grad { background:linear-gradient(115deg, #B8C97A 10%, #8A9B55 40%, #F0A830 75%, #C4633A 100%);
+    background-size:220% 100%; -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+    animation:gslide 8s ease-in-out infinite alternate; }
+@keyframes gslide { to { background-position:100% 0; } }
+.sub { margin-top:1.7rem; font-size:clamp(1.02rem,1.6vw,1.28rem); color:rgba(255,255,255,0.72); max-width:660px; line-height:1.65; }
+.sub b { color:#fff; font-weight:600; }
+.ctas { display:flex; gap:1rem; margin-top:2.6rem; flex-wrap:wrap; justify-content:center; }
+.btn { position:relative; font-size:0.9rem; font-weight:600; padding:1rem 2.4rem; border-radius:14px;
+    text-decoration:none; transition:all 0.3s cubic-bezier(0.22,1,0.36,1); will-change:transform; }
+.btn-solid { background:linear-gradient(120deg, var(--olive), var(--olive-lt)); color:#fff;
+    box-shadow:0 10px 34px rgba(107,123,58,0.35), inset 0 1px 0 rgba(255,255,255,0.25); }
+.btn-solid:hover { box-shadow:0 16px 48px rgba(107,123,58,0.55), inset 0 1px 0 rgba(255,255,255,0.25); }
+.btn-ghost { color:rgba(255,255,255,0.85); border:1px solid rgba(255,255,255,0.16); background:rgba(255,255,255,0.03); backdrop-filter:blur(8px); }
+.btn-ghost:hover { border-color:rgba(255,255,255,0.4); }
+.proof { display:flex; gap:clamp(20px,4vw,54px); margin-top:3.4rem; flex-wrap:wrap; justify-content:center; }
+.proof div { text-align:center; }
+.proof .n { font-weight:800; font-size:clamp(1.4rem,2.6vw,2.1rem); letter-spacing:-0.02em; color:#fff; }
+.proof .n span { color:var(--olive-pale); }
+.proof .l { margin-top:0.25rem; font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:0.22em;
+    text-transform:uppercase; color:rgba(255,255,255,0.38); }
+</style>
+</head>
+<body>
+
+<div class="aurora">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+</div>
+<div class="grid"></div>
+<div class="noise"></div>
+
+<div class="wrap">
+    <div class="logo-chip" data-in><img src="../images/logo.png" alt="Optimal Pipeline Solutions"></div>
+    <div class="pill" data-in><span class="dot"></span>Automation&ensp;|&ensp;Remote Monitoring&ensp;|&ensp;Compliance</div>
+    <h1 data-in>Driving efficiency.<br><span class="grad">Ensuring compliance.</span></h1>
+    <p class="sub" data-in>Your dedicated pipeline operations and automation engineering partner.
+        <b>Controllers and automation engineers</b> who keep your pipeline running and compliant — every hour, every day.</p>
+    <div class="ctas" data-in>
+        <a href="#services" class="btn btn-solid" data-mag>Explore Our Services</a>
+        <a href="#contact" class="btn btn-ghost" data-mag>Get In Touch</a>
+    </div>
+    <div class="proof" data-in>
+        <div><div class="n" data-count="149">0</div><div class="l">Sites Monitored</div></div>
+        <div><div class="n"><span data-count="15485">0</span></div><div class="l">Alarms Rationalized</div></div>
+        <div><div class="n">24<span>/7</span></div><div class="l">Coverage</div></div>
+        <div><div class="n" data-count="40">0</div><div class="l">Years of SCADA</div></div>
+    </div>
+</div>
+
+<script>
+// staggered entrance
+gsap.from('[data-in]', { opacity:0, y:26, duration:1.0, ease:'power3.out', stagger:0.12, delay:0.2 });
+
+// counters
+document.querySelectorAll('[data-count]').forEach(function(el){
+    var end = +el.dataset.count, obj = { v:0 };
+    gsap.to(obj, { v:end, duration:2.2, delay:1.1, ease:'power2.out',
+        onUpdate:function(){ el.textContent = Math.round(obj.v).toLocaleString('en-US'); } });
+});
+
+// slow aurora drift
+gsap.to('.b1', { xPercent:16, yPercent:12, duration:26, yoyo:true, repeat:-1, ease:'sine.inOut' });
+gsap.to('.b2', { xPercent:-14, yPercent:16, duration:31, yoyo:true, repeat:-1, ease:'sine.inOut' });
+gsap.to('.b3', { xPercent:10, yPercent:-14, duration:36, yoyo:true, repeat:-1, ease:'sine.inOut' });
+
+// magnetic buttons
+document.querySelectorAll('[data-mag]').forEach(function(btn){
+    btn.addEventListener('mousemove', function(e){
+        var r = btn.getBoundingClientRect();
+        gsap.to(btn, { x:(e.clientX-r.left-r.width/2)*0.22, y:(e.clientY-r.top-r.height/2)*0.32, duration:0.4 });
+    });
+    btn.addEventListener('mouseleave', function(){ gsap.to(btn, { x:0, y:0, duration:0.55, ease:'elastic.out(1,0.45)' }); });
+});
+
+// subtle parallax of the whole stage
+document.addEventListener('mousemove', function(e){
+    var nx = e.clientX/innerWidth - 0.5, ny = e.clientY/innerHeight - 0.5;
+    gsap.to('.wrap', { x:nx*-12, y:ny*-8, duration:1.1, overwrite:'auto' });
+    gsap.to('.grid', { x:nx*10, y:ny*7, duration:1.3, overwrite:'auto' });
+});
+</script>
+</body>
+</html>

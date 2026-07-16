@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 38 — Hard Cuts (Story Mode)</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+:root { --olive:#6B7B3A; --olive-lt:#8A9B55; --amber:#F0A830; --ink:#101009; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; }
+body { font-family:'Inter',sans-serif; overflow:hidden; background:var(--ink); color:#fff; }
+
+/* slides */
+.slide { position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    text-align:center; padding:0 6vw; clip-path:polygon(0 0, 0 0, 0 100%, 0 100%); }
+.slide.photo1 { background:url('../images/hero-bg.jpg') center/cover; }
+.slide.photo2 { background:url('../images/controlroom1.jpeg') center/cover; }
+.slide.photo3 { background:url('../images/pipeline-aerial.jpg') center/cover; }
+.slide .shade { position:absolute; inset:0; background:rgba(16,16,9,0.55); }
+.slide.flat-olive { background:var(--olive); }
+.slide.flat-paper { background:#F2EFE4; color:var(--ink); }
+.slide.flat-amber { background:var(--amber); color:#221703; }
+.slide .big { position:relative; font-family:'Barlow Condensed',sans-serif; font-weight:800; text-transform:uppercase;
+    font-size:clamp(3.4rem,11vw,10rem); line-height:0.88; letter-spacing:0.005em; }
+.slide .small { position:relative; margin-top:1.2rem; font-family:'IBM Plex Mono',monospace;
+    font-size:clamp(0.72rem,1.1vw,0.95rem); letter-spacing:0.26em; text-transform:uppercase; opacity:0.8; }
+
+/* persistent chrome */
+.chrome-top { position:absolute; z-index:10; top:0; left:0; right:0; display:flex; align-items:center;
+    justify-content:space-between; padding:20px clamp(18px,3.2vw,44px); }
+.logo-chip { background:rgba(255,255,255,0.96); border-radius:9px; padding:8px 18px; box-shadow:0 8px 26px rgba(0,0,0,0.4); }
+.logo-chip img { height:38px; display:block; }
+/* story progress bars */
+.prog { display:flex; gap:7px; }
+.prog i { width:clamp(26px,4.4vw,64px); height:4px; border-radius:2px; background:rgba(255,255,255,0.3); overflow:hidden; position:relative; }
+.prog i b { position:absolute; inset:0; width:0%; background:#fff; border-radius:2px; }
+.chrome-bot { position:absolute; z-index:10; bottom:0; left:0; right:0; display:flex; align-items:flex-end;
+    justify-content:space-between; gap:16px; padding:22px clamp(18px,3.2vw,44px); }
+.claim { font-size:clamp(0.84rem,1.15vw,1rem); max-width:520px; color:rgba(255,255,255,0.9);
+    text-shadow:0 2px 10px rgba(0,0,0,0.7); }
+.claim b { font-weight:700; }
+.ctas { display:flex; gap:0.8rem; flex-shrink:0; }
+.btn { font-size:0.84rem; font-weight:700; padding:0.9rem 2.1rem; border-radius:999px; text-decoration:none; transition:transform 0.15s; }
+.btn:hover { transform:scale(1.05); }
+.btn-solid { background:var(--olive); color:#fff; }
+.btn-ghost { color:#fff; border:2px solid rgba(255,255,255,0.65); backdrop-filter:blur(4px); }
+@media (max-width:760px){ .claim{ display:none; } }
+</style>
+</head>
+<body>
+
+<!-- the deck: hard diagonal wipes every 1.8s -->
+<div class="slide photo1" data-s>
+    <div class="shade"></div>
+    <div><div class="big">YOUR PIPELINE<br>NEVER SLEEPS.</div><div class="small">Neither do we</div></div>
+</div>
+<div class="slide flat-olive" data-s>
+    <div><div class="big">149 SITES.<br>ONE CONSOLE.</div><div class="small">Automation | Remote Monitoring | Compliance</div></div>
+</div>
+<div class="slide photo2" data-s>
+    <div class="shade"></div>
+    <div><div class="big">A HUMAN<br>ANSWERS. 24/7.</div><div class="small">Average alarm response — 41 seconds</div></div>
+</div>
+<div class="slide flat-paper" data-s>
+    <div><div class="big">15,485 ALARMS<br>RATIONALIZED.</div><div class="small">ISA-18.2 · API RP 1167 · No noise, all signal</div></div>
+</div>
+<div class="slide photo3" data-s>
+    <div class="shade"></div>
+    <div><div class="big">AUDIT DAY?<br>ALREADY DONE.</div><div class="small">49 CFR 195.446 / 192.631 — documented daily</div></div>
+</div>
+<div class="slide flat-amber" data-s>
+    <div><div class="big">DRIVING EFFICIENCY.<br>ENSURING COMPLIANCE.</div>
+    <div class="small">Your dedicated pipeline operations &amp; automation engineering partner</div></div>
+</div>
+
+<div class="chrome-top">
+    <div class="logo-chip"><img src="../images/logo.png" alt="Optimal Pipeline Solutions"></div>
+    <div class="prog" id="prog"></div>
+</div>
+
+<div class="chrome-bot">
+    <div class="claim"><b>Driving efficiency. Ensuring compliance.</b> Controllers and automation engineers
+        who keep your pipeline running and compliant.</div>
+    <div class="ctas">
+        <a href="#services" class="btn btn-solid">Explore Our Services</a>
+        <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+    </div>
+</div>
+
+<script>
+var slides = gsap.utils.toArray('[data-s]'), N = slides.length, cur = 0;
+var HOLD = 1.9;
+
+/* progress bars */
+var prog = document.getElementById('prog');
+for (var i=0;i<N;i++){ var b = document.createElement('i'); b.innerHTML='<b></b>'; prog.appendChild(b); }
+var bars = prog.querySelectorAll('b');
+
+var WIPES = [
+    ['polygon(0 0, 0 0, 0 100%, 0 100%)',       'polygon(0 0, 100% 0, 100% 100%, 0 100%)'],     // L->R
+    ['polygon(100% 0, 100% 0, 100% 100%, 100% 100%)', 'polygon(0 0, 100% 0, 100% 100%, 0 100%)'], // R->L
+    ['polygon(0 0, 100% 0, 100% 0, 0 0)',       'polygon(0 0, 100% 0, 100% 100%, 0 100%)'],     // T->B
+    ['polygon(-30% 0, 0 0, -30% 100%, -60% 100%)', 'polygon(0 0, 130% 0, 100% 100%, -30% 100%)'] // diagonal
+];
+
+function show(i, instant){
+    var s = slides[i], w = WIPES[i % WIPES.length];
+    gsap.set(s, { zIndex:3, clipPath:w[0] });
+    slides.forEach(function(o,k){ if (k!==i) gsap.set(o, { zIndex:1 }); });
+    gsap.to(s, { clipPath:w[1], duration:instant?0:0.55, ease:'power3.inOut' });
+    // slam the text every cut
+    var big = s.querySelector('.big');
+    gsap.fromTo(big, { scale:1.12, opacity:0.6 }, { scale:1, opacity:1, duration:0.5, ease:'power3.out' });
+    // progress
+    bars.forEach(function(b,k){ b.style.width = k < i ? '100%' : '0%'; gsap.killTweensOf(b); });
+    gsap.to(bars[i], { width:'100%', duration:HOLD + 0.55, ease:'none' });
+}
+show(0, true);
+setInterval(function(){ cur = (cur+1) % N; show(cur); }, (HOLD+0.55)*1000);
+
+/* click / tap advances instantly — story-style */
+addEventListener('pointerdown', function(e){
+    if (e.target.closest('a')) return;
+    cur = (cur+1) % N; show(cur);
+});
+
+gsap.from(['.chrome-top','.chrome-bot'], { opacity:0, y:-12, duration:0.7, delay:0.2, stagger:0.1 });
+</script>
+</body>
+</html>

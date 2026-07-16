@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 04 — Kinetic Typography / Flow Through the Letters</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+:root { --olive:#6B7B3A; --olive-lt:#8A9B55; --olive-pale:#B8C97A; --amber:#F0A830; --copper:#C4633A; --ink:#0D0F0A; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; }
+body { background:var(--ink); color:#fff; font-family:'Inter',sans-serif; overflow:hidden;
+    display:flex; flex-direction:column; }
+
+/* faint backdrop */
+.bg { position:absolute; inset:0; background:url('../images/pipeline-aerial.jpg') center/cover; opacity:0.10; filter:grayscale(0.4); }
+.bg-grad { position:absolute; inset:0; background:linear-gradient(to bottom, rgba(13,15,10,0.4), var(--ink) 85%); }
+
+/* top strip: logo + tag */
+.top { position:relative; z-index:5; display:flex; align-items:center; justify-content:space-between;
+    padding:26px clamp(20px,4vw,56px); }
+.logo-chip { background:rgba(255,255,255,0.95); border-radius:8px; padding:8px 18px; }
+.logo-chip img { height:42px; display:block; }
+.svc { font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.32em; text-transform:uppercase; color:var(--olive-pale); }
+@media (max-width:640px){ .svc { display:none; } }
+
+/* the kinetic type stage */
+.stage { position:relative; z-index:4; flex:1; display:flex; flex-direction:column; justify-content:center;
+    padding:0 clamp(16px,4vw,56px); }
+.type-svg { width:100%; height:auto; display:block; }
+.type-svg text { font-family:'Barlow Condensed',sans-serif; font-weight:800; text-transform:uppercase; letter-spacing:0.01em; }
+
+.word-static { fill:#EDEFE6; }
+/* the flow words are filled by an animated "product" gradient clipped to the glyphs */
+.sub-row { display:flex; align-items:baseline; justify-content:space-between; gap:20px; flex-wrap:wrap;
+    margin-top:clamp(14px,2.4vh,30px); }
+.tagline { font-size:clamp(1rem,1.7vw,1.35rem); font-weight:500; color:rgba(255,255,255,0.85); max-width:640px; }
+.tagline small { display:block; margin-top:0.4rem; font-size:0.88rem; font-weight:400; color:rgba(255,255,255,0.45); }
+.ctas { display:flex; gap:0.9rem; flex-wrap:wrap; }
+.btn { font-family:'IBM Plex Mono',monospace; font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase;
+    padding:0.9rem 2rem; text-decoration:none; transition:all 0.25s; }
+.btn-solid { background:var(--olive); color:#fff; }
+.btn-solid:hover { background:var(--olive-lt); box-shadow:0 10px 30px rgba(107,123,58,0.4); }
+.btn-ghost { color:var(--olive-pale); border:1px solid rgba(138,155,85,0.45); }
+.btn-ghost:hover { border-color:var(--olive-pale); background:rgba(138,155,85,0.08); }
+
+/* standards ticker */
+.ticker { position:relative; z-index:5; border-top:1px solid rgba(138,155,85,0.22); padding:16px 0; overflow:hidden; }
+.ticker-track { display:flex; gap:56px; white-space:nowrap; width:max-content; animation:tick 34s linear infinite; }
+.ticker span { font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.24em; text-transform:uppercase;
+    color:rgba(138,155,85,0.6); display:flex; align-items:center; gap:56px; }
+.ticker span::after { content:'◆'; font-size:7px; color:rgba(196,99,58,0.7); }
+@keyframes tick { to { transform:translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .ticker-track { animation:none; } }
+</style>
+</head>
+<body>
+
+<div class="bg"></div>
+<div class="bg-grad"></div>
+
+<div class="top">
+    <div class="logo-chip"><img src="../images/logo.png" alt="Optimal Pipeline Solutions"></div>
+    <div class="svc">Automation | Remote Monitoring | Compliance</div>
+</div>
+
+<div class="stage">
+    <svg class="type-svg" viewBox="0 0 1400 420" aria-label="Driving efficiency. Ensuring compliance.">
+        <defs>
+            <!-- animated product-flow gradient -->
+            <linearGradient id="flowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%"  stop-color="#4F5C2A"/>
+                <stop offset="18%" stop-color="#8A9B55"/>
+                <stop offset="38%" stop-color="#F0A830"/>
+                <stop offset="52%" stop-color="#B8C97A"/>
+                <stop offset="78%" stop-color="#6B7B3A"/>
+                <stop offset="100%" stop-color="#4F5C2A"/>
+                <animateTransform attributeName="gradientTransform" type="translate"
+                    values="-1 0; 1 0; -1 0" dur="9s" repeatCount="indefinite"/>
+            </linearGradient>
+            <!-- moving pipeline "pigs" sweeping the outline words -->
+            <linearGradient id="sheen" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%"  stop-color="rgba(255,255,255,0)"/>
+                <stop offset="48%" stop-color="rgba(255,255,255,0)"/>
+                <stop offset="50%" stop-color="rgba(255,255,255,0.9)"/>
+                <stop offset="52%" stop-color="rgba(255,255,255,0)"/>
+                <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                <animateTransform attributeName="gradientTransform" type="translate"
+                    values="-1.2 0; 1.2 0" dur="5.5s" repeatCount="indefinite"/>
+            </linearGradient>
+        </defs>
+
+        <!-- line 1: solid -->
+        <text class="word-static" id="w1" x="0" y="115" font-size="132">DRIVING</text>
+        <!-- line 1b: product-flow filled -->
+        <text id="w2" x="530" y="115" font-size="132" fill="url(#flowGrad)">EFFICIENCY.</text>
+
+        <!-- line 2: outline with traveling sheen -->
+        <text id="w3" x="0" y="255" font-size="132" fill="none" stroke="#8A9B55" stroke-width="2">ENSURING</text>
+        <text id="w3b" x="0" y="255" font-size="132" fill="url(#sheen)" opacity="0.5">ENSURING</text>
+        <!-- line 2b: solid olive -->
+        <text id="w4" x="570" y="255" font-size="132" fill="#8A9B55">COMPLIANCE.</text>
+
+        <!-- underline pipe with flow -->
+        <line x1="4" y1="310" x2="1396" y2="310" stroke="rgba(138,155,85,0.3)" stroke-width="4" stroke-linecap="round"/>
+        <line x1="4" y1="310" x2="1396" y2="310" stroke="#F0A830" stroke-width="4" stroke-linecap="round"
+              stroke-dasharray="10 34" opacity="0.8">
+            <animate attributeName="stroke-dashoffset" from="0" to="-44" dur="1.4s" repeatCount="indefinite"/>
+        </line>
+        <!-- instrument bubble riding the line -->
+        <g>
+            <circle r="13" cy="310" fill="#0D0F0A" stroke="#F0A830" stroke-width="1.5">
+                <animate attributeName="cx" values="30;1370;30" dur="16s" repeatCount="indefinite"/>
+            </circle>
+            <text y="314" font-family="'IBM Plex Mono',monospace" font-size="9" font-weight="600" fill="#F0A830" text-anchor="middle">
+                <animate attributeName="x" values="30;1370;30" dur="16s" repeatCount="indefinite"/>PT</text>
+        </g>
+
+        <!-- supporting line under the rule -->
+        <text x="4" y="368" font-family="'IBM Plex Mono',monospace" font-size="19" letter-spacing="6" fill="rgba(255,255,255,0.4)">
+            YOUR DEDICATED PIPELINE OPERATIONS + AUTOMATION ENGINEERING PARTNER</text>
+    </svg>
+
+    <div class="sub-row">
+        <p class="tagline">Controllers and automation engineers who keep your pipeline running and compliant.
+            <small>The words move because the product never stops. Neither do we.</small></p>
+        <div class="ctas">
+            <a href="#services" class="btn btn-solid">Explore Our Services</a>
+            <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+        </div>
+    </div>
+</div>
+
+<div class="ticker">
+    <div class="ticker-track" id="ticker-track">
+        <span>49 CFR 195.446</span><span>49 CFR 192.631</span><span>ISA-18.2 Alarm Management</span>
+        <span>API RP 1168 Control Room</span><span>API RP 1167 Alarm Rationalization</span>
+        <span>API RP 1165 SCADA Displays</span><span>24 / 7 / 365 Monitoring</span><span>Ignition SCADA</span>
+    </div>
+</div>
+
+<script>
+// duplicate ticker content for seamless loop
+var tt = document.getElementById('ticker-track');
+tt.innerHTML += tt.innerHTML;
+
+// entrance: words slide in like pigs launched down the line
+gsap.timeline({defaults:{ease:'power4.out'}})
+    .from('#w1',  { x:-260, opacity:0, duration:1.0 }, 0.15)
+    .from('#w2',  { x:260,  opacity:0, duration:1.0 }, 0.3)
+    .from(['#w3','#w3b'], { x:-260, opacity:0, duration:1.0 }, 0.5)
+    .from('#w4',  { x:260,  opacity:0, duration:1.0 }, 0.65)
+    .from('.top', { y:-20, opacity:0, duration:0.7 }, 0.1)
+    .from('.sub-row', { y:24, opacity:0, duration:0.8 }, 1.1)
+    .from('.ticker', { opacity:0, duration:0.9 }, 1.4);
+</script>
+</body>
+</html>

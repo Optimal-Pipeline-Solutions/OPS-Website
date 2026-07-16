@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 01 — The Living SCADA Wall</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+:root {
+    --olive: #6B7B3A; --olive-lt: #8A9B55; --olive-pale: #B8C97A;
+    --amber: #D4870A; --amber-lt: #F0A830;
+    --ink: #060907; --panel: #0A0F0B;
+    --grid: rgba(138,155,85,0.06);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { height:100%; }
+body { background:var(--ink); color:#fff; font-family:'Inter',sans-serif; overflow:hidden; }
+
+/* ── HMI layer ─────────────────────────────────────────── */
+.hmi { position:absolute; inset:0; z-index:1; }
+.hmi svg { width:100%; height:100%; }
+.pipe      { stroke:rgba(138,155,85,0.35); stroke-width:3; fill:none; stroke-linecap:round; }
+.pipe-flow { stroke:var(--amber); stroke-width:3; fill:none; stroke-linecap:round;
+             stroke-dasharray:6 22; opacity:0.85; animation:flow 1.6s linear infinite; }
+.pipe-flow.slow { animation-duration:2.6s; opacity:0.55; }
+@keyframes flow { to { stroke-dashoffset:-28; } }
+.inst   { stroke:rgba(138,155,85,0.7); stroke-width:1.5; fill:rgba(10,15,11,0.9); }
+.inst-t { fill:var(--olive-pale); font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:600; text-anchor:middle; }
+.inst-n { fill:rgba(138,155,85,0.55); font-family:'IBM Plex Mono',monospace; font-size:7px; text-anchor:middle; }
+.pumpbody { stroke:var(--amber-lt); stroke-width:2; fill:rgba(212,135,10,0.10); }
+.pump-blade { stroke:var(--amber-lt); stroke-width:2; transform-box:fill-box; transform-origin:center; animation:spin 3s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg); } }
+.tank { stroke:rgba(138,155,85,0.5); stroke-width:1.5; fill:rgba(138,155,85,0.05); }
+.tank-fill { fill:rgba(212,135,10,0.18); }
+.readout      { stroke:rgba(138,155,85,0.35); stroke-width:1; fill:rgba(6,9,7,0.92); }
+.readout-tag  { fill:rgba(138,155,85,0.6); font-family:'IBM Plex Mono',monospace; font-size:8px; letter-spacing:0.08em; }
+.readout-val  { fill:var(--amber-lt); font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:600; }
+.readout-unit { fill:rgba(138,155,85,0.5); font-family:'IBM Plex Mono',monospace; font-size:8px; }
+.hmi-grid { position:absolute; inset:0; z-index:0;
+    background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+    background-size:48px 48px; }
+.vignette { position:absolute; inset:0; z-index:2; pointer-events:none;
+    background:radial-gradient(ellipse 62% 55% at 50% 46%, rgba(6,9,7,0.92) 0%, rgba(6,9,7,0.55) 55%, transparent 100%); }
+
+/* ── Alarm strip ───────────────────────────────────────── */
+.alarm-strip { position:absolute; top:0; left:0; right:0; z-index:6; height:34px;
+    background:rgba(6,9,7,0.85); border-bottom:1px solid rgba(138,155,85,0.2);
+    display:flex; align-items:center; gap:14px; padding:0 18px;
+    font-family:'IBM Plex Mono',monospace; font-size:11px; }
+.alarm-dot { width:8px; height:8px; border-radius:50%; background:#3d9e57; box-shadow:0 0 8px #3d9e57; flex-shrink:0; }
+.alarm-dot.alarming { background:var(--amber-lt); box-shadow:0 0 10px var(--amber-lt); animation:blink 0.5s step-end infinite alternate; }
+@keyframes blink { 50% { opacity:0.25; } }
+#alarm-text { color:rgba(184,201,122,0.75); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.alarm-clock { margin-left:auto; color:rgba(138,155,85,0.6); letter-spacing:0.1em; }
+
+/* ── Center content ────────────────────────────────────── */
+.content { position:absolute; inset:0; z-index:5; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; text-align:center; padding:0 24px; }
+.logo-chip { background:rgba(255,255,255,0.94); border-radius:10px; padding:14px 30px;
+    box-shadow:0 0 60px rgba(138,155,85,0.25), 0 4px 24px rgba(0,0,0,0.5);
+    margin-bottom:1.6rem; opacity:0; }
+.logo-chip img { height:64px; display:block; }
+.svc-tag { font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:0.34em;
+    text-transform:uppercase; color:var(--olive-pale); margin-bottom:1.4rem; opacity:0; }
+h1 { font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase;
+    font-size:clamp(3.4rem,9vw,8rem); line-height:0.92; letter-spacing:0.01em; opacity:0; }
+h1 .line2 { display:block; color:transparent; -webkit-text-stroke:2px var(--olive-lt); }
+.sub { margin-top:1.8rem; font-size:clamp(1rem,1.6vw,1.3rem); color:rgba(255,255,255,0.8);
+    font-weight:500; max-width:640px; opacity:0; }
+.sub small { display:block; margin-top:0.55rem; font-size:0.9rem; font-weight:400; color:rgba(255,255,255,0.45); }
+.ctas { display:flex; gap:1rem; margin-top:2.6rem; flex-wrap:wrap; justify-content:center; opacity:0; }
+.btn { font-family:'IBM Plex Mono',monospace; font-size:0.8rem; letter-spacing:0.14em; text-transform:uppercase;
+    padding:0.95rem 2.2rem; text-decoration:none; cursor:pointer; transition:all 0.25s ease; }
+.btn-solid { background:var(--olive); color:#fff; border:1px solid var(--olive); }
+.btn-solid:hover { background:var(--olive-lt); border-color:var(--olive-lt); box-shadow:0 0 30px rgba(138,155,85,0.4); }
+.btn-ghost { background:transparent; color:var(--olive-pale); border:1px solid rgba(138,155,85,0.4); }
+.btn-ghost:hover { border-color:var(--olive-pale); background:rgba(138,155,85,0.08); }
+
+/* ── Bottom status bar ─────────────────────────────────── */
+.statusbar { position:absolute; bottom:0; left:0; right:0; z-index:6; height:40px;
+    background:rgba(6,9,7,0.85); border-top:1px solid rgba(138,155,85,0.2);
+    display:flex; align-items:center; justify-content:center; gap:clamp(16px,4vw,54px);
+    font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:rgba(138,155,85,0.65); }
+.statusbar b { color:var(--amber-lt); font-weight:600; }
+@media (prefers-reduced-motion: reduce) {
+    .pipe-flow, .pump-blade, .alarm-dot.alarming { animation:none; }
+}
+@media (max-width:640px){ .statusbar { gap:12px; font-size:9px; } .sub small{display:none;} }
+</style>
+</head>
+<body>
+
+<div class="hmi-grid"></div>
+
+<!-- Live P&ID schematic -->
+<div class="hmi">
+<svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <!-- main header line across the top third -->
+    <path class="pipe"      d="M -20 210 H 520 Q 545 210 545 235 V 330"/>
+    <path class="pipe-flow" d="M -20 210 H 520 Q 545 210 545 235 V 330"/>
+    <path class="pipe"      d="M 545 330 V 690 Q 545 715 570 715 H 1620"/>
+    <path class="pipe-flow slow" d="M 545 330 V 690 Q 545 715 570 715 H 1620"/>
+    <path class="pipe"      d="M 1080 715 V 560"/>
+    <path class="pipe"      d="M -20 760 H 300 Q 325 760 325 735 V 620"/>
+    <path class="pipe-flow slow" d="M -20 760 H 300 Q 325 760 325 735 V 620"/>
+    <path class="pipe"      d="M 1180 210 H 1620"/>
+    <path class="pipe-flow" d="M 1180 210 H 1620"/>
+    <path class="pipe"      d="M 1310 210 V 380"/>
+
+    <!-- pump station upper-right -->
+    <g transform="translate(1310,420)">
+        <circle class="pumpbody" r="34"/>
+        <g class="pump-blade"><line x1="-22" y1="0" x2="22" y2="0"/><line x1="0" y1="-22" x2="0" y2="22"/></g>
+        <text class="inst-t" y="-46">P-201</text>
+        <text class="inst-n" y="52">MAINLINE PUMP</text>
+    </g>
+
+    <!-- instruments -->
+    <g transform="translate(240,210)"><circle class="inst" r="17"/><text class="inst-t" y="3.5">PT</text><text class="inst-n" y="30">1042</text></g>
+    <g transform="translate(400,210)"><circle class="inst" r="17"/><text class="inst-t" y="3.5">FT</text><text class="inst-n" y="30">1051</text></g>
+    <g transform="translate(880,715)"><circle class="inst" r="17"/><text class="inst-t" y="3.5">TT</text><text class="inst-n" y="30">2210</text></g>
+    <g transform="translate(1420,210)"><circle class="inst" r="17"/><text class="inst-t" y="3.5">PT</text><text class="inst-n" y="30">3007</text></g>
+
+    <!-- tank lower-left -->
+    <g transform="translate(325,530)">
+        <rect class="tank" x="-55" y="0" width="110" height="92" rx="6"/>
+        <rect class="tank-fill" x="-51" y="34" width="102" height="54" rx="4">
+            <animate attributeName="y" values="34;28;34" dur="7s" repeatCount="indefinite"/>
+            <animate attributeName="height" values="54;60;54" dur="7s" repeatCount="indefinite"/>
+        </rect>
+        <text class="inst-n" y="-12">TK-101 · SALES</text>
+    </g>
+
+    <!-- tank upper-right small -->
+    <g transform="translate(1080,470)">
+        <rect class="tank" x="-42" y="0" width="84" height="70" rx="5"/>
+        <rect class="tank-fill" x="-38" y="30" width="76" height="36" rx="3">
+            <animate attributeName="y" values="30;24;30" dur="9s" repeatCount="indefinite"/>
+            <animate attributeName="height" values="36;42;36" dur="9s" repeatCount="indefinite"/>
+        </rect>
+        <text class="inst-n" y="-12">TK-204</text>
+    </g>
+
+    <!-- live readout boxes -->
+    <g transform="translate(60,300)">
+        <rect class="readout" width="150" height="52" rx="3"/>
+        <text class="readout-tag" x="10" y="16">LINE PRESS</text>
+        <text class="readout-val" x="10" y="38" id="ro-press">612.4</text>
+        <text class="readout-unit" x="86" y="38">PSIG</text>
+    </g>
+    <g transform="translate(1390,300)">
+        <rect class="readout" width="150" height="52" rx="3"/>
+        <text class="readout-tag" x="10" y="16">FLOW RATE</text>
+        <text class="readout-val" x="10" y="38" id="ro-flow">1,847</text>
+        <text class="readout-unit" x="92" y="38">BPH</text>
+    </g>
+    <g transform="translate(60,600)">
+        <rect class="readout" width="150" height="52" rx="3"/>
+        <text class="readout-tag" x="10" y="16">TANK LEVEL</text>
+        <text class="readout-val" x="10" y="38" id="ro-lvl">18.2</text>
+        <text class="readout-unit" x="70" y="38">FT</text>
+    </g>
+    <g transform="translate(1390,600)">
+        <rect class="readout" width="150" height="52" rx="3"/>
+        <text class="readout-tag" x="10" y="16">DISCH TEMP</text>
+        <text class="readout-val" x="10" y="38" id="ro-temp">84.6</text>
+        <text class="readout-unit" x="76" y="38">°F</text>
+    </g>
+</svg>
+</div>
+
+<div class="vignette"></div>
+
+<!-- live alarm banner -->
+<div class="alarm-strip">
+    <div class="alarm-dot" id="alarm-dot"></div>
+    <span id="alarm-text">ALL SYSTEMS NORMAL — 149 SITES POLLING</span>
+    <span class="alarm-clock" id="clock">--:--:-- CST</span>
+</div>
+
+<!-- headline content -->
+<div class="content">
+    <div class="logo-chip"><img src="../images/logo.png" alt="Optimal Pipeline Solutions"></div>
+    <p class="svc-tag">Automation &nbsp;|&nbsp; Remote Monitoring &nbsp;|&nbsp; Compliance</p>
+    <h1>Driving efficiency.<span class="line2">Ensuring compliance.</span></h1>
+    <p class="sub">Your dedicated pipeline operations and automation engineering partner.
+        <small>This screen never goes dark. Neither do we — controllers and automation engineers watching your pipeline 24/7/365.</small>
+    </p>
+    <div class="ctas">
+        <a href="#services" class="btn btn-solid">Explore Our Services</a>
+        <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+    </div>
+</div>
+
+<!-- bottom telemetry -->
+<div class="statusbar">
+    <span>SITES ONLINE <b id="sb-sites">149/149</b></span>
+    <span>ACTIVE ALARMS <b id="sb-alarms">0</b></span>
+    <span>COMPLIANCE <b>49 CFR 195.446 ✓</b></span>
+    <span>SHIFT <b id="sb-shift">DAY — CONSOLE 1</b></span>
+</div>
+
+<script>
+// entrance
+gsap.timeline({defaults:{ease:'power3.out'}})
+    .to('.logo-chip',{opacity:1, y:0, duration:0.9, startAt:{y:24}}, 0.2)
+    .to('.svc-tag',  {opacity:1, duration:0.8}, 0.5)
+    .to('h1',        {opacity:1, y:0, duration:1.1, startAt:{y:36}}, 0.65)
+    .to('.sub',      {opacity:1, y:0, duration:0.9, startAt:{y:24}}, 1.0)
+    .to('.ctas',     {opacity:1, y:0, duration:0.9, startAt:{y:18}}, 1.25);
+
+// live clock
+function tick(){
+    var d = new Date();
+    var t = d.toLocaleTimeString('en-US',{hour12:false,timeZone:'America/Chicago'});
+    document.getElementById('clock').textContent = t + ' CST';
+    var h = parseInt(t.slice(0,2),10);
+    document.getElementById('sb-shift').textContent = (h>=6&&h<18?'DAY':'NIGHT') + ' — CONSOLE 1';
+}
+setInterval(tick,1000); tick();
+
+// drifting live values
+function drift(id, base, spread, dec, fmt){
+    var el = document.getElementById(id);
+    setInterval(function(){
+        var v = base + (Math.random()-0.5)*spread;
+        el.textContent = fmt ? v.toLocaleString('en-US',{maximumFractionDigits:0}) : v.toFixed(dec);
+    }, 1400 + Math.random()*900);
+}
+drift('ro-press', 612.4, 3.5, 1); drift('ro-flow', 1847, 30, 0, true);
+drift('ro-lvl', 18.2, 0.3, 1);   drift('ro-temp', 84.6, 1.2, 1);
+
+// simulated alarm lifecycle: normal -> alarm -> acknowledged -> normal
+(function(){
+    var txt = document.getElementById('alarm-text'),
+        dot = document.getElementById('alarm-dot'),
+        cnt = document.getElementById('sb-alarms');
+    var alarms = [
+        'PT-1042 HIGH PRESSURE — STATION 12 — 618.9 PSIG',
+        'FT-1051 LOW FLOW DEVIATION — MAINLINE SEG 4',
+        'TT-2210 HIGH TEMP — PUMP P-201 DISCHARGE'
+    ];
+    function cycle(){
+        var a = alarms[Math.floor(Math.random()*alarms.length)];
+        dot.classList.add('alarming');
+        txt.textContent = 'ALM  ' + a;
+        txt.style.color = '#F0A830';
+        cnt.textContent = '1';
+        setTimeout(function(){
+            txt.textContent = 'ACK  ' + a + '  — OPS CONTROLLER RESPONDING';
+            dot.classList.remove('alarming');
+        }, 3800);
+        setTimeout(function(){
+            txt.textContent = 'ALL SYSTEMS NORMAL — 149 SITES POLLING';
+            txt.style.color = '';
+            cnt.textContent = '0';
+        }, 7600);
+        setTimeout(cycle, 16000 + Math.random()*9000);
+    }
+    setTimeout(cycle, 6000);
+})();
+</script>
+</body>
+</html>

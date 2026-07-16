@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 16 — Daylight Ops (Light Glass Dashboard)</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+:root { --olive:#5C7030; --olive-lt:#7E9448; --ink:#1B2314; --blue:#2E6FAE; --red:#C64B3C; --green:#3B8A4E; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; }
+body { font-family:'Inter',sans-serif; overflow:hidden; color:var(--ink); background:#DCE4D2; }
+
+/* bright aerial photo, light grade */
+.bg { position:absolute; inset:-3%; background:url('../images/pipeline-aerial.jpg') center/cover no-repeat;
+    filter:brightness(1.22) saturate(0.9) contrast(0.95); animation:kenburns 34s ease-in-out infinite alternate; }
+@keyframes kenburns { from{ transform:scale(1); } to{ transform:scale(1.08) translate(-1.4%, -1%); } }
+.bg-wash { position:absolute; inset:0; background:linear-gradient(105deg, rgba(245,247,240,0.94) 0%, rgba(245,247,240,0.82) 34%, rgba(245,247,240,0.28) 66%, rgba(245,247,240,0.45) 100%); }
+
+.wrap { position:relative; z-index:4; height:100%; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,0.92fr); }
+@media (max-width:900px){ .wrap{ grid-template-columns:1fr; } .board{ display:none; } }
+
+/* left: message */
+.left { display:flex; flex-direction:column; justify-content:center; padding:0 clamp(24px,4.5vw,76px); }
+.logo-chip { display:inline-flex; background:#fff; border-radius:12px; padding:10px 22px; width:fit-content;
+    box-shadow:0 14px 40px rgba(27,35,20,0.14); margin-bottom:1.6rem; }
+.logo-chip img { height:48px; display:block; }
+.pill { display:inline-flex; align-items:center; gap:8px; width:fit-content; padding:0.4rem 1rem; margin-bottom:1.3rem;
+    border-radius:999px; background:#fff; border:1px solid rgba(92,112,48,0.3);
+    font-family:'IBM Plex Mono',monospace; font-size:0.66rem; letter-spacing:0.24em; text-transform:uppercase; color:var(--olive); }
+.pill .dot { width:7px; height:7px; border-radius:50%; background:var(--green); animation:pd 2.2s ease-in-out infinite; }
+@keyframes pd { 50%{opacity:0.3;} }
+h1 { font-weight:800; letter-spacing:-0.03em; line-height:1.02; font-size:clamp(2.7rem,5.8vw,5.2rem); }
+h1 em { font-style:normal; color:var(--olive); }
+.sub { margin-top:1.4rem; max-width:540px; font-size:clamp(0.98rem,1.4vw,1.18rem); line-height:1.65; color:#404A34; }
+.sub b { color:var(--ink); }
+.ctas { display:flex; gap:1rem; margin-top:2.2rem; flex-wrap:wrap; }
+.btn { font-size:0.88rem; font-weight:600; padding:0.95rem 2.3rem; border-radius:14px; text-decoration:none; transition:all 0.25s; }
+.btn-solid { background:var(--olive); color:#fff; box-shadow:0 14px 34px rgba(92,112,48,0.35); }
+.btn-solid:hover { background:var(--olive-lt); transform:translateY(-2px); }
+.btn-ghost { background:rgba(255,255,255,0.8); color:var(--ink); border:1.5px solid rgba(27,35,20,0.18); }
+.btn-ghost:hover { background:#fff; border-color:rgba(27,35,20,0.4); }
+
+/* right: floating glass ops cards */
+.board { position:relative; }
+.card { position:absolute; background:rgba(255,255,255,0.88); backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.9); border-radius:18px; padding:18px 20px;
+    box-shadow:0 24px 60px rgba(27,35,20,0.16); }
+.card .k { font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:0.2em; text-transform:uppercase; color:#7C8768; margin-bottom:8px; }
+/* trend card */
+.c-trend { top:10%; right:10%; width:min(320px,30vw); }
+.c-trend svg { width:100%; height:88px; }
+.trend-line { fill:none; stroke:var(--blue); stroke-width:2.5; stroke-linecap:round; }
+.trend-fill { fill:rgba(46,111,174,0.12); stroke:none; }
+.trend-dot { fill:var(--blue); }
+.c-trend .v { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.7rem; }
+.c-trend .v small { color:var(--blue); font-size:0.55em; }
+/* alarm card */
+.c-alarm { top:44%; right:26%; width:min(330px,30vw); border-left:5px solid var(--red); }
+.c-alarm.acked { border-left-color:var(--green); }
+.c-alarm .row { display:flex; align-items:center; gap:10px; }
+.c-alarm .sig { width:36px; height:36px; border-radius:10px; background:rgba(198,75,60,0.14); color:var(--red);
+    display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.1rem; }
+.c-alarm.acked .sig { background:rgba(59,138,78,0.15); color:var(--green); }
+.c-alarm .t1 { font-weight:700; font-size:0.95rem; }
+.c-alarm .t2 { font-family:'IBM Plex Mono',monospace; font-size:10px; color:#7C8768; margin-top:2px; letter-spacing:0.08em; }
+/* compliance card */
+.c-comp { bottom:9%; right:8%; width:min(300px,28vw); }
+.c-comp .row { display:flex; align-items:center; justify-content:space-between; padding:7px 0; border-bottom:1px dashed rgba(27,35,20,0.12); font-size:0.86rem; font-weight:600; }
+.c-comp .row:last-child { border-bottom:none; }
+.c-comp .chk { width:20px; height:20px; border-radius:50%; background:rgba(59,138,78,0.15); color:var(--green);
+    display:flex; align-items:center; justify-content:center; font-size:0.75rem; transform:scale(0); }
+.strap { position:absolute; bottom:3.4vh; left:clamp(24px,4.5vw,76px); z-index:5; font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px; letter-spacing:0.22em; text-transform:uppercase; color:rgba(27,35,20,0.55); }
+.strap b { color:var(--olive); }
+@media (prefers-reduced-motion: reduce){ .bg{ animation:none; } }
+</style>
+</head>
+<body>
+
+<div class="bg"></div>
+<div class="bg-wash"></div>
+
+<div class="wrap">
+    <div class="left">
+        <div class="logo-chip" data-in><img src="../images/logo.png" alt="Optimal Pipeline Solutions"></div>
+        <div class="pill" data-in><span class="dot"></span>Automation | Remote Monitoring | Compliance</div>
+        <h1 data-in>Driving efficiency.<br><em>Ensuring compliance.</em></h1>
+        <p class="sub" data-in><b>Your dedicated pipeline operations and automation engineering partner.</b>
+            Controllers and automation engineers who keep your pipeline running and compliant —
+            and the paperwork writes itself while they do.</p>
+        <div class="ctas" data-in>
+            <a href="#services" class="btn btn-solid">Explore Our Services</a>
+            <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+        </div>
+    </div>
+
+    <div class="board">
+        <!-- live trend -->
+        <div class="card c-trend" data-in>
+            <div class="k">Mainline Flow — Live</div>
+            <svg viewBox="0 0 300 90" preserveAspectRatio="none">
+                <path class="trend-fill" id="tfill"/>
+                <path class="trend-line" id="tline"/>
+                <circle class="trend-dot" id="tdot" r="4"/>
+            </svg>
+            <div class="v"><span id="tval">1,847</span> <small>BPH</small></div>
+        </div>
+
+        <!-- alarm lifecycle card -->
+        <div class="card c-alarm" id="alarmcard" data-in>
+            <div class="k" id="alarm-k">Active Alarm</div>
+            <div class="row">
+                <div class="sig" id="alarm-sig">!</div>
+                <div>
+                    <div class="t1" id="alarm-t1">PT-1042 High Pressure</div>
+                    <div class="t2" id="alarm-t2">STATION 12 — 618.9 PSIG</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- compliance checklist card -->
+        <div class="card c-comp" data-in>
+            <div class="k">This Month — Auto-Generated</div>
+            <div class="row"><span>Alarm Performance Review</span><span class="chk">✓</span></div>
+            <div class="row"><span>Shift Log Audit Trail</span><span class="chk">✓</span></div>
+            <div class="row"><span>49 CFR 195.446 Package</span><span class="chk">✓</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="strap">Live picture, calm morning — <b>that's the point</b></div>
+
+<script>
+gsap.from('[data-in]', { opacity:0, y:26, duration:0.95, ease:'power3.out', stagger:0.13, delay:0.25 });
+
+/* live trend line drawing forever */
+(function(){
+    var pts = [], N = 40, W = 300, H = 90, y = 48;
+    for (var i=0;i<N;i++){ y = Math.max(16, Math.min(76, y + (Math.random()-0.5)*12)); pts.push(y); }
+    var line = document.getElementById('tline'), fill = document.getElementById('tfill'),
+        dot = document.getElementById('tdot'), val = document.getElementById('tval');
+    function draw(){
+        var d = 'M' + pts.map(function(p,i){ return (i*(W/(N-1)))+','+p; }).join(' L');
+        line.setAttribute('d', d);
+        fill.setAttribute('d', d + ' L'+W+','+H+' L0,'+H+' Z');
+        dot.setAttribute('cx', W); dot.setAttribute('cy', pts[N-1]);
+    }
+    draw();
+    setInterval(function(){
+        y = Math.max(16, Math.min(76, pts[N-1] + (Math.random()-0.5)*12));
+        pts.push(y); pts.shift(); draw();
+        val.textContent = (1847 + Math.round((48-y)*4)).toLocaleString('en-US');
+    }, 900);
+})();
+
+/* alarm card lifecycle: alarm -> acknowledged -> cleared, forever */
+(function(){
+    var card = document.getElementById('alarmcard'), k = document.getElementById('alarm-k'),
+        sig = document.getElementById('alarm-sig'), t1 = document.getElementById('alarm-t1'),
+        t2 = document.getElementById('alarm-t2');
+    var alarms = [
+        ['PT-1042 High Pressure','STATION 12 — 618.9 PSIG'],
+        ['FT-1051 Low Flow','MAINLINE SEG 4 — DEVIATION'],
+        ['TT-2210 High Temp','P-201 DISCHARGE — 96.2 °F']
+    ];
+    var i = 0;
+    function cycle(){
+        var a = alarms[i % alarms.length]; i++;
+        card.classList.remove('acked');
+        k.textContent = 'Active Alarm'; sig.textContent = '!';
+        t1.textContent = a[0]; t2.textContent = a[1];
+        gsap.fromTo(card, { x:0 }, { x:6, duration:0.07, repeat:7, yoyo:true, clearProps:'x' });
+        setTimeout(function(){
+            card.classList.add('acked');
+            k.textContent = 'Acknowledged — 41 sec';
+            sig.textContent = '✓';
+            t2.textContent = 'OPS CONTROLLER RESPONDING';
+        }, 3200);
+        setTimeout(function(){
+            t1.textContent = 'All Clear';
+            t2.textContent = 'BACK TO NORMAL — LOGGED';
+        }, 6400);
+        setTimeout(cycle, 10500);
+    }
+    setTimeout(cycle, 1600);
+})();
+
+/* compliance checks stamp in, re-stamp on a slow loop */
+gsap.timeline({ repeat:-1, repeatDelay:6 })
+    .to('.chk', { scale:1, duration:0.45, ease:'back.out(2.2)', stagger:0.5, delay:1.2 })
+    .to('.chk', { scale:0, duration:0.3, delay:4, stagger:0.1 });
+</script>
+</body>
+</html>

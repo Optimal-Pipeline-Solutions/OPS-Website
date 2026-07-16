@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 02 — Control Room Boot Sequence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+:root { --olive:#6B7B3A; --olive-lt:#8A9B55; --olive-pale:#B8C97A; --amber:#F0A830; --ink:#050705; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; }
+body { background:var(--ink); color:#fff; font-family:'Inter',sans-serif; overflow:hidden; }
+
+/* CRT treatment */
+.crt { position:absolute; inset:0; z-index:20; pointer-events:none; }
+.crt::before { content:''; position:absolute; inset:0;
+    background:repeating-linear-gradient(0deg, rgba(0,0,0,0.22) 0px, rgba(0,0,0,0.22) 1px, transparent 1px, transparent 3px);
+    opacity:0.5; }
+.crt::after { content:''; position:absolute; inset:0;
+    background:radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.55) 100%); }
+
+/* boot terminal */
+#boot { position:absolute; inset:0; z-index:10; display:flex; align-items:center; justify-content:center; background:var(--ink); }
+.term { width:min(760px, 92vw); font-family:'IBM Plex Mono',monospace; font-size:clamp(11px,1.5vw,14.5px);
+    line-height:1.85; color:var(--olive-pale); text-shadow:0 0 8px rgba(184,201,122,0.35); }
+.term .dim  { color:rgba(138,155,85,0.5); }
+.term .ok   { color:#5fbf77; }
+.term .amb  { color:var(--amber); }
+.term .cursor { display:inline-block; width:9px; height:1.1em; background:var(--olive-pale); vertical-align:text-bottom; animation:curs 0.8s step-end infinite; }
+@keyframes curs { 50% { opacity:0; } }
+#skip { position:absolute; bottom:28px; right:32px; z-index:30; font-family:'IBM Plex Mono',monospace;
+    font-size:11px; letter-spacing:0.2em; color:rgba(138,155,85,0.55); background:none; border:1px solid rgba(138,155,85,0.3);
+    padding:8px 18px; cursor:pointer; text-transform:uppercase; transition:all 0.2s; }
+#skip:hover { color:var(--olive-pale); border-color:var(--olive-pale); }
+
+/* resolved hero */
+#stage { position:absolute; inset:0; z-index:5; display:flex; flex-direction:column; align-items:center;
+    justify-content:center; text-align:center; padding:24px; opacity:0; visibility:hidden; }
+#stage .bg { position:absolute; inset:0; background:url('../images/controlroom1.jpeg') center/cover no-repeat; opacity:0.22; filter:saturate(0.7); }
+#stage .bg-grad { position:absolute; inset:0; background:radial-gradient(ellipse 70% 60% at 50% 45%, rgba(5,7,5,0.35), var(--ink) 95%); }
+.logo-chip { position:relative; background:rgba(255,255,255,0.94); border-radius:10px; padding:13px 28px; margin-bottom:1.6rem;
+    box-shadow:0 0 70px rgba(138,155,85,0.3); }
+.logo-chip img { height:60px; display:block; }
+.svc { position:relative; font-family:'IBM Plex Mono',monospace; font-size:0.7rem; letter-spacing:0.36em; text-transform:uppercase; color:var(--olive-pale); margin-bottom:1.5rem; }
+h1 { position:relative; font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase;
+    font-size:clamp(3.2rem,9vw,8rem); line-height:0.92; }
+h1 .glow { color:var(--olive-pale); text-shadow:0 0 22px rgba(184,201,122,0.5), 0 0 60px rgba(138,155,85,0.3); }
+.sub { position:relative; margin-top:1.7rem; max-width:620px; font-size:clamp(1rem,1.5vw,1.25rem); color:rgba(255,255,255,0.82); }
+.sub small { display:block; margin-top:0.5rem; font-size:0.88rem; color:rgba(255,255,255,0.42); }
+.ctas { position:relative; display:flex; gap:1rem; margin-top:2.5rem; flex-wrap:wrap; justify-content:center; }
+.btn { font-family:'IBM Plex Mono',monospace; font-size:0.8rem; letter-spacing:0.15em; text-transform:uppercase;
+    padding:0.95rem 2.2rem; text-decoration:none; transition:all 0.25s; }
+.btn-solid { background:var(--olive); color:#fff; }
+.btn-solid:hover { background:var(--olive-lt); box-shadow:0 0 30px rgba(138,155,85,0.45); }
+.btn-ghost { color:var(--olive-pale); border:1px solid rgba(138,155,85,0.4); }
+.btn-ghost:hover { border-color:var(--olive-pale); background:rgba(138,155,85,0.08); }
+.stamp { position:absolute; bottom:26px; left:50%; transform:translateX(-50%); font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px; letter-spacing:0.22em; color:rgba(138,155,85,0.55); text-transform:uppercase; }
+@media (prefers-reduced-motion: reduce) { .cursor { animation:none; } }
+</style>
+</head>
+<body>
+
+<!-- Phase 1: boot log -->
+<div id="boot">
+    <div class="term" id="term"></div>
+    <button id="skip">Skip &gt;&gt;</button>
+</div>
+
+<!-- Phase 2: resolved hero -->
+<div id="stage">
+    <div class="bg"></div>
+    <div class="bg-grad"></div>
+    <div class="logo-chip"><img src="../images/logo.png" alt="Optimal Pipeline Solutions"></div>
+    <p class="svc">Automation | Remote Monitoring | Compliance</p>
+    <h1>Driving efficiency.<br><span class="glow">Ensuring compliance.</span></h1>
+    <p class="sub">Your dedicated pipeline operations and automation engineering partner.
+        <small>Controllers and automation engineers who keep your pipeline running and compliant.</small></p>
+    <div class="ctas">
+        <a href="#services" class="btn btn-solid">Explore Our Services</a>
+        <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+    </div>
+    <div class="stamp">OPS CONTROL ROOM — ONLINE SINCE COMMISSIONING — ZERO GAPS</div>
+</div>
+
+<div class="crt"></div>
+
+<script>
+var LINES = [
+    ['dim','OPS/CRM GATEWAY v5.2 — CONSOLE 1'],
+    ['',   'initializing control room management system ...'],
+    ['ok', '  [ OK ] polling engine started'],
+    ['',   'connecting field sites ................ '],
+    ['ok', '  [ OK ] 149 / 149 SITES ONLINE'],
+    ['',   'loading alarm rationalization database ...'],
+    ['ok', '  [ OK ] 15,485 alarms classified per ISA-18.2'],
+    ['',   'verifying 49 CFR 195.446 / 192.631 controls ...'],
+    ['ok', '  [ OK ] CRMP current — audit ready'],
+    ['',   'controller shift handover .............. '],
+    ['ok', '  [ OK ] fatigue rules enforced — console staffed'],
+    ['amb','ALL SYSTEMS NORMAL — MONITORING'],
+    ['',   ''],
+    ['',   'launching optimalpipeline.com ...']
+];
+
+var term = document.getElementById('term'), li = 0, done = false;
+
+function typeLine(){
+    if (done) return;
+    if (li >= LINES.length) { setTimeout(resolveHero, 500); return; }
+    var row = LINES[li], div = document.createElement('div');
+    if (row[0]) div.className = row[0];
+    term.appendChild(div);
+    var text = row[1], ci = 0;
+    var cur = document.createElement('span'); cur.className = 'cursor';
+    div.appendChild(cur);
+    (function typeChar(){
+        if (done) return;
+        if (ci < text.length) {
+            cur.insertAdjacentText('beforebegin', text[ci++]);
+            setTimeout(typeChar, text[ci-1] === '.' ? 4 : (8 + Math.random()*22));
+        } else {
+            cur.remove(); li++;
+            setTimeout(typeLine, row[1].indexOf('[ OK ]') >= 0 ? 190 : 90);
+        }
+    })();
+}
+typeLine();
+
+function resolveHero(){
+    if (done) return; done = true;
+    var stage = document.getElementById('stage');
+    stage.style.visibility = 'visible';
+    // CRT power-on flash then crossfade
+    gsap.timeline()
+        .to('#boot', { opacity:0.15, duration:0.06, yoyo:true, repeat:3 })
+        .to('#boot', { opacity:0, duration:0.5, ease:'power2.in', onComplete:function(){ document.getElementById('boot').style.display='none'; } })
+        .fromTo(stage, { opacity:0, scale:1.04, filter:'brightness(2.4)' },
+                       { opacity:1, scale:1, filter:'brightness(1)', duration:1.1, ease:'power2.out' }, '<0.1')
+        .from('.logo-chip', { y:22, opacity:0, duration:0.7, ease:'power3.out' }, '-=0.5')
+        .from('.svc',       { opacity:0, duration:0.6 }, '-=0.4')
+        .from('h1',         { y:30, opacity:0, duration:0.9, ease:'power3.out' }, '-=0.45')
+        .from('.sub',       { y:22, opacity:0, duration:0.7, ease:'power3.out' }, '-=0.55')
+        .from('.ctas',      { y:16, opacity:0, duration:0.7, ease:'power3.out' }, '-=0.5')
+        .from('.stamp',     { opacity:0, duration:0.8 }, '-=0.3');
+    document.getElementById('skip').style.display = 'none';
+}
+document.getElementById('skip').addEventListener('click', resolveHero);
+// reduced motion: skip straight to hero
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) resolveHero();
+</script>
+</body>
+</html>

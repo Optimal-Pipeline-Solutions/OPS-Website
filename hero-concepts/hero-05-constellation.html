@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 05 — Pipeline Constellation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+:root { --olive:#6B7B3A; --olive-lt:#8A9B55; --olive-pale:#B8C97A; --amber:#F0A830; --ink:#070A0E; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; }
+body { background:radial-gradient(ellipse 120% 100% at 50% 0%, #0B1118 0%, var(--ink) 60%);
+    color:#fff; font-family:'Inter',sans-serif; overflow:hidden; }
+#net { position:absolute; inset:0; z-index:1; }
+
+/* glass core */
+.core { position:absolute; inset:0; z-index:5; display:flex; align-items:center; justify-content:center; padding:20px; }
+.glass { position:relative; max-width:820px; width:100%; text-align:center; padding:clamp(2.2rem,5vh,4rem) clamp(1.6rem,4vw,4rem);
+    background:rgba(10,14,18,0.55); border:1px solid rgba(138,155,85,0.22); border-radius:22px;
+    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    box-shadow:0 30px 90px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06); opacity:0; }
+.glass::before { content:''; position:absolute; top:-1px; left:10%; right:10%; height:1px;
+    background:linear-gradient(to right, transparent, rgba(184,201,122,0.7), transparent); }
+.logo-chip { display:inline-flex; background:rgba(255,255,255,0.95); border-radius:9px; padding:11px 24px; margin-bottom:1.4rem; }
+.logo-chip img { height:52px; display:block; }
+.svc { font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.34em; text-transform:uppercase;
+    color:var(--olive-pale); margin-bottom:1.3rem; }
+h1 { font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase;
+    font-size:clamp(2.8rem,7vw,5.6rem); line-height:0.94; }
+h1 em { font-style:normal; background:linear-gradient(120deg,#8A9B55,#B8C97A 45%,#F0A830);
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+.sub { margin-top:1.4rem; font-size:clamp(0.98rem,1.5vw,1.2rem); color:rgba(255,255,255,0.82); font-weight:500; }
+.sub small { display:block; margin-top:0.45rem; font-weight:400; font-size:0.86rem; color:rgba(255,255,255,0.45); }
+.ctas { display:flex; gap:0.9rem; margin-top:2rem; justify-content:center; flex-wrap:wrap; }
+.btn { font-size:0.85rem; font-weight:600; padding:0.9rem 2.2rem; border-radius:999px; text-decoration:none; transition:all 0.25s; }
+.btn-solid { background:var(--olive); color:#fff; }
+.btn-solid:hover { background:var(--olive-lt); transform:translateY(-2px); box-shadow:0 12px 36px rgba(107,123,58,0.45); }
+.btn-ghost { color:rgba(255,255,255,0.85); border:1px solid rgba(255,255,255,0.25); }
+.btn-ghost:hover { border-color:rgba(255,255,255,0.6); background:rgba(255,255,255,0.06); }
+.net-stat { margin-top:1.9rem; font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.22em;
+    text-transform:uppercase; color:rgba(138,155,85,0.6); }
+.net-stat b { color:var(--amber); font-weight:500; }
+.hint { position:absolute; bottom:22px; left:50%; transform:translateX(-50%); z-index:6;
+    font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.24em; text-transform:uppercase;
+    color:rgba(255,255,255,0.25); }
+</style>
+</head>
+<body>
+
+<canvas id="net"></canvas>
+
+<div class="core">
+    <div class="glass">
+        <div class="logo-chip"><img src="../images/logo.png" alt="Optimal Pipeline Solutions"></div>
+        <p class="svc">Automation | Remote Monitoring | Compliance</p>
+        <h1>Driving efficiency.<br><em>Ensuring compliance.</em></h1>
+        <p class="sub">Your dedicated pipeline operations and automation engineering partner.
+            <small>Every point of light is a site someone has to watch. We watch all of them — controllers and automation engineers, around the clock.</small></p>
+        <div class="ctas">
+            <a href="#services" class="btn btn-solid">Explore Our Services</a>
+            <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+        </div>
+        <div class="net-stat"><b id="ns-count">149</b> sites &nbsp;·&nbsp; <b>0</b> unanswered alarms &nbsp;·&nbsp; <b>24/7</b> coverage</div>
+    </div>
+</div>
+
+<div class="hint">Move your cursor — the network responds</div>
+
+<script>
+/* ── constellation network: 2D canvas, no libraries ── */
+(function(){
+    var cv = document.getElementById('net'), ctx = cv.getContext('2d');
+    var W, H, DPR = Math.min(window.devicePixelRatio || 1, 2);
+    var mouse = { x:-9999, y:-9999 };
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function resize(){
+        W = cv.width = innerWidth * DPR; H = cv.height = innerHeight * DPR;
+        cv.style.width = innerWidth+'px'; cv.style.height = innerHeight+'px';
+    }
+    addEventListener('resize', resize); resize();
+
+    var N = innerWidth < 700 ? 46 : 92, nodes = [];
+    for (var i=0;i<N;i++){
+        nodes.push({
+            x: Math.random()*W, y: Math.random()*H,
+            vx:(Math.random()-0.5)*0.12*DPR, vy:(Math.random()-0.5)*0.12*DPR,
+            r:(0.8+Math.random()*1.8)*DPR,
+            hub: Math.random() < 0.12,                 // a few "major stations"
+            ph: Math.random()*Math.PI*2                // pulse phase
+        });
+    }
+    addEventListener('mousemove', function(e){ mouse.x = e.clientX*DPR; mouse.y = e.clientY*DPR; });
+    addEventListener('mouseleave', function(){ mouse.x = mouse.y = -9999; });
+
+    var LINK = 150*DPR, t = 0;
+    function frame(){
+        t += 0.016;
+        ctx.clearRect(0,0,W,H);
+
+        for (var i=0;i<N;i++){
+            var p = nodes[i];
+            if (!reduced){ p.x += p.vx; p.y += p.vy; }
+            if (p.x<0||p.x>W) p.vx*=-1;
+            if (p.y<0||p.y>H) p.vy*=-1;
+            // gentle attraction to cursor
+            var dxm = mouse.x-p.x, dym = mouse.y-p.y, dm = Math.sqrt(dxm*dxm+dym*dym);
+            if (dm < 260*DPR && dm > 1){ p.x += dxm/dm*0.35*DPR; p.y += dym/dm*0.35*DPR; }
+        }
+
+        // links
+        for (var i=0;i<N;i++){
+            for (var j=i+1;j<N;j++){
+                var a=nodes[i], b=nodes[j], dx=a.x-b.x, dy=a.y-b.y, d=Math.sqrt(dx*dx+dy*dy);
+                if (d < LINK){
+                    var al = (1 - d/LINK) * 0.34;
+                    ctx.strokeStyle = 'rgba(138,155,85,'+al+')';
+                    ctx.lineWidth = 1*DPR;
+                    ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+                    // telemetry packet traveling the link
+                    if ((i+j) % 11 === 0){
+                        var k = (t*0.35 + (i*0.13)) % 1;
+                        ctx.fillStyle = 'rgba(240,168,48,'+(al*2.4)+')';
+                        ctx.beginPath(); ctx.arc(a.x+(b.x-a.x)*k, a.y+(b.y-a.y)*k, 1.6*DPR, 0, 6.283); ctx.fill();
+                    }
+                }
+            }
+        }
+
+        // nodes
+        for (var i=0;i<N;i++){
+            var p = nodes[i];
+            if (p.hub){
+                var pulse = 0.5 + 0.5*Math.sin(t*2 + p.ph);
+                ctx.fillStyle = 'rgba(240,168,48,'+(0.10+pulse*0.10)+')';
+                ctx.beginPath(); ctx.arc(p.x,p.y,(6+pulse*7)*DPR,0,6.283); ctx.fill();
+                ctx.fillStyle = '#F0A830';
+                ctx.beginPath(); ctx.arc(p.x,p.y,2.2*DPR,0,6.283); ctx.fill();
+            } else {
+                ctx.fillStyle = 'rgba(184,201,122,0.75)';
+                ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,6.283); ctx.fill();
+            }
+        }
+        requestAnimationFrame(frame);
+    }
+    frame();
+})();
+
+gsap.to('.glass', { opacity:1, y:0, startAt:{y:30}, duration:1.1, ease:'power3.out', delay:0.35 });
+gsap.from(['.logo-chip','.svc','h1','.sub','.ctas','.net-stat'],
+    { opacity:0, y:18, duration:0.75, ease:'power3.out', stagger:0.11, delay:0.6 });
+gsap.from('.hint', { opacity:0, duration:1.2, delay:2.2 });
+</script>
+</body>
+</html>

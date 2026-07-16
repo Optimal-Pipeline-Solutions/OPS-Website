@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 07 — The Blueprint That Builds Itself</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+:root { --olive:#6B7B3A; --olive-lt:#8A9B55; --olive-pale:#B8C97A; --amber:#F0A830;
+        --bp:#0E1A24; --bp-line:#3E6B8C; --bp-bright:#7FB3D6; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; }
+body { background:var(--bp); color:#fff; font-family:'Inter',sans-serif; overflow:hidden; }
+
+/* blueprint sheet */
+.sheet { position:absolute; inset:0; z-index:1;
+    background-image:
+        linear-gradient(rgba(127,179,214,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(127,179,214,0.07) 1px, transparent 1px),
+        linear-gradient(rgba(127,179,214,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(127,179,214,0.045) 1px, transparent 1px);
+    background-size:120px 120px, 120px 120px, 24px 24px, 24px 24px; }
+.sheet-border { position:absolute; inset:clamp(10px,2vw,26px); z-index:2; border:1.5px solid rgba(127,179,214,0.35); pointer-events:none; }
+.sheet-border::after { content:''; position:absolute; inset:5px; border:1px solid rgba(127,179,214,0.18); }
+
+/* title block (drawing frame corner) */
+.titleblock { position:absolute; right:clamp(18px,2.6vw,34px); bottom:clamp(18px,2.6vw,34px); z-index:6;
+    border:1px solid rgba(127,179,214,0.4); background:rgba(14,26,36,0.88);
+    font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:rgba(127,179,214,0.8);
+    display:grid; grid-template-columns:auto auto; min-width:280px; }
+.titleblock div { padding:6px 12px; border-top:1px solid rgba(127,179,214,0.25); }
+.titleblock div:nth-child(-n+2){ border-top:none; }
+.titleblock div:nth-child(odd){ border-right:1px solid rgba(127,179,214,0.25); color:rgba(127,179,214,0.5); letter-spacing:0.14em; }
+.titleblock b { color:var(--olive-pale); font-weight:600; }
+@media (max-width:760px){ .titleblock { display:none; } }
+
+/* schematic svg */
+.schematic { position:absolute; inset:0; z-index:3; }
+.schematic svg { width:100%; height:100%; }
+.draw { stroke:var(--bp-bright); stroke-width:2; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+.draw.thin { stroke-width:1.2; opacity:0.8; }
+.dim-line { stroke:rgba(127,179,214,0.45); stroke-width:1; }
+.dim-txt { fill:rgba(127,179,214,0.7); font-family:'IBM Plex Mono',monospace; font-size:10px; text-anchor:middle; }
+.callout-g { opacity:0; }
+.callout-box { fill:rgba(14,26,36,0.92); stroke:rgba(184,201,122,0.55); stroke-width:1; }
+.callout-tag { fill:var(--olive-pale); font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.1em; }
+.callout-val { fill:#fff; font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:600; }
+.flow-dash { stroke:var(--amber); stroke-width:2; fill:none; stroke-dasharray:5 18; opacity:0;
+    animation:flow 1.5s linear infinite; }
+@keyframes flow { to { stroke-dashoffset:-23; } }
+
+/* content column, left-aligned like a drawing legend */
+.content { position:absolute; z-index:5; left:clamp(28px,6vw,96px); top:50%; transform:translateY(-50%); max-width:620px; }
+.logo-chip { display:inline-flex; background:rgba(255,255,255,0.95); border-radius:8px; padding:10px 22px; margin-bottom:1.5rem; opacity:0; }
+.logo-chip img { height:48px; display:block; }
+.rev { font-family:'IBM Plex Mono',monospace; font-size:0.66rem; letter-spacing:0.3em; text-transform:uppercase;
+    color:var(--bp-bright); margin-bottom:1.2rem; opacity:0; }
+.rev b { color:var(--olive-pale); }
+h1 { font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase;
+    font-size:clamp(3rem,7.5vw,6.4rem); line-height:0.92; opacity:0; }
+h1 .as-built { color:var(--olive-pale); position:relative; }
+.sub { margin-top:1.5rem; font-size:clamp(0.98rem,1.4vw,1.18rem); color:rgba(255,255,255,0.78); max-width:520px; opacity:0; }
+.sub small { display:block; margin-top:0.5rem; font-size:0.86rem; color:rgba(127,179,214,0.75); }
+.ctas { display:flex; gap:0.9rem; margin-top:2.2rem; flex-wrap:wrap; opacity:0; }
+.btn { font-family:'IBM Plex Mono',monospace; font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase;
+    padding:0.9rem 2rem; text-decoration:none; transition:all 0.25s; }
+.btn-solid { background:var(--olive); color:#fff; }
+.btn-solid:hover { background:var(--olive-lt); box-shadow:0 8px 28px rgba(107,123,58,0.45); }
+.btn-ghost { color:var(--bp-bright); border:1px solid rgba(127,179,214,0.5); }
+.btn-ghost:hover { border-color:var(--bp-bright); background:rgba(127,179,214,0.08); }
+@media (max-width:900px){
+    .content { left:6vw; right:6vw; max-width:none; }
+    .schematic { opacity:0.35; }
+}
+</style>
+</head>
+<body>
+
+<div class="sheet"></div>
+<div class="sheet-border"></div>
+
+<!-- self-drawing isometric station on the right -->
+<div class="schematic">
+<svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g transform="translate(760,60)">
+        <!-- incoming line -->
+        <path class="draw" id="d1" d="M 40 660 L 320 520"/>
+        <path class="flow-dash" id="f1" d="M 40 660 L 320 520"/>
+        <!-- manifold run -->
+        <path class="draw" id="d2" d="M 320 520 L 560 640 L 780 530"/>
+        <path class="flow-dash" id="f2" d="M 320 520 L 560 640 L 780 530"/>
+        <!-- iso tank 1 -->
+        <path class="draw" id="d3" d="M 330 380 l 120 -60 l 120 60 l 0 110 l -120 60 l -120 -60 Z"/>
+        <path class="draw thin" id="d4" d="M 330 380 l 120 60 l 120 -60 M 450 440 l 0 110"/>
+        <!-- iso tank 2 (smaller) -->
+        <path class="draw" id="d5" d="M 600 300 l 90 -45 l 90 45 l 0 84 l -90 45 l -90 -45 Z"/>
+        <path class="draw thin" id="d6" d="M 600 300 l 90 45 l 90 -45 M 690 345 l 0 84"/>
+        <!-- pump block -->
+        <path class="draw" id="d7" d="M 250 560 l 70 -35 l 70 35 l 0 46 l -70 35 l -70 -35 Z"/>
+        <circle class="draw thin" id="d8" cx="320" cy="576" r="17"/>
+        <!-- riser to tank 1 -->
+        <path class="draw thin" id="d9" d="M 450 550 L 450 495"/>
+        <!-- vent stacks -->
+        <path class="draw thin" id="d10" d="M 690 255 l 0 -48 m -12 12 l 12 -12 l 12 12"/>
+
+        <!-- dimension line -->
+        <path class="dim-line" d="M 330 640 L 690 640 M 330 632 L 330 648 M 690 632 L 690 648"/>
+        <text class="dim-txt" x="510" y="662">FIELD SITE — TYP. OF 149</text>
+
+        <!-- telemetry callouts -->
+        <g class="callout-g" id="c1" transform="translate(180,300)">
+            <rect class="callout-box" width="140" height="46" rx="2"/>
+            <line x1="140" y1="46" x2="255" y2="425" class="dim-line"/>
+            <text class="callout-tag" x="10" y="17">PT-1042 · PSIG</text>
+            <text class="callout-val" x="10" y="36" id="cv1">612.4</text>
+        </g>
+        <g class="callout-g" id="c2" transform="translate(560,120)">
+            <rect class="callout-box" width="140" height="46" rx="2"/>
+            <line x1="70" y1="46" x2="130" y2="225" class="dim-line"/>
+            <text class="callout-tag" x="10" y="17">TK-204 · LEVEL FT</text>
+            <text class="callout-val" x="10" y="36" id="cv2">18.2</text>
+        </g>
+        <g class="callout-g" id="c3" transform="translate(90,470)">
+            <rect class="callout-box" width="150" height="46" rx="2"/>
+            <text class="callout-tag" x="10" y="17">P-201 · STATUS</text>
+            <text class="callout-val" x="10" y="36" fill="#B8C97A">RUNNING ✓</text>
+        </g>
+    </g>
+</svg>
+</div>
+
+<!-- headline block -->
+<div class="content">
+    <div class="logo-chip"><img src="../images/logo.png" alt="Optimal Pipeline Solutions"></div>
+    <div class="rev">DWG NO. <b>OPS-HERO-07</b> &nbsp;·&nbsp; REV <b>AS-BUILT</b> &nbsp;·&nbsp; Automation | Remote Monitoring | Compliance</div>
+    <h1>Driving efficiency.<br><span class="as-built">Ensuring compliance.</span></h1>
+    <p class="sub">Your dedicated pipeline operations and automation engineering partner — from the first line on the drawing to the last signal in the control room.
+        <small>Designed. Commissioned. Monitored 24/7. Documented for the auditor before they ask.</small></p>
+    <div class="ctas">
+        <a href="#services" class="btn btn-solid">Explore Our Services</a>
+        <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+    </div>
+</div>
+
+<!-- drawing title block -->
+<div class="titleblock">
+    <div>PROJECT</div><div><b>OPTIMALPIPELINE.COM</b></div>
+    <div>SCOPE</div><div>SCADA · CONTROL ROOM · CRM</div>
+    <div>STANDARD</div><div>49 CFR 195.446 / 192.631</div>
+    <div>SHEET</div><div><b>1 OF 1 — NEVER OFF WATCH</b></div>
+</div>
+
+<script>
+// prepare every stroked path for self-drawing
+var drawEls = document.querySelectorAll('.draw');
+drawEls.forEach(function(p){
+    var len = p.getTotalLength ? p.getTotalLength() : 0;
+    p.style.strokeDasharray = len; p.style.strokeDashoffset = len;
+});
+
+var tl = gsap.timeline({defaults:{ease:'power2.inOut'}});
+tl.to('#d1', { strokeDashoffset:0, duration:0.7 }, 0.3)
+  .to('#d2', { strokeDashoffset:0, duration:0.8 }, 0.8)
+  .to(['#d7','#d8'], { strokeDashoffset:0, duration:0.7 }, 1.2)
+  .to(['#d3','#d4','#d9'], { strokeDashoffset:0, duration:0.9 }, 1.5)
+  .to(['#d5','#d6','#d10'], { strokeDashoffset:0, duration:0.9 }, 1.9)
+  .to(['#f1','#f2'], { opacity:0.9, duration:0.6 }, 2.6)
+  .to('#c1', { opacity:1, duration:0.5, ease:'power3.out' }, 2.8)
+  .to('#c2', { opacity:1, duration:0.5, ease:'power3.out' }, 3.0)
+  .to('#c3', { opacity:1, duration:0.5, ease:'power3.out' }, 3.2);
+
+// content entrance in parallel
+gsap.timeline({defaults:{ease:'power3.out'}})
+    .to('.logo-chip', { opacity:1, y:0, startAt:{y:20}, duration:0.8 }, 0.4)
+    .to('.rev', { opacity:1, duration:0.7 }, 0.7)
+    .to('h1',  { opacity:1, y:0, startAt:{y:30}, duration:1 }, 0.85)
+    .to('.sub',{ opacity:1, y:0, startAt:{y:20}, duration:0.8 }, 1.15)
+    .to('.ctas',{ opacity:1, y:0, startAt:{y:16}, duration:0.8 }, 1.35);
+
+// live values drifting in the callouts
+function drift(id, base, spread, dec){
+    var el = document.getElementById(id);
+    setInterval(function(){ el.textContent = (base + (Math.random()-0.5)*spread).toFixed(dec); }, 1700);
+}
+drift('cv1', 612.4, 3.2, 1); drift('cv2', 18.2, 0.3, 1);
+</script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept 20 — Chaos to Calm (Draggable Before/After)</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<style>
+:root { --olive:#5C7030; --olive-lt:#7E9448; --red:#C0392B; --red-dk:#8E2A1F; --calm:#F4F7F0; --ink:#1E241A; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; }
+body { font-family:'Inter',sans-serif; overflow:hidden; background:var(--calm); color:var(--ink); }
+
+/* ── BEFORE layer (chaos) fills everything ── */
+.before { position:absolute; inset:0; background:#20100E; color:#FFD7CE; overflow:hidden; }
+.before .storm { position:absolute; inset:0; opacity:0.16;
+    background:repeating-linear-gradient(45deg, #C0392B 0 3px, transparent 3px 26px); animation:stormbg 1.6s linear infinite; }
+@keyframes stormbg { to { background-position:37px 37px; } }
+.alarm-flood { position:absolute; top:10%; bottom:0; left:4%; width:min(430px,44vw);
+    font-family:'IBM Plex Mono',monospace; font-size:11px; line-height:2.05; overflow:hidden;
+    -webkit-mask-image:linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
+            mask-image:linear-gradient(to bottom, transparent, black 12%, black 88%, transparent); }
+.alarm-flood div { white-space:nowrap; }
+.alarm-flood .crit { color:#FF8A75; animation:flash 0.6s step-end infinite alternate; }
+@keyframes flash { 50%{ opacity:0.35; } }
+.before-label { position:absolute; left:4%; top:6.5%; font-family:'IBM Plex Mono',monospace; font-size:11px;
+    letter-spacing:0.3em; text-transform:uppercase; color:#FF9A86; }
+.before-count { position:absolute; left:4%; bottom:7%; font-family:'Barlow Condensed',sans-serif; font-weight:700;
+    font-size:clamp(2.2rem,5vh,3.6rem); color:#FF8A75; line-height:1; }
+.before-count small { display:block; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.22em;
+    color:#C97F6F; margin-top:6px; text-transform:uppercase; }
+
+/* ── AFTER layer (calm) clipped from the right ── */
+.after { position:absolute; inset:0; background:var(--calm); overflow:hidden;
+    clip-path:polygon(var(--cut,58%) 0, 100% 0, 100% 100%, var(--cut,58%) 100%); }
+.after-label { position:absolute; right:4%; top:6.5%; font-family:'IBM Plex Mono',monospace; font-size:11px;
+    letter-spacing:0.3em; text-transform:uppercase; color:var(--olive); }
+.calm-list { position:absolute; right:4%; bottom:7%; width:min(380px,40vw); font-family:'IBM Plex Mono',monospace; font-size:11.5px; }
+.calm-list .row { display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px dashed rgba(30,36,26,0.18); color:#4A5240; }
+.calm-list .ok { color:var(--olive); font-weight:600; }
+
+/* ── the divider handle ── */
+.divider { position:absolute; top:0; bottom:0; left:var(--cut,58%); width:0; z-index:20; }
+.divider .bar { position:absolute; top:0; bottom:0; left:-2px; width:4px; background:#fff;
+    box-shadow:0 0 24px rgba(0,0,0,0.4); }
+.handle { position:absolute; top:76%; left:0; transform:translate(-50%,-50%); width:58px; height:58px;
+    border-radius:50%; background:#fff; border:3px solid var(--ink); cursor:ew-resize; z-index:21;
+    display:flex; align-items:center; justify-content:center; gap:5px;
+    box-shadow:0 12px 34px rgba(0,0,0,0.35); user-select:none; touch-action:none; }
+.handle i { border:solid var(--ink); border-width:0 3px 3px 0; padding:4px; }
+.handle .l { transform:rotate(135deg); } .handle .r { transform:rotate(-45deg); }
+.handle-tip { position:absolute; top:calc(76% + 44px); left:0; transform:translateX(-50%); white-space:nowrap;
+    font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:0.22em; text-transform:uppercase;
+    color:#fff; mix-blend-mode:difference; }
+
+/* ── center headline (blend-safe across both worlds) ── */
+.content { position:absolute; inset:0; z-index:10; display:flex; flex-direction:column; align-items:center;
+    justify-content:center; text-align:center; pointer-events:none; padding:0 20px; }
+.content .card { pointer-events:auto; background:rgba(255,255,255,0.94); border-radius:20px;
+    padding:clamp(1.6rem,3.6vh,2.6rem) clamp(1.6rem,3.2vw,3rem); box-shadow:0 30px 80px rgba(0,0,0,0.35);
+    border:1px solid rgba(30,36,26,0.12); max-width:720px; }
+.logo-chip { display:inline-flex; margin-bottom:1rem; }
+.logo-chip img { height:48px; }
+.svc { font-family:'IBM Plex Mono',monospace; font-size:0.64rem; letter-spacing:0.3em; text-transform:uppercase;
+    color:var(--olive); margin-bottom:0.9rem; font-weight:600; }
+h1 { font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase;
+    font-size:clamp(2.4rem,5.6vw,4.6rem); line-height:0.94; color:var(--ink); }
+h1 .bad { color:var(--red); } h1 em { font-style:normal; color:var(--olive); }
+.sub { margin-top:0.9rem; font-size:clamp(0.92rem,1.3vw,1.1rem); line-height:1.6; color:#454D3B; }
+.sub b { color:var(--ink); }
+.ctas { display:flex; gap:0.9rem; margin-top:1.5rem; flex-wrap:wrap; justify-content:center; }
+.btn { font-size:0.85rem; font-weight:600; padding:0.9rem 2.1rem; border-radius:999px; text-decoration:none; transition:all 0.25s; }
+.btn-solid { background:var(--olive); color:#fff; }
+.btn-solid:hover { background:var(--olive-lt); transform:translateY(-2px); box-shadow:0 12px 30px rgba(92,112,48,0.4); }
+.btn-ghost { color:var(--ink); border:1.5px solid rgba(30,36,26,0.3); }
+.btn-ghost:hover { border-color:var(--ink); }
+@media (max-width:700px){ .before-count, .calm-list { display:none; } }
+@media (prefers-reduced-motion: reduce){ .before .storm, .alarm-flood .crit { animation:none; } }
+</style>
+</head>
+<body>
+
+<!-- BEFORE: the alarm flood every un-rationalized control room knows -->
+<div class="before">
+    <div class="storm"></div>
+    <div class="before-label">Before OPS — Alarm Flood</div>
+    <div class="alarm-flood" id="flood"></div>
+    <div class="before-count"><span id="cnt-bad">2,412</span><small>standing alarms · nobody can see the real one</small></div>
+</div>
+
+<!-- AFTER: rationalized, calm, compliant -->
+<div class="after" id="after">
+    <div class="after-label">With OPS — Rationalized &amp; Watched</div>
+    <div class="calm-list">
+        <div class="row"><span>Standing alarms</span><span class="ok" id="cnt-good">3</span></div>
+        <div class="row"><span>Every alarm actionable</span><span class="ok">ISA-18.2 ✓</span></div>
+        <div class="row"><span>Response time</span><span class="ok">41 sec avg</span></div>
+        <div class="row"><span>49 CFR 195.446 package</span><span class="ok">AUDIT READY</span></div>
+        <div class="row"><span>Console</span><span class="ok">STAFFED 24/7</span></div>
+    </div>
+</div>
+
+<!-- the draggable divider -->
+<div class="divider" id="divider">
+    <div class="bar"></div>
+    <div class="handle" id="handle"><i class="l"></i><i class="r"></i></div>
+    <div class="handle-tip">Drag me — this is what we do</div>
+</div>
+
+<!-- headline card bridging both worlds -->
+<div class="content">
+    <div class="card" data-in>
+        <div class="logo-chip"><img src="../images/logo.png" alt="Optimal Pipeline Solutions"></div>
+        <div class="svc">Automation | Remote Monitoring | Compliance</div>
+        <h1>From <span class="bad">alarm chaos</span> to<br>driving efficiency. <em>Ensuring compliance.</em></h1>
+        <p class="sub"><b>Your dedicated pipeline operations and automation engineering partner.</b>
+            Controllers and automation engineers who keep your pipeline running and compliant —
+            slide the divider and watch the noise disappear.</p>
+        <div class="ctas">
+            <a href="#services" class="btn btn-solid">Explore Our Services</a>
+            <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+        </div>
+    </div>
+</div>
+
+<script>
+/* alarm flood generator */
+(function(){
+    var flood = document.getElementById('flood');
+    var tags = ['PT-1042','FT-1051','TT-2210','LI-101','PSH-330','FSL-882','LSH-204','XV-118','PDT-441','TSH-909'];
+    var msgs = ['HI PRESS','HI HI PRESS','LOW FLOW','COMM FAIL','HI TEMP','LVL HI','DEVIATION','BAD PV','RATE OF CHG','LO LO LVL'];
+    function row(){
+        var d = document.createElement('div');
+        var crit = Math.random() < 0.3;
+        if (crit) d.className = 'crit';
+        var t = new Date(Date.now() - Math.random()*600000).toLocaleTimeString('en-US',{hour12:false});
+        d.textContent = t + '  ' + tags[Math.floor(Math.random()*tags.length)] + '  ' +
+            msgs[Math.floor(Math.random()*msgs.length)] + (crit ? '  ** UNACK **' : '');
+        return d;
+    }
+    for (var i=0;i<34;i++) flood.appendChild(row());
+    setInterval(function(){
+        flood.prepend(row());
+        while (flood.children.length > 40) flood.lastChild.remove();
+    }, 380);
+    // the standing-alarm count keeps climbing (that's the horror)
+    var bad = 2412, el = document.getElementById('cnt-bad');
+    setInterval(function(){ bad += Math.floor(Math.random()*3); el.textContent = bad.toLocaleString('en-US'); }, 1400);
+})();
+
+/* divider drag + idle oscillation */
+(function(){
+    var cut = 58, dragging = false, idleTween;
+    var root = document.documentElement;
+    function setCut(v){
+        cut = Math.max(12, Math.min(88, v));
+        root.style.setProperty('--cut', cut + '%');
+        document.getElementById('divider').style.left = cut + '%';
+    }
+    setCut(58);
+
+    function startIdle(){
+        idleTween = gsap.to({ v:cut }, { v:40, duration:3.2, yoyo:true, repeat:-1, ease:'sine.inOut', delay:1.2,
+            onUpdate:function(){ if (!dragging) setCut(this.targets()[0].v); } });
+    }
+    startIdle();
+
+    var handle = document.getElementById('handle');
+    function px2pct(x){ return x / innerWidth * 100; }
+    handle.addEventListener('pointerdown', function(e){
+        dragging = true; if (idleTween) idleTween.kill();
+        handle.setPointerCapture(e.pointerId);
+    });
+    addEventListener('pointermove', function(e){ if (dragging) setCut(px2pct(e.clientX)); });
+    addEventListener('pointerup', function(){ dragging = false; });
+})();
+
+gsap.from('[data-in]', { opacity:0, y:30, scale:0.96, duration:1, ease:'power3.out', delay:0.4 });
+gsap.from(['.before-label','.after-label','.handle'], { opacity:0, duration:0.9, delay:0.9, stagger:0.15 });
+</script>
+</body>
+</html>
