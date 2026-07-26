@@ -1,5 +1,5 @@
 # CODEBASE MAP — OPS Website
-*Generated: 2026-07-25 03:35*
+*Generated: 2026-07-26 03:35*
 
 > AI navigation index. Run `python ~/.claude/tools/map_project.py` to regenerate.
 
@@ -22,9 +22,15 @@ OPS Website/
 │   │   ├── graph.json
 │   │   ├── GRAPH_REPORT.md
 │   │   └── manifest.json
+│   ├── 2026-07-26
+│   │   ├── .graphify_labels.json
+│   │   ├── graph.json
+│   │   ├── GRAPH_REPORT.md
+│   │   └── manifest.json
 │   ├── cache
 │   │   ├── ast
 │   │   │   └── v0.9.23
+│   │   │       ├── 207a4df07c65432cbf1551b6b369416e8f55215a29b4c912ee3911240e7a9d9c.json
 │   │   │       ├── 7dd5f0bae9f898a307afb7dbe4fa13a7b8248a70fd7d95a5be33fd5ca8077fb7.json
 │   │   │       ├── 9044c0590dd857212399b44c86154b611cc9916a15f2bb5fc86dc4c36b5004e2.json
 │   │   │       ├── 90a3efc7d7d83ccbd0b2544f323e8ed220f66fe97019f27b2b16af055a460224.json
@@ -143,8 +149,13 @@ OPS Website/
 | `graphify-out/2026-07-25/graph.json` | JSON |
 | `graphify-out/2026-07-25/GRAPH_REPORT.md` | MD |
 | `graphify-out/2026-07-25/manifest.json` | JSON |
+| `graphify-out/2026-07-26/.graphify_labels.json` | JSON |
+| `graphify-out/2026-07-26/graph.json` | JSON |
+| `graphify-out/2026-07-26/GRAPH_REPORT.md` | MD |
+| `graphify-out/2026-07-26/manifest.json` | JSON |
 | `graphify-out/cache/2e5231ff223fff64f413a5de1b4b766a615b55dcce42249ed873d8ad39a5b884.json` | JSON |
 | `graphify-out/cache/8aea07ce9b90221548afa07e0b310d41fc1fc2924448e43282942e02bcfb8e20.json` | JSON |
+| `graphify-out/cache/ast/v0.9.23/207a4df07c65432cbf1551b6b369416e8f55215a29b4c912ee3911240e7a9d9c.json` | JSON |
 | `graphify-out/cache/ast/v0.9.23/7dd5f0bae9f898a307afb7dbe4fa13a7b8248a70fd7d95a5be33fd5ca8077fb7.json` | JSON |
 | `graphify-out/cache/ast/v0.9.23/9044c0590dd857212399b44c86154b611cc9916a15f2bb5fc86dc4c36b5004e2.json` | JSON |
 | `graphify-out/cache/ast/v0.9.23/90a3efc7d7d83ccbd0b2544f323e8ed220f66fe97019f27b2b16af055a460224.json` | JSON |
