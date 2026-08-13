@@ -1,5 +1,5 @@
 # CODEBASE MAP — OPS Website
-*Generated: 2026-07-29 03:35*
+*Generated: 2026-08-13 03:35*
 
 > AI navigation index. Run `python ~/.claude/tools/map_project.py` to regenerate.
 
@@ -12,7 +12,10 @@ The official company website for **Optimal Pipeline Solutions** — a static, si
 ## Directory Structure
 ```
 OPS Website/
+├── .agents
+│   └── skills
 ├── .claude
+│   ├── skills
 │   └── launch.json
 ├── css
 │   └── styles.css
@@ -42,17 +45,101 @@ OPS Website/
 │   │   ├── graph.json
 │   │   ├── GRAPH_REPORT.md
 │   │   └── manifest.json
+│   ├── 2026-07-30
+│   │   ├── .graphify_labels.json
+│   │   ├── graph.json
+│   │   ├── GRAPH_REPORT.md
+│   │   └── manifest.json
+│   ├── 2026-07-31
+│   │   ├── .graphify_labels.json
+│   │   ├── graph.json
+│   │   ├── GRAPH_REPORT.md
+│   │   └── manifest.json
+│   ├── 2026-08-01
+│   │   ├── .graphify_labels.json
+│   │   ├── graph.json
+│   │   ├── GRAPH_REPORT.md
+│   │   └── manifest.json
+│   ├── 2026-08-02
+│   │   ├── .graphify_labels.json
+│   │   ├── graph.json
+│   │   ├── GRAPH_REPORT.md
+│   │   └── manifest.json
+│   ├── 2026-08-03
+│   │   ├── .graphify_labels.json
+│   │   ├── graph.json
+│   │   ├── GRAPH_REPORT.md
+│   │   └── manifest.json
+│   ├── 2026-08-04
+│   │   ├── .graphify_labels.json
+│   │   ├── graph.json
+│   │   ├── GRAPH_REPORT.md
+│   │   └── manifest.json
+│   ├── 2026-08-05
+│   │   ├── .graphify_labels.json
+│   │   ├── graph.json
+│   │   ├── GRAPH_REPORT.md
+│   │   └── manifest.json
+│   ├── 2026-08-06
+│   │   ├── .graphify_labels.json
+│   │   ├── graph.json
+│   │   ├── GRAPH_REPORT.md
+│   │   └── manifest.json
+│   ├── 2026-08-07
+│   │   ├── .graphify_labels.json
+│   │   ├── graph.json
+│   │   ├── GRAPH_REPORT.md
+│   │   └── manifest.json
+│   ├── 2026-08-09
+│   │   ├── .graphify_labels.json
+│   │   ├── graph.json
+│   │   ├── GRAPH_REPORT.md
+│   │   └── manifest.json
+│   ├── 2026-08-10
+│   │   ├── .graphify_labels.json
+│   │   ├── graph.json
+│   │   ├── GRAPH_REPORT.md
+│   │   └── manifest.json
+│   ├── 2026-08-11
+│   │   ├── .graphify_labels.json
+│   │   ├── graph.json
+│   │   ├── GRAPH_REPORT.md
+│   │   └── manifest.json
+│   ├── 2026-08-12
+│   │   ├── .graphify_labels.json
+│   │   ├── graph.json
+│   │   ├── GRAPH_REPORT.md
+│   │   └── manifest.json
+│   ├── 2026-08-13
+│   │   ├── .graphify_labels.json
+│   │   ├── graph.json
+│   │   ├── GRAPH_REPORT.md
+│   │   └── manifest.json
 │   ├── cache
 │   │   ├── ast
 │   │   │   └── v0.9.23
 │   │   │       ├── 148dd3d0172dc1bdd1c7ea381cf67b39d8cc7b9f39aaf25bdaafb84df3aaceb6.json
+│   │   │       ├── 17422e623b354a9b027070ba358d7774d1eb888b525617c8a0a89d5a4fcac6f1.json
 │   │   │       ├── 207a4df07c65432cbf1551b6b369416e8f55215a29b4c912ee3911240e7a9d9c.json
 │   │   │       ├── 20c4160b74cf53c70584d1d825eddc5c9681f320da29a0c2bc2594b8263319ee.json
+│   │   │       ├── 26d19d5dc52158593cd97bb117980e448d39c4459ed09932c10b3bb351a7adf9.json
+│   │   │       ├── 32c98f81f5c7fe0829db9119d4c5ac40b9ed154723b04299b8f7ee3e5431603e.json
+│   │   │       ├── 4aacc6d94bae18c2d09dc497f73e7ffc7f01690547bbe29faca095abed936978.json
+│   │   │       ├── 4c031d1eda3379434fd716f946a1ee6a22bb5ee0fdd67e0fb2ee6cbe95691f92.json
+│   │   │       ├── 55c251b42eca6ff21161b4000828fa33e955b47d80b65cba6981ff9ea9de952a.json
 │   │   │       ├── 7dd5f0bae9f898a307afb7dbe4fa13a7b8248a70fd7d95a5be33fd5ca8077fb7.json
+│   │   │       ├── 7f82057a598e05cc4e334fa61c49349866fecf9a64475175a27d535b1c308987.json
+│   │   │       ├── 8020e076d2a7c3d7bcdf91e13353217e3adb10624d116637d5cd1a882f319aaa.json
+│   │   │       ├── 853ba5979e264ccb38254d03b6fc6adb3efbf0a916085cc2a29ce6d37b2a7e0b.json
+│   │   │       ├── 86b437228cb1f4c4cb1178e8306ac7f0a8ae0ee6ecdcbb929a1d0bbaf535b233.json
 │   │   │       ├── 9044c0590dd857212399b44c86154b611cc9916a15f2bb5fc86dc4c36b5004e2.json
 │   │   │       ├── 90a3efc7d7d83ccbd0b2544f323e8ed220f66fe97019f27b2b16af055a460224.json
 │   │   │       ├── a24bffe82ed6c7b92c58a998b8e4d9da9e352212070f91c71621697e8cc2541b.json
-│   │   │       └── bd8028d72599397406bf91cb0a9921096d5057523f4ad85de4363b84aaaca730.json
+│   │   │       ├── a5f6a49dec728fc32298193bd49f22789f5b103793dc8025794beb8cff127d0c.json
+│   │   │       ├── aa8638174e66e5fcf79020ba0c005ff9746fe44169682378a386a35d0057a512.json
+│   │   │       ├── b99f3a7944e7937ba4a40942916e63f585108aa756c350bc749048946a3101e4.json
+│   │   │       ├── bd8028d72599397406bf91cb0a9921096d5057523f4ad85de4363b84aaaca730.json
+│   │   │       └── fdb1b761b5d5b5517e33a4bb00bd28b2675affc99f181906db27e7367bfcf7eb.json
 │   │   ├── 2e5231ff223fff64f413a5de1b4b766a615b55dcce42249ed873d8ad39a5b884.json
 │   │   ├── 8aea07ce9b90221548afa07e0b310d41fc1fc2924448e43282942e02bcfb8e20.json
 │   │   └── stat-index.json
@@ -137,6 +224,7 @@ OPS Website/
 ├── robots.txt
 ├── site-upgraded.html
 ├── sitemap.xml
+├── skills-lock.json
 └── winners.json
 ```
 
@@ -183,16 +271,86 @@ OPS Website/
 | `graphify-out/2026-07-29/graph.json` | JSON |
 | `graphify-out/2026-07-29/GRAPH_REPORT.md` | MD |
 | `graphify-out/2026-07-29/manifest.json` | JSON |
+| `graphify-out/2026-07-30/.graphify_labels.json` | JSON |
+| `graphify-out/2026-07-30/graph.json` | JSON |
+| `graphify-out/2026-07-30/GRAPH_REPORT.md` | MD |
+| `graphify-out/2026-07-30/manifest.json` | JSON |
+| `graphify-out/2026-07-31/.graphify_labels.json` | JSON |
+| `graphify-out/2026-07-31/graph.json` | JSON |
+| `graphify-out/2026-07-31/GRAPH_REPORT.md` | MD |
+| `graphify-out/2026-07-31/manifest.json` | JSON |
+| `graphify-out/2026-08-01/.graphify_labels.json` | JSON |
+| `graphify-out/2026-08-01/graph.json` | JSON |
+| `graphify-out/2026-08-01/GRAPH_REPORT.md` | MD |
+| `graphify-out/2026-08-01/manifest.json` | JSON |
+| `graphify-out/2026-08-02/.graphify_labels.json` | JSON |
+| `graphify-out/2026-08-02/graph.json` | JSON |
+| `graphify-out/2026-08-02/GRAPH_REPORT.md` | MD |
+| `graphify-out/2026-08-02/manifest.json` | JSON |
+| `graphify-out/2026-08-03/.graphify_labels.json` | JSON |
+| `graphify-out/2026-08-03/graph.json` | JSON |
+| `graphify-out/2026-08-03/GRAPH_REPORT.md` | MD |
+| `graphify-out/2026-08-03/manifest.json` | JSON |
+| `graphify-out/2026-08-04/.graphify_labels.json` | JSON |
+| `graphify-out/2026-08-04/graph.json` | JSON |
+| `graphify-out/2026-08-04/GRAPH_REPORT.md` | MD |
+| `graphify-out/2026-08-04/manifest.json` | JSON |
+| `graphify-out/2026-08-05/.graphify_labels.json` | JSON |
+| `graphify-out/2026-08-05/graph.json` | JSON |
+| `graphify-out/2026-08-05/GRAPH_REPORT.md` | MD |
+| `graphify-out/2026-08-05/manifest.json` | JSON |
+| `graphify-out/2026-08-06/.graphify_labels.json` | JSON |
+| `graphify-out/2026-08-06/graph.json` | JSON |
+| `graphify-out/2026-08-06/GRAPH_REPORT.md` | MD |
+| `graphify-out/2026-08-06/manifest.json` | JSON |
+| `graphify-out/2026-08-07/.graphify_labels.json` | JSON |
+| `graphify-out/2026-08-07/graph.json` | JSON |
+| `graphify-out/2026-08-07/GRAPH_REPORT.md` | MD |
+| `graphify-out/2026-08-07/manifest.json` | JSON |
+| `graphify-out/2026-08-09/.graphify_labels.json` | JSON |
+| `graphify-out/2026-08-09/graph.json` | JSON |
+| `graphify-out/2026-08-09/GRAPH_REPORT.md` | MD |
+| `graphify-out/2026-08-09/manifest.json` | JSON |
+| `graphify-out/2026-08-10/.graphify_labels.json` | JSON |
+| `graphify-out/2026-08-10/graph.json` | JSON |
+| `graphify-out/2026-08-10/GRAPH_REPORT.md` | MD |
+| `graphify-out/2026-08-10/manifest.json` | JSON |
+| `graphify-out/2026-08-11/.graphify_labels.json` | JSON |
+| `graphify-out/2026-08-11/graph.json` | JSON |
+| `graphify-out/2026-08-11/GRAPH_REPORT.md` | MD |
+| `graphify-out/2026-08-11/manifest.json` | JSON |
+| `graphify-out/2026-08-12/.graphify_labels.json` | JSON |
+| `graphify-out/2026-08-12/graph.json` | JSON |
+| `graphify-out/2026-08-12/GRAPH_REPORT.md` | MD |
+| `graphify-out/2026-08-12/manifest.json` | JSON |
+| `graphify-out/2026-08-13/.graphify_labels.json` | JSON |
+| `graphify-out/2026-08-13/graph.json` | JSON |
+| `graphify-out/2026-08-13/GRAPH_REPORT.md` | MD |
+| `graphify-out/2026-08-13/manifest.json` | JSON |
 | `graphify-out/cache/2e5231ff223fff64f413a5de1b4b766a615b55dcce42249ed873d8ad39a5b884.json` | JSON |
 | `graphify-out/cache/8aea07ce9b90221548afa07e0b310d41fc1fc2924448e43282942e02bcfb8e20.json` | JSON |
 | `graphify-out/cache/ast/v0.9.23/148dd3d0172dc1bdd1c7ea381cf67b39d8cc7b9f39aaf25bdaafb84df3aaceb6.json` | JSON |
+| `graphify-out/cache/ast/v0.9.23/17422e623b354a9b027070ba358d7774d1eb888b525617c8a0a89d5a4fcac6f1.json` | JSON |
 | `graphify-out/cache/ast/v0.9.23/207a4df07c65432cbf1551b6b369416e8f55215a29b4c912ee3911240e7a9d9c.json` | JSON |
 | `graphify-out/cache/ast/v0.9.23/20c4160b74cf53c70584d1d825eddc5c9681f320da29a0c2bc2594b8263319ee.json` | JSON |
+| `graphify-out/cache/ast/v0.9.23/26d19d5dc52158593cd97bb117980e448d39c4459ed09932c10b3bb351a7adf9.json` | JSON |
+| `graphify-out/cache/ast/v0.9.23/32c98f81f5c7fe0829db9119d4c5ac40b9ed154723b04299b8f7ee3e5431603e.json` | JSON |
+| `graphify-out/cache/ast/v0.9.23/4aacc6d94bae18c2d09dc497f73e7ffc7f01690547bbe29faca095abed936978.json` | JSON |
+| `graphify-out/cache/ast/v0.9.23/4c031d1eda3379434fd716f946a1ee6a22bb5ee0fdd67e0fb2ee6cbe95691f92.json` | JSON |
+| `graphify-out/cache/ast/v0.9.23/55c251b42eca6ff21161b4000828fa33e955b47d80b65cba6981ff9ea9de952a.json` | JSON |
 | `graphify-out/cache/ast/v0.9.23/7dd5f0bae9f898a307afb7dbe4fa13a7b8248a70fd7d95a5be33fd5ca8077fb7.json` | JSON |
+| `graphify-out/cache/ast/v0.9.23/7f82057a598e05cc4e334fa61c49349866fecf9a64475175a27d535b1c308987.json` | JSON |
+| `graphify-out/cache/ast/v0.9.23/8020e076d2a7c3d7bcdf91e13353217e3adb10624d116637d5cd1a882f319aaa.json` | JSON |
+| `graphify-out/cache/ast/v0.9.23/853ba5979e264ccb38254d03b6fc6adb3efbf0a916085cc2a29ce6d37b2a7e0b.json` | JSON |
+| `graphify-out/cache/ast/v0.9.23/86b437228cb1f4c4cb1178e8306ac7f0a8ae0ee6ecdcbb929a1d0bbaf535b233.json` | JSON |
 | `graphify-out/cache/ast/v0.9.23/9044c0590dd857212399b44c86154b611cc9916a15f2bb5fc86dc4c36b5004e2.json` | JSON |
 | `graphify-out/cache/ast/v0.9.23/90a3efc7d7d83ccbd0b2544f323e8ed220f66fe97019f27b2b16af055a460224.json` | JSON |
 | `graphify-out/cache/ast/v0.9.23/a24bffe82ed6c7b92c58a998b8e4d9da9e352212070f91c71621697e8cc2541b.json` | JSON |
+| `graphify-out/cache/ast/v0.9.23/a5f6a49dec728fc32298193bd49f22789f5b103793dc8025794beb8cff127d0c.json` | JSON |
+| `graphify-out/cache/ast/v0.9.23/aa8638174e66e5fcf79020ba0c005ff9746fe44169682378a386a35d0057a512.json` | JSON |
+| `graphify-out/cache/ast/v0.9.23/b99f3a7944e7937ba4a40942916e63f585108aa756c350bc749048946a3101e4.json` | JSON |
 | `graphify-out/cache/ast/v0.9.23/bd8028d72599397406bf91cb0a9921096d5057523f4ad85de4363b84aaaca730.json` | JSON |
+| `graphify-out/cache/ast/v0.9.23/fdb1b761b5d5b5517e33a4bb00bd28b2675affc99f181906db27e7367bfcf7eb.json` | JSON |
 | `graphify-out/cache/stat-index.json` | JSON |
 | `graphify-out/graph.html` | HTML |
 | `graphify-out/graph.json` | JSON |
@@ -255,4 +413,5 @@ OPS Website/
 | `robots.txt` | TXT |
 | `site-upgraded.html` | HTML |
 | `sitemap.xml` | XML |
+| `skills-lock.json` | JSON |
 | `winners.json` | JSON |
