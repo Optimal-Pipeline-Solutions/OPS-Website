@@ -1,5 +1,5 @@
 # CODEBASE MAP — OPS Website
-*Generated: 2026-08-18 03:35*
+*Generated: 2026-08-19 03:36*
 
 > AI navigation index. Run `python ~/.claude/tools/map_project.py` to regenerate.
 
