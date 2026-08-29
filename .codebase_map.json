@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-28 03:35",
+  "generated": "2026-08-29 03:35",
   "project": "OPS Website",
   "version": null,
   "file_count": {
@@ -8,10 +8,10 @@
   },
   "files": {
     "scripts/sync_golf.py": "9d9a4b78a25c60472fd72678cbfe79bd",
-    ".codebase_map.json": "e6cb8c46a2219d53c32dc09e6b09e04e",
+    ".codebase_map.json": "6db0cf0425ae80e4d9a8aa0d81ec5ddb",
     "Alarm_Rationalization_One_Pager.html": "0e0eef81fa47ce094fb5cecedbd00897",
     "Alarm_Rationalization_Product_Overview.html": "5f50df6edd6edebd99af54a2038a767f",
-    "CODEBASE_MAP.md": "e6826db205ac6a8da832b4b1f3dd5f09",
+    "CODEBASE_MAP.md": "4dfea1ef92fe7bb5851052255cb8b365",
     "OPS Automation Capabilities.html": "fe12e66e904408536dbfaffc73b6f79c",
     "OPS Automation Services Overview.html": "3656cb09fd6b235f1e23ad741728c25b",
     "OPS Capabilities - Plains All American.html": "3ae142de8d22b9967c9e0ca6a5e1f622",
