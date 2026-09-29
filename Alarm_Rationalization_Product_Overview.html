@@ -725,7 +725,7 @@ footer p { font-size:12px; color:rgba(255,255,255,.45); }
           <li>AI-drafted Cause / Consequence / Corrective Action applies across all selected alarms</li>
           <li>Quick Disposition handles disabled alarms in mixed selections automatically</li>
           <li>Preview before apply — review every field that will change across all N alarms</li>
-          <li>Bulk Approve after review — moves the entire group to APPROVED in one pass</li>
+          <li>Approve All after review &mdash; moves the entire group to Rationalized in one pass</li>
         </ul>
         <p style="margin-top:14px;font-size:13.5px;color:var(--charcoal);">A rationalization effort that would take a team <strong>weeks</strong> manually documenting 300 similar alarms clears in <strong>hours</strong> — with audit-grade, field-specific documentation on every record.</p>
       </div>
@@ -918,7 +918,7 @@ footer p { font-size:12px; color:rgba(255,255,255,.45); }
       </div>
       <div style="background:var(--white);border-radius:10px;padding:24px;border-top:4px solid var(--olive);">
         <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--olive-dim);margin-bottom:10px;">Append-Only History &mdash; No Lost Data</div>
-        <p style="font-size:13.5px;line-height:1.6;color:var(--charcoal);">Every rationalization record, every field change, every approval &mdash; captured in full before and after. The database never overwrites; it appends. Any alarm&rsquo;s complete rationalization history is always accessible. Point-in-time reconstruction lets you show exactly what a record said on any date &mdash; the date of a prior inspection, a prior incident, a prior change request.</p>
+        <p style="font-size:13.5px;line-height:1.6;color:var(--charcoal);">Every rationalization record, every field change, every approval &mdash; captured in full. Every change is appended to an audit history table; nothing in the history is overwritten. Any alarm&rsquo;s complete rationalization history is always accessible. Point-in-time reconstruction lets you show exactly what a record said on any date &mdash; the date of a prior inspection, a prior incident, a prior change request.</p>
       </div>
       <div style="background:var(--white);border-radius:10px;padding:24px;border-top:4px solid #6c8ebf;">
         <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#4a6fa5;margin-bottom:10px;">Change Detection &mdash; Between Every Import</div>
@@ -932,7 +932,7 @@ footer p { font-size:12px; color:rgba(255,255,255,.45); }
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;">
         <div style="text-align:center;padding:16px;border-right:1px solid rgba(255,255,255,.12);">
           <div style="font-size:13px;font-weight:700;color:var(--olive);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">User Actions</div>
-          <div style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.55;">Every create, edit, approve, defer, and bulk operation is logged with the acting username, timestamp, and before/after field values. No anonymous changes.</div>
+          <div style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.55;">Every create, edit, approve, defer, and bulk operation is logged with the acting username, timestamp, and the complete record as it then stood. No anonymous changes.</div>
         </div>
         <div style="text-align:center;padding:16px;border-right:1px solid rgba(255,255,255,.12);">
           <div style="font-size:13px;font-weight:700;color:var(--olive);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">AI Involvement</div>
@@ -1354,7 +1354,7 @@ footer p { font-size:12px; color:rgba(255,255,255,.45); }
       </div>
       <div class="feat-copy">
         <h3>Nothing happens in the application without a trace.</h3>
-        <p>The Log tab captures every significant action with user identity, timestamp, and before/after values. This isn't application debugging output — it's a compliance audit trail built for inspectors and compliance officers.</p>
+        <p>The Log tab captures every significant action with user identity, timestamp, and full detail. This isn't application debugging output — it's a compliance audit trail built for inspectors and compliance officers.</p>
         <ul>
           <li><strong>Rationalization History</strong> — every change to every alarm record, who made it, what it was before</li>
           <li><strong>System History</strong> — application-level events: syncs imported, reports generated, exports run, settings changed</li>
@@ -1392,8 +1392,8 @@ footer p { font-size:12px; color:rgba(255,255,255,.45); }
       </div>
       <div style="border:1px solid var(--gray-200);border-top:3px solid var(--navy);border-radius:8px;padding:20px 18px;background:var(--white);">
         <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--olive);margin-bottom:8px;">Alarm Reports</div>
-        <div style="font-family:Consolas,monospace;font-size:14px;font-weight:700;color:var(--navy);margin-bottom:6px;">OPS-ARR / OPS-ASR</div>
-        <p style="font-size:13px;color:var(--gray-600);line-height:1.5;">Alarm rationalization and safety review reports. Full revision lifecycle — draft, sign, revise, void — all tracked.</p>
+        <div style="font-family:Consolas,monospace;font-size:14px;font-weight:700;color:var(--navy);margin-bottom:6px;">OPS-ARR / OPS-TSAR</div>
+        <p style="font-size:13px;color:var(--gray-600);line-height:1.5;">Alarm rationalization report and annual safety alarm review. Full revision lifecycle — draft, sign, revise, void — all tracked.</p>
       </div>
     </div>
 
