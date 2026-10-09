@@ -1,5 +1,5 @@
 # CODEBASE MAP — OPS Website
-*Generated: 2026-10-08 03:35*
+*Generated: 2026-10-09 03:35*
 
 > AI navigation index. Run `python ~/.claude/tools/map_project.py` to regenerate.
 
@@ -380,6 +380,11 @@ OPS Website/
 │   │   ├── graph.json
 │   │   ├── GRAPH_REPORT.md
 │   │   └── manifest.json
+│   ├── 2026-10-09
+│   │   ├── .graphify_labels.json
+│   │   ├── graph.json
+│   │   ├── GRAPH_REPORT.md
+│   │   └── manifest.json
 │   ├── cache
 │   │   ├── ast
 │   │   │   └── v0.9.23
@@ -389,6 +394,7 @@ OPS Website/
 │   │   │       ├── 148dd3d0172dc1bdd1c7ea381cf67b39d8cc7b9f39aaf25bdaafb84df3aaceb6.json
 │   │   │       ├── 17422e623b354a9b027070ba358d7774d1eb888b525617c8a0a89d5a4fcac6f1.json
 │   │   │       ├── 1a43e771fba3b77e159c7fd3fb380ae1546b3f751e5a986a47fd448dba755168.json
+│   │   │       ├── 1b8b147b08400bf1167a287345a26b4b05903b5f0916ceaafe13a55523403aea.json
 │   │   │       ├── 207a4df07c65432cbf1551b6b369416e8f55215a29b4c912ee3911240e7a9d9c.json
 │   │   │       ├── 20c4160b74cf53c70584d1d825eddc5c9681f320da29a0c2bc2594b8263319ee.json
 │   │   │       ├── 217695eb448f15350719499582a996867b6b0c5e1bc09e44c97a5be0a392fbcc.json
@@ -857,6 +863,10 @@ OPS Website/
 | `graphify-out/2026-10-08/graph.json` | JSON |
 | `graphify-out/2026-10-08/GRAPH_REPORT.md` | MD |
 | `graphify-out/2026-10-08/manifest.json` | JSON |
+| `graphify-out/2026-10-09/.graphify_labels.json` | JSON |
+| `graphify-out/2026-10-09/graph.json` | JSON |
+| `graphify-out/2026-10-09/GRAPH_REPORT.md` | MD |
+| `graphify-out/2026-10-09/manifest.json` | JSON |
 | `graphify-out/cache/2e5231ff223fff64f413a5de1b4b766a615b55dcce42249ed873d8ad39a5b884.json` | JSON |
 | `graphify-out/cache/8aea07ce9b90221548afa07e0b310d41fc1fc2924448e43282942e02bcfb8e20.json` | JSON |
 | `graphify-out/cache/ast/v0.9.23/091b431c94e063256d562eef4a8aba822ed3c27b45bf013ba4bef29cffa16aee.json` | JSON |
@@ -865,6 +875,7 @@ OPS Website/
 | `graphify-out/cache/ast/v0.9.23/148dd3d0172dc1bdd1c7ea381cf67b39d8cc7b9f39aaf25bdaafb84df3aaceb6.json` | JSON |
 | `graphify-out/cache/ast/v0.9.23/17422e623b354a9b027070ba358d7774d1eb888b525617c8a0a89d5a4fcac6f1.json` | JSON |
 | `graphify-out/cache/ast/v0.9.23/1a43e771fba3b77e159c7fd3fb380ae1546b3f751e5a986a47fd448dba755168.json` | JSON |
+| `graphify-out/cache/ast/v0.9.23/1b8b147b08400bf1167a287345a26b4b05903b5f0916ceaafe13a55523403aea.json` | JSON |
 | `graphify-out/cache/ast/v0.9.23/207a4df07c65432cbf1551b6b369416e8f55215a29b4c912ee3911240e7a9d9c.json` | JSON |
 | `graphify-out/cache/ast/v0.9.23/20c4160b74cf53c70584d1d825eddc5c9681f320da29a0c2bc2594b8263319ee.json` | JSON |
 | `graphify-out/cache/ast/v0.9.23/217695eb448f15350719499582a996867b6b0c5e1bc09e44c97a5be0a392fbcc.json` | JSON |
