@@ -17,7 +17,8 @@
       "hookLine": "Prizes for 1st Place — and Dead Last!",
       "announceLine": "Winner announced at 2:30 PM Thursday",
       "golfKey": "ooge_putting_contest_v1",
-      "bgImage": "images/golf-putt-bg.jpg"
+      "bgImage": "images/golf-putt-bg.jpg",
+      "bannerLine": "Visit us at the Oklahoma Oil and Gas Expo · Booth 1222 · Thursday, Oct 15"
     },
     "pcf": {
       "title": "Pipeline Crossroads Festival Golf Challenge",
@@ -33,7 +34,8 @@
       "navLabel": "⛳ Golf",
       "navLabelMobile": "⛳ Golf Challenge",
       "hookLine": "Come have a beer on us at Hole 15!",
-      "bgImage": "images/golf-bg.jpg"
+      "bgImage": "images/golf-bg.jpg",
+      "bannerLine": "Visit us at the Pipeline Crossroads Festival · Hole 15"
     }
   }
 }
