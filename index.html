@@ -343,25 +343,37 @@
         </div>
     </nav>
 
-<!-- Temporary event ribbon — shown only while golf-config.json enabled:true -->
-<div id="golf-banner" onclick="openGolfModal()" style="display:none;position:fixed;top:64px;left:0;right:0;z-index:40;background:#6B7B3A;color:#fff;padding:0.5rem 1rem;text-align:center;cursor:pointer;box-shadow:0 4px 18px rgba(0,0,0,0.25);font-size:0.85rem;letter-spacing:0.02em;" title="Open the putting contest">
-    <span style="font-weight:700;">&#9971; <span id="golf-banner-text">Visit us at the Oklahoma Oil and Gas Expo &middot; Booth 1222 &middot; Thursday, Oct 15</span></span>
-    <span class="hidden sm:inline" style="opacity:0.85;">&nbsp;&mdash; swing by and take your shot!</span>
+<!-- Temporary event banner — shown only while golf-config.json enabled:true -->
+<style>
+#golf-banner { display:none; position:fixed; top:64px; left:0; right:0; z-index:40; cursor:pointer;
+    background:linear-gradient(90deg,#55682C 0%,#6B7B3A 45%,#7E9448 100%); color:#fff;
+    padding:0.55rem 1rem 0.65rem; text-align:center; overflow:hidden;
+    box-shadow:0 6px 22px rgba(0,0,0,0.3); }
+#golf-banner:hover { filter:brightness(1.07); }
+#golf-banner .gb-title { font-weight:800; font-size:clamp(0.95rem,1.4vw,1.15rem); letter-spacing:0.02em;
+    display:flex; align-items:center; justify-content:center; gap:0.55rem; flex-wrap:wrap; }
+#golf-banner .gb-sub { font-size:clamp(0.74rem,1vw,0.85rem); opacity:0.92; margin-top:0.15rem; }
+#golf-banner .gb-sub b { color:#FFE9B8; }
+#golf-banner .gb-free { background:#F0A830; color:#2A2000; font-weight:800; font-size:0.78em;
+    padding:0.12rem 0.55rem; border-radius:5px; letter-spacing:0.06em; }
+#golf-banner .gb-flag { display:inline-block; font-size:1.15em; }
+@media (prefers-reduced-motion: no-preference) {
+    #golf-banner::after { content:''; position:absolute; top:0; bottom:0; width:130px; left:-160px;
+        background:linear-gradient(105deg, transparent, rgba(255,255,255,0.35), transparent);
+        animation:gb-sheen 4.5s ease-in-out infinite; }
+    #golf-banner .gb-flag { animation:gb-bob 1.6s ease-in-out infinite; }
+    #golf-banner .gb-free { animation:gb-pulse 2.2s ease-in-out infinite; }
+}
+@keyframes gb-sheen { 0% { left:-160px; } 45% { left:110%; } 100% { left:110%; } }
+@keyframes gb-bob { 0%,100% { transform:translateY(0) rotate(-6deg); } 50% { transform:translateY(-3px) rotate(8deg); } }
+@keyframes gb-pulse { 50% { transform:scale(1.1); box-shadow:0 0 16px rgba(240,168,48,0.85); } }
+</style>
+<div id="golf-banner" onclick="openGolfModal()" title="Open the putting contest">
+    <div class="gb-title"><span class="gb-flag">&#9971;</span><span class="gb-free">FREE</span>
+        <span id="golf-banner-title">PUTTING CONTEST &middot; Oklahoma Oil and Gas Expo</span></div>
+    <div class="gb-sub"><span id="golf-banner-sub">Booth 1222 &middot; Thursday, Oct 15 &middot; Prizes for 1st Place &mdash; and Dead Last!</span>
+        &nbsp;<b>Tap for live standings &#9656;</b></div>
 </div>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="fixed inset-0 z-40 bg-midnight/95 backdrop-blur-xl flex-col items-center justify-center gap-8" style="display:none;">
-        <a href="#about-ops" class="mobile-link">About</a>
-        <a href="#services" class="mobile-link">Services</a>
-        <a href="#control-room" class="mobile-link">Control Room</a>
-        <a href="#engineering" class="mobile-link">Automation</a>
-        <a href="#automation" class="mobile-link">Projects</a>
-        <a href="#compliance" class="mobile-link">Compliance</a>
-        <a href="#case-study" class="mobile-link">Case Study</a>
-        <a href="#careers" class="mobile-link" style="color:#8A9B55;">Careers</a>
-        <a href="#contact" class="mobile-link">Contact Us</a>
-        <a href="#" class="mobile-link" onclick="openGolfModal();document.getElementById('mobile-menu').classList.add('hidden');return false;" style="color:#8A9B55;display:none;">⛳ Putting Contest</a>
-    </div>
 
 
     <!-- ═══════════════════════════════════════════════════════════ -->
@@ -2228,7 +2240,8 @@
                 if (e.bgImage) document.getElementById('g-golf-bg').style.backgroundImage = "url('" + e.bgImage + "')";
                 var bn = document.getElementById('golf-banner');
                 if (bn) {
-                    if (e.bannerLine) document.getElementById('golf-banner-text').textContent = e.bannerLine;
+                    if (e.bannerTitle) document.getElementById('golf-banner-title').textContent = e.bannerTitle;
+                    if (e.bannerSub) document.getElementById('golf-banner-sub').textContent = e.bannerSub;
                     bn.style.display = 'block';
                 }
                 document.querySelectorAll('a[onclick*="openGolfModal"]').forEach(function(a) {
