@@ -333,7 +333,7 @@
                 <a href="#compliance" class="nav-link">Compliance</a>
                 <a href="#case-study" class="nav-link">Case Study</a>
                 <a href="#careers" class="nav-link" style="color:#8A9B55;font-weight:600;position:relative;">Careers</a>
-                <a href="#" class="nav-link" onclick="openGolfModal();return false;" style="color:#8A9B55;font-weight:600;">⛳ Golf</a>
+                <a href="#" class="nav-link" onclick="openGolfModal();return false;" style="color:#8A9B55;font-weight:600;display:none;">⛳ Golf</a>
                 <a href="#contact" class="nav-cta">Contact Us</a>
             </div>
             <button id="mobile-toggle" class="md:hidden text-white p-2 -mr-2 touch-manipulation" style="min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 0 3px rgba(0,0,0,0.8));position:relative;">
@@ -354,7 +354,7 @@
         <a href="#case-study" class="mobile-link">Case Study</a>
         <a href="#careers" class="mobile-link" style="color:#8A9B55;">Careers</a>
         <a href="#contact" class="mobile-link">Contact Us</a>
-        <a href="#" class="mobile-link" onclick="openGolfModal();document.getElementById('mobile-menu').classList.add('hidden');return false;" style="color:#8A9B55;">⛳ Golf Challenge</a>
+        <a href="#" class="mobile-link" onclick="openGolfModal();document.getElementById('mobile-menu').classList.add('hidden');return false;" style="color:#8A9B55;display:none;">⛳ Golf Challenge</a>
     </div>
 
 
@@ -1833,7 +1833,7 @@
             align-items: center;
             flex-shrink: 0;
         }
-        #g-scada-brand {
+        #g-scada-brand, #g-winners-brand {
             font-family: 'Courier New', monospace;
             font-size: 0.58rem;
             letter-spacing: 0.12em;
@@ -2107,7 +2107,7 @@
                                 3 putts &middot; highest combined score wins<br>
                                 Putt from any starting star<br>
                                 Replay anytime throughout the day for a better score<br>
-                                Winner announced at 2:30 PM Thursday
+                                <span id="g-rules-announce">Winner announced at 2:30 PM Thursday</span>
                             </span>
                         </div>
                         <div class="g-rule-item">
@@ -2211,7 +2211,7 @@
                 </div>
 
                 <div id="g-winners-footer">
-                    <div id="g-scada-brand">OPS &middot; OK OIL &amp; GAS EXPO GOLF CHALLENGE &middot; CONTEST CLOSED</div>
+                    <div id="g-winners-brand">OPS &middot; OK OIL &amp; GAS EXPO GOLF CHALLENGE &middot; CONTEST CLOSED</div>
                     <div style="display:flex;gap:0.5rem;">
                         <button id="g-back-winners" class="g-close-winners" onclick="gBackToIntro()">[ &larr; BACK ]</button>
                         <button id="g-close-winners" class="g-close-winners" onclick="gCloseModal()">[ DISMISS ]</button>
@@ -2228,6 +2228,38 @@
     (function() {
         var GOLF_KEY = 'ooge_golf_challenge_v1';
         var gTL = null;
+
+        // ── Event config switch (golf-config.json) ───────────────
+        // The golf feature is OFF by default (nav links hidden). It activates
+        // only when golf-config.json has enabled:true — all event-specific
+        // text comes from the selected preset, so enabling a new event means
+        // editing that one JSON file. See /golf-challenge skill runbook.
+        fetch('./golf-config.json?v=' + Date.now())
+            .then(function(r) { return r.json(); })
+            .then(function(cfg) {
+                if (!cfg || !cfg.enabled || !cfg.events || !cfg.events[cfg.event]) return;
+                var e = cfg.events[cfg.event];
+                GOLF_KEY = e.golfKey || GOLF_KEY;
+                function setTxt(id, txt) {
+                    var el = document.getElementById(id);
+                    if (el && txt) el.textContent = txt;
+                }
+                setTxt('g-city-name', e.city);
+                setTxt('g-tagline', e.tagline);
+                setTxt('g-presents', e.presents);
+                setTxt('g-title-sub', e.subLine);
+                setTxt('g-beer-line', e.beerLine);
+                setTxt('g-scada-subtitle', e.beerLine);
+                setTxt('g-scada-title', '⛳  ' + e.title + ' · Live Standings');
+                setTxt('g-winners-title', '⛳  ' + e.title);
+                setTxt('g-scada-brand', 'OPS · ' + e.shortBrand + ' · LIVE FEED · AUTO-REFRESH 5 MIN');
+                setTxt('g-winners-brand', 'OPS · ' + e.shortBrand + ' · CONTEST CLOSED');
+                setTxt('g-rules-announce', e.announceLine);
+                document.querySelectorAll('a[onclick*="openGolfModal"]').forEach(function(a) {
+                    a.style.display = '';
+                });
+            })
+            .catch(function() { /* no config or fetch failed — golf stays hidden */ });
 
         // ── Open / Close ─────────────────────────────────────────
         window.gWinnersData = null;

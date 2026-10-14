@@ -17,20 +17,31 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Check event switch (golf-config.json)
+        id: gate
+        run: |
+          ENABLED=$(python3 -c "import json; print(str(json.load(open('golf-config.json')).get('enabled', False)).lower())" 2>/dev/null || echo "false")
+          echo "enabled=$ENABLED" >> "$GITHUB_OUTPUT"
+          echo "Golf event enabled: $ENABLED"
+
       - name: Set up Python
+        if: steps.gate.outputs.enabled == 'true'
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
       - name: Install dependencies
+        if: steps.gate.outputs.enabled == 'true'
         run: pip install requests
 
       - name: Sync Smartsheet data
+        if: steps.gate.outputs.enabled == 'true'
         env:
           SMARTSHEET_TOKEN: ${{ secrets.SMARTSHEET_TOKEN }}
         run: python scripts/sync_golf.py
 
       - name: Commit if changed
+        if: steps.gate.outputs.enabled == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -39,6 +50,7 @@ jobs:
           git push
 
       - name: Trigger next sync in 5 minutes
+        if: steps.gate.outputs.enabled == 'true'
         run: |
           sleep 270
           curl -s -X POST \

@@ -1,0 +1,29 @@
+{
+  "_readme": "Golf Challenge switch. Set 'enabled' true/false and pick the 'event' preset key. The site reads this at page load: when enabled, the Golf nav links appear and all modal text comes from the chosen preset. The golf-sync.yml Action also checks 'enabled' and no-ops when false. Per-year tweaks: update subLine/announceLine dates and bump golfKey so returning visitors see the intro again.",
+  "enabled": true,
+  "event": "ooge",
+  "events": {
+    "ooge": {
+      "title": "Oklahoma Oil and Gas Expo Golf Challenge",
+      "presents": "Oklahoma Oil and Gas Expo",
+      "shortBrand": "OK OIL & GAS EXPO GOLF CHALLENGE",
+      "city": "Oklahoma City, Oklahoma",
+      "tagline": "Lincoln Park Golf Course",
+      "subLine": "Putting Contest · Thursday, October 15",
+      "beerLine": "Come have a beer on us at Lincoln Park!",
+      "announceLine": "Winner announced at 2:30 PM Thursday",
+      "golfKey": "ooge_golf_challenge_v1"
+    },
+    "pcf": {
+      "title": "Pipeline Crossroads Festival Golf Challenge",
+      "presents": "Pipeline Crossroads Festival",
+      "shortBrand": "PCF GOLF CHALLENGE",
+      "city": "Cushing, Oklahoma",
+      "tagline": "Pipeline Crossroads of the World",
+      "subLine": "Hole 15 Putting Contest · Cushing, Oklahoma",
+      "beerLine": "Come have a beer on us at Hole 15!",
+      "announceLine": "Winners announced at end of each day",
+      "golfKey": "pcf_golf_challenge_v2"
+    }
+  }
+}
