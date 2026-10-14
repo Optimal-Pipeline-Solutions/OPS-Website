@@ -346,33 +346,22 @@
 <!-- Temporary event banner — shown only while golf-config.json enabled:true -->
 <style>
 #golf-banner { display:none; position:fixed; top:64px; left:0; right:0; z-index:40; cursor:pointer;
-    background:linear-gradient(90deg,#55682C 0%,#6B7B3A 45%,#7E9448 100%); color:#fff;
-    padding:0.55rem 1rem 0.65rem; text-align:center; overflow:hidden;
-    box-shadow:0 6px 22px rgba(0,0,0,0.3); }
-#golf-banner:hover { filter:brightness(1.07); }
-#golf-banner .gb-title { font-weight:800; font-size:clamp(0.95rem,1.4vw,1.15rem); letter-spacing:0.02em;
-    display:flex; align-items:center; justify-content:center; gap:0.55rem; flex-wrap:wrap; }
-#golf-banner .gb-sub { font-size:clamp(0.74rem,1vw,0.85rem); opacity:0.92; margin-top:0.15rem; }
-#golf-banner .gb-sub b { color:#FFE9B8; }
-#golf-banner .gb-free { background:#F0A830; color:#2A2000; font-weight:800; font-size:0.78em;
-    padding:0.12rem 0.55rem; border-radius:5px; letter-spacing:0.06em; }
-#golf-banner .gb-flag { display:inline-block; font-size:1.15em; }
+    background:#6B7B3A; color:#fff; padding:0.55rem 1rem 0.6rem; text-align:center;
+    box-shadow:0 4px 18px rgba(0,0,0,0.25); }
+#golf-banner:hover { background:#758742; }
+#golf-banner { overflow:hidden; }
 @media (prefers-reduced-motion: no-preference) {
     #golf-banner::after { content:''; position:absolute; top:0; bottom:0; width:130px; left:-160px;
-        background:linear-gradient(105deg, transparent, rgba(255,255,255,0.35), transparent);
-        animation:gb-sheen 4.5s ease-in-out infinite; }
-    #golf-banner .gb-flag { animation:gb-bob 1.6s ease-in-out infinite; }
-    #golf-banner .gb-free { animation:gb-pulse 2.2s ease-in-out infinite; }
+        background:linear-gradient(105deg, transparent, rgba(255,255,255,0.3), transparent);
+        animation:gb-sheen 5s ease-in-out infinite; }
 }
-@keyframes gb-sheen { 0% { left:-160px; } 45% { left:110%; } 100% { left:110%; } }
-@keyframes gb-bob { 0%,100% { transform:translateY(0) rotate(-6deg); } 50% { transform:translateY(-3px) rotate(8deg); } }
-@keyframes gb-pulse { 50% { transform:scale(1.1); box-shadow:0 0 16px rgba(240,168,48,0.85); } }
+@keyframes gb-sheen { 0% { left:-160px; } 40% { left:110%; } 100% { left:110%; } }
+#golf-banner .gb-title { font-weight:700; font-size:clamp(0.92rem,1.3vw,1.05rem); letter-spacing:0.01em; }
+#golf-banner .gb-sub { font-size:clamp(0.74rem,1vw,0.84rem); opacity:0.9; margin-top:0.12rem; }
 </style>
-<div id="golf-banner" onclick="openGolfModal()" title="Open the putting contest">
-    <div class="gb-title"><span class="gb-flag">&#9971;</span><span class="gb-free">FREE</span>
-        <span id="golf-banner-title">PUTTING CONTEST &middot; Oklahoma Oil and Gas Expo</span></div>
-    <div class="gb-sub"><span id="golf-banner-sub">Booth 1222 &middot; Thursday, Oct 15 &middot; Prizes for 1st Place &mdash; and Dead Last!</span>
-        &nbsp;<b>Tap for live standings &#9656;</b></div>
+<div id="golf-banner" onclick="openGolfModal()" title="Putting contest details">
+    <div class="gb-title"><span id="golf-banner-title">Come visit with us at the Oklahoma Oil and Gas Expo</span></div>
+    <div class="gb-sub"><span id="golf-banner-sub">Bennett Event Center, Oklahoma City &middot; Booth 1222 &middot; Thursday, October 15 &middot; Free putting contest</span></div>
 </div>
 
 
