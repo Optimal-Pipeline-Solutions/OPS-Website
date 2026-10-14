@@ -1439,7 +1439,7 @@
         #g-golf-bg {
             position: absolute;
             inset: -5%;
-            background: url('images/golf-bg.jpg') center/cover no-repeat;
+            background: url('images/golf-putt-bg.jpg') center/cover no-repeat;
             animation: hero-drift 18s ease-in-out infinite;
             transform-origin: center center;
             will-change: transform;
@@ -2257,6 +2257,7 @@
                 setTxt('g-scada-brand', 'OPS · ' + e.shortBrand + ' · LIVE FEED · AUTO-REFRESH 5 MIN');
                 setTxt('g-winners-brand', 'OPS · ' + e.shortBrand + ' · CONTEST CLOSED');
                 setTxt('g-rules-announce', e.announceLine);
+                if (e.bgImage) document.getElementById('g-golf-bg').style.backgroundImage = "url('" + e.bgImage + "')";
                 document.querySelectorAll('a[onclick*="openGolfModal"]').forEach(function(a) {
                     var lbl = a.classList.contains('mobile-link') ? e.navLabelMobile : e.navLabel;
                     if (lbl) a.textContent = lbl;
