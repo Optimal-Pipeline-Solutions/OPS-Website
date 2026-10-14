@@ -4,7 +4,9 @@ import os
 from datetime import datetime, timezone
 
 SHEET_ID = "5004471427878788"
-API_TOKEN = os.environ.get("SMARTSHEET_TOKEN", "rhvriSvnpHOTVjqnDtPYqQyveTpKDr8WKO3T1")
+API_TOKEN = os.environ.get("SMARTSHEET_TOKEN")
+if not API_TOKEN:
+    raise SystemExit("SMARTSHEET_TOKEN environment variable is not set")
 OUTPUT_FILE = os.path.join(os.path.dirname(__file__), "..", "golf-data.json")
 
 

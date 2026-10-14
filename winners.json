@@ -1,12 +1,28 @@
 {
   "thursday": {
-    "active": true,
-    "first": { "name": "Tony Alford", "company": "Energy Transfer", "score": "172" },
-    "dl":    { "name": "Mason",       "company": "Plains",          "score": "-89" }
+    "active": false,
+    "first": {
+      "name": "",
+      "company": "",
+      "score": ""
+    },
+    "dl": {
+      "name": "",
+      "company": "",
+      "score": ""
+    }
   },
   "friday": {
-    "active": true,
-    "first": { "name": "JR Rodriguez", "company": "Mint Turbines", "score": "272" },
-    "dl":    { "name": "Jeff Cooper",  "company": "Plains",       "score": "-96" }
+    "active": false,
+    "first": {
+      "name": "",
+      "company": "",
+      "score": ""
+    },
+    "dl": {
+      "name": "",
+      "company": "",
+      "score": ""
+    }
   }
 }
