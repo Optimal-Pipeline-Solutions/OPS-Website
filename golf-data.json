@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-10-15T15:45:42Z",
-  "row_count": 18,
+  "last_updated": "2026-10-15T15:46:45Z",
+  "row_count": 19,
   "rows": [
+    {
+      "name": "Taylor",
+      "company": "Mid America",
+      "number": "4057540309",
+      "shot1": "0",
+      "shot2": "-36",
+      "shot3": "172",
+      "current_score": "136"
+    },
     {
       "name": "Timber",
       "company": "KAT",
