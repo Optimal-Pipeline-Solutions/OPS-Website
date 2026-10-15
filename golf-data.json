@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-10-15T18:13:02Z",
-  "row_count": 71,
+  "last_updated": "2026-10-15T18:14:22Z",
+  "row_count": 72,
   "rows": [
+    {
+      "name": "Elijah",
+      "company": "MATC",
+      "number": "",
+      "shot1": "13",
+      "shot2": "0",
+      "shot3": "-42",
+      "current_score": "-29"
+    },
     {
       "name": "Johnathan o toole",
       "company": "MV",
