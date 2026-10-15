@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-10-15T16:33:54Z",
-  "row_count": 40,
+  "last_updated": "2026-10-15T16:35:22Z",
+  "row_count": 41,
   "rows": [
+    {
+      "name": "Brandon sharp",
+      "company": "Allied steel",
+      "number": "4053343890",
+      "shot1": "172",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "172"
+    },
     {
       "name": "Gary",
       "company": "Sunbelt",
