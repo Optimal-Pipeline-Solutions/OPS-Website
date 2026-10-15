@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-10-15T17:00:25Z",
-  "row_count": 49,
+  "last_updated": "2026-10-15T17:01:30Z",
+  "row_count": 50,
   "rows": [
+    {
+      "name": "Shaun",
+      "company": "Gulf Exploration",
+      "number": "405-840-3371",
+      "shot1": "13",
+      "shot2": "-36",
+      "shot3": "0",
+      "current_score": "-23"
+    },
     {
       "name": "Jordan",
       "company": "Gulf Exploration",
