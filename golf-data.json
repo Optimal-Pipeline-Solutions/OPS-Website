@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-10-15T18:23:58Z",
-  "row_count": 72,
+  "last_updated": "2026-10-15T18:25:20Z",
+  "row_count": 73,
   "rows": [
+    {
+      "name": "Levi Gilland",
+      "company": "Mid States Oil Field Machine",
+      "number": "",
+      "shot1": "41",
+      "shot2": "35",
+      "shot3": "35",
+      "current_score": "111"
+    },
     {
       "name": "Elijah",
       "company": "MATC",
