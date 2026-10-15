@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-10-15T17:05:09Z",
-  "row_count": 50,
+  "last_updated": "2026-10-15T17:06:10Z",
+  "row_count": 52,
   "rows": [
+    {
+      "name": "Randy Parr",
+      "company": "Industrial Electronics Supply",
+      "number": "479-305-8275",
+      "shot1": "10",
+      "shot2": "35",
+      "shot3": "35",
+      "current_score": "80"
+    },
+    {
+      "name": "Jeff bishop",
+      "company": "Industry electric",
+      "number": "405-625 7662",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "172",
+      "current_score": "172"
+    },
     {
       "name": "Shaun",
       "company": "Gulf Exploration",
