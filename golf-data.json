@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-10-15T15:11:56Z",
-  "row_count": 8,
+  "last_updated": "2026-10-15T15:12:31Z",
+  "row_count": 9,
   "rows": [
+    {
+      "name": "Gavin",
+      "company": "PSs",
+      "number": "",
+      "shot1": "1",
+      "shot2": "0",
+      "shot3": "1",
+      "current_score": "2"
+    },
     {
       "name": "Brian McGuire",
       "company": "Ok dep of labor",
