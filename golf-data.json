@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-10-15T18:42:48Z",
-  "row_count": 79,
+  "last_updated": "2026-10-15T18:44:13Z",
+  "row_count": 80,
   "rows": [
+    {
+      "name": "Micah Nail",
+      "company": "Legacy care insurance",
+      "number": "",
+      "shot1": "41",
+      "shot2": "-47",
+      "shot3": "0",
+      "current_score": "-6"
+    },
     {
       "name": "Travis Hunter",
       "company": "Philips 66",
