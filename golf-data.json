@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-10-15T18:27:08Z",
-  "row_count": 74,
+  "last_updated": "2026-10-15T18:28:40Z",
+  "row_count": 75,
   "rows": [
+    {
+      "name": "Trevor",
+      "company": "Carter",
+      "number": "",
+      "shot1": "-27",
+      "shot2": "-23",
+      "shot3": "35",
+      "current_score": "-15"
+    },
     {
       "name": "Bill",
       "company": "Mid Ship",
