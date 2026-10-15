@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-10-15T15:10:14Z",
-  "row_count": 7,
+  "last_updated": "2026-10-15T15:11:56Z",
+  "row_count": 8,
   "rows": [
+    {
+      "name": "Brian McGuire",
+      "company": "Ok dep of labor",
+      "number": "9189825011",
+      "shot1": "-3",
+      "shot2": "0",
+      "shot3": "21",
+      "current_score": "18"
+    },
     {
       "name": "Mark querdibitty",
       "company": "Southern star",
