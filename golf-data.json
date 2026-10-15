@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-10-15T15:32:32Z",
-  "row_count": 13,
+  "last_updated": "2026-10-15T15:33:56Z",
+  "row_count": 14,
   "rows": [
+    {
+      "name": "TC",
+      "company": "Jatco",
+      "number": "",
+      "shot1": "0",
+      "shot2": "-27",
+      "shot3": "0",
+      "current_score": "-27"
+    },
     {
       "name": "Shane",
       "company": "Mid America votech",
