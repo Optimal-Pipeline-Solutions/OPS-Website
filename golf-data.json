@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-10-15T16:56:47Z",
-  "row_count": 45,
+  "last_updated": "2026-10-15T16:57:34Z",
+  "row_count": 46,
   "rows": [
+    {
+      "name": "Alex",
+      "company": "Tres Managment",
+      "number": "405-642-5683",
+      "shot1": "13",
+      "shot2": "0",
+      "shot3": "-22",
+      "current_score": "-9"
+    },
     {
       "name": "Josh",
       "company": "JP Trice",
