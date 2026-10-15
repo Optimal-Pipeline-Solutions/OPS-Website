@@ -1,79 +1,7 @@
 {
-  "last_updated": "2026-10-15T16:00:55Z",
+  "last_updated": "2026-10-15T16:02:15Z",
   "row_count": 27,
   "rows": [
-    {
-      "name": "Chrissy kindley",
-      "company": "Central tech",
-      "number": "",
-      "shot1": "0",
-      "shot2": "0",
-      "shot3": "45",
-      "current_score": "45"
-    },
-    {
-      "name": "Danny Davis",
-      "company": "Central Tech",
-      "number": "",
-      "shot1": "19",
-      "shot2": "0",
-      "shot3": "1",
-      "current_score": "20"
-    },
-    {
-      "name": "Bradley",
-      "company": "NA",
-      "number": "",
-      "shot1": "-23",
-      "shot2": "0",
-      "shot3": "-2",
-      "current_score": "-25"
-    },
-    {
-      "name": "Cash Ballard",
-      "company": "NA",
-      "number": "",
-      "shot1": "0",
-      "shot2": "0",
-      "shot3": "0",
-      "current_score": "0"
-    },
-    {
-      "name": "Aidan",
-      "company": "NA",
-      "number": "",
-      "shot1": "1",
-      "shot2": "0",
-      "shot3": "-47",
-      "current_score": "-46"
-    },
-    {
-      "name": "Roberta smith",
-      "company": "CPA",
-      "number": "",
-      "shot1": "-36",
-      "shot2": "0",
-      "shot3": "0",
-      "current_score": "-36"
-    },
-    {
-      "name": "Al smith",
-      "company": "Al smith CPA",
-      "number": "",
-      "shot1": "0",
-      "shot2": "7",
-      "shot3": "0",
-      "current_score": "7"
-    },
-    {
-      "name": "Danny",
-      "company": "Rocware",
-      "number": "8017212078",
-      "shot1": "0",
-      "shot2": "0",
-      "shot3": "-23",
-      "current_score": "-23"
-    },
     {
       "name": "Taylor",
       "company": "Mid America",
@@ -82,105 +10,6 @@
       "shot2": "-36",
       "shot3": "172",
       "current_score": "136"
-    },
-    {
-      "name": "Timber",
-      "company": "KAT",
-      "number": "",
-      "shot1": "7",
-      "shot2": "0",
-      "shot3": "-37",
-      "current_score": "-30"
-    },
-    {
-      "name": "Anthony",
-      "company": "Stefanini",
-      "number": "",
-      "shot1": "0",
-      "shot2": "45",
-      "shot3": "41",
-      "current_score": "86"
-    },
-    {
-      "name": "Damon parsons",
-      "company": "Well werks",
-      "number": "4058611833",
-      "shot1": "-36",
-      "shot2": "0",
-      "shot3": "15",
-      "current_score": "-21"
-    },
-    {
-      "name": "Garret",
-      "company": "Crown oilfield",
-      "number": "",
-      "shot1": "0",
-      "shot2": "41",
-      "shot3": "14",
-      "current_score": "55"
-    },
-    {
-      "name": "TC",
-      "company": "Jatco",
-      "number": "",
-      "shot1": "0",
-      "shot2": "-27",
-      "shot3": "0",
-      "current_score": "-27"
-    },
-    {
-      "name": "Shane",
-      "company": "Mid America votech",
-      "number": "4057401342",
-      "shot1": "0",
-      "shot2": "10",
-      "shot3": "-36",
-      "current_score": "-26"
-    },
-    {
-      "name": "Jeff Kobs",
-      "company": "Cp",
-      "number": "8173072986",
-      "shot1": "-37",
-      "shot2": "-42",
-      "shot3": "38",
-      "current_score": "-41"
-    },
-    {
-      "name": "Jay",
-      "company": "Cardinal river energy",
-      "number": "4056276420",
-      "shot1": "-23",
-      "shot2": "-36",
-      "shot3": "-42",
-      "current_score": "-101"
-    },
-    {
-      "name": "Rhett",
-      "company": "Pss",
-      "number": "",
-      "shot1": "-7",
-      "shot2": "32",
-      "shot3": "8",
-      "current_score": "33"
-    },
-    {
-      "name": "Gavin",
-      "company": "PSs",
-      "number": "",
-      "shot1": "1",
-      "shot2": "0",
-      "shot3": "1",
-      "current_score": "2"
-    },
-    {
-      "name": "Brian McGuire",
-      "company": "Ok dep of labor",
-      "number": "9189825011",
-      "shot1": "-3",
-      "shot2": "0",
-      "shot3": "21",
-      "current_score": "18"
     },
     {
       "name": "Mark querdibitty",
@@ -201,6 +30,15 @@
       "current_score": "87"
     },
     {
+      "name": "Anthony",
+      "company": "Stefanini",
+      "number": "",
+      "shot1": "0",
+      "shot2": "45",
+      "shot3": "41",
+      "current_score": "86"
+    },
+    {
       "name": "Jake",
       "company": "Matc",
       "number": "4054481360",
@@ -208,6 +46,15 @@
       "shot2": "0",
       "shot3": "14",
       "current_score": "62"
+    },
+    {
+      "name": "Garret",
+      "company": "Crown oilfield",
+      "number": "",
+      "shot1": "0",
+      "shot2": "41",
+      "shot3": "14",
+      "current_score": "55"
     },
     {
       "name": "Blake",
@@ -219,6 +66,69 @@
       "current_score": "52"
     },
     {
+      "name": "Chrissy kindley",
+      "company": "Central tech",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "45",
+      "current_score": "45"
+    },
+    {
+      "name": "Rhett",
+      "company": "Pss",
+      "number": "",
+      "shot1": "-7",
+      "shot2": "32",
+      "shot3": "8",
+      "current_score": "33"
+    },
+    {
+      "name": "Danny Davis",
+      "company": "Central Tech",
+      "number": "",
+      "shot1": "19",
+      "shot2": "0",
+      "shot3": "1",
+      "current_score": "20"
+    },
+    {
+      "name": "Brian McGuire",
+      "company": "Ok dep of labor",
+      "number": "9189825011",
+      "shot1": "-3",
+      "shot2": "0",
+      "shot3": "21",
+      "current_score": "18"
+    },
+    {
+      "name": "Al smith",
+      "company": "Al smith CPA",
+      "number": "",
+      "shot1": "0",
+      "shot2": "7",
+      "shot3": "0",
+      "current_score": "7"
+    },
+    {
+      "name": "Gavin",
+      "company": "PSs",
+      "number": "",
+      "shot1": "1",
+      "shot2": "0",
+      "shot3": "1",
+      "current_score": "2"
+    },
+    {
+      "name": "Cash Ballard",
+      "company": "NA",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
+    {
       "name": "Trey Poteet",
       "company": "OPS",
       "number": "",
@@ -226,6 +136,78 @@
       "shot2": "0",
       "shot3": "0",
       "current_score": "0"
+    },
+    {
+      "name": "Damon parsons",
+      "company": "Well werks",
+      "number": "4058611833",
+      "shot1": "-36",
+      "shot2": "0",
+      "shot3": "15",
+      "current_score": "-21"
+    },
+    {
+      "name": "Danny",
+      "company": "Rocware",
+      "number": "8017212078",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "-23",
+      "current_score": "-23"
+    },
+    {
+      "name": "Bradley",
+      "company": "NA",
+      "number": "",
+      "shot1": "-23",
+      "shot2": "0",
+      "shot3": "-2",
+      "current_score": "-25"
+    },
+    {
+      "name": "Shane",
+      "company": "Mid America votech",
+      "number": "4057401342",
+      "shot1": "0",
+      "shot2": "10",
+      "shot3": "-36",
+      "current_score": "-26"
+    },
+    {
+      "name": "TC",
+      "company": "Jatco",
+      "number": "",
+      "shot1": "0",
+      "shot2": "-27",
+      "shot3": "0",
+      "current_score": "-27"
+    },
+    {
+      "name": "Timber",
+      "company": "KAT",
+      "number": "",
+      "shot1": "7",
+      "shot2": "0",
+      "shot3": "-37",
+      "current_score": "-30"
+    },
+    {
+      "name": "Roberta smith",
+      "company": "CPA",
+      "number": "",
+      "shot1": "-36",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "-36"
+    },
+    {
+      "name": "Jeff Kobs",
+      "company": "Cp",
+      "number": "8173072986",
+      "shot1": "-37",
+      "shot2": "-42",
+      "shot3": "38",
+      "current_score": "-41"
     },
     {
       "name": "Johnathan corrales",
@@ -237,6 +219,15 @@
       "current_score": "-44"
     },
     {
+      "name": "Aidan",
+      "company": "NA",
+      "number": "",
+      "shot1": "1",
+      "shot2": "0",
+      "shot3": "-47",
+      "current_score": "-46"
+    },
+    {
       "name": "Chance",
       "company": "Peak",
       "number": "4054439960",
@@ -244,6 +235,15 @@
       "shot2": "-42",
       "shot3": "32",
       "current_score": "-46"
+    },
+    {
+      "name": "Jay",
+      "company": "Cardinal river energy",
+      "number": "4056276420",
+      "shot1": "-23",
+      "shot2": "-36",
+      "shot3": "-42",
+      "current_score": "-101"
     }
   ]
 }
