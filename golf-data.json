@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-10-15T15:12:31Z",
-  "row_count": 9,
+  "last_updated": "2026-10-15T15:13:00Z",
+  "row_count": 10,
   "rows": [
+    {
+      "name": "Rhett",
+      "company": "Pss",
+      "number": "",
+      "shot1": "-7",
+      "shot2": "32",
+      "shot3": "8",
+      "current_score": "33"
+    },
     {
       "name": "Gavin",
       "company": "PSs",
