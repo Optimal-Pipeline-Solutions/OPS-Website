@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-10-15T18:58:22Z",
-  "row_count": 81,
+  "last_updated": "2026-10-15T18:58:50Z",
+  "row_count": 82,
   "rows": [
+    {
+      "name": "Jose marks",
+      "company": "Reic rentals",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "22",
+      "current_score": "22"
+    },
     {
       "name": "Gavin Martin",
       "company": "Reic rentals",
