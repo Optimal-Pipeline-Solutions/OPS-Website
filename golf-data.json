@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-10-15T15:03:02Z",
-  "row_count": 5,
+  "last_updated": "2026-10-15T15:03:35Z",
+  "row_count": 6,
   "rows": [
+    {
+      "name": "Dale",
+      "company": "Peak",
+      "number": "4054438000",
+      "shot1": "45",
+      "shot2": "0",
+      "shot3": "42",
+      "current_score": ""
+    },
     {
       "name": "Chance",
       "company": "Peak",
