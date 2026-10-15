@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-10-15T15:23:05Z",
-  "row_count": 11,
+  "last_updated": "2026-10-15T15:24:28Z",
+  "row_count": 12,
   "rows": [
+    {
+      "name": "Jeff Kobs",
+      "company": "Cp",
+      "number": "8173072986",
+      "shot1": "-37",
+      "shot2": "-42",
+      "shot3": "38",
+      "current_score": ""
+    },
     {
       "name": "Jay",
       "company": "Cardinal river energy",
