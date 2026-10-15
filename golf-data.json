@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-10-15T16:30:37Z",
-  "row_count": 37,
+  "last_updated": "2026-10-15T16:32:10Z",
+  "row_count": 39,
   "rows": [
+    {
+      "name": "Miles",
+      "company": "RK supply",
+      "number": "",
+      "shot1": "0",
+      "shot2": "41",
+      "shot3": "35",
+      "current_score": "76"
+    },
+    {
+      "name": "Scott",
+      "company": "RK supply",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
     {
       "name": "Fred",
       "company": "RK supply",
