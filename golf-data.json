@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-10-15T16:04:45Z",
-  "row_count": 27,
+  "last_updated": "2026-10-15T16:05:39Z",
+  "row_count": 28,
   "rows": [
+    {
+      "name": "Larry Myers",
+      "company": "MVP",
+      "number": "",
+      "shot1": "-13",
+      "shot2": "0",
+      "shot3": "-47",
+      "current_score": "-60"
+    },
     {
       "name": "Taylor",
       "company": "Mid America",
