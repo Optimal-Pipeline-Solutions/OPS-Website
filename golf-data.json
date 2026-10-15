@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-10-15T16:29:12Z",
-  "row_count": 36,
+  "last_updated": "2026-10-15T16:30:37Z",
+  "row_count": 37,
   "rows": [
+    {
+      "name": "Fred",
+      "company": "RK supply",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
     {
       "name": "Archer",
       "company": "A&e solutions",
