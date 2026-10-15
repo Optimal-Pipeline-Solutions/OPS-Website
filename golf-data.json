@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-10-15T16:16:20Z",
-  "row_count": 30,
+  "last_updated": "2026-10-15T16:18:04Z",
+  "row_count": 31,
   "rows": [
+    {
+      "name": "Riley Russel",
+      "company": "ET",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
     {
       "name": "Roddy",
       "company": "Overall safety solutions",
