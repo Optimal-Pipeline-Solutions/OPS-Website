@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-10-15T17:36:42Z",
-  "row_count": 63,
+  "last_updated": "2026-10-15T17:38:05Z",
+  "row_count": 65,
   "rows": [
+    {
+      "name": "Justin Witherspoon",
+      "company": "Kinley construction",
+      "number": "",
+      "shot1": "-36",
+      "shot2": "0",
+      "shot3": "172",
+      "current_score": "136"
+    },
+    {
+      "name": "Jordan",
+      "company": "Waste Connections",
+      "number": "405-403-9253",
+      "shot1": "-23",
+      "shot2": "100",
+      "shot3": "45",
+      "current_score": "122"
+    },
     {
       "name": "Ryan Henn",
       "company": "Midwest Hose & Supply",
