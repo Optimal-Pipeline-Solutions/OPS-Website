@@ -1,5 +1,15 @@
 {
-  "last_updated": "2026-10-15T13:57:17Z",
-  "row_count": 0,
-  "rows": []
+  "last_updated": "2026-10-15T13:57:51Z",
+  "row_count": 1,
+  "rows": [
+    {
+      "name": "Trey Poteet",
+      "company": "OPS",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    }
+  ]
 }
