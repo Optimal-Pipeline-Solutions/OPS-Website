@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-10-15T15:00:43Z",
-  "row_count": 4,
+  "last_updated": "2026-10-15T15:02:30Z",
+  "row_count": 5,
   "rows": [
+    {
+      "name": "Chance",
+      "company": "Peak",
+      "number": "4054439960",
+      "shot1": "-36",
+      "shot2": "-42",
+      "shot3": "32",
+      "current_score": "-46"
+    },
     {
       "name": "Jake",
       "company": "Matc",
