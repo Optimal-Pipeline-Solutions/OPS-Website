@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-10-15T16:57:34Z",
-  "row_count": 46,
+  "last_updated": "2026-10-15T16:59:03Z",
+  "row_count": 47,
   "rows": [
+    {
+      "name": "Travis",
+      "company": "Tres Managment",
+      "number": "405",
+      "shot1": "21",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "21"
+    },
     {
       "name": "Alex",
       "company": "Tres Managment",
