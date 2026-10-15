@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-10-15T18:25:20Z",
-  "row_count": 73,
+  "last_updated": "2026-10-15T18:26:28Z",
+  "row_count": 74,
   "rows": [
+    {
+      "name": "Bill",
+      "company": "Mid Ship",
+      "number": "",
+      "shot1": "35",
+      "shot2": "42",
+      "shot3": "-36",
+      "current_score": "41"
+    },
     {
       "name": "Levi Gilland",
       "company": "Mid States Oil Field Machine",
