@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-10-15T18:56:58Z",
-  "row_count": 80,
+  "last_updated": "2026-10-15T18:58:22Z",
+  "row_count": 81,
   "rows": [
+    {
+      "name": "Gavin Martin",
+      "company": "Reic rentals",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "45",
+      "current_score": "45"
+    },
     {
       "name": "Micah Nail",
       "company": "Legacy care insurance",
