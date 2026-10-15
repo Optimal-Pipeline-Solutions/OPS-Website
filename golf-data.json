@@ -1,16 +1,7 @@
 {
-  "last_updated": "2026-10-15T15:07:13Z",
+  "last_updated": "2026-10-15T15:07:46Z",
   "row_count": 7,
   "rows": [
-    {
-      "name": "Blake",
-      "company": "Superior supervacs",
-      "number": "4052058223",
-      "shot1": "11",
-      "shot2": "41",
-      "shot3": "0",
-      "current_score": "52"
-    },
     {
       "name": "Mark querdibitty",
       "company": "Southern star",
@@ -37,6 +28,15 @@
       "shot2": "0",
       "shot3": "14",
       "current_score": "62"
+    },
+    {
+      "name": "Blake",
+      "company": "Superior supervacs",
+      "number": "4052058223",
+      "shot1": "11",
+      "shot2": "41",
+      "shot3": "0",
+      "current_score": "52"
     },
     {
       "name": "Trey Poteet",
