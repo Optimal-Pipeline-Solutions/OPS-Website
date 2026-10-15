@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-10-15T15:33:56Z",
-  "row_count": 14,
+  "last_updated": "2026-10-15T15:35:33Z",
+  "row_count": 15,
   "rows": [
+    {
+      "name": "Garret",
+      "company": "Crown oilfield",
+      "number": "",
+      "shot1": "0",
+      "shot2": "41",
+      "shot3": "14",
+      "current_score": "55"
+    },
     {
       "name": "TC",
       "company": "Jatco",
