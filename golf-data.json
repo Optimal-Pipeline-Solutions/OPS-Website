@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-10-15T15:59:08Z",
-  "row_count": 26,
+  "last_updated": "2026-10-15T15:59:56Z",
+  "row_count": 27,
   "rows": [
+    {
+      "name": "Chrissy kindley",
+      "company": "Central tech",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "45",
+      "current_score": "45"
+    },
     {
       "name": "Danny Davis",
       "company": "Central Tech",
