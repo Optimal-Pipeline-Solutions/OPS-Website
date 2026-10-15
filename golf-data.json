@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-10-15T17:30:37Z",
-  "row_count": 60,
+  "last_updated": "2026-10-15T17:31:59Z",
+  "row_count": 62,
   "rows": [
+    {
+      "name": "Zane Walker",
+      "company": "Oklahoma crane",
+      "number": "",
+      "shot1": "0",
+      "shot2": "41",
+      "shot3": "0",
+      "current_score": "41"
+    },
+    {
+      "name": "Clint Walker",
+      "company": "Oklahoma crane",
+      "number": "",
+      "shot1": "21",
+      "shot2": "0",
+      "shot3": "-24",
+      "current_score": "-3"
+    },
     {
       "name": "Dustin Westervelt",
       "company": "Caiman control solutions",
