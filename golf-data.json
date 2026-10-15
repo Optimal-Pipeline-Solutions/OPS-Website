@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-10-15T15:57:32Z",
-  "row_count": 24,
+  "last_updated": "2026-10-15T15:59:08Z",
+  "row_count": 26,
   "rows": [
+    {
+      "name": "Danny Davis",
+      "company": "Central Tech",
+      "number": "",
+      "shot1": "19",
+      "shot2": "0",
+      "shot3": "1",
+      "current_score": "20"
+    },
+    {
+      "name": "Bradley",
+      "company": "NA",
+      "number": "",
+      "shot1": "-23",
+      "shot2": "0",
+      "shot3": "-2",
+      "current_score": "-25"
+    },
     {
       "name": "Cash Ballard",
       "company": "NA",
