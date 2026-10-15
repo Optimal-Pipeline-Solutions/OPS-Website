@@ -1,160 +1,7 @@
 {
-  "last_updated": "2026-10-15T19:27:56Z",
+  "last_updated": "2026-10-15T19:28:22Z",
   "row_count": 83,
   "rows": [
-    {
-      "name": "Caleb",
-      "company": "Tuffa",
-      "number": "",
-      "shot1": "-24",
-      "shot2": "-47",
-      "shot3": "0",
-      "current_score": "-71"
-    },
-    {
-      "name": "Jose marks",
-      "company": "Reic rentals",
-      "number": "",
-      "shot1": "0",
-      "shot2": "0",
-      "shot3": "22",
-      "current_score": "22"
-    },
-    {
-      "name": "Gavin Martin",
-      "company": "Reic rentals",
-      "number": "",
-      "shot1": "0",
-      "shot2": "0",
-      "shot3": "45",
-      "current_score": "45"
-    },
-    {
-      "name": "Micah Nail",
-      "company": "Legacy care insurance",
-      "number": "",
-      "shot1": "41",
-      "shot2": "-47",
-      "shot3": "0",
-      "current_score": "-6"
-    },
-    {
-      "name": "Travis Hunter",
-      "company": "Philips 66",
-      "number": "",
-      "shot1": "11",
-      "shot2": "0",
-      "shot3": "45",
-      "current_score": "56"
-    },
-    {
-      "name": "Stacy",
-      "company": "N/A",
-      "number": "",
-      "shot1": "31",
-      "shot2": "0",
-      "shot3": "41",
-      "current_score": "72"
-    },
-    {
-      "name": "Wayne",
-      "company": "Stream tech",
-      "number": "",
-      "shot1": "-37",
-      "shot2": "-39",
-      "shot3": "0",
-      "current_score": "-76"
-    },
-    {
-      "name": "Jason Carter",
-      "company": "N/A",
-      "number": "",
-      "shot1": "-47",
-      "shot2": "100",
-      "shot3": "45",
-      "current_score": "98"
-    },
-    {
-      "name": "Trevor",
-      "company": "Carter",
-      "number": "",
-      "shot1": "-27",
-      "shot2": "-23",
-      "shot3": "35",
-      "current_score": "-15"
-    },
-    {
-      "name": "Bill",
-      "company": "Mid Ship",
-      "number": "",
-      "shot1": "35",
-      "shot2": "42",
-      "shot3": "-36",
-      "current_score": "41"
-    },
-    {
-      "name": "Levi Gilland",
-      "company": "Mid States Oil Field Machine",
-      "number": "",
-      "shot1": "41",
-      "shot2": "35",
-      "shot3": "35",
-      "current_score": "111"
-    },
-    {
-      "name": "Elijah",
-      "company": "MATC",
-      "number": "",
-      "shot1": "13",
-      "shot2": "0",
-      "shot3": "-42",
-      "current_score": "-29"
-    },
-    {
-      "name": "Johnathan o toole",
-      "company": "MV",
-      "number": "",
-      "shot1": "-37",
-      "shot2": "-23",
-      "shot3": "0",
-      "current_score": "-60"
-    },
-    {
-      "name": "Jake Rutledge",
-      "company": "M&m",
-      "number": "",
-      "shot1": "-36",
-      "shot2": "100",
-      "shot3": "0",
-      "current_score": "64"
-    },
-    {
-      "name": "Mitch Kennedy",
-      "company": "Daylight petroleum",
-      "number": "",
-      "shot1": "41",
-      "shot2": "41",
-      "shot3": "-47",
-      "current_score": "35"
-    },
-    {
-      "name": "Cade Cantrell",
-      "company": "Daylight petroleum",
-      "number": "",
-      "shot1": "21",
-      "shot2": "0",
-      "shot3": "100",
-      "current_score": "121"
-    },
-    {
-      "name": "Jet willard",
-      "company": "Sandx",
-      "number": "8176730898",
-      "shot1": "0",
-      "shot2": "0",
-      "shot3": "41",
-      "current_score": "41"
-    },
     {
       "name": "Johnny Zuniga",
       "company": "ARG Petro",
@@ -165,51 +12,6 @@
       "current_score": "207"
     },
     {
-      "name": "Justin Witherspoon",
-      "company": "Kinley construction",
-      "number": "",
-      "shot1": "-36",
-      "shot2": "0",
-      "shot3": "172",
-      "current_score": "136"
-    },
-    {
-      "name": "Jordan",
-      "company": "Waste Connections",
-      "number": "405-403-9253",
-      "shot1": "-23",
-      "shot2": "100",
-      "shot3": "45",
-      "current_score": "122"
-    },
-    {
-      "name": "Ryan Henn",
-      "company": "Midwest Hose & Supply",
-      "number": "",
-      "shot1": "0",
-      "shot2": "41",
-      "shot3": "38",
-      "current_score": "79"
-    },
-    {
-      "name": "Zane Walker",
-      "company": "Oklahoma crane",
-      "number": "",
-      "shot1": "0",
-      "shot2": "41",
-      "shot3": "0",
-      "current_score": "41"
-    },
-    {
-      "name": "Clint Walker",
-      "company": "Oklahoma crane",
-      "number": "",
-      "shot1": "21",
-      "shot2": "0",
-      "shot3": "-24",
-      "current_score": "-3"
-    },
-    {
       "name": "Dustin Westervelt",
       "company": "Caiman control solutions",
       "number": "405-317-3691",
@@ -217,15 +19,6 @@
       "shot2": "0",
       "shot3": "172",
       "current_score": "172"
-    },
-    {
-      "name": "Walker Robert's",
-      "company": "Redox",
-      "number": "",
-      "shot1": "-39",
-      "shot2": "0",
-      "shot3": "-24",
-      "current_score": "-63"
     },
     {
       "name": "Jeff bishop",
@@ -246,6 +39,15 @@
       "current_score": "172"
     },
     {
+      "name": "Justin Witherspoon",
+      "company": "Kinley construction",
+      "number": "",
+      "shot1": "-36",
+      "shot2": "0",
+      "shot3": "172",
+      "current_score": "136"
+    },
+    {
       "name": "Taylor",
       "company": "Mid America",
       "number": "4057540309",
@@ -262,6 +64,42 @@
       "shot2": "-36",
       "shot3": "-9",
       "current_score": "127"
+    },
+    {
+      "name": "Jordan",
+      "company": "Waste Connections",
+      "number": "405-403-9253",
+      "shot1": "-23",
+      "shot2": "100",
+      "shot3": "45",
+      "current_score": "122"
+    },
+    {
+      "name": "Cade Cantrell",
+      "company": "Daylight petroleum",
+      "number": "",
+      "shot1": "21",
+      "shot2": "0",
+      "shot3": "100",
+      "current_score": "121"
+    },
+    {
+      "name": "Levi Gilland",
+      "company": "Mid States Oil Field Machine",
+      "number": "",
+      "shot1": "41",
+      "shot2": "35",
+      "shot3": "35",
+      "current_score": "111"
+    },
+    {
+      "name": "Jason Carter",
+      "company": "N/A",
+      "number": "",
+      "shot1": "-47",
+      "shot2": "100",
+      "shot3": "45",
+      "current_score": "98"
     },
     {
       "name": "Dale",
@@ -291,6 +129,15 @@
       "current_score": "80"
     },
     {
+      "name": "Ryan Henn",
+      "company": "Midwest Hose & Supply",
+      "number": "",
+      "shot1": "0",
+      "shot2": "41",
+      "shot3": "38",
+      "current_score": "79"
+    },
+    {
       "name": "Josh",
       "company": "JP Trice",
       "number": "405-287-7277",
@@ -307,6 +154,24 @@
       "shot2": "41",
       "shot3": "35",
       "current_score": "76"
+    },
+    {
+      "name": "Stacy",
+      "company": "N/A",
+      "number": "",
+      "shot1": "31",
+      "shot2": "0",
+      "shot3": "41",
+      "current_score": "72"
+    },
+    {
+      "name": "Jake Rutledge",
+      "company": "M&m",
+      "number": "",
+      "shot1": "-36",
+      "shot2": "100",
+      "shot3": "0",
+      "current_score": "64"
     },
     {
       "name": "Jake",
@@ -327,6 +192,15 @@
       "current_score": "59"
     },
     {
+      "name": "Travis Hunter",
+      "company": "Philips 66",
+      "number": "",
+      "shot1": "11",
+      "shot2": "0",
+      "shot3": "45",
+      "current_score": "56"
+    },
+    {
       "name": "Garret",
       "company": "Crown oilfield",
       "number": "",
@@ -345,6 +219,15 @@
       "current_score": "52"
     },
     {
+      "name": "Gavin Martin",
+      "company": "Reic rentals",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "45",
+      "current_score": "45"
+    },
+    {
       "name": "Chrissy kindley",
       "company": "Central tech",
       "number": "",
@@ -352,6 +235,33 @@
       "shot2": "0",
       "shot3": "45",
       "current_score": "45"
+    },
+    {
+      "name": "Bill",
+      "company": "Mid Ship",
+      "number": "",
+      "shot1": "35",
+      "shot2": "42",
+      "shot3": "-36",
+      "current_score": "41"
+    },
+    {
+      "name": "Jet willard",
+      "company": "Sandx",
+      "number": "8176730898",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "41",
+      "current_score": "41"
+    },
+    {
+      "name": "Zane Walker",
+      "company": "Oklahoma crane",
+      "number": "",
+      "shot1": "0",
+      "shot2": "41",
+      "shot3": "0",
+      "current_score": "41"
     },
     {
       "name": "Noah",
@@ -390,6 +300,15 @@
       "current_score": "38"
     },
     {
+      "name": "Mitch Kennedy",
+      "company": "Daylight petroleum",
+      "number": "",
+      "shot1": "41",
+      "shot2": "41",
+      "shot3": "-47",
+      "current_score": "35"
+    },
+    {
       "name": "Marcelino Cruz",
       "company": "Duo drill pipe",
       "number": "",
@@ -415,6 +334,15 @@
       "shot2": "32",
       "shot3": "0",
       "current_score": "32"
+    },
+    {
+      "name": "Jose marks",
+      "company": "Reic rentals",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "22",
+      "current_score": "22"
     },
     {
       "name": "Axton",
@@ -552,6 +480,15 @@
       "current_score": "0"
     },
     {
+      "name": "Clint Walker",
+      "company": "Oklahoma crane",
+      "number": "",
+      "shot1": "21",
+      "shot2": "0",
+      "shot3": "-24",
+      "current_score": "-3"
+    },
+    {
       "name": "Roddy",
       "company": "Overall safety solutions",
       "number": "",
@@ -559,6 +496,15 @@
       "shot2": "35",
       "shot3": "-39",
       "current_score": "-4"
+    },
+    {
+      "name": "Micah Nail",
+      "company": "Legacy care insurance",
+      "number": "",
+      "shot1": "41",
+      "shot2": "-47",
+      "shot3": "0",
+      "current_score": "-6"
     },
     {
       "name": "Gary",
@@ -577,6 +523,15 @@
       "shot2": "0",
       "shot3": "-22",
       "current_score": "-9"
+    },
+    {
+      "name": "Trevor",
+      "company": "Carter",
+      "number": "",
+      "shot1": "-27",
+      "shot2": "-23",
+      "shot3": "35",
+      "current_score": "-15"
     },
     {
       "name": "Manny",
@@ -651,6 +606,15 @@
       "current_score": "-27"
     },
     {
+      "name": "Elijah",
+      "company": "MATC",
+      "number": "",
+      "shot1": "13",
+      "shot2": "0",
+      "shot3": "-42",
+      "current_score": "-29"
+    },
+    {
       "name": "Timber",
       "company": "KAT",
       "number": "",
@@ -714,6 +678,15 @@
       "current_score": "-46"
     },
     {
+      "name": "Johnathan o toole",
+      "company": "MV",
+      "number": "",
+      "shot1": "-37",
+      "shot2": "-23",
+      "shot3": "0",
+      "current_score": "-60"
+    },
+    {
       "name": "Larry Myers",
       "company": "MVP",
       "number": "",
@@ -721,6 +694,15 @@
       "shot2": "0",
       "shot3": "-47",
       "current_score": "-60"
+    },
+    {
+      "name": "Walker Robert's",
+      "company": "Redox",
+      "number": "",
+      "shot1": "-39",
+      "shot2": "0",
+      "shot3": "-24",
+      "current_score": "-63"
     },
     {
       "name": "John Parker",
@@ -732,6 +714,15 @@
       "current_score": "-69"
     },
     {
+      "name": "Caleb",
+      "company": "Tuffa",
+      "number": "",
+      "shot1": "-24",
+      "shot2": "-47",
+      "shot3": "0",
+      "current_score": "-71"
+    },
+    {
       "name": "Austen",
       "company": "Gulf Exploration",
       "number": "",
@@ -739,6 +730,15 @@
       "shot2": "0",
       "shot3": "-36",
       "current_score": "-75"
+    },
+    {
+      "name": "Wayne",
+      "company": "Stream tech",
+      "number": "",
+      "shot1": "-37",
+      "shot2": "-39",
+      "shot3": "0",
+      "current_score": "-76"
     },
     {
       "name": "Jay",
