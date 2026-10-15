@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-10-15T16:54:21Z",
-  "row_count": 43,
+  "last_updated": "2026-10-15T16:55:40Z",
+  "row_count": 45,
   "rows": [
+    {
+      "name": "Josh",
+      "company": "JP Trice",
+      "number": "405-287-7277",
+      "shot1": "0",
+      "shot2": "35",
+      "shot3": "41",
+      "current_score": "76"
+    },
+    {
+      "name": "Willie",
+      "company": "JP Trice",
+      "number": "580-665-9591",
+      "shot1": "0",
+      "shot2": "32",
+      "shot3": "0",
+      "current_score": "32"
+    },
     {
       "name": "Noah",
       "company": "Devon",
