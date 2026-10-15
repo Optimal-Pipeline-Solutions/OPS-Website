@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-10-15T16:59:03Z",
-  "row_count": 47,
+  "last_updated": "2026-10-15T17:00:25Z",
+  "row_count": 49,
   "rows": [
+    {
+      "name": "Jordan",
+      "company": "Gulf Exploration",
+      "number": "",
+      "shot1": "0",
+      "shot2": "21",
+      "shot3": "38",
+      "current_score": "59"
+    },
+    {
+      "name": "Austen",
+      "company": "Gulf Exploration",
+      "number": "",
+      "shot1": "-39",
+      "shot2": "0",
+      "shot3": "-36",
+      "current_score": "-75"
+    },
     {
       "name": "Travis",
       "company": "Tres Managment",
