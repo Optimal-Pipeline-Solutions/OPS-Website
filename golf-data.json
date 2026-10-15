@@ -1,69 +1,15 @@
 {
-  "last_updated": "2026-10-15T17:22:33Z",
-  "row_count": 58,
+  "last_updated": "2026-10-15T17:23:54Z",
+  "row_count": 59,
   "rows": [
     {
-      "name": "John Parker",
-      "company": "N/A",
+      "name": "Walker Robert's",
+      "company": "Redox",
       "number": "",
-      "shot1": "-27",
+      "shot1": "-39",
       "shot2": "0",
-      "shot3": "-42",
-      "current_score": "-69"
-    },
-    {
-      "name": "Bradley Hartman",
-      "company": "Amshot",
-      "number": "",
-      "shot1": "38",
-      "shot2": "0",
-      "shot3": "0",
-      "current_score": "38"
-    },
-    {
-      "name": "Daniel Brendan",
-      "company": "Amshot",
-      "number": "",
-      "shot1": "0",
-      "shot2": "-27",
-      "shot3": "0",
-      "current_score": "-27"
-    },
-    {
-      "name": "Victor",
-      "company": "Duo",
-      "number": "",
-      "shot1": "0",
-      "shot2": "0",
-      "shot3": "0",
-      "current_score": "0"
-    },
-    {
-      "name": "Marcelino Cruz",
-      "company": "Duo drill pipe",
-      "number": "",
-      "shot1": "35",
-      "shot2": "0",
-      "shot3": "0",
-      "current_score": "35"
-    },
-    {
-      "name": "Michael gray",
-      "company": "Kat industries",
-      "number": "",
-      "shot1": "-45",
-      "shot2": "10",
-      "shot3": "0",
-      "current_score": "-35"
-    },
-    {
-      "name": "Randy Parr",
-      "company": "Industrial Electronics Supply",
-      "number": "479-305-8275",
-      "shot1": "10",
-      "shot2": "35",
-      "shot3": "35",
-      "current_score": "80"
+      "shot3": "-24",
+      "current_score": "-63"
     },
     {
       "name": "Jeff bishop",
@@ -75,87 +21,6 @@
       "current_score": "172"
     },
     {
-      "name": "Shaun",
-      "company": "Gulf Exploration",
-      "number": "405-840-3371",
-      "shot1": "13",
-      "shot2": "-36",
-      "shot3": "0",
-      "current_score": "-23"
-    },
-    {
-      "name": "Jordan",
-      "company": "Gulf Exploration",
-      "number": "",
-      "shot1": "0",
-      "shot2": "21",
-      "shot3": "38",
-      "current_score": "59"
-    },
-    {
-      "name": "Austen",
-      "company": "Gulf Exploration",
-      "number": "",
-      "shot1": "-39",
-      "shot2": "0",
-      "shot3": "-36",
-      "current_score": "-75"
-    },
-    {
-      "name": "Travis",
-      "company": "Tres Managment",
-      "number": "405",
-      "shot1": "21",
-      "shot2": "0",
-      "shot3": "0",
-      "current_score": "21"
-    },
-    {
-      "name": "Alex",
-      "company": "Tres Managment",
-      "number": "405-642-5683",
-      "shot1": "13",
-      "shot2": "0",
-      "shot3": "-22",
-      "current_score": "-9"
-    },
-    {
-      "name": "Josh",
-      "company": "JP Trice",
-      "number": "405-287-7277",
-      "shot1": "0",
-      "shot2": "35",
-      "shot3": "41",
-      "current_score": "76"
-    },
-    {
-      "name": "Willie",
-      "company": "JP Trice",
-      "number": "580-665-9591",
-      "shot1": "0",
-      "shot2": "32",
-      "shot3": "0",
-      "current_score": "32"
-    },
-    {
-      "name": "Noah",
-      "company": "Devon",
-      "number": "405-537-5489",
-      "shot1": "-39",
-      "shot2": "35",
-      "shot3": "45",
-      "current_score": "41"
-    },
-    {
-      "name": "Manny",
-      "company": "Devon energy",
-      "number": "405-696-8160",
-      "shot1": "0",
-      "shot2": "-36",
-      "shot3": "21",
-      "current_score": "-15"
-    },
-    {
       "name": "Brandon sharp",
       "company": "Allied steel",
       "number": "4053343890",
@@ -163,123 +28,6 @@
       "shot2": "0",
       "shot3": "0",
       "current_score": "172"
-    },
-    {
-      "name": "Gary",
-      "company": "Sunbelt",
-      "number": "",
-      "shot1": "-7",
-      "shot2": "0",
-      "shot3": "0",
-      "current_score": "-7"
-    },
-    {
-      "name": "Miles",
-      "company": "RK supply",
-      "number": "",
-      "shot1": "0",
-      "shot2": "41",
-      "shot3": "35",
-      "current_score": "76"
-    },
-    {
-      "name": "Scott",
-      "company": "RK supply",
-      "number": "",
-      "shot1": "0",
-      "shot2": "0",
-      "shot3": "0",
-      "current_score": "0"
-    },
-    {
-      "name": "Fred",
-      "company": "RK supply",
-      "number": "",
-      "shot1": "0",
-      "shot2": "0",
-      "shot3": "0",
-      "current_score": "0"
-    },
-    {
-      "name": "Archer",
-      "company": "A&e solutions",
-      "number": "",
-      "shot1": "-1",
-      "shot2": "0",
-      "shot3": "3",
-      "current_score": "2"
-    },
-    {
-      "name": "Axton",
-      "company": "A&e solutions",
-      "number": "",
-      "shot1": "12",
-      "shot2": "0",
-      "shot3": "10",
-      "current_score": "22"
-    },
-    {
-      "name": "Glenn Weightman",
-      "company": "Haliburton",
-      "number": "",
-      "shot1": "0",
-      "shot2": "41",
-      "shot3": "0",
-      "current_score": "41"
-    },
-    {
-      "name": "CJ",
-      "company": "K&r",
-      "number": "",
-      "shot1": "0",
-      "shot2": "0",
-      "shot3": "39",
-      "current_score": "39"
-    },
-    {
-      "name": "Travis little",
-      "company": "K&r",
-      "number": "",
-      "shot1": "0",
-      "shot2": "41",
-      "shot3": "-39",
-      "current_score": "2"
-    },
-    {
-      "name": "Riley Russel",
-      "company": "ET",
-      "number": "",
-      "shot1": "0",
-      "shot2": "0",
-      "shot3": "0",
-      "current_score": "0"
-    },
-    {
-      "name": "Roddy",
-      "company": "Overall safety solutions",
-      "number": "",
-      "shot1": "0",
-      "shot2": "35",
-      "shot3": "-39",
-      "current_score": "-4"
-    },
-    {
-      "name": "Natalie Myers",
-      "company": "Clearwater",
-      "number": "",
-      "shot1": "21",
-      "shot2": "0",
-      "shot3": "0",
-      "current_score": "21"
-    },
-    {
-      "name": "Larry Myers",
-      "company": "MVP",
-      "number": "",
-      "shot1": "-13",
-      "shot2": "0",
-      "shot3": "-47",
-      "current_score": "-60"
     },
     {
       "name": "Taylor",
@@ -318,6 +66,33 @@
       "current_score": "86"
     },
     {
+      "name": "Randy Parr",
+      "company": "Industrial Electronics Supply",
+      "number": "479-305-8275",
+      "shot1": "10",
+      "shot2": "35",
+      "shot3": "35",
+      "current_score": "80"
+    },
+    {
+      "name": "Josh",
+      "company": "JP Trice",
+      "number": "405-287-7277",
+      "shot1": "0",
+      "shot2": "35",
+      "shot3": "41",
+      "current_score": "76"
+    },
+    {
+      "name": "Miles",
+      "company": "RK supply",
+      "number": "",
+      "shot1": "0",
+      "shot2": "41",
+      "shot3": "35",
+      "current_score": "76"
+    },
+    {
       "name": "Jake",
       "company": "Matc",
       "number": "4054481360",
@@ -325,6 +100,15 @@
       "shot2": "0",
       "shot3": "14",
       "current_score": "62"
+    },
+    {
+      "name": "Jordan",
+      "company": "Gulf Exploration",
+      "number": "",
+      "shot1": "0",
+      "shot2": "21",
+      "shot3": "38",
+      "current_score": "59"
     },
     {
       "name": "Garret",
@@ -354,6 +138,51 @@
       "current_score": "45"
     },
     {
+      "name": "Noah",
+      "company": "Devon",
+      "number": "405-537-5489",
+      "shot1": "-39",
+      "shot2": "35",
+      "shot3": "45",
+      "current_score": "41"
+    },
+    {
+      "name": "Glenn Weightman",
+      "company": "Haliburton",
+      "number": "",
+      "shot1": "0",
+      "shot2": "41",
+      "shot3": "0",
+      "current_score": "41"
+    },
+    {
+      "name": "CJ",
+      "company": "K&r",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "39",
+      "current_score": "39"
+    },
+    {
+      "name": "Bradley Hartman",
+      "company": "Amshot",
+      "number": "",
+      "shot1": "38",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "38"
+    },
+    {
+      "name": "Marcelino Cruz",
+      "company": "Duo drill pipe",
+      "number": "",
+      "shot1": "35",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "35"
+    },
+    {
       "name": "Rhett",
       "company": "Pss",
       "number": "",
@@ -361,6 +190,42 @@
       "shot2": "32",
       "shot3": "8",
       "current_score": "33"
+    },
+    {
+      "name": "Willie",
+      "company": "JP Trice",
+      "number": "580-665-9591",
+      "shot1": "0",
+      "shot2": "32",
+      "shot3": "0",
+      "current_score": "32"
+    },
+    {
+      "name": "Axton",
+      "company": "A&e solutions",
+      "number": "",
+      "shot1": "12",
+      "shot2": "0",
+      "shot3": "10",
+      "current_score": "22"
+    },
+    {
+      "name": "Travis",
+      "company": "Tres Managment",
+      "number": "405",
+      "shot1": "21",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "21"
+    },
+    {
+      "name": "Natalie Myers",
+      "company": "Clearwater",
+      "number": "",
+      "shot1": "21",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "21"
     },
     {
       "name": "Danny Davis",
@@ -390,6 +255,24 @@
       "current_score": "7"
     },
     {
+      "name": "Archer",
+      "company": "A&e solutions",
+      "number": "",
+      "shot1": "-1",
+      "shot2": "0",
+      "shot3": "3",
+      "current_score": "2"
+    },
+    {
+      "name": "Travis little",
+      "company": "K&r",
+      "number": "",
+      "shot1": "0",
+      "shot2": "41",
+      "shot3": "-39",
+      "current_score": "2"
+    },
+    {
       "name": "Gavin",
       "company": "PSs",
       "number": "",
@@ -397,6 +280,42 @@
       "shot2": "0",
       "shot3": "1",
       "current_score": "2"
+    },
+    {
+      "name": "Victor",
+      "company": "Duo",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
+    {
+      "name": "Scott",
+      "company": "RK supply",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
+    {
+      "name": "Fred",
+      "company": "RK supply",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
+    {
+      "name": "Riley Russel",
+      "company": "ET",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
     },
     {
       "name": "Cash Ballard",
@@ -417,6 +336,42 @@
       "current_score": "0"
     },
     {
+      "name": "Roddy",
+      "company": "Overall safety solutions",
+      "number": "",
+      "shot1": "0",
+      "shot2": "35",
+      "shot3": "-39",
+      "current_score": "-4"
+    },
+    {
+      "name": "Gary",
+      "company": "Sunbelt",
+      "number": "",
+      "shot1": "-7",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "-7"
+    },
+    {
+      "name": "Alex",
+      "company": "Tres Managment",
+      "number": "405-642-5683",
+      "shot1": "13",
+      "shot2": "0",
+      "shot3": "-22",
+      "current_score": "-9"
+    },
+    {
+      "name": "Manny",
+      "company": "Devon energy",
+      "number": "405-696-8160",
+      "shot1": "0",
+      "shot2": "-36",
+      "shot3": "21",
+      "current_score": "-15"
+    },
+    {
       "name": "Damon parsons",
       "company": "Well werks",
       "number": "4058611833",
@@ -424,6 +379,15 @@
       "shot2": "0",
       "shot3": "15",
       "current_score": "-21"
+    },
+    {
+      "name": "Shaun",
+      "company": "Gulf Exploration",
+      "number": "405-840-3371",
+      "shot1": "13",
+      "shot2": "-36",
+      "shot3": "0",
+      "current_score": "-23"
     },
     {
       "name": "Danny",
@@ -453,6 +417,15 @@
       "current_score": "-26"
     },
     {
+      "name": "Daniel Brendan",
+      "company": "Amshot",
+      "number": "",
+      "shot1": "0",
+      "shot2": "-27",
+      "shot3": "0",
+      "current_score": "-27"
+    },
+    {
       "name": "TC",
       "company": "Jatco",
       "number": "",
@@ -469,6 +442,15 @@
       "shot2": "0",
       "shot3": "-37",
       "current_score": "-30"
+    },
+    {
+      "name": "Michael gray",
+      "company": "Kat industries",
+      "number": "",
+      "shot1": "-45",
+      "shot2": "10",
+      "shot3": "0",
+      "current_score": "-35"
     },
     {
       "name": "Roberta smith",
@@ -514,6 +496,33 @@
       "shot2": "-42",
       "shot3": "32",
       "current_score": "-46"
+    },
+    {
+      "name": "Larry Myers",
+      "company": "MVP",
+      "number": "",
+      "shot1": "-13",
+      "shot2": "0",
+      "shot3": "-47",
+      "current_score": "-60"
+    },
+    {
+      "name": "John Parker",
+      "company": "N/A",
+      "number": "",
+      "shot1": "-27",
+      "shot2": "0",
+      "shot3": "-42",
+      "current_score": "-69"
+    },
+    {
+      "name": "Austen",
+      "company": "Gulf Exploration",
+      "number": "",
+      "shot1": "-39",
+      "shot2": "0",
+      "shot3": "-36",
+      "current_score": "-75"
     },
     {
       "name": "Jay",
