@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-10-15T19:06:25Z",
-  "row_count": 82,
+  "last_updated": "2026-10-15T19:07:54Z",
+  "row_count": 83,
   "rows": [
+    {
+      "name": "Caleb",
+      "company": "Tuffa",
+      "number": "",
+      "shot1": "-24",
+      "shot2": "-47",
+      "shot3": "0",
+      "current_score": "-71"
+    },
     {
       "name": "Jose marks",
       "company": "Reic rentals",
