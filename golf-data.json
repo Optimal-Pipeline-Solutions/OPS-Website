@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-10-15T15:56:11Z",
-  "row_count": 22,
+  "last_updated": "2026-10-15T15:57:32Z",
+  "row_count": 24,
   "rows": [
+    {
+      "name": "Cash Ballard",
+      "company": "NA",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "0"
+    },
+    {
+      "name": "Aidan",
+      "company": "NA",
+      "number": "",
+      "shot1": "1",
+      "shot2": "0",
+      "shot3": "-47",
+      "current_score": "-46"
+    },
     {
       "name": "Roberta smith",
       "company": "CPA",
