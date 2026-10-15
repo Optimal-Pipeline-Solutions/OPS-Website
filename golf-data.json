@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-10-15T16:06:56Z",
-  "row_count": 28,
+  "last_updated": "2026-10-15T16:08:35Z",
+  "row_count": 29,
   "rows": [
+    {
+      "name": "Natalie Myers",
+      "company": "Clearwater",
+      "number": "",
+      "shot1": "21",
+      "shot2": "0",
+      "shot3": "0",
+      "current_score": "21"
+    },
     {
       "name": "Larry Myers",
       "company": "MVP",
