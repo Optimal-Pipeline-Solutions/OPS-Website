@@ -1,7 +1,25 @@
 {
-  "last_updated": "2026-10-15T16:18:04Z",
-  "row_count": 31,
+  "last_updated": "2026-10-15T16:19:03Z",
+  "row_count": 33,
   "rows": [
+    {
+      "name": "CJ",
+      "company": "K&r",
+      "number": "",
+      "shot1": "0",
+      "shot2": "0",
+      "shot3": "39",
+      "current_score": "39"
+    },
+    {
+      "name": "Travis little",
+      "company": "K&r",
+      "number": "",
+      "shot1": "0",
+      "shot2": "41",
+      "shot3": "-39",
+      "current_score": "2"
+    },
     {
       "name": "Riley Russel",
       "company": "ET",
