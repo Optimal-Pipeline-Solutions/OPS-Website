@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-10-15T15:38:40Z",
-  "row_count": 17,
+  "last_updated": "2026-10-15T15:40:17Z",
+  "row_count": 18,
   "rows": [
+    {
+      "name": "Timber",
+      "company": "KAT",
+      "number": "",
+      "shot1": "7",
+      "shot2": "0",
+      "shot3": "-37",
+      "current_score": "-30"
+    },
     {
       "name": "Anthony",
       "company": "Stefanini",
