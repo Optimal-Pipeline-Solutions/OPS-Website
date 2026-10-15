@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-10-15T18:31:49Z",
-  "row_count": 77,
+  "last_updated": "2026-10-15T18:33:22Z",
+  "row_count": 78,
   "rows": [
+    {
+      "name": "Stacy",
+      "company": "N/A",
+      "number": "",
+      "shot1": "31",
+      "shot2": "0",
+      "shot3": "41",
+      "current_score": "72"
+    },
     {
       "name": "Wayne",
       "company": "Stream tech",
