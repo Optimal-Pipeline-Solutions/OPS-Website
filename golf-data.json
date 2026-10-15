@@ -1,7 +1,16 @@
 {
-  "last_updated": "2026-10-15T15:05:30Z",
-  "row_count": 6,
+  "last_updated": "2026-10-15T15:07:13Z",
+  "row_count": 7,
   "rows": [
+    {
+      "name": "Blake",
+      "company": "Superior supervacs",
+      "number": "4052058223",
+      "shot1": "11",
+      "shot2": "41",
+      "shot3": "0",
+      "current_score": "52"
+    },
     {
       "name": "Mark querdibitty",
       "company": "Southern star",
