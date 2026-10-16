@@ -2288,14 +2288,19 @@
             document.getElementById('g-overlay').style.display = 'none';
             document.getElementById('g-leaderboard-wrap').style.display = 'none';
 
-            function fmt(name, company) {
-                return (name || '—') + (company ? ' — ' + company : '');
+            function setNameCompany(id, name, company) {
+                var el = document.getElementById(id);
+                el.textContent = name || '—';
+                if (company) {
+                    el.appendChild(document.createElement('br'));
+                    el.appendChild(document.createTextNode(company));
+                }
             }
             function fillDay(day, w1n, w1s, dln, dls, secId) {
                 if (!day || !day.active) return;
-                document.getElementById(w1n).textContent = fmt(day.first.name, day.first.company);
+                setNameCompany(w1n, day.first.name, day.first.company);
                 document.getElementById(w1s).textContent = day.first.score || '—';
-                document.getElementById(dln).textContent = fmt(day.dl.name,    day.dl.company);
+                setNameCompany(dln, day.dl.name, day.dl.company);
                 document.getElementById(dls).textContent = day.dl.score    || '—';
                 document.getElementById(secId).style.display = 'block';
             }
