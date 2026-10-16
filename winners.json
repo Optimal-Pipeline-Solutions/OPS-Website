@@ -1,15 +1,15 @@
 {
   "thursday": {
-    "active": false,
+    "active": true,
     "first": {
-      "name": "",
-      "company": "",
-      "score": ""
+      "name": "Johnny Zuniga",
+      "company": "ARG Petro",
+      "score": "207"
     },
     "dl": {
-      "name": "",
-      "company": "",
-      "score": ""
+      "name": "Jay",
+      "company": "Cardinal River Energy",
+      "score": "-101"
     }
   },
   "friday": {
