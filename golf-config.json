@@ -18,8 +18,9 @@
       "announceLine": "Winner announced at 2:30 PM Thursday",
       "golfKey": "ooge_putting_contest_v1",
       "bgImage": "images/golf-putt-bg.jpg",
-      "bannerTitle": "Come visit with us at the Oklahoma Oil and Gas Expo",
-      "bannerSub": "Bennett Event Center, Oklahoma City · Booth 1222 · Thursday, October 15 · Free putting contest"
+      "dlIcon": "silver",
+      "bannerTitle": "",
+      "bannerSub": ""
     },
     "pcf": {
       "title": "Pipeline Crossroads Festival Golf Challenge",
@@ -36,6 +37,7 @@
       "navLabelMobile": "⛳ Golf Challenge",
       "hookLine": "Come have a beer on us at Hole 15!",
       "bgImage": "images/golf-bg.jpg",
+      "dlIcon": "beer",
       "bannerTitle": "Come visit with us at the Pipeline Crossroads Festival",
       "bannerSub": "Hole 15 · Cushing, Oklahoma · Free putting contest"
     }

@@ -2147,7 +2147,7 @@
                             <div class="g-winner-score-label">points</div>
                         </div>
                         <div class="g-winner-card">
-                            <div class="g-winner-trophy" style="filter:grayscale(1) brightness(1.25);">&#127942;</div>
+                            <div class="g-winner-trophy g-dl-trophy" style="filter:grayscale(1) brightness(1.25);">&#127942;</div>
                             <div class="g-winner-label">Dead Last &mdash; DL</div>
                             <div class="g-winner-name" id="g-thu-dl-name">&mdash;</div>
                             <div class="g-winner-score" id="g-thu-dl-score">&mdash;</div>
@@ -2170,7 +2170,7 @@
                             <div class="g-winner-score-label">points</div>
                         </div>
                         <div class="g-winner-card">
-                            <div class="g-winner-trophy" style="filter:grayscale(1) brightness(1.25);">&#127942;</div>
+                            <div class="g-winner-trophy g-dl-trophy" style="filter:grayscale(1) brightness(1.25);">&#127942;</div>
                             <div class="g-winner-label">Dead Last &mdash; DL</div>
                             <div class="g-winner-name" id="g-fri-dl-name">&mdash;</div>
                             <div class="g-winner-score" id="g-fri-dl-score">&mdash;</div>
@@ -2228,10 +2228,16 @@
                 setTxt('g-rules-announce', e.announceLine);
                 if (e.bgImage) document.getElementById('g-golf-bg').style.backgroundImage = "url('" + e.bgImage + "')";
                 var bn = document.getElementById('golf-banner');
-                if (bn) {
-                    if (e.bannerTitle) document.getElementById('golf-banner-title').textContent = e.bannerTitle;
+                if (bn && e.bannerTitle) {
+                    document.getElementById('golf-banner-title').textContent = e.bannerTitle;
                     if (e.bannerSub) document.getElementById('golf-banner-sub').textContent = e.bannerSub;
                     bn.style.display = 'block';
+                }
+                if (e.dlIcon === 'beer') {
+                    document.querySelectorAll('.g-dl-trophy').forEach(function(t) {
+                        t.textContent = '🍺';
+                        t.style.filter = 'none';
+                    });
                 }
                 document.querySelectorAll('a[onclick*="openGolfModal"]').forEach(function(a) {
                     var lbl = a.classList.contains('mobile-link') ? e.navLabelMobile : e.navLabel;
