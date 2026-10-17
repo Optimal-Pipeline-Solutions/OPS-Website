@@ -1,5 +1,5 @@
 # CODEBASE MAP — OPS Website
-*Generated: 2026-10-16 03:36*
+*Generated: 2026-10-17 03:36*
 
 > AI navigation index. Run `python ~/.claude/tools/map_project.py` to regenerate.
 
@@ -7,6 +7,7 @@
 The official company website for **Optimal Pipeline Solutions** — a static, single-page site hosted on GitHub Pages.
 
 ## Entry Points
+- `scripts\disable_golf.py` — Close out the golf/putting contest: set enabled=false in golf-config.json and push.
 - `scripts\sync_golf.py`
 
 ## Directory Structure
@@ -423,6 +424,11 @@ OPS Website/
 │   │   ├── graph.json
 │   │   ├── GRAPH_REPORT.md
 │   │   └── manifest.json
+│   ├── 2026-10-17
+│   │   ├── .graphify_labels.json
+│   │   ├── graph.json
+│   │   ├── GRAPH_REPORT.md
+│   │   └── manifest.json
 │   ├── cache
 │   │   ├── ast
 │   │   │   └── v0.9.23
@@ -454,6 +460,7 @@ OPS Website/
 │   │   │       ├── 5983b3a5f40f99acfc080a4cbc608646f0e1af0562017e64dfd5d1b374824d3e.json
 │   │   │       ├── 5c503d0bc7e635aca1a14a596810d15c1ae9c4d624f1ee3e607c40b1518f680a.json
 │   │   │       ├── 67da1ebc8193f78105b818fd0934dbda0163bd1bf0692d6e98d750ace8aac953.json
+│   │   │       ├── 6988243a01d2bc3048e55865068fd8415eaca1a3f2608430583501ffbb464981.json
 │   │   │       ├── 6ad1dd2c51eb256723d0709b99c41d88b5da0eea78c3effb6a4e7209f2dd19ef.json
 │   │   │       ├── 7252136c47370ff1cfd9302a8e41aead376cc12f51cb0820c7767ea80de8d68e.json
 │   │   │       ├── 747d24b68292190f3543bb3eaa34f4a7824b26e3cd086cb4001f6555e967bd07.json
@@ -477,6 +484,7 @@ OPS Website/
 │   │   │       ├── 94bac4b5ba1a4c0453ee19838c91eee79c17a9236be92630a69d55ace915f704.json
 │   │   │       ├── 99506a41d6a360f62cc45d2cf2df3093d2f0c4feb26578a2f9bd30ea47bf9936.json
 │   │   │       ├── 9c6d8b3e2ab50a560d3ff1d6bf6190adebc519b0b384d650874b55501fb2574f.json
+│   │   │       ├── 9f4301a9bf73d407fdf27e328b0298ee68eec4892daa0dc3c33adcc3d6704b72.json
 │   │   │       ├── a24bffe82ed6c7b92c58a998b8e4d9da9e352212070f91c71621697e8cc2541b.json
 │   │   │       ├── a2ff5d80cd558580c7320f91569a5d870276e20be0bd09516ff9f481d1333110.json
 │   │   │       ├── a5b58e168b062b63154c06c68e09d647374c07f2f9c9c897141a71d2a0387d5c.json
@@ -572,6 +580,7 @@ OPS Website/
 │   ├── Site_Upgrade_Concept.html
 │   └── Website_Architecture.html
 ├── scripts
+│   ├── disable_golf.py
 │   └── sync_golf.py
 ├── .codebase_map.json
 ├── .gitignore
@@ -600,6 +609,13 @@ OPS Website/
 ```
 
 ## Module Reference
+
+### `scripts\disable_golf.py`
+**Purpose:** Close out the golf/putting contest: set enabled=false in golf-config.json and push.
+
+**Functions:**
+- `run(args)`
+- `main()`
 
 ### `scripts\sync_golf.py`
 
@@ -944,6 +960,10 @@ OPS Website/
 | `graphify-out/2026-10-16/graph.json` | JSON |
 | `graphify-out/2026-10-16/GRAPH_REPORT.md` | MD |
 | `graphify-out/2026-10-16/manifest.json` | JSON |
+| `graphify-out/2026-10-17/.graphify_labels.json` | JSON |
+| `graphify-out/2026-10-17/graph.json` | JSON |
+| `graphify-out/2026-10-17/GRAPH_REPORT.md` | MD |
+| `graphify-out/2026-10-17/manifest.json` | JSON |
 | `graphify-out/cache/2e5231ff223fff64f413a5de1b4b766a615b55dcce42249ed873d8ad39a5b884.json` | JSON |
 | `graphify-out/cache/8aea07ce9b90221548afa07e0b310d41fc1fc2924448e43282942e02bcfb8e20.json` | JSON |
 | `graphify-out/cache/ast/v0.9.23/091b431c94e063256d562eef4a8aba822ed3c27b45bf013ba4bef29cffa16aee.json` | JSON |
@@ -974,6 +994,7 @@ OPS Website/
 | `graphify-out/cache/ast/v0.9.23/5983b3a5f40f99acfc080a4cbc608646f0e1af0562017e64dfd5d1b374824d3e.json` | JSON |
 | `graphify-out/cache/ast/v0.9.23/5c503d0bc7e635aca1a14a596810d15c1ae9c4d624f1ee3e607c40b1518f680a.json` | JSON |
 | `graphify-out/cache/ast/v0.9.23/67da1ebc8193f78105b818fd0934dbda0163bd1bf0692d6e98d750ace8aac953.json` | JSON |
+| `graphify-out/cache/ast/v0.9.23/6988243a01d2bc3048e55865068fd8415eaca1a3f2608430583501ffbb464981.json` | JSON |
 | `graphify-out/cache/ast/v0.9.23/6ad1dd2c51eb256723d0709b99c41d88b5da0eea78c3effb6a4e7209f2dd19ef.json` | JSON |
 | `graphify-out/cache/ast/v0.9.23/7252136c47370ff1cfd9302a8e41aead376cc12f51cb0820c7767ea80de8d68e.json` | JSON |
 | `graphify-out/cache/ast/v0.9.23/747d24b68292190f3543bb3eaa34f4a7824b26e3cd086cb4001f6555e967bd07.json` | JSON |
@@ -997,6 +1018,7 @@ OPS Website/
 | `graphify-out/cache/ast/v0.9.23/94bac4b5ba1a4c0453ee19838c91eee79c17a9236be92630a69d55ace915f704.json` | JSON |
 | `graphify-out/cache/ast/v0.9.23/99506a41d6a360f62cc45d2cf2df3093d2f0c4feb26578a2f9bd30ea47bf9936.json` | JSON |
 | `graphify-out/cache/ast/v0.9.23/9c6d8b3e2ab50a560d3ff1d6bf6190adebc519b0b384d650874b55501fb2574f.json` | JSON |
+| `graphify-out/cache/ast/v0.9.23/9f4301a9bf73d407fdf27e328b0298ee68eec4892daa0dc3c33adcc3d6704b72.json` | JSON |
 | `graphify-out/cache/ast/v0.9.23/a24bffe82ed6c7b92c58a998b8e4d9da9e352212070f91c71621697e8cc2541b.json` | JSON |
 | `graphify-out/cache/ast/v0.9.23/a2ff5d80cd558580c7320f91569a5d870276e20be0bd09516ff9f481d1333110.json` | JSON |
 | `graphify-out/cache/ast/v0.9.23/a5b58e168b062b63154c06c68e09d647374c07f2f9c9c897141a71d2a0387d5c.json` | JSON |
