@@ -1,6 +1,6 @@
 {
   "_readme": "Golf/putting contest switch. Set 'enabled' true/false and pick the 'event' preset key. The site reads this at page load: when enabled, the golf nav links appear (labeled navLabel/navLabelMobile) and all modal text comes from the chosen preset (revealTop/revealBottom are the two big intro words). The golf-sync.yml Action also checks 'enabled' and no-ops when false. Per-year tweaks: update subLine/announceLine dates and bump golfKey so returning visitors see the intro again.",
-  "enabled": true,
+  "enabled": false,
   "event": "ooge",
   "events": {
     "ooge": {
@@ -8,13 +8,13 @@
       "presents": "Oklahoma Oil and Gas Expo",
       "revealTop": "SWING BY",
       "revealBottom": "TAKE YOUR SHOT",
-      "navLabel": "⛳ Putting Contest",
-      "navLabelMobile": "⛳ Putting Contest",
+      "navLabel": "\u26f3 Putting Contest",
+      "navLabelMobile": "\u26f3 Putting Contest",
       "shortBrand": "PUTTING CONTEST",
       "city": "Oklahoma City, Oklahoma",
       "tagline": "Bennett Event Center",
-      "subLine": "Free Putting Contest · Booth 1222 · Thursday, October 15",
-      "hookLine": "Prizes for 1st Place — and Dead Last!",
+      "subLine": "Free Putting Contest \u00b7 Booth 1222 \u00b7 Thursday, October 15",
+      "hookLine": "Prizes for 1st Place \u2014 and Dead Last!",
       "announceLine": "Winner announced at 2:30 PM Thursday",
       "golfKey": "ooge_putting_contest_v1",
       "bgImage": "images/golf-putt-bg.jpg",
@@ -28,18 +28,18 @@
       "shortBrand": "PCF GOLF CHALLENGE",
       "city": "Cushing, Oklahoma",
       "tagline": "Pipeline Crossroads of the World",
-      "subLine": "Hole 15 Putting Contest · Cushing, Oklahoma",
+      "subLine": "Hole 15 Putting Contest \u00b7 Cushing, Oklahoma",
       "announceLine": "Winners announced at end of each day",
       "golfKey": "pcf_golf_challenge_v2",
       "revealTop": "GOLF",
       "revealBottom": "CHALLENGE",
-      "navLabel": "⛳ Golf",
-      "navLabelMobile": "⛳ Golf Challenge",
+      "navLabel": "\u26f3 Golf",
+      "navLabelMobile": "\u26f3 Golf Challenge",
       "hookLine": "Come have a beer on us at Hole 15!",
       "bgImage": "images/golf-bg.jpg",
       "dlIcon": "beer",
       "bannerTitle": "Come visit with us at the Pipeline Crossroads Festival",
-      "bannerSub": "Hole 15 · Cushing, Oklahoma · Free putting contest"
+      "bannerSub": "Hole 15 \u00b7 Cushing, Oklahoma \u00b7 Free putting contest"
     }
   }
 }
