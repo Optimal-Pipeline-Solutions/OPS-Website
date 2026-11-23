@@ -1,5 +1,5 @@
 # CODEBASE MAP — OPS Website
-*Generated: 2026-11-22 02:35*
+*Generated: 2026-11-23 02:35*
 
 > AI navigation index. Run `python ~/.claude/tools/map_project.py` to regenerate.
 
@@ -674,6 +674,7 @@ OPS Website/
 │   ├── .graphify_labels.json
 │   ├── .graphify_labels.json.sig
 │   ├── .graphify_root
+│   ├── .rebuild.lock
 │   ├── graph.html
 │   ├── graph.json
 │   ├── GRAPH_REPORT.md
