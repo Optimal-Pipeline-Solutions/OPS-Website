@@ -1,5 +1,5 @@
 # CODEBASE MAP — OPS Website
-*Generated: 2026-11-23 02:35*
+*Generated: 2026-11-24 02:35*
 
 > AI navigation index. Run `python ~/.claude/tools/map_project.py` to regenerate.
 
@@ -594,6 +594,11 @@ OPS Website/
 │   │   ├── graph.json
 │   │   ├── GRAPH_REPORT.md
 │   │   └── manifest.json
+│   ├── 2026-11-23
+│   │   ├── .graphify_labels.json
+│   │   ├── graph.json
+│   │   ├── GRAPH_REPORT.md
+│   │   └── manifest.json
 │   ├── cache
 │   │   ├── ast
 │   │   │   └── v0.9.92-s17-g97e5a2916848
@@ -619,6 +624,7 @@ OPS Website/
 │   │   │       ├── 478a51d51847440bb712e1e865bcf2caf1d9ac3537ae1823bba89010d84d73e2.json
 │   │   │       ├── 51d3d61b08b6769cd6781942cf4fe84ff5e796313e074dc44b11e0ac9fdc77d6.json
 │   │   │       ├── 57f067decc2e44681efd47f0e75daba31190d9339c027ae642f2017a7d042915.json
+│   │   │       ├── 60bc1555f1e306b46576dce848c5900bb05c8c2513a337aeda0c97842b9c6139.json
 │   │   │       ├── 664b5f0f8c3939443eff55db1fb0b45a731584f3b08d83fb66e47c5a783eb52b.json
 │   │   │       ├── 67c8b00a6d7105beab53823b24716fb7bda49c7905f8afcbb5c56e84c9c9f84a.json
 │   │   │       ├── 6988243a01d2bc3048e55865068fd8415eaca1a3f2608430583501ffbb464981.json
@@ -654,6 +660,7 @@ OPS Website/
 │   │   │       ├── d014dcc57d525e7d385f0756bd064a8a425c103a8ab8dc16ddee74ecc575b90a.json
 │   │   │       ├── d0afcf94d601e7180ecd8fc3fc9f2141fdc132859402f396615b0e06e477ff6c.json
 │   │   │       ├── d5744f8499ba05d0753563bd26ffd6dc4292a5127bc084969a1c1ad3a82534e9.json
+│   │   │       ├── dcbd289b34b8dfe1d0a9c3a3120b9a3bd5f0fd9bea8dcddcb6c3d0c8e3588b0b.json
 │   │   │       ├── e1b65fc28cf6cf5b60779ec3f6bc621226b5d988f26cb8bc5bb9f716514c7693.json
 │   │   │       ├── e8042324c8680546fc144d1476726f3d7565f6fa45ab44a0c3768f0b7b62b6e9.json
 │   │   │       ├── e9e697a21bf01694dce16074fcb16d92c33e63d3368b086669306b3525af690f.json
@@ -674,7 +681,6 @@ OPS Website/
 │   ├── .graphify_labels.json
 │   ├── .graphify_labels.json.sig
 │   ├── .graphify_root
-│   ├── .rebuild.lock
 │   ├── graph.html
 │   ├── graph.json
 │   ├── GRAPH_REPORT.md
@@ -1248,6 +1254,10 @@ OPS Website/
 | `graphify-out/2026-11-22/graph.json` | JSON |
 | `graphify-out/2026-11-22/GRAPH_REPORT.md` | MD |
 | `graphify-out/2026-11-22/manifest.json` | JSON |
+| `graphify-out/2026-11-23/.graphify_labels.json` | JSON |
+| `graphify-out/2026-11-23/graph.json` | JSON |
+| `graphify-out/2026-11-23/GRAPH_REPORT.md` | MD |
+| `graphify-out/2026-11-23/manifest.json` | JSON |
 | `graphify-out/cache/2e5231ff223fff64f413a5de1b4b766a615b55dcce42249ed873d8ad39a5b884.json` | JSON |
 | `graphify-out/cache/8aea07ce9b90221548afa07e0b310d41fc1fc2924448e43282942e02bcfb8e20.json` | JSON |
 | `graphify-out/cache/ast/v0.9.92-s17-g97e5a2916848/00a2440f26b0a358411c9c89abfaa293a8c8eea5bf4004542f0c1ee2a4b7ab1f.json` | JSON |
@@ -1272,6 +1282,7 @@ OPS Website/
 | `graphify-out/cache/ast/v0.9.92-s17-g97e5a2916848/478a51d51847440bb712e1e865bcf2caf1d9ac3537ae1823bba89010d84d73e2.json` | JSON |
 | `graphify-out/cache/ast/v0.9.92-s17-g97e5a2916848/51d3d61b08b6769cd6781942cf4fe84ff5e796313e074dc44b11e0ac9fdc77d6.json` | JSON |
 | `graphify-out/cache/ast/v0.9.92-s17-g97e5a2916848/57f067decc2e44681efd47f0e75daba31190d9339c027ae642f2017a7d042915.json` | JSON |
+| `graphify-out/cache/ast/v0.9.92-s17-g97e5a2916848/60bc1555f1e306b46576dce848c5900bb05c8c2513a337aeda0c97842b9c6139.json` | JSON |
 | `graphify-out/cache/ast/v0.9.92-s17-g97e5a2916848/664b5f0f8c3939443eff55db1fb0b45a731584f3b08d83fb66e47c5a783eb52b.json` | JSON |
 | `graphify-out/cache/ast/v0.9.92-s17-g97e5a2916848/67c8b00a6d7105beab53823b24716fb7bda49c7905f8afcbb5c56e84c9c9f84a.json` | JSON |
 | `graphify-out/cache/ast/v0.9.92-s17-g97e5a2916848/6988243a01d2bc3048e55865068fd8415eaca1a3f2608430583501ffbb464981.json` | JSON |
@@ -1307,6 +1318,7 @@ OPS Website/
 | `graphify-out/cache/ast/v0.9.92-s17-g97e5a2916848/d014dcc57d525e7d385f0756bd064a8a425c103a8ab8dc16ddee74ecc575b90a.json` | JSON |
 | `graphify-out/cache/ast/v0.9.92-s17-g97e5a2916848/d0afcf94d601e7180ecd8fc3fc9f2141fdc132859402f396615b0e06e477ff6c.json` | JSON |
 | `graphify-out/cache/ast/v0.9.92-s17-g97e5a2916848/d5744f8499ba05d0753563bd26ffd6dc4292a5127bc084969a1c1ad3a82534e9.json` | JSON |
+| `graphify-out/cache/ast/v0.9.92-s17-g97e5a2916848/dcbd289b34b8dfe1d0a9c3a3120b9a3bd5f0fd9bea8dcddcb6c3d0c8e3588b0b.json` | JSON |
 | `graphify-out/cache/ast/v0.9.92-s17-g97e5a2916848/e1b65fc28cf6cf5b60779ec3f6bc621226b5d988f26cb8bc5bb9f716514c7693.json` | JSON |
 | `graphify-out/cache/ast/v0.9.92-s17-g97e5a2916848/e8042324c8680546fc144d1476726f3d7565f6fa45ab44a0c3768f0b7b62b6e9.json` | JSON |
 | `graphify-out/cache/ast/v0.9.92-s17-g97e5a2916848/e9e697a21bf01694dce16074fcb16d92c33e63d3368b086669306b3525af690f.json` | JSON |
